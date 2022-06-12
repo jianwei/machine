@@ -1,7 +1,7 @@
 
 启动
 ==================
->>sh build.sh （或者sh sh go.build.sh 和 sh sh stop.build.sh ）
+>>sh build.sh （或者 2个终端分别执行：sh sh go.build.sh 和 sh sh stop.build.sh ）
 
 
 走 
