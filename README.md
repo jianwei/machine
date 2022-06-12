@@ -1,7 +1,7 @@
 
 启动
 ==================
->>ros2 launch wheel wheel.launch.py （或者sh sh go.build.sh 和 sh sh stop.build.sh ）
+>>sh build.sh （或者sh sh go.build.sh 和 sh sh stop.build.sh ）
 
 
 走 
