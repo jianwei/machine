@@ -13,6 +13,7 @@ class goNode(Node):
         super().__init__(name)
         self.get_logger().info("新节点：%s" % name)
         self.create_subscription(UInt32,"wheel_action_go",self.recv_wheel_go_callback,0)
+        self.create_subscription(UInt32,"wheel_action_back",self.recv_wheel_back_callback,0)
         pi = pigpio.pi()
         if not pi.connected:      # 检查是否连接成功
             print("pigpio not connected.")
@@ -40,7 +41,29 @@ class goNode(Node):
         # pi.set_PWM_dutycycle(26, 5)
         self.pi = pi
         
-    
+    def recv_wheel_back_callback(self,message):
+        self.get_logger().info("recv_wheel_back_callback %s" % message.data)
+
+        self.pi.set_mode(8, pigpio.OUTPUT)  # 设置引脚8输出
+        self.pi.write(8, 0)  # 设置引脚8高电平，引脚8控制电机正反向
+        self.pi.set_mode(19, pigpio.OUTPUT)  # 设置引脚19输出
+        self.pi.write(19, 1)  # 设置引脚19低电平，引脚19控制电机正反向
+        self.pi.set_PWM_frequency(18, 50)
+        self.pi.set_PWM_range(18, 100)
+        self.pi.set_PWM_dutycycle(18, 5)
+
+        filename = "lock.file"
+        if(not os.path.exists(filename)):
+            os.mknod("lock.file")
+        self.get_logger().info("----------------back------------")
+        while (True):
+            if(not os.path.exists(filename)):
+                self.pi.write(7, 0)
+                self.pi.write(13, 0)
+                self.pi.stop()
+                break
+        self.get_logger().info("----------------end------------")
+        pass
 
     def recv_wheel_go_callback(self,message):
         self.get_logger().info("recv_wheel_go_callback %s" % message.data)
