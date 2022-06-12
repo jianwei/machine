@@ -1,0 +1,22 @@
+[0.598s] Invoking command in '/media/psf/Home/Desktop/machine/src/wheel': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /media/psf/Home/Desktop/machine/src/build/wheel/build install --prefix /media/psf/Home/Desktop/machine/src/install/wheel --record /media/psf/Home/Desktop/machine/src/build/wheel/install.log --single-version-externally-managed
+[0.803s] running egg_info
+[0.804s] writing ../build/wheel/wheel.egg-info/PKG-INFO
+[0.805s] writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt
+[0.806s] writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt
+[0.808s] writing requirements to ../build/wheel/wheel.egg-info/requires.txt
+[0.809s] writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt
+[0.854s] reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[0.857s] writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[0.858s] running build
+[0.859s] running build_py
+[0.861s] running install
+[0.862s] running install_lib
+[0.867s] running install_data
+[0.868s] running install_egg_info
+[0.871s] removing '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)
+[0.874s] Copying ../build/wheel/wheel.egg-info to /media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info
+[0.895s] running install_scripts
+[0.914s] Installing wheel_node_go script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel
+[0.917s] Installing wheel_node_stop script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel
+[0.922s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/wheel/install.log'
+[0.944s] Invoked command in '/media/psf/Home/Desktop/machine/src/wheel' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /media/psf/Home/Desktop/machine/src/build/wheel/build install --prefix /media/psf/Home/Desktop/machine/src/install/wheel --record /media/psf/Home/Desktop/machine/src/build/wheel/install.log --single-version-externally-managed

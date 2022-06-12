@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-             "wheel_node = wheel.wheel:main"
+            "wheel_node_go = wheel.wheel_go:main",
+            "wheel_node_stop = wheel.wheel_stop:main"
         ],
     },
 )
