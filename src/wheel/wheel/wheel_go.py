@@ -6,14 +6,14 @@ import os
 import pigpio
 
 
-
-
 class goNode(Node):
-    def __init__(self,name):
+    def __init__(self, name):
         super().__init__(name)
         self.get_logger().info("新节点：%s" % name)
-        self.create_subscription(UInt32,"wheel_action_go",self.recv_wheel_go_callback,0)
-        self.create_subscription(UInt32,"wheel_action_back",self.recv_wheel_back_callback,0)
+        self.create_subscription(
+            UInt32, "wheel_action_go", self.recv_wheel_go_callback, 0)
+        self.create_subscription(
+            UInt32, "wheel_action_back", self.recv_wheel_back_callback, 0)
         pi = pigpio.pi()
         if not pi.connected:      # 检查是否连接成功
             print("pigpio not connected.")
@@ -40,8 +40,8 @@ class goNode(Node):
         # pi.set_PWM_range(26, 100)
         # pi.set_PWM_dutycycle(26, 5)
         self.pi = pi
-        
-    def recv_wheel_back_callback(self,message):
+
+    def recv_wheel_back_callback(self, message):
         self.get_logger().info("recv_wheel_back_callback %s" % message.data)
 
         self.pi.set_mode(8, pigpio.OUTPUT)  # 设置引脚8输出
@@ -65,7 +65,7 @@ class goNode(Node):
         self.get_logger().info("----------------end------------")
         pass
 
-    def recv_wheel_go_callback(self,message):
+    def recv_wheel_go_callback(self, message):
         self.get_logger().info("recv_wheel_go_callback %s" % message.data)
         filename = "lock.file"
         if(not os.path.exists(filename)):
@@ -79,13 +79,9 @@ class goNode(Node):
                 break
         self.get_logger().info("----------------end------------")
 
-                
-        
-
-    
 
 def main(args=None):
-    rclpy.init(args=args) # 初始化rclpy
+    rclpy.init(args=args)  # 初始化rclpy
     node = goNode("wheel_node_go")  # 新建一个节点
-    rclpy.spin(node) # 保持节点运行，检测是否收到退出指令（Ctrl+C）
-    rclpy.shutdown() # 关闭rclpy
+    rclpy.spin(node)  # 保持节点运行，检测是否收到退出指令（Ctrl+C）
+    rclpy.shutdown()  # 关闭rclpy
