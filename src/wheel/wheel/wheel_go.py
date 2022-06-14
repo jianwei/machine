@@ -31,13 +31,13 @@ class goNode(Node):
         pi.set_mode(19, pigpio.OUTPUT)  # 设置引脚19输出
         pi.write(19, 0)  # 设置引脚19低电平，引脚19控制电机正反向
 
-        pi.set_PWM_frequency(18, 50)
-        pi.set_PWM_range(18, 100)
-        pi.set_PWM_dutycycle(18, 5)
+        # pi.set_PWM_frequency(18, 50)
+        # pi.set_PWM_range(18, 100)
+        # pi.set_PWM_dutycycle(18, 5)
 
-        pi.set_PWM_frequency(26, 50)
-        pi.set_PWM_range(26, 100)
-        pi.set_PWM_dutycycle(26, 5)
+        # pi.set_PWM_frequency(26, 50)
+        # pi.set_PWM_range(26, 100)
+        # pi.set_PWM_dutycycle(26, 5)
         self.pi = pi
 
     def recv_wheel_back_callback(self, message):
@@ -73,6 +73,15 @@ class goNode(Node):
         if(not os.path.exists(filename)):
             os.mknod("lock.file")
         self.get_logger().info("----------------go------------")
+
+        self.pi.set_PWM_frequency(18, 50)
+        self.pi.set_PWM_range(18, 100)
+        self.pi.set_PWM_dutycycle(18, 5)
+
+        self.pi.set_PWM_frequency(26, 50)
+        self.pi.set_PWM_range(26, 100)
+        self.pi.set_PWM_dutycycle(26, 5)
+
         while (True):
             if(not os.path.exists(filename)):
                 self.pi.write(7, 0)
