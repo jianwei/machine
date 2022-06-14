@@ -37,6 +37,8 @@ class goNode(Node):
         # pi.set_PWM_frequency(26, 50)
         # pi.set_PWM_range(26, 100)
         # pi.set_PWM_dutycycle(26, 5)
+
+        
         self.pi = pi
 
     def recv_wheel_back_callback(self, message):
