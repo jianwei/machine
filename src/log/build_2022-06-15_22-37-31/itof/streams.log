@@ -1,0 +1,76 @@
+[0.047s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake /media/psf/Home/Desktop/machine/src/itof -DCMAKE_INSTALL_PREFIX=/media/psf/Home/Desktop/machine/src/install/itof
+[0.309s] -- The C compiler identification is GNU 9.4.0
+[0.458s] -- The CXX compiler identification is GNU 9.4.0
+[0.480s] -- Check for working C compiler: /usr/bin/cc
+[0.676s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.680s] -- Detecting C compiler ABI info
+[0.832s] -- Detecting C compiler ABI info - done
+[0.850s] -- Detecting C compile features
+[0.851s] -- Detecting C compile features - done
+[0.860s] -- Check for working CXX compiler: /usr/bin/c++
+[1.031s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.034s] -- Detecting CXX compiler ABI info
+[1.228s] -- Detecting CXX compiler ABI info - done
+[1.246s] -- Detecting CXX compile features
+[1.247s] -- Detecting CXX compile features - done
+[1.267s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[1.317s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[1.318s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.672s] -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.833s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.874s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[2.032s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[2.072s] -- Found FastRTPS: /opt/ros/foxy/include  
+[2.216s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.339s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[2.342s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.350s] -- Looking for pthread.h
+[2.504s] -- Looking for pthread.h - found
+[2.506s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.653s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[2.653s] -- Looking for pthread_create in pthreads
+[2.772s] -- Looking for pthread_create in pthreads - not found
+[2.773s] -- Looking for pthread_create in pthread
+[2.912s] -- Looking for pthread_create in pthread - found
+[2.913s] -- Found Threads: TRUE  
+[3.145s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[3.312s] -- Added test 'copyright' to check source files copyright and LICENSE
+[3.330s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[3.330s] -- Configured cppcheck include dirs: 
+[3.331s] -- Configured cppcheck exclude dirs and/or files: 
+[3.348s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[3.349s] -- Configured cpplint exclude dirs and/or files: 
+[3.356s] -- Added test 'lint_cmake' to check CMake code style
+[3.379s] -- Added test 'uncrustify' to check C / C++ code style
+[3.380s] -- Configured uncrustify additional arguments: 
+[3.384s] -- Added test 'xmllint' to check XML markup files
+[3.406s] -- Configuring done
+[3.470s] -- Generating done
+[3.495s] -- Build files have been written to: /media/psf/Home/Desktop/machine/src/build/itof
+[3.502s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake /media/psf/Home/Desktop/machine/src/itof -DCMAKE_INSTALL_PREFIX=/media/psf/Home/Desktop/machine/src/install/itof
+[3.508s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[3.576s] [35m[1mScanning dependencies of target itof_node[0m
+[3.939s] [ 50%] [32mBuilding CXX object CMakeFiles/itof_node.dir/src/itof.cpp.o[0m
+[6.074s] [100%] [32m[1mLinking CXX executable itof_node[0m
+[6.233s] [100%] Built target itof_node
+[6.247s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[6.295s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
+[6.304s] -- Install configuration: ""
+[6.309s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/package_run_dependencies/itof
+[6.316s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/parent_prefix_path/itof
+[6.323s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/ament_prefix_path.sh
+[6.328s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/ament_prefix_path.dsv
+[6.333s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/path.sh
+[6.338s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/path.dsv
+[6.343s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.bash
+[6.348s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.sh
+[6.353s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.zsh
+[6.359s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.dsv
+[6.363s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.dsv
+[6.369s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/packages/itof
+[6.376s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/cmake/itofConfig.cmake
+[6.382s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/cmake/itofConfig-version.cmake
+[6.388s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.xml
+[6.394s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/lib/itof/itof_node
+[6.404s] -- Set runtime path of "/media/psf/Home/Desktop/machine/src/install/itof/lib/itof/itof_node" to ""
+[6.414s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
