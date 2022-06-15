@@ -567,7 +567,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/itof_node.dir/DependInfo.cmake"
+  "CMakeFiles/delta_lidar_node_client.dir/DependInfo.cmake"
+  "CMakeFiles/delta_lidar_node.dir/DependInfo.cmake"
   "CMakeFiles/itof_uninstall.dir/DependInfo.cmake"
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   )

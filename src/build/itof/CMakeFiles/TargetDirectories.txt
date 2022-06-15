@@ -5,6 +5,7 @@
 /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/rebuild_cache.dir
 /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/edit_cache.dir
 /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/test.dir
-/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/itof_node.dir
+/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/delta_lidar_node_client.dir
+/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/delta_lidar_node.dir
 /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/itof_uninstall.dir
 /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles/uninstall.dir

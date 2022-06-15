@@ -1,0 +1,88 @@
+[0.000000] (-) TimerEvent: {}
+[0.001516] (itof) JobQueued: {'identifier': 'itof', 'dependencies': OrderedDict()}
+[0.001727] (wheel) JobQueued: {'identifier': 'wheel', 'dependencies': OrderedDict()}
+[0.001902] (itof) JobStarted: {'identifier': 'itof'}
+[0.020424] (wheel) JobStarted: {'identifier': 'wheel'}
+[0.050134] (itof) JobProgress: {'identifier': 'itof', 'progress': 'cmake'}
+[0.054159] (itof) JobProgress: {'identifier': 'itof', 'progress': 'build'}
+[0.055616] (itof) Command: {'cmd': ['/usr/bin/cmake', '--build', '/media/psf/Home/Desktop/machine/src/build/itof', '--', '-j2', '-l2'], 'cwd': '/media/psf/Home/Desktop/machine/src/build/itof', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'parallels'), ('SSH_AGENT_PID', '2023'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/parallels'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1846'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=ed080a3cfee3ec346750e52262a58a61'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'parallels'), ('JOURNAL_STREAM', '8:45481'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'parallels'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2060,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2060'), ('INVOCATION_ID', 'b65f6bbf16ff4c3392383fe229445ed4'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/587ce34e_ccb8_4f62_8c22_0fc0d9e5d783'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.107'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/media/psf/Home/Desktop/machine/src/build/itof'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=ed080a3cfee3ec346750e52262a58a61'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy')]), 'shell': False}
+[0.099376] (-) TimerEvent: {}
+[0.104992] (itof) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.135660] (itof) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.199531] (-) TimerEvent: {}
+[0.300163] (-) TimerEvent: {}
+[0.335735] (itof) StdoutLine: {'line': b'-- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.378143] (itof) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.381604] (itof) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.400296] (-) TimerEvent: {}
+[0.500873] (-) TimerEvent: {}
+[0.601303] (-) TimerEvent: {}
+[0.619701] (itof) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.671013] (itof) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.673111] (itof) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.701455] (-) TimerEvent: {}
+[0.793501] (wheel) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/wheel', 'build', '--build-base', '/media/psf/Home/Desktop/machine/src/build/wheel/build', 'install', '--prefix', '/media/psf/Home/Desktop/machine/src/install/wheel', '--record', '/media/psf/Home/Desktop/machine/src/build/wheel/install.log', '--single-version-externally-managed'], 'cwd': '/media/psf/Home/Desktop/machine/src/wheel', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'parallels', 'SSH_AGENT_PID': '2023', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/parallels', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1846', 'DBUS_STARTER_BUS_TYPE': 'session', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=ed080a3cfee3ec346750e52262a58a61', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'parallels', 'JOURNAL_STREAM': '8:45481', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'parallels', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2060,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2060', 'INVOCATION_ID': 'b65f6bbf16ff4c3392383fe229445ed4', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/587ce34e_ccb8_4f62_8c22_0fc0d9e5d783', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.107', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/media/psf/Home/Desktop/machine/src/build/wheel', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=ed080a3cfee3ec346750e52262a58a61', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof'}, 'shell': False}
+[0.801552] (-) TimerEvent: {}
+[0.831914] (itof) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[0.901696] (-) TimerEvent: {}
+[0.922746] (itof) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[0.964376] (itof) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[0.965061] (itof) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[0.965543] (itof) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.000061] (itof) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[1.000612] (itof) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[1.001793] (-) TimerEvent: {}
+[1.014132] (itof) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.047369] (itof) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.048026] (itof) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.051676] (itof) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.062563] (itof) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.101923] (-) TimerEvent: {}
+[1.113034] (wheel) StdoutLine: {'line': b'running egg_info\n'}
+[1.114674] (wheel) StdoutLine: {'line': b'writing ../build/wheel/wheel.egg-info/PKG-INFO\n'}
+[1.117781] (wheel) StdoutLine: {'line': b'writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt\n'}
+[1.120245] (wheel) StdoutLine: {'line': b'writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt\n'}
+[1.122950] (wheel) StdoutLine: {'line': b'writing requirements to ../build/wheel/wheel.egg-info/requires.txt\n'}
+[1.124256] (wheel) StdoutLine: {'line': b'writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt\n'}
+[1.140723] (itof) StdoutLine: {'line': b'-- Generating done\n'}
+[1.168160] (itof) StdoutLine: {'line': b'-- Build files have been written to: /media/psf/Home/Desktop/machine/src/build/itof\n'}
+[1.182198] (wheel) StdoutLine: {'line': b"reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[1.184849] (wheel) StdoutLine: {'line': b"writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[1.186230] (wheel) StdoutLine: {'line': b'running build\n'}
+[1.187096] (wheel) StdoutLine: {'line': b'running build_py\n'}
+[1.189814] (wheel) StdoutLine: {'line': b'running install\n'}
+[1.191665] (wheel) StdoutLine: {'line': b'running install_lib\n'}
+[1.197453] (wheel) StdoutLine: {'line': b'running install_data\n'}
+[1.200301] (wheel) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.202016] (-) TimerEvent: {}
+[1.203161] (wheel) StdoutLine: {'line': b"removing '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[1.209009] (wheel) StdoutLine: {'line': b'Copying ../build/wheel/wheel.egg-info to /media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info\n'}
+[1.224313] (itof) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target delta_lidar_node\x1b[0m\n'}
+[1.227325] (itof) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target delta_lidar_node_client\x1b[0m\n'}
+[1.235108] (wheel) StdoutLine: {'line': b'running install_scripts\n'}
+[1.259174] (wheel) StdoutLine: {'line': b'Installing wheel_node_go script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel\n'}
+[1.261891] (wheel) StdoutLine: {'line': b'Installing wheel_node_stop script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel\n'}
+[1.265995] (wheel) StdoutLine: {'line': b"writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/wheel/install.log'\n"}
+[1.276747] (itof) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o\x1b[0m\n'}
+[1.288486] (itof) StderrLine: {'line': b'\x1b[01m\x1b[K/media/psf/Home/Desktop/machine/src/itof/src/client.cpp:12:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kros/ros.h: No such file or directory\n'}
+[1.289028] (itof) StderrLine: {'line': b'   12 | #include \x1b[01;31m\x1b[K"ros/ros.h"\x1b[m\x1b[K\n'}
+[1.289503] (itof) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.289858] (itof) StderrLine: {'line': b'compilation terminated.\n'}
+[1.291176] (itof) StderrLine: {'line': b'make[2]: *** [CMakeFiles/delta_lidar_node_client.dir/build.make:63: CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o] Error 1\n'}
+[1.296359] (itof) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/delta_lidar_node_client.dir/all] Error 2\n'}
+[1.297088] (itof) StderrLine: {'line': b'make[1]: *** Waiting for unfinished jobs....\n'}
+[1.297961] (wheel) CommandEnded: {'returncode': 0}
+[1.299100] (itof) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/delta_lidar_node.dir/src/node.cpp.o\x1b[0m\n'}
+[1.302138] (-) TimerEvent: {}
+[1.315771] (itof) StderrLine: {'line': b'\x1b[01m\x1b[K/media/psf/Home/Desktop/machine/src/itof/src/node.cpp:12:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kros/ros.h: No such file or directory\n'}
+[1.316561] (itof) StderrLine: {'line': b'   12 | #include \x1b[01;31m\x1b[K"ros/ros.h"\x1b[m\x1b[K\n'}
+[1.317358] (itof) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.319176] (itof) StderrLine: {'line': b'compilation terminated.\n'}
+[1.319946] (itof) StderrLine: {'line': b'make[2]: *** [CMakeFiles/delta_lidar_node.dir/build.make:63: CMakeFiles/delta_lidar_node.dir/src/node.cpp.o] Error 1\n'}
+[1.320789] (itof) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/delta_lidar_node.dir/all] Error 2\n'}
+[1.321451] (itof) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[1.350840] (wheel) JobEnded: {'identifier': 'wheel', 'rc': 0}
+[1.353563] (itof) CommandEnded: {'returncode': 2}
+[1.402312] (-) TimerEvent: {}
+[1.440538] (itof) JobEnded: {'identifier': 'itof', 'rc': 2}
+[1.451686] (-) EventReactorShutdown: {}

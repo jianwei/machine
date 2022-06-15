@@ -13,7 +13,7 @@
 #include "sensor_msgs/LaserScan.h"
 
 #include "C3iroboticsLidar.h"
-#include "../sdk/include/CSerialConnection.h"
+#include "./sdk/include/CSerialConnection.h"
 
 #define DEG2RAD(x) ((x)*M_PI/180.)
 //#ifndef _countof

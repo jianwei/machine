@@ -1,0 +1,42 @@
+[0.061s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[0.104s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.134s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.334s] -- Found rclcpp: 2.4.1 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.377s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.380s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.618s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.669s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.672s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.830s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.924s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.963s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.963s] -- Configured cppcheck include dirs: 
+[0.964s] -- Configured cppcheck exclude dirs and/or files: 
+[0.998s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.999s] -- Configured cpplint exclude dirs and/or files: 
+[1.012s] -- Added test 'lint_cmake' to check CMake code style
+[1.046s] -- Added test 'uncrustify' to check C / C++ code style
+[1.046s] -- Configured uncrustify additional arguments: 
+[1.050s] -- Added test 'xmllint' to check XML markup files
+[1.061s] -- Configuring done
+[1.139s] -- Generating done
+[1.167s] -- Build files have been written to: /media/psf/Home/Desktop/machine/src/build/itof
+[1.223s] [35m[1mScanning dependencies of target delta_lidar_node[0m
+[1.226s] [35m[1mScanning dependencies of target delta_lidar_node_client[0m
+[1.275s] [ 25%] [32mBuilding CXX object CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o[0m
+[1.287s] [01m[K/media/psf/Home/Desktop/machine/src/itof/src/client.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[1.287s]    12 | #include [01;31m[K"ros/ros.h"[m[K
+[1.288s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[1.288s] compilation terminated.
+[1.294s] make[2]: *** [CMakeFiles/delta_lidar_node_client.dir/build.make:63: CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o] Error 1
+[1.295s] make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/delta_lidar_node_client.dir/all] Error 2
+[1.296s] make[1]: *** Waiting for unfinished jobs....
+[1.298s] [ 50%] [32mBuilding CXX object CMakeFiles/delta_lidar_node.dir/src/node.cpp.o[0m
+[1.314s] [01m[K/media/psf/Home/Desktop/machine/src/itof/src/node.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[1.315s]    12 | #include [01;31m[K"ros/ros.h"[m[K
+[1.317s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[1.318s] compilation terminated.
+[1.319s] make[2]: *** [CMakeFiles/delta_lidar_node.dir/build.make:63: CMakeFiles/delta_lidar_node.dir/src/node.cpp.o] Error 1
+[1.319s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/delta_lidar_node.dir/all] Error 2
+[1.320s] make: *** [Makefile:141: all] Error 2
+[1.352s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2

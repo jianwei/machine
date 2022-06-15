@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/psf/Home/Desktop/machine/src/itof/src/client.cpp
+ros/ros.h
+/media/psf/Home/Desktop/machine/src/itof/src/ros/ros.h
+sensor_msgs/LaserScan.h
+/media/psf/Home/Desktop/machine/src/itof/src/sensor_msgs/LaserScan.h
+

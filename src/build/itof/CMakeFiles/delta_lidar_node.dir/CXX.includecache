@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/psf/Home/Desktop/machine/src/itof/src/node.cpp
+ros/ros.h
+/media/psf/Home/Desktop/machine/src/itof/src/ros/ros.h
+sensor_msgs/LaserScan.h
+/media/psf/Home/Desktop/machine/src/itof/src/sensor_msgs/LaserScan.h
+C3iroboticsLidar.h
+/media/psf/Home/Desktop/machine/src/itof/src/C3iroboticsLidar.h
+./sdk/include/CSerialConnection.h
+/media/psf/Home/Desktop/machine/src/itof/src/sdk/include/CSerialConnection.h
+
+/media/psf/Home/Desktop/machine/src/itof/src/sdk/include/CDeviceConnection.h
+string
+-
+map
+-
+
+/media/psf/Home/Desktop/machine/src/itof/src/sdk/include/CSerialConnection.h
+CDeviceConnection.h
+/media/psf/Home/Desktop/machine/src/itof/src/sdk/include/CDeviceConnection.h
+string
+-
+
