@@ -61,9 +61,9 @@ class goNode(Node):
         self.get_logger().info("----------------back------------")
         while (True):
             if(not os.path.exists(filename)):
-                self.pi.write(7, 0)
-                self.pi.write(13, 0)
-                self.pi.stop()
+                # self.pi.write(7, 0)
+                # self.pi.write(13, 0)
+                # self.pi.stop()
                 break
         self.get_logger().info("----------------end------------")
         pass
@@ -85,9 +85,9 @@ class goNode(Node):
 
         while (True):
             if(not os.path.exists(filename)):
-                self.pi.write(7, 0)
-                self.pi.write(13, 0)
-                self.pi.stop()
+                # self.pi.write(7, 0)
+                # self.pi.write(13, 0)
+                # self.pi.stop()
                 break
         self.get_logger().info("----------------end------------")
 
