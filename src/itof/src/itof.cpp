@@ -14,7 +14,6 @@ public:
         RCLCPP_INFO(this->get_logger(), "node:%s.",name.c_str());
     }
 
-private:
    
 };
 

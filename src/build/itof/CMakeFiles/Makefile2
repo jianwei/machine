@@ -53,8 +53,7 @@ CMAKE_BINARY_DIR = /media/psf/Home/Desktop/machine/src/build/itof
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/delta_lidar_node_client.dir/all
-all: CMakeFiles/delta_lidar_node.dir/all
+all: CMakeFiles/itof_node.dir/all
 
 .PHONY : all
 
@@ -64,66 +63,38 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/delta_lidar_node_client.dir/clean
-clean: CMakeFiles/delta_lidar_node.dir/clean
+clean: CMakeFiles/itof_node.dir/clean
 clean: CMakeFiles/itof_uninstall.dir/clean
 clean: CMakeFiles/uninstall.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/delta_lidar_node_client.dir
+# Target rules for target CMakeFiles/itof_node.dir
 
 # All Build rule for target.
-CMakeFiles/delta_lidar_node_client.dir/all:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/depend
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles --progress-num=3,4 "Built target delta_lidar_node_client"
-.PHONY : CMakeFiles/delta_lidar_node_client.dir/all
+CMakeFiles/itof_node.dir/all:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/depend
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles --progress-num=1,2 "Built target itof_node"
+.PHONY : CMakeFiles/itof_node.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/delta_lidar_node_client.dir/rule: cmake_check_build_system
+CMakeFiles/itof_node.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/delta_lidar_node_client.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/itof_node.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles 0
-.PHONY : CMakeFiles/delta_lidar_node_client.dir/rule
+.PHONY : CMakeFiles/itof_node.dir/rule
 
 # Convenience name for target.
-delta_lidar_node_client: CMakeFiles/delta_lidar_node_client.dir/rule
+itof_node: CMakeFiles/itof_node.dir/rule
 
-.PHONY : delta_lidar_node_client
-
-# clean rule for target.
-CMakeFiles/delta_lidar_node_client.dir/clean:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/clean
-.PHONY : CMakeFiles/delta_lidar_node_client.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/delta_lidar_node.dir
-
-# All Build rule for target.
-CMakeFiles/delta_lidar_node.dir/all:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/depend
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles --progress-num=1,2 "Built target delta_lidar_node"
-.PHONY : CMakeFiles/delta_lidar_node.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/delta_lidar_node.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/delta_lidar_node.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /media/psf/Home/Desktop/machine/src/build/itof/CMakeFiles 0
-.PHONY : CMakeFiles/delta_lidar_node.dir/rule
-
-# Convenience name for target.
-delta_lidar_node: CMakeFiles/delta_lidar_node.dir/rule
-
-.PHONY : delta_lidar_node
+.PHONY : itof_node
 
 # clean rule for target.
-CMakeFiles/delta_lidar_node.dir/clean:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/clean
-.PHONY : CMakeFiles/delta_lidar_node.dir/clean
+CMakeFiles/itof_node.dir/clean:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/clean
+.PHONY : CMakeFiles/itof_node.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/itof_uninstall.dir

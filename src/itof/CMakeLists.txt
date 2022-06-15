@@ -32,26 +32,26 @@ endif()
 
 ament_package()
 
-# add_executable(itof_node src/itof.cpp)
-# ament_target_dependencies(itof_node rclcpp)
+add_executable(itof_node src/itof.cpp)
+ament_target_dependencies(itof_node rclcpp)
 
-# install(TARGETS
-#   itof_node
-#   DESTINATION lib/${PROJECT_NAME}
-# )
-
-
-add_executable(delta_lidar_node src/node.cpp ${delta_lidar_SDK_SRC})
-target_link_libraries(delta_lidar_node ${catkin_LIBRARIES} -lrt)
-
-add_executable(delta_lidar_node_client src/client.cpp)
-target_link_libraries(delta_lidar_node_client ${catkin_LIBRARIES})
-
-install(TARGETS delta_lidar_node delta_lidar_node_client
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+install(TARGETS
+  itof_node
+  DESTINATION lib/${PROJECT_NAME}
 )
+
+
+# add_executable(delta_lidar_node src/node.cpp ${delta_lidar_SDK_SRC})
+# target_link_libraries(delta_lidar_node ${catkin_LIBRARIES} -lrt)
+
+# add_executable(delta_lidar_node_client src/client.cpp)
+# target_link_libraries(delta_lidar_node_client ${catkin_LIBRARIES})
+
+# install(TARGETS delta_lidar_node delta_lidar_node_client
+#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
 
 # install(DIRECTORY  src/sdk
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}

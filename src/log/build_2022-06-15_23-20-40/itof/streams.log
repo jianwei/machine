@@ -1,0 +1,19 @@
+[0.053s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[0.140s] [35m[1mScanning dependencies of target delta_lidar_node_client[0m
+[0.180s] [ 25%] [32mBuilding CXX object CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o[0m
+[0.191s] [01m[K/media/psf/Home/Desktop/machine/src/itof/src/client.cpp:13:10:[m[K [01;31m[Kfatal error: [m[Krclcpp/rclcpp.hpp: No such file or directory
+[0.191s]    13 | #include [01;31m[K"rclcpp/rclcpp.hpp"[m[K
+[0.192s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[0.193s] compilation terminated.
+[0.193s] make[2]: *** [CMakeFiles/delta_lidar_node_client.dir/build.make:63: CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o] Error 1
+[0.194s] make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/delta_lidar_node_client.dir/all] Error 2
+[0.194s] make[1]: *** Waiting for unfinished jobs....
+[0.207s] [ 50%] [32mBuilding CXX object CMakeFiles/delta_lidar_node.dir/src/node.cpp.o[0m
+[0.218s] [01m[K/media/psf/Home/Desktop/machine/src/itof/src/node.cpp:12:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[0.219s]    12 | #include [01;31m[K"ros/ros.h"[m[K
+[0.220s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[0.223s] compilation terminated.
+[0.224s] make[2]: *** [CMakeFiles/delta_lidar_node.dir/build.make:63: CMakeFiles/delta_lidar_node.dir/src/node.cpp.o] Error 1
+[0.225s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/delta_lidar_node.dir/all] Error 2
+[0.225s] make: *** [Makefile:141: all] Error 2
+[0.336s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2

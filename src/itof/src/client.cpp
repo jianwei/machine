@@ -9,7 +9,8 @@
 *
 */
 
-#include "ros/ros.h"
+// #include "ros/ros.h"
+#include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/LaserScan.h"
 
 #define RAD2DEG(x) ((x)*180./M_PI)

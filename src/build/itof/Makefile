@@ -168,30 +168,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named delta_lidar_node_client
+# Target rules for targets named itof_node
 
 # Build rule for target.
-delta_lidar_node_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 delta_lidar_node_client
-.PHONY : delta_lidar_node_client
+itof_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 itof_node
+.PHONY : itof_node
 
 # fast build rule for target.
-delta_lidar_node_client/fast:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/build
-.PHONY : delta_lidar_node_client/fast
-
-#=============================================================================
-# Target rules for targets named delta_lidar_node
-
-# Build rule for target.
-delta_lidar_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 delta_lidar_node
-.PHONY : delta_lidar_node
-
-# fast build rule for target.
-delta_lidar_node/fast:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/build
-.PHONY : delta_lidar_node/fast
+itof_node/fast:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/build
+.PHONY : itof_node/fast
 
 #=============================================================================
 # Target rules for targets named itof_uninstall
@@ -219,59 +206,32 @@ uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
-src/client.o: src/client.cpp.o
+src/itof.o: src/itof.cpp.o
 
-.PHONY : src/client.o
-
-# target to build an object file
-src/client.cpp.o:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o
-.PHONY : src/client.cpp.o
-
-src/client.i: src/client.cpp.i
-
-.PHONY : src/client.i
-
-# target to preprocess a source file
-src/client.cpp.i:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.i
-.PHONY : src/client.cpp.i
-
-src/client.s: src/client.cpp.s
-
-.PHONY : src/client.s
-
-# target to generate assembly for a file
-src/client.cpp.s:
-	$(MAKE) -f CMakeFiles/delta_lidar_node_client.dir/build.make CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.s
-.PHONY : src/client.cpp.s
-
-src/node.o: src/node.cpp.o
-
-.PHONY : src/node.o
+.PHONY : src/itof.o
 
 # target to build an object file
-src/node.cpp.o:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/src/node.cpp.o
-.PHONY : src/node.cpp.o
+src/itof.cpp.o:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/src/itof.cpp.o
+.PHONY : src/itof.cpp.o
 
-src/node.i: src/node.cpp.i
+src/itof.i: src/itof.cpp.i
 
-.PHONY : src/node.i
+.PHONY : src/itof.i
 
 # target to preprocess a source file
-src/node.cpp.i:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/src/node.cpp.i
-.PHONY : src/node.cpp.i
+src/itof.cpp.i:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/src/itof.cpp.i
+.PHONY : src/itof.cpp.i
 
-src/node.s: src/node.cpp.s
+src/itof.s: src/itof.cpp.s
 
-.PHONY : src/node.s
+.PHONY : src/itof.s
 
 # target to generate assembly for a file
-src/node.cpp.s:
-	$(MAKE) -f CMakeFiles/delta_lidar_node.dir/build.make CMakeFiles/delta_lidar_node.dir/src/node.cpp.s
-.PHONY : src/node.cpp.s
+src/itof.cpp.s:
+	$(MAKE) -f CMakeFiles/itof_node.dir/build.make CMakeFiles/itof_node.dir/src/itof.cpp.s
+.PHONY : src/itof.cpp.s
 
 # Help Target
 help:
@@ -286,16 +246,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... delta_lidar_node_client"
-	@echo "... delta_lidar_node"
+	@echo "... itof_node"
 	@echo "... itof_uninstall"
 	@echo "... uninstall"
-	@echo "... src/client.o"
-	@echo "... src/client.i"
-	@echo "... src/client.s"
-	@echo "... src/node.o"
-	@echo "... src/node.i"
-	@echo "... src/node.s"
+	@echo "... src/itof.o"
+	@echo "... src/itof.i"
+	@echo "... src/itof.s"
 .PHONY : help
 
 
