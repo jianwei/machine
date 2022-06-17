@@ -83,7 +83,8 @@ int main(int argc, char * argv[])
                     send_lidar_scan_data[i] = one_lidar_data;
                 }
 
-                printf("Lidar count %d!\n", (int)lidar_scan_size);
+                // printf("Lidar count %d!\n", (int)lidar_scan_size);
+                printf("Lidar count lidar_scan_size:%d,distance:%f,angle:%f,signal:%f!\n",(int)lidar_scan_size, (float)send_lidar_scan_data[0].distance, (float)send_lidar_scan_data[0].angle, (float)send_lidar_scan_data[0].signal);
 
 
                 break;
