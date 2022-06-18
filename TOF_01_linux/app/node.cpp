@@ -84,7 +84,8 @@ int main(int argc, char * argv[])
                 }
 
                 // printf("Lidar count %d!\n", (int)lidar_scan_size);
-                printf("Lidar  size:%d, lidar_scan_size:%d,distance:%f,angle:%f,signal:%f!\n",(int)sizeof(send_lidar_scan_data),(int)lidar_scan_size, (float)send_lidar_scan_data[0].distance, (float)send_lidar_scan_data[0].angle, (float)send_lidar_scan_data[0].signal);
+                // printf("Lidar  size:%d, lidar_scan_size:%d,distance:%f,angle:%f,signal:%f!\n",(int)sizeof(send_lidar_scan_data),(int)lidar_scan_size, (float)send_lidar_scan_data[0].distance, (float)send_lidar_scan_data[0].angle, (float)send_lidar_scan_data[0].signal);
+                printf("Lidar  size:%d, lidar_scan_size:%d,distance:%f,angle:%f,signal:%f!\n",(int)sizeof(send_lidar_scan_data),(int)lidar_scan_size, (float)send_lidar_scan_data[25].distance, (float)send_lidar_scan_data[25].angle, (float)send_lidar_scan_data[25].signal);
 
 
                 break;
