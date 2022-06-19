@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
                 one_lidar_data.angle = lidar_scan.angle[i];
                 one_lidar_data.distance = lidar_scan.distance[i];
                 send_lidar_scan_data[i] = one_lidar_data;
-                printf("i=%d,signal:%d,angle:%d,distance:%f", i, one_lidar_data.signal, one_lidar_data.angle, one_lidar_data.distance);
+                printf("i=%d,signal:%f,angle:%f,distance:%f \n", (int)i,(float) one_lidar_data.signal,(float) one_lidar_data.angle,(float) one_lidar_data.distance);
             }
             int length = sizeof(send_lidar_scan_data) / sizeof(send_lidar_scan_data[0]);
             int currentSize = 30;
