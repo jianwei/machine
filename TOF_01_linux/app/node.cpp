@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
                 send_lidar_scan_data[i] = one_lidar_data;
                 if (one_lidar_data.distance > 0)
                 {
-                    printf("i=%d,signal:%f,angle:%f,distance:%f \n", (int)i, (float)one_lidar_data.signal, (float)one_lidar_data.angle, (float)one_lidar_data.distance);
+                    printf("i=%d,angle:%f,distance:%f \n", (int)i, (float)one_lidar_data.angle, (float)one_lidar_data.distance);
                 }
             }
             int length = sizeof(send_lidar_scan_data) / sizeof(send_lidar_scan_data[0]);
