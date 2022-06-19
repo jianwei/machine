@@ -71,17 +71,19 @@ int main(int argc, char *argv[])
             std::vector<RslidarDataComplete> send_lidar_scan_data;
             send_lidar_scan_data.resize(lidar_scan_size);
             RslidarDataComplete one_lidar_data;
+            printf("---------------------------------------begin------------------------------------------");
             for (size_t i = 0; i < lidar_scan_size; i++)
             {
                 one_lidar_data.signal = lidar_scan.signal[i];
                 one_lidar_data.angle = lidar_scan.angle[i];
                 one_lidar_data.distance = lidar_scan.distance[i];
                 send_lidar_scan_data[i] = one_lidar_data;
-                printf("i=%d,distance:%f", i,one_lidar_data.distance);
+                printf("i=%d,signal:%d,angle:%d,distance:%f", i, one_lidar_data.signal, one_lidar_data.angle, one_lidar_data.distance);
             }
             int length = sizeof(send_lidar_scan_data) / sizeof(send_lidar_scan_data[0]);
             int currentSize = 30;
             printf("Lidar  size:%d,currentSize:%d, lidar_scan_size:%d,distance:%f \n", (int)length, currentSize, (int)lidar_scan_size, (float)send_lidar_scan_data[currentSize].distance);
+            printf("---------------------------------------end------------------------------------------");
             break;
         }
         case LIDAR_GRAB_ERRO:
