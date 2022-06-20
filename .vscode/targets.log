@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Sun Jun 19 14:17:42 2022
+# Make data base, printed on Mon Jun 20 21:57:28 2022
 
 # Variables
 
@@ -22,7 +19,6 @@ make: *** No rule to make target `all'.  Stop.
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
- 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
@@ -44,7 +40,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /usr/local/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-48119b19-f115-4656-a797-38750e9039fb.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-859b74e0-f818-488d-91a9-0e845a205cf2.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -56,7 +52,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.8Jv0fyzJmb/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.wVDhjeEB5p/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -80,7 +76,7 @@ VSCODE_CODE_CACHE_PATH = /Users/carlos/Library/Application Support/Code/CachedDa
 # environment
 LOGNAME = carlos
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -150,9 +146,8 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 702
+VSCODE_PID = 1341
 # variable set hash-table stats:
- 
 # Load=68/1024=7%, Rehash=0, Collisions=1/89=1%
 
 # Pattern-specific Variable Values
@@ -161,7 +156,7 @@ VSCODE_PID = 702
 
 # Directories
 
-# . (device 16777220, inode 4605289): 9 files, no impossibilities.
+# . (device 16777221, inode 4605289): 9 files, no impossibilities.
 
 # 9 files, no impossibilities in 1 directories.
 
@@ -235,6 +230,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Jun 19 14:17:42 2022
+# Finished Make data base on Mon Jun 20 21:57:28 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
