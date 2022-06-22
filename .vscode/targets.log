@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue Jun 21 18:16:12 2022
+# Make data base, printed on Wed Jun 22 09:09:06 2022
 
 # Variables
 
@@ -38,13 +38,11 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/vscode-ipc-b52e7092-23d3-4a01-8410-e243b67c8f74.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/vscode-ipc-5a11784c-cba3-447c-992e-d7ef8b7f82f2.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /Users/chenjianwei2/tuniu/apache-maven-3.3.9/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/bin:/Users/chenjianwei2/.avn/bin:/usr/local/opt/mongodb-community@4.2/bin:/Users/chenjianwei2/.nvm/versions/node/v8.17.0/bin:/usr/local/opt/redis@4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
-# environment
-NVM_BIN = /Users/chenjianwei2/.nvm/versions/node/v8.17.0/bin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -52,11 +50,9 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.pw79MAk8Ff/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.UWPwsF5y6p/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-__avn_active_file = 
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -76,8 +72,6 @@ LOGNAME = chenjianwei2
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-NVM_CD_FLAGS = 
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
@@ -88,7 +82,7 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 2
+SHLVL = 1
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -113,8 +107,6 @@ MAKEFLAGS = Rrqp
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
-# environment
-NVM_DIR = /Users/chenjianwei2/.nvm
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.12967251343.12967251355
 # automatic
@@ -142,9 +134,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1082
+VSCODE_PID = 861
 # variable set hash-table stats:
-# Load=66/1024=6%, Rehash=0, Collisions=1/87=1%
+# Load=62/1024=6%, Rehash=0, Collisions=1/83=1%
 
 # Pattern-specific Variable Values
 
@@ -226,7 +218,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Jun 21 18:16:12 2022
+# Finished Make data base on Wed Jun 22 09:09:06 2022
 
  
 make: *** No rule to make target `all'.  Stop.
