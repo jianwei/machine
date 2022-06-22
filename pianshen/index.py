@@ -31,4 +31,10 @@ pi = pigpio.pi()
 
 pi.set_mode(23, pigpio.INPUT)
 pi.set_pull_up_down(23, pigpio.PUD_DOWN)
+# print(pi.read(23))
 print(pi.read(23))
+
+
+pi.set_mode(24, pigpio.INPUT)
+pi.set_pull_up_down(24, pigpio.PUD_DOWN)
+print(pi.read(24))
