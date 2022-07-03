@@ -11,7 +11,7 @@
 
 #include "C3iroboticsLidar.h"
 #include "CSerialConnection.h"
-
+·
 #define DEG2RAD(x) ((x)*M_PI / 180.)
 
 typedef struct _rslidar_data

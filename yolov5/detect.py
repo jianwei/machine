@@ -44,7 +44,7 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
                            increment_path, non_max_suppression, print_args, scale_coords, strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
-
+from distance  import imgDistance
 
 @torch.no_grad()
 def run(
@@ -163,13 +163,22 @@ def run(
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
+
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         points = annotator.box_label(xyxy, label, color=colors(c, True))
+                        imgDistance(points)
                         print("point:",points)
+                        # imgDistance(points)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+
+                   # 计算并绘制结果
+                    # xyz_in_camera = draw_measure_line(xyxy, im0, size=2, color=colors[int(cls)], label=cls,
+                    #                                       intrinsics_matrix=intrinsics_matrix) 
+                    # print ("draw_measure_line",draw_measure_line)
+                    # location.append(xyz_in_camera)
 
             # Stream results
             im0 = annotator.result()
