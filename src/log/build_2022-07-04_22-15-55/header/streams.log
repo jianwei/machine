@@ -1,0 +1,38 @@
+[2.771s] Invoking command in '/media/psf/Home/Desktop/machine/src/header': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/header build --build-base /media/psf/Home/Desktop/machine/src/build/header/build install --prefix /media/psf/Home/Desktop/machine/src/install/header --record /media/psf/Home/Desktop/machine/src/build/header/install.log --single-version-externally-managed
+[3.060s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[3.060s]   warnings.warn(
+[3.061s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[3.061s]   warnings.warn(
+[3.782s] running egg_info
+[3.783s] creating ../build/header/header.egg-info
+[3.859s] writing ../build/header/header.egg-info/PKG-INFO
+[3.922s] writing dependency_links to ../build/header/header.egg-info/dependency_links.txt
+[4.190s] writing requirements to ../build/header/header.egg-info/requires.txt
+[4.251s] writing top-level names to ../build/header/header.egg-info/top_level.txt
+[4.254s] writing manifest file '../build/header/header.egg-info/SOURCES.txt'
+[4.353s] reading manifest file '../build/header/header.egg-info/SOURCES.txt'
+[4.355s] writing manifest file '../build/header/header.egg-info/SOURCES.txt'
+[4.356s] running build
+[4.356s] running build_py
+[4.357s] creating /media/psf/Home/Desktop/machine/src/build/header/build
+[4.358s] creating /media/psf/Home/Desktop/machine/src/build/header/build/lib
+[4.358s] creating /media/psf/Home/Desktop/machine/src/build/header/build/lib/header
+[4.359s] copying header/__init__.py -> /media/psf/Home/Desktop/machine/src/build/header/build/lib/header
+[4.362s] running install
+[4.362s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[4.363s]   warnings.warn(
+[4.369s] running install_lib
+[4.449s] creating /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header
+[4.450s] copying /media/psf/Home/Desktop/machine/src/build/header/build/lib/header/__init__.py -> /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header
+[4.453s] byte-compiling /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header/__init__.py to __init__.cpython-38.pyc
+[4.456s] running install_data
+[4.472s] creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index
+[4.473s] creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index
+[4.473s] creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index/packages
+[4.474s] copying resource/header -> /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index/packages
+[4.476s] copying package.xml -> /media/psf/Home/Desktop/machine/src/install/header/share/header
+[4.478s] running install_egg_info
+[4.561s] Copying ../build/header/header.egg-info to /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header-0.0.0-py3.8.egg-info
+[4.575s] running install_scripts
+[4.710s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/header/install.log'
+[4.779s] Invoked command in '/media/psf/Home/Desktop/machine/src/header' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/header build --build-base /media/psf/Home/Desktop/machine/src/build/header/build install --prefix /media/psf/Home/Desktop/machine/src/install/header --record /media/psf/Home/Desktop/machine/src/build/header/install.log --single-version-externally-managed

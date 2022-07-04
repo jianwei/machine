@@ -1,0 +1,30 @@
+running egg_info
+creating ../build/header/header.egg-info
+writing ../build/header/header.egg-info/PKG-INFO
+writing dependency_links to ../build/header/header.egg-info/dependency_links.txt
+writing requirements to ../build/header/header.egg-info/requires.txt
+writing top-level names to ../build/header/header.egg-info/top_level.txt
+writing manifest file '../build/header/header.egg-info/SOURCES.txt'
+reading manifest file '../build/header/header.egg-info/SOURCES.txt'
+writing manifest file '../build/header/header.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /media/psf/Home/Desktop/machine/src/build/header/build
+creating /media/psf/Home/Desktop/machine/src/build/header/build/lib
+creating /media/psf/Home/Desktop/machine/src/build/header/build/lib/header
+copying header/__init__.py -> /media/psf/Home/Desktop/machine/src/build/header/build/lib/header
+running install
+running install_lib
+creating /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header
+copying /media/psf/Home/Desktop/machine/src/build/header/build/lib/header/__init__.py -> /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header
+byte-compiling /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index
+creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index
+creating /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index/packages
+copying resource/header -> /media/psf/Home/Desktop/machine/src/install/header/share/ament_index/resource_index/packages
+copying package.xml -> /media/psf/Home/Desktop/machine/src/install/header/share/header
+running install_egg_info
+Copying ../build/header/header.egg-info to /media/psf/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages/header-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/header/install.log'

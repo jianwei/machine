@@ -1,0 +1,27 @@
+[2.187s] Invoking command in '/media/psf/Home/Desktop/machine/src/configure': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed
+[2.514s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[2.515s]   warnings.warn(
+[2.515s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[2.516s]   warnings.warn(
+[3.191s] running egg_info
+[3.256s] writing ../build/configure/configure.egg-info/PKG-INFO
+[3.317s] writing dependency_links to ../build/configure/configure.egg-info/dependency_links.txt
+[3.475s] writing entry points to ../build/configure/configure.egg-info/entry_points.txt
+[3.568s] writing requirements to ../build/configure/configure.egg-info/requires.txt
+[3.614s] writing top-level names to ../build/configure/configure.egg-info/top_level.txt
+[3.704s] reading manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[3.707s] writing manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[3.708s] running build
+[3.709s] running build_py
+[3.712s] running install
+[3.713s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[3.713s]   warnings.warn(
+[3.719s] running install_lib
+[3.791s] running install_data
+[3.805s] running install_egg_info
+[3.878s] removing '/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info' (and everything under it)
+[3.882s] Copying ../build/configure/configure.egg-info to /media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info
+[3.898s] running install_scripts
+[4.023s] Installing configure script to /media/psf/Home/Desktop/machine/src/install/configure/lib/configure
+[4.025s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/configure/install.log'
+[4.065s] Invoked command in '/media/psf/Home/Desktop/machine/src/configure' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed

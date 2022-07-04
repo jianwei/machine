@@ -1,0 +1,4 @@
+Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
+Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof

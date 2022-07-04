@@ -1,0 +1,24 @@
+[0.967s] Invoking command in '/media/psf/Home/Desktop/machine/src/configure': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed
+[1.220s] running egg_info
+[1.222s] writing ../build/configure/configure.egg-info/PKG-INFO
+[1.224s] writing dependency_links to ../build/configure/configure.egg-info/dependency_links.txt
+[1.225s] writing entry points to ../build/configure/configure.egg-info/entry_points.txt
+[1.227s] writing requirements to ../build/configure/configure.egg-info/requires.txt
+[1.228s] writing top-level names to ../build/configure/configure.egg-info/top_level.txt
+[1.274s] reading manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[1.276s] writing manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[1.278s] running build
+[1.278s] running build_py
+[1.280s] copying configure/configure.py -> /media/psf/Home/Desktop/machine/src/build/configure/build/lib/configure
+[1.283s] running install
+[1.285s] running install_lib
+[1.288s] copying /media/psf/Home/Desktop/machine/src/build/configure/build/lib/configure/configure.py -> /media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure
+[1.291s] byte-compiling /media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure/configure.py to configure.cpython-38.pyc
+[1.295s] running install_data
+[1.296s] running install_egg_info
+[1.298s] removing '/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info' (and everything under it)
+[1.302s] Copying ../build/configure/configure.egg-info to /media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info
+[1.350s] running install_scripts
+[1.374s] Installing configure_node script to /media/psf/Home/Desktop/machine/src/install/configure/lib/configure
+[1.378s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/configure/install.log'
+[1.405s] Invoked command in '/media/psf/Home/Desktop/machine/src/configure' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed

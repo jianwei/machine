@@ -10,13 +10,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sun Jul  3 22:13:53 2022
+# Make data base, printed on Mon Jul  4 22:01:15 2022
+ 
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
- 
 # automatic
 ?F = $(notdir $?)
 # environment
@@ -44,7 +44,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /usr/local/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-1c106b71-78b0-4e28-953d-4dd97fb68a0c.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-4df9a03c-477f-4449-889a-8ae53fa2b1f2.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -56,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.zAY9qAlWEl/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.A8IFXljx7n/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -126,6 +126,7 @@ MAKEFLAGS = Rrqp
 # environment
 MFLAGS = -Rrqp
 # automatic
+ 
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.4932943.4932949
@@ -154,7 +155,6 @@ CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
 # default
 SUFFIXES := 
 # environment
- 
 _CE_M = 
 # default
 .INCLUDE_DIRS = /usr/local/include
@@ -163,7 +163,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 2625
+VSCODE_PID = 973
 # environment
 _CE_CONDA = 
 # environment
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Jul  3 22:13:53 2022
+# Finished Make data base on Mon Jul  4 22:01:15 2022
 
  

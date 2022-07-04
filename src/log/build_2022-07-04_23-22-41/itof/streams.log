@@ -1,0 +1,22 @@
+[0.266s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/media/psf/Home/Desktop/machine/src/install/wheel:/media/psf/Home/Desktop/machine/src/install/header:/media/psf/Home/Desktop/machine/src/install/configure:/media/psf/Home/Desktop/machine/src/install/config:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[0.383s] [100%] Built target itof_node
+[0.401s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/media/psf/Home/Desktop/machine/src/install/wheel:/media/psf/Home/Desktop/machine/src/install/header:/media/psf/Home/Desktop/machine/src/install/configure:/media/psf/Home/Desktop/machine/src/install/config:/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[0.467s] Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/media/psf/Home/Desktop/machine/src/install/wheel:/media/psf/Home/Desktop/machine/src/install/header:/media/psf/Home/Desktop/machine/src/install/configure:/media/psf/Home/Desktop/machine/src/install/config:/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
+[0.480s] -- Install configuration: ""
+[0.481s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/package_run_dependencies/itof
+[0.482s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/parent_prefix_path/itof
+[0.483s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/ament_prefix_path.sh
+[0.484s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/ament_prefix_path.dsv
+[0.485s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/path.sh
+[0.486s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/environment/path.dsv
+[0.486s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.bash
+[0.487s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.sh
+[0.490s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.zsh
+[0.491s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/local_setup.dsv
+[0.492s] -- Installing: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.dsv
+[0.498s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/ament_index/resource_index/packages/itof
+[0.499s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/cmake/itofConfig.cmake
+[0.499s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/cmake/itofConfig-version.cmake
+[0.500s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.xml
+[0.502s] -- Up-to-date: /media/psf/Home/Desktop/machine/src/install/itof/lib/itof/itof_node
+[0.508s] Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/media/psf/Home/Desktop/machine/src/install/wheel:/media/psf/Home/Desktop/machine/src/install/header:/media/psf/Home/Desktop/machine/src/install/configure:/media/psf/Home/Desktop/machine/src/install/config:/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof

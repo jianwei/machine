@@ -1,0 +1,226 @@
+[0.265s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.265s] DEBUG:colcon:Parsed command line arguments: Namespace(allow_overriding=[], ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fdfdc63ca60>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=2, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fdfdc63ca60>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fdfdc645040>)
+[0.315s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.316s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.316s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.316s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.316s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.316s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.316s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/media/psf/Home/Desktop/machine/src'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.318s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.331s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.332s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.333s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.334s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.334s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.334s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.335s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extensions ['ignore', 'ignore_ament_install']
+[0.335s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extension 'ignore'
+[0.335s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extension 'ignore_ament_install'
+[0.336s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extensions ['colcon_pkg']
+[0.336s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extension 'colcon_pkg'
+[0.336s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extensions ['colcon_meta']
+[0.336s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extension 'colcon_meta'
+[0.336s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extensions ['ros']
+[0.337s] Level 1:colcon.colcon_core.package_identification:_identify(configure) by extension 'ros'
+[0.342s] DEBUG:colcon.colcon_core.package_identification:Package 'configure' with type 'ros.ament_python' and name 'configure'
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.342s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.343s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.343s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extensions ['ignore', 'ignore_ament_install']
+[0.344s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extension 'ignore'
+[0.344s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extension 'ignore_ament_install'
+[0.344s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extensions ['colcon_pkg']
+[0.344s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extension 'colcon_pkg'
+[0.345s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extensions ['colcon_meta']
+[0.345s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extension 'colcon_meta'
+[0.345s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extensions ['ros']
+[0.345s] Level 1:colcon.colcon_core.package_identification:_identify(itof) by extension 'ros'
+[0.346s] DEBUG:colcon.colcon_core.package_identification:Package 'itof' with type 'ros.ament_cmake' and name 'itof'
+[0.348s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.348s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.348s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extensions ['ignore', 'ignore_ament_install']
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extension 'ignore'
+[0.349s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extension 'ignore_ament_install'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extensions ['colcon_pkg']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extension 'colcon_pkg'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extensions ['colcon_meta']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extension 'colcon_meta'
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extensions ['ros']
+[0.350s] Level 1:colcon.colcon_core.package_identification:_identify(wheel) by extension 'ros'
+[0.352s] DEBUG:colcon.colcon_core.package_identification:Package 'wheel' with type 'ros.ament_python' and name 'wheel'
+[0.352s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.352s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.352s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.352s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.352s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.380s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.380s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.386s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 256 installed packages in /opt/ros/foxy
+[0.387s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_args' from command line to 'None'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_target' from command line to 'None'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_clean_cache' from command line to 'False'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_clean_first' from command line to 'False'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'cmake_force_configure' from command line to 'False'
+[0.564s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'ament_cmake_args' from command line to 'None'
+[0.565s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'catkin_cmake_args' from command line to 'None'
+[0.565s] Level 5:colcon.colcon_core.verb:set package 'configure' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.565s] DEBUG:colcon.colcon_core.verb:Building package 'configure' with the following arguments: {'ament_cmake_args': None, 'build_base': '/media/psf/Home/Desktop/machine/src/build/configure', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/media/psf/Home/Desktop/machine/src/install/configure', 'merge_install': False, 'path': '/media/psf/Home/Desktop/machine/src/configure', 'symlink_install': False, 'test_result_base': None}
+[0.565s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_args' from command line to 'None'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_target' from command line to 'None'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_clean_cache' from command line to 'False'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_clean_first' from command line to 'False'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'cmake_force_configure' from command line to 'False'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'ament_cmake_args' from command line to 'None'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'catkin_cmake_args' from command line to 'None'
+[0.566s] Level 5:colcon.colcon_core.verb:set package 'itof' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.567s] DEBUG:colcon.colcon_core.verb:Building package 'itof' with the following arguments: {'ament_cmake_args': None, 'build_base': '/media/psf/Home/Desktop/machine/src/build/itof', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/media/psf/Home/Desktop/machine/src/install/itof', 'merge_install': False, 'path': '/media/psf/Home/Desktop/machine/src/itof', 'symlink_install': False, 'test_result_base': None}
+[0.567s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_args' from command line to 'None'
+[0.567s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_target' from command line to 'None'
+[0.567s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_clean_cache' from command line to 'False'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_clean_first' from command line to 'False'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'cmake_force_configure' from command line to 'False'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'ament_cmake_args' from command line to 'None'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'catkin_cmake_args' from command line to 'None'
+[0.568s] Level 5:colcon.colcon_core.verb:set package 'wheel' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.568s] DEBUG:colcon.colcon_core.verb:Building package 'wheel' with the following arguments: {'ament_cmake_args': None, 'build_base': '/media/psf/Home/Desktop/machine/src/build/wheel', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/media/psf/Home/Desktop/machine/src/install/wheel', 'merge_install': False, 'path': '/media/psf/Home/Desktop/machine/src/wheel', 'symlink_install': False, 'test_result_base': None}
+[0.569s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.570s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.571s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/media/psf/Home/Desktop/machine/src/configure' with build type 'ament_python'
+[0.571s] Level 1:colcon.colcon_core.shell:create_environment_hook('configure', 'ament_prefix_path')
+[0.578s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.579s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/ament_prefix_path.ps1'
+[0.581s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/ament_prefix_path.dsv'
+[0.583s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/ament_prefix_path.sh'
+[0.585s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.585s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.590s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/media/psf/Home/Desktop/machine/src/itof' with build type 'ament_cmake'
+[0.590s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/media/psf/Home/Desktop/machine/src/itof'
+[0.591s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.591s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.834s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/media/psf/Home/Desktop/machine/src/configure'
+[0.835s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.835s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.862s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[1.087s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /media/psf/Home/Desktop/machine/src/build/itof -- -j2 -l2
+[1.147s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/media/psf/Home/Desktop/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
+[1.218s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(itof)
+[1.222s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/media/psf/Home/Desktop/machine/src/build/itof' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /media/psf/Home/Desktop/machine/src/build/itof
+[1.234s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof' for CMake module files
+[1.246s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof' for CMake config files
+[1.253s] Level 1:colcon.colcon_core.shell:create_environment_hook('itof', 'cmake_prefix_path')
+[1.254s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.ps1'
+[1.257s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.dsv'
+[1.259s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.sh'
+[1.264s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib'
+[1.268s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/bin'
+[1.270s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib/pkgconfig/itof.pc'
+[1.271s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib/python3.8/site-packages'
+[1.272s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/bin'
+[1.274s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.ps1'
+[1.277s] INFO:colcon.colcon_core.shell:Creating package descriptor '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.dsv'
+[1.280s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.sh'
+[1.284s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.bash'
+[1.288s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.zsh'
+[1.291s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/media/psf/Home/Desktop/machine/src/install/itof/share/colcon-core/packages/itof)
+[1.350s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(itof)
+[1.351s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof' for CMake module files
+[1.361s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof' for CMake config files
+[1.366s] Level 1:colcon.colcon_core.shell:create_environment_hook('itof', 'cmake_prefix_path')
+[1.367s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.ps1'
+[1.368s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.dsv'
+[1.370s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/hook/cmake_prefix_path.sh'
+[1.372s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib'
+[1.373s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/bin'
+[1.373s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib/pkgconfig/itof.pc'
+[1.374s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/lib/python3.8/site-packages'
+[1.374s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/itof/bin'
+[1.375s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.ps1'
+[1.377s] INFO:colcon.colcon_core.shell:Creating package descriptor '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.dsv'
+[1.378s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.sh'
+[1.379s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.bash'
+[1.381s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/itof/share/itof/package.zsh'
+[1.382s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/media/psf/Home/Desktop/machine/src/install/itof/share/colcon-core/packages/itof)
+[1.384s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/media/psf/Home/Desktop/machine/src/wheel' with build type 'ament_python'
+[1.394s] Level 1:colcon.colcon_core.shell:create_environment_hook('wheel', 'ament_prefix_path')
+[1.395s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/ament_prefix_path.ps1'
+[1.398s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/ament_prefix_path.dsv'
+[1.400s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/ament_prefix_path.sh'
+[1.402s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.402s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.684s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/media/psf/Home/Desktop/machine/src/wheel'
+[1.685s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.685s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.704s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/media/psf/Home/Desktop/machine/src/configure': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed
+[2.084s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure' for CMake module files
+[2.085s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/media/psf/Home/Desktop/machine/src/configure' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /media/psf/Home/Desktop/machine/src/build/configure/build install --prefix /media/psf/Home/Desktop/machine/src/install/configure --record /media/psf/Home/Desktop/machine/src/build/configure/install.log --single-version-externally-managed
+[2.091s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure' for CMake config files
+[2.099s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure/lib'
+[2.100s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure/bin'
+[2.101s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure/lib/pkgconfig/configure.pc'
+[2.101s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages'
+[2.101s] Level 1:colcon.colcon_core.shell:create_environment_hook('configure', 'pythonpath')
+[2.102s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/pythonpath.ps1'
+[2.104s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/pythonpath.dsv'
+[2.105s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/hook/pythonpath.sh'
+[2.107s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/configure/bin'
+[2.108s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(configure)
+[2.109s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/package.ps1'
+[2.110s] INFO:colcon.colcon_core.shell:Creating package descriptor '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/package.dsv'
+[2.112s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/package.sh'
+[2.114s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/package.bash'
+[2.116s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/configure/share/configure/package.zsh'
+[2.118s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/media/psf/Home/Desktop/machine/src/install/configure/share/colcon-core/packages/configure)
+[2.167s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/media/psf/Home/Desktop/machine/src/wheel': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /media/psf/Home/Desktop/machine/src/build/wheel/build install --prefix /media/psf/Home/Desktop/machine/src/install/wheel --record /media/psf/Home/Desktop/machine/src/build/wheel/install.log --single-version-externally-managed
+[2.541s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel' for CMake module files
+[2.542s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/media/psf/Home/Desktop/machine/src/wheel' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /media/psf/Home/Desktop/machine/src/build/wheel/build install --prefix /media/psf/Home/Desktop/machine/src/install/wheel --record /media/psf/Home/Desktop/machine/src/build/wheel/install.log --single-version-externally-managed
+[2.549s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel' for CMake config files
+[2.564s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel/lib'
+[2.565s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel/bin'
+[2.565s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel/lib/pkgconfig/wheel.pc'
+[2.566s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages'
+[2.566s] Level 1:colcon.colcon_core.shell:create_environment_hook('wheel', 'pythonpath')
+[2.567s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/pythonpath.ps1'
+[2.569s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/pythonpath.dsv'
+[2.571s] INFO:colcon.colcon_core.shell:Creating environment hook '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/hook/pythonpath.sh'
+[2.572s] Level 1:colcon.colcon_core.environment:checking '/media/psf/Home/Desktop/machine/src/install/wheel/bin'
+[2.572s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(wheel)
+[2.573s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/package.ps1'
+[2.575s] INFO:colcon.colcon_core.shell:Creating package descriptor '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/package.dsv'
+[2.576s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/package.sh'
+[2.578s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/package.bash'
+[2.579s] INFO:colcon.colcon_core.shell:Creating package script '/media/psf/Home/Desktop/machine/src/install/wheel/share/wheel/package.zsh'
+[2.580s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/media/psf/Home/Desktop/machine/src/install/wheel/share/colcon-core/packages/wheel)
+[2.582s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.582s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.583s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.583s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.593s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.594s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.594s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.633s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.634s] INFO:colcon.colcon_core.shell:Creating prefix script '/media/psf/Home/Desktop/machine/src/install/local_setup.ps1'
+[2.638s] INFO:colcon.colcon_core.shell:Creating prefix util module '/media/psf/Home/Desktop/machine/src/install/_local_setup_util_ps1.py'
+[2.642s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/media/psf/Home/Desktop/machine/src/install/setup.ps1'
+[2.644s] INFO:colcon.colcon_core.shell:Creating prefix script '/media/psf/Home/Desktop/machine/src/install/local_setup.sh'
+[2.647s] INFO:colcon.colcon_core.shell:Creating prefix util module '/media/psf/Home/Desktop/machine/src/install/_local_setup_util_sh.py'
+[2.649s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/media/psf/Home/Desktop/machine/src/install/setup.sh'
+[2.652s] INFO:colcon.colcon_core.shell:Creating prefix script '/media/psf/Home/Desktop/machine/src/install/local_setup.bash'
+[2.654s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/media/psf/Home/Desktop/machine/src/install/setup.bash'
+[2.658s] INFO:colcon.colcon_core.shell:Creating prefix script '/media/psf/Home/Desktop/machine/src/install/local_setup.zsh'
+[2.662s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/media/psf/Home/Desktop/machine/src/install/setup.zsh'
