@@ -6,9 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Tue Jul  5 22:27:18 2022
+# Make data base, printed on Wed Jul  6 09:12:33 2022
 
 # Variables
 
@@ -25,11 +24,11 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/carlos/Desktop/machine
+CURDIR := /Users/chenjianwei2/Desktop/machine
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/30d9c6cd9483b2cc586687151bcbcd635f373630","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_translationsConfigFile":"/Users/chenjianwei2/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/tcf.json","_cacheRoot":"/Users/chenjianwei2/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/chenjianwei2/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/30d9c6cd9483b2cc586687151bcbcd635f373630","_corruptedFile":"/Users/chenjianwei2/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -39,13 +38,11 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-INFOPATH = /usr/local/share/info:
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-f8a9dc29-c159-44f9-b2f7-bc8ef58872f3.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/vscode-ipc-7dad4917-19c3-4755-9815-1bd9da818962.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -53,44 +50,31 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.63b4xpon1g/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.YjZaqJHeRW/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-CONDA_EXE = /Users/carlos/opt/anaconda3/bin/conda
-# environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/carlos/Desktop/machine
-# environment
- 
-make: *** No rule to make target `all'.  Stop.
-
-HOMEBREW_CELLAR = /usr/local/Cellar
+PWD = /Users/chenjianwei2/Desktop/machine
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /usr/local/share/man::
-# environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/carlos
+HOME = /Users/chenjianwei2
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/carlos/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+VSCODE_CODE_CACHE_PATH = /Users/chenjianwei2/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
-LOGNAME = carlos
+LOGNAME = chenjianwei2
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-CONDA_PROMPT_MODIFIER = (base) 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# environment
-CONDA_DEFAULT_ENV = base
 # environment
 XPC_FLAGS = 0x0
 # default
@@ -102,25 +86,21 @@ SHLVL = 1
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = carlos
+USER = chenjianwei2
 # makefile
 .DEFAULT_GOAL := 
-# environment
-HOMEBREW_BOTTLE_DOMAIN = https://mirrors.aliyun.com/homebrew/homebrew-bottles
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# environment
-CONDA_SHLVL = 1
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/
+TMPDIR = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/carlos/Library/Application Support/Code/1.68.1-main.sock
+VSCODE_IPC_HOOK = /Users/chenjianwei2/Library/Application Support/Code/1.68.1-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -128,17 +108,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.4932943.4932949
-# environment
-HOMEBREW_PREFIX = /usr/local
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12967573361.12967573367
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-HOMEBREW_REPOSITORY = /usr/local/Homebrew
-# environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
+__CF_USER_TEXT_ENCODING = 0x21C63B0F:0x19:0x34
 # environment
 COMMAND_MODE = unix2003
 # default
@@ -147,28 +123,20 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# environment
-CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
-# environment
-_CE_M = 
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
-CONDA_PREFIX = /Users/carlos/opt/anaconda3
-# environment
-VSCODE_PID = 937
-# environment
-_CE_CONDA = 
-# environment
 LANG = C
+# environment
+VSCODE_PID = 659
 # variable set hash-table stats:
-# Load=76/1024=7%, Rehash=0, Collisions=2/97=2%
+# Load=62/1024=6%, Rehash=0, Collisions=1/83=1%
 
 # Pattern-specific Variable Values
 
@@ -176,9 +144,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777220, inode 4605289): 13 files, no impossibilities.
+# . (device 16777220, inode 12967367978): 15 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -250,6 +218,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Jul  5 22:27:18 2022
+# Finished Make data base on Wed Jul  6 09:12:33 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+

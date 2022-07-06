@@ -1,16 +1,25 @@
 import sys, os
 sys.path.append("..")
 from redisConn.index import redisDB
-
-
-
-class mainfunc () :
+from run import run 
+from scan import scan 
+from work import work 
+class machine () :
     def __init__(self):
         self.redis = redisDB()
-        # self.redis.set("user","chenjianwei")
-        # v = self.redis.get("user")
-        # print(v)
-        # pass
+        self.work = work()
+        self.scan = scan()
+        self.run = run()
+
+    def go(self):
+        pass 
+
+    def stop(self):
+        pass
+    
+    def work(self):
+        pass
+
 
     def loop(self):
         distance = self.getDistance()
@@ -27,11 +36,4 @@ class mainfunc () :
     
 
 if __name__ == "__main__":
-        s = mainfunc()
-
-
-    
-    # rclpy.init(args=args)  # 初始化rclpy
-    # node = goNode("wheel_node_go")  # 新建一个节点
-    # rclpy.spin(node)  # 保持节点运行，检测是否收到退出指令（Ctrl+C）
-    # rclpy.shutdown()  # 关闭rclpy
+        s = machine()

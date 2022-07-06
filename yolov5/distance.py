@@ -1,6 +1,7 @@
 def imgDistance(points):
-    h = 500 #高度
-    convert(h,points)
+    h = 950 #高度 cm
+    distance = convert(h,points)
+    return distance
 
 # v 物距   雷达扫描 单位mm
 def convert(v,points):
@@ -10,5 +11,6 @@ def convert(v,points):
     realPoints  = []
     for point in points:
         realPoints.append((point[0]*unit*ratio/1000/10,point[1]*unit*ratio/1000/10)) 
-    print ("实际距离，单位厘米:",realPoints)
-    pass
+    # print ("实际距离，单位厘米:",realPoints)
+    return realPoints
+    
