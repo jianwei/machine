@@ -1,6 +1,7 @@
 
 # from operator import le
 # from numpy import append
+from numpy import gradient
 
 
 class ConvertPoints():
@@ -9,17 +10,33 @@ class ConvertPoints():
         self.unit  = 1.4 #1.4um  像素大小
         self.f = 3.6  # 3.6mm 焦距
         self.ratio = self.h/self.f
-        self.showWidth = 640    #640
-        self.showHeight = 480    #480
         self.defaultWidth = 2592
         self.defaultHeight = 1944
-        self.diff = 10 #cm 误差前后10厘米
+        self.diff = 3 #cm 误差前后10厘米
+    
+
+    def getPx(self,long):
+        m  = (long/self.h)*self.unit
+        px = int(m * 10 * 1000 * 1.4)
+        print("px",px)
+        return int(px)
+
+
+    # def converPx(self,points):
+    #     print("converPx",points)
+    #     pass
+
+
+    def setScreenSize(self,screenSize):
+        self.showWidth = screenSize[0]
+        self.showHeight = screenSize[1]
         self.ws= self.defaultWidth/self.showWidth #调整系数
         self.hs= self.defaultHeight/self.showHeight #调整系数
         # 2592 × 1944 像素
         # 3280 × 2464 像素
         self.fullHeight = round(self.showHeight*self.unit*self.ratio/1000/10*self.hs,2)
-        pass
+
+   
     
     # v 物距   雷达扫描 单位mm
     def convert(self,points):
@@ -29,9 +46,7 @@ class ConvertPoints():
         realPoints = [pointw,pointh]
         return realPoints
     
-    def setScreenSize(self,screenSize):
-        self.showWidth = screenSize[0]
-        self.defaultHeight = screenSize[1]
+    
 
     def converPoints(self,points):
         for i in range(len(points)):
@@ -49,7 +64,6 @@ class ConvertPoints():
             centerItem = self.getCenter(realpoints[i])
             centerPointer.append(centerItem)
         for i in range(len(centerPointer)):
-            # print("i:",i)
             item = centerPointer[i]
             y = item[1]
             if (len(line) ==0):
@@ -79,7 +93,6 @@ class ConvertPoints():
         return greenLine
 
     def isCenter(self,greenLine):
-        # if()
         diff  = 5 #cm
         firstLine = greenLine[0][0][0]
         firstY = firstLine[1]
@@ -87,20 +100,11 @@ class ConvertPoints():
         if(self.fullHeight-diff<=firstY<=self.fullHeight+diff):
             return True
         return False
-        pass
 
 
     def sortGreenLine(self,greenLine,line):
         greenLine.sort(reverse=True)  # False  reverse倒序 
-        # for item in greenLine:
-            # print("item",item)
-            # for itemPointer in item:
-                # print("itemPointer",itemPointer)
         return greenLine
-
-    def getYDistance (self,points):
-        # for item in 
-        pass
 
 
     def getCenter(self,points):
