@@ -30,9 +30,17 @@ import os
 import sys
 from pathlib import Path
 from turtle import distance
+import json 
 
 import torch
 import torch.backends.cudnn as cudnn
+
+
+from time import time
+sys.path.append("..")
+from redisConn.index import redisDB
+
+
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
@@ -47,6 +55,8 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 from distance  import imgDistance
+
+redis = redisDB()
 
 @torch.no_grad()
 def run(
@@ -184,7 +194,8 @@ def run(
                 print("----------------------------------------------------------------------------------------")
                 print("imagePointsArr:",imagePointsArr)
                 print("imageDistanceArr:",imageDistanceArr)
-                
+                redis.set("imagePoints",json.dumps(imagePointsArr))
+                redis.set("imageDistance",json.dumps(imageDistanceArr))
                    # 计算并绘制结果
                     # xyz_in_camera = draw_measure_line(xyxy, im0, size=2, color=colors[int(cls)], label=cls,
                     #                                       intrinsics_matrix=intrinsics_matrix) 
