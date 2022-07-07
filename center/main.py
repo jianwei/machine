@@ -48,13 +48,16 @@ class machine () :
         # imageDistance
         # try:
         greens = self.redis.get("imagePoints")
+        screenSize = self.redis.get("screenSize")
         self.greens = json.loads(greens)
+        self.convertPoints.setScreenSize(json.loads(screenSize))
         self.realGreensPoints = []
         for i in range(len(self.greens)):
             realPoints = self.convertPoints.converPoints(self.greens[i])
             self.realGreensPoints.append(realPoints)
         greenLine = self.convertPoints.formatLine(self.realGreensPoints)
         isCenter = self.convertPoints.isCenter(greenLine)
+        print ("screenSize:",screenSize)
         print ("greens:",greens)
         print ("greenLine:",greenLine)
         print ("isCenter:",isCenter)

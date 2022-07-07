@@ -9,8 +9,8 @@ class ConvertPoints():
         self.unit  = 1.4 #1.4um  像素大小
         self.f = 3.6  # 3.6mm 焦距
         self.ratio = self.h/self.f
-        self.showWidth = 1024    #640
-        self.showHeight = 768    #480
+        self.showWidth = 640    #640
+        self.showHeight = 480    #480
         self.defaultWidth = 2592
         self.defaultHeight = 1944
         self.diff = 10 #cm 误差前后10厘米
@@ -29,6 +29,10 @@ class ConvertPoints():
         realPoints = [pointw,pointh]
         return realPoints
     
+    def setScreenSize(self,screenSize):
+        self.showWidth = screenSize[0]
+        self.defaultHeight = screenSize[1]
+
     def converPoints(self,points):
         for i in range(len(points)):
             item = self.convert(points[i])
