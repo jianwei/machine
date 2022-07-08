@@ -52,8 +52,10 @@ class machine ():
         screenSize = self.redis.get("screenSize")
         greens = json.loads(greens)
         print("--------------------------------------------------------------------------------------------------")
-        print("greens",greens)
-        print("screenSize",screenSize)
+        # print("greens",greens)
+        # print("screenSize",screenSize)
+
+        
         # self.convertPoints.setScreenSize(json.loads(screenSize))
         # self.convertPoints = 3 # 误差3cm
         # self.convertPoints.formatLineByPoints(self.greens)
@@ -62,7 +64,10 @@ class machine ():
         # realGreensPoints = []
         for i in range(len(greens)):
             item = greens[i]
-            print("i--", item)
+            if (item["name"].find("cup")!=-1):
+                print("cup--", item)
+            if (item["name"].find("phone")!=-1):
+                print("phone--", item)
             # realPoints = self.convertPoints.converPoints(item)
             # print("realPoints", realPoints)
             # realGreensPoints.append(realPoints)
