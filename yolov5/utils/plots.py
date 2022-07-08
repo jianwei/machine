@@ -113,7 +113,9 @@ class Annotator:
                             txt_color,
                             thickness=tf,
                             lineType=cv2.LINE_AA)
-        return points
+                name  = label
+        # return points
+        return {"name":name,"point":points}
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)

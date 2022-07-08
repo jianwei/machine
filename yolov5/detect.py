@@ -175,6 +175,7 @@ def run(
                 # Write results
                 imagePointsArr = []
                 imageDistanceArr = []
+                allPoints = []
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -186,19 +187,21 @@ def run(
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
-                        points = annotator.box_label(xyxy, label, color=colors(c, True))
-                        imagePointsArr.append(points)
-                        singleDistance = imgDistance(points)
+                        box_label = annotator.box_label(xyxy, label, color=colors(c, True))
+                        # points = box_label.point
+                        allPoints.append(box_label)
+                        # singleDistance = imgDistance(points)
                         # print("singleDistance:",singleDistance)
-                        imageDistanceArr.append(singleDistance)
+                        # imageDistanceArr.append(singleDistance)
                         # imgDistance(points)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                 print("----------------------------------------------------------------------------------------")
-                print("imagePointsArr:",imagePointsArr)
-                print("imageDistanceArr:",imageDistanceArr)
-                redis.set("imagePoints",json.dumps(imagePointsArr))
-                redis.set("imageDistance",json.dumps(imageDistanceArr))
+                # print("imagePointsArr:",imagePointsArr)
+                # print("imageDistanceArr:",imageDistanceArr)
+                # redis.set("imagePoints",json.dumps(imagePointsArr))
+                redis.set("allPoints",json.dumps(allPoints))
+                print("allPoints",allPoints)
                    # 计算并绘制结果
                     # xyz_in_camera = draw_measure_line(xyxy, im0, size=2, color=colors[int(cls)], label=cls,
                     #                                       intrinsics_matrix=intrinsics_matrix) 
