@@ -65,10 +65,11 @@ class machine ():
         # realGreensPoints = []
         for i in range(len(greens)):
             item = greens[i]
-            if (item["name"].find("cup")!=-1):
-                print("cup--", item)
-            if (item["name"].find("phone")!=-1):
-                print("phone--", item)
+            print("phone--", item)
+            # if (item["name"].find("cup")!=-1):
+            #     print("cup--", item)
+            # if (item["name"].find("phone")!=-1):
+            #     print("phone--", item)
             # realPoints = self.convertPoints.converPoints(item)
             # print("realPoints", realPoints)
             # realGreensPoints.append(realPoints)
