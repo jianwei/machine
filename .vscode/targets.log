@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Fri Jul  8 10:32:47 2022
+# Make data base, printed on Sat Jul  9 14:55:27 2022
 
 # Variables
 
@@ -41,11 +38,13 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/vscode-ipc-4236d6dc-ac36-4f61-9bd5-a764cdc56953.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/vscode-ipc-28e8f27e-be8c-4fbf-bf44-377f87025492.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin
+PATH = /Users/chenjianwei2/opt/anaconda3/bin:/Users/chenjianwei2/opt/anaconda3/condabin:/Users/chenjianwei2/tuniu/apache-maven-3.3.9/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/bin:/Users/chenjianwei2/.avn/bin:/usr/local/opt/mongodb-community@4.2/bin:/Users/chenjianwei2/.nvm/versions/node/v8.17.0/bin:/usr/local/opt/redis@4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+# environment
+NVM_BIN = /Users/chenjianwei2/.nvm/versions/node/v8.17.0/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -53,9 +52,13 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.h7hsGMX2wn/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.44qFHpU1e8/Listeners
 # automatic
 %F = $(notdir $%)
+# environment
+CONDA_EXE = /Users/chenjianwei2/opt/anaconda3/bin/conda
+# environment
+__avn_active_file = 
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -75,9 +78,15 @@ LOGNAME = chenjianwei2
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
+CONDA_PROMPT_MODIFIER = (base) 
+# environment
+NVM_CD_FLAGS = 
+# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
+# environment
+CONDA_DEFAULT_ENV = base
 # environment
 XPC_FLAGS = 0x0
 # default
@@ -85,7 +94,7 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
+SHLVL = 2
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -94,6 +103,8 @@ USER = chenjianwei2
 .DEFAULT_GOAL := 
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# environment
+CONDA_SHLVL = 1
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
@@ -106,11 +117,12 @@ TMPDIR = /var/folders/47/33p3rwq547q69_wxkwk0h6t4hwcfrg/T/
 VSCODE_IPC_HOOK = /Users/chenjianwei2/Library/Application Support/Code/1.68.1-main.sock
 # makefile
 MAKEFLAGS = Rrqp
- 
 # environment
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+# environment
+NVM_DIR = /Users/chenjianwei2/.nvm
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.12967573361.12967573367
 # automatic
@@ -127,20 +139,28 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+CONDA_PYTHON_EXE = /Users/chenjianwei2/opt/anaconda3/bin/python
 # automatic
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
+# environment
+_CE_M = 
 # default
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
-LANG = C
+CONDA_PREFIX = /Users/chenjianwei2/opt/anaconda3
 # environment
-VSCODE_PID = 1108
+VSCODE_PID = 936
+# environment
+_CE_CONDA = 
+# environment
+LANG = C
 # variable set hash-table stats:
-# Load=62/1024=6%, Rehash=0, Collisions=1/83=1%
+# Load=74/1024=7%, Rehash=0, Collisions=2/95=2%
 
 # Pattern-specific Variable Values
 
@@ -183,7 +203,6 @@ Makefile:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
 # Not a target:
 makefile:
 #  A default, MAKEFILES, or -include/sinclude makefile.
@@ -223,6 +242,8 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Jul  8 10:32:47 2022
+# Finished Make data base on Sat Jul  9 14:55:27 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+

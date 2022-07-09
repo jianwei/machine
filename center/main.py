@@ -35,9 +35,10 @@ class machine ():
         while (True):
             greens = self.getGreen()
             self.go()
-            # time.sleep(5)
+            time.sleep(5)
             # print("greens",greens)
             print("loop")
+            
             # break
         pass
 
