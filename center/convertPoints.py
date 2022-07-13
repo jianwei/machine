@@ -4,7 +4,7 @@ class ConvertPoints():
     def __init__(self):
         # 2592 × 1944 像素
         # 3280 × 2464 像素
-        self.h = 760 #cm
+        self.h = 76 #cm
         self.unit  = 1.12 #1.12um  像素大小
         self.f = 3.04  # 3.04mm 焦距
         self.ratio = self.h/self.f
@@ -22,11 +22,11 @@ class ConvertPoints():
     
 
     def sizex(self,px):
-        pointx = round(px*self.unit*self.ratio/1000/10*self.ws,2)
+        pointx = round(px*self.unit*self.ratio/1000*self.ws,2)
         print("pointx",pointx)
 
     def sizey(self,px):
-        pointy = round(px*self.unit*self.ratio/1000/10*self.ws,2)
+        pointy = round(px*self.unit*self.ratio/1000*self.ws,2)
         print("pointy",pointy)
 
 if __name__ == "__main__":

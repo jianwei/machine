@@ -17,23 +17,9 @@ class main():
         self.redis = redisDB()
         with open('config.yaml',encoding='utf-8') as file1:
             self.config = yaml.load(file1,Loader=yaml.FullLoader)#读取yaml文件
-        
         self.config["redisObj"] =  self.redis
         self.cameraObj  = camera(self.redis,self.config)
         self.config["cameraObj"] = self.cameraObj 
-
-        # print("config",self.config.get("camera").get("screen") )    
-        # self.screen =  self.config.get("camera").get("screen")    #摄像头分辨率
-        # self.screenHegiht = 480   #摄像头分辨率
-        #self.width = 500    #行距
-        #self.hegiht = 330   #株距
-        #self.radius = 10   #除草器的半径
-        # self.machineSpeed = 0  #机器的速度
-       
-        # self.pointObj  = point()
-        # self.speedObj = speed(self.redis,self.pointObj)
-        
-       
         pass
 
     
@@ -80,7 +66,8 @@ class main():
             self.slide.insert()  # 插入土中
             isSliding = True
         #除草头工作
-        self.weeding = weeding(self.config)
+        self.weeding = weeding(self.config,self.greenline,10)
+        # self.weeding.calculate(self.greenline)
         pass
     
 

@@ -26,14 +26,14 @@ class camera ():
     
     #px 转化为距离
     def sizex(self,px):
-        pointx = round(px*self.unit*self.ratio/1000/10*self.ws,2)
+        pointx = round(px*self.unit*self.ratio/1000*self.ws,2)
         print("pointx",pointx)
         return pointx
 
     
     #px 转化为距离
     def sizey(self,px):
-        pointy = round(px*self.unit*self.ratio/1000/10*self.hs,2)
+        pointy = round(px*self.unit*self.ratio/1000*self.hs,2)
         print("pointy",pointy)
         return pointy
 

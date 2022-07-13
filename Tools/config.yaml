@@ -20,4 +20,5 @@ weedingtool:
     leftdiff: 5  #cm  工具左侧距离蔬菜长度
     radius: 10 #cm   除草头半径
     speed: 10 #cm 机器的速度
+    unit: 20 #cm 每10cm转1圈 
 
