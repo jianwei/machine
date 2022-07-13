@@ -1,6 +1,3 @@
-
-from sqlite3 import connect
-from this import s
 import redis
 
 

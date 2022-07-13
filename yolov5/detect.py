@@ -202,6 +202,8 @@ def run(
                 # redis.set("imagePoints",json.dumps(imagePointsArr))
                 redis.set("allPoints",json.dumps(allPoints))
                 print("allPoints",allPoints)
+                for item in allPoints:
+                    print("point:",item)
                    # 计算并绘制结果
                     # xyz_in_camera = draw_measure_line(xyxy, im0, size=2, color=colors[int(cls)], label=cls,
                     #                                       intrinsics_matrix=intrinsics_matrix) 

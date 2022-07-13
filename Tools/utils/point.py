@@ -1,6 +1,6 @@
-#encoding:utf-8
-# -*- coding:UTF-8 -*-
-class ConvertPoints():
+
+class point():
+    
     def __init__(self):
         # 2592 × 1944 像素
         # 3280 × 2464 像素
@@ -10,6 +10,8 @@ class ConvertPoints():
         self.ratio = self.h/self.f
         self.defaultWidth = 3280
         self.defaultHeight = 2464
+        self.ws = 1
+        self.hs = 1
     
 
     def setScreenSize(self,screenSize):
@@ -17,25 +19,16 @@ class ConvertPoints():
         self.showHeight = screenSize[1]
         self.ws= self.defaultWidth/self.showWidth #调整系数
         self.hs= self.defaultHeight/self.showHeight #调整系数
-        print("self.ws,self.hs",self.ws,self.hs)
-       
+        # print("self.ws,self.hs",self.ws,self.hs)
     
-
     def sizex(self,px):
         pointx = round(px*self.unit*self.ratio/1000/10*self.ws,2)
-        print("pointx",pointx)
+        # print("pointx",pointx)
+        return pointx
 
     def sizey(self,px):
         pointy = round(px*self.unit*self.ratio/1000/10*self.ws,2)
-        print("pointy",pointy)
+        # print("pointy",pointy)
+        return pointy
 
-if __name__ == "__main__":
-    dict = [{'name': 'tv 0.35', 'point': [(248, 128), (464, 128), (248, 276), (464, 276)]}]
-    x = 464-248
-    y = 276-128
-    #210 297
-    print (x,y)
-    cv = ConvertPoints()
-    cv.setScreenSize([640, 480])
-    cv.sizex(x)
-    cv.sizey(y)
+    
