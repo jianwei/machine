@@ -1,0 +1,115 @@
+[0.000000] (-) TimerEvent: {}
+[0.001385] (configure) JobQueued: {'identifier': 'configure', 'dependencies': OrderedDict()}
+[0.002739] (weeding) JobQueued: {'identifier': 'weeding', 'dependencies': OrderedDict()}
+[0.004160] (wheel) JobQueued: {'identifier': 'wheel', 'dependencies': OrderedDict()}
+[0.006800] (configure) JobStarted: {'identifier': 'configure'}
+[0.089603] (weeding) JobStarted: {'identifier': 'weeding'}
+[0.098063] (-) TimerEvent: {}
+[0.200634] (-) TimerEvent: {}
+[0.302026] (-) TimerEvent: {}
+[0.404742] (-) TimerEvent: {}
+[0.506352] (-) TimerEvent: {}
+[0.607680] (-) TimerEvent: {}
+[0.709019] (-) TimerEvent: {}
+[0.812022] (-) TimerEvent: {}
+[0.913306] (-) TimerEvent: {}
+[1.015898] (-) TimerEvent: {}
+[1.031477] (configure) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/configure', 'build', '--build-base', '/home/machine/src/build/configure/build', 'install', '--prefix', '/home/machine/src/install/configure', '--record', '/home/machine/src/build/configure/install.log', '--single-version-externally-managed'], 'cwd': '/home/machine/src/configure', 'env': {'HOSTNAME': '4087f460d8ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/root', 'OLDPWD': '/home/machine', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/machine/src/install', 'ROS_DISTRO': 'foxy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/machine/src/install/wheel:/home/machine/src/install/itof:/home/machine/src/install/header:/home/machine/src/install/configure:/home/machine/src/install/config:/opt/ros/foxy', 'PWD': '/home/machine/src/build/configure', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/home/machine/src/install/configure/lib/python3.8/site-packages:/home/machine/src/install/wheel/lib/python3.8/site-packages:/home/machine/src/install/header/lib/python3.8/site-packages:/home/machine/src/install/configure/lib/python3.8/site-packages:/home/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/machine/src/install/itof'}, 'shell': False}
+[1.077140] (weeding) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/weeding', 'build', '--build-base', '/home/machine/src/build/weeding/build', 'install', '--prefix', '/home/machine/src/install/weeding', '--record', '/home/machine/src/build/weeding/install.log', '--single-version-externally-managed'], 'cwd': '/home/machine/src/weeding', 'env': {'HOSTNAME': '4087f460d8ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/root', 'OLDPWD': '/home/machine', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/machine/src/install', 'ROS_DISTRO': 'foxy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/machine/src/install/wheel:/home/machine/src/install/itof:/home/machine/src/install/header:/home/machine/src/install/configure:/home/machine/src/install/config:/opt/ros/foxy', 'PWD': '/home/machine/src/build/weeding', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/home/machine/src/install/weeding/lib/python3.8/site-packages:/home/machine/src/install/wheel/lib/python3.8/site-packages:/home/machine/src/install/header/lib/python3.8/site-packages:/home/machine/src/install/configure/lib/python3.8/site-packages:/home/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/machine/src/install/itof'}, 'shell': False}
+[1.116675] (-) TimerEvent: {}
+[1.222823] (-) TimerEvent: {}
+[1.326663] (-) TimerEvent: {}
+[1.434398] (-) TimerEvent: {}
+[1.537172] (-) TimerEvent: {}
+[1.640177] (-) TimerEvent: {}
+[1.661291] (configure) StdoutLine: {'line': b'running egg_info\n'}
+[1.668865] (configure) StdoutLine: {'line': b'writing ../build/configure/configure.egg-info/PKG-INFO\n'}
+[1.676962] (configure) StdoutLine: {'line': b'writing dependency_links to ../build/configure/configure.egg-info/dependency_links.txt\n'}
+[1.686548] (configure) StdoutLine: {'line': b'writing entry points to ../build/configure/configure.egg-info/entry_points.txt\n'}
+[1.694914] (configure) StdoutLine: {'line': b'writing requirements to ../build/configure/configure.egg-info/requires.txt\n'}
+[1.703518] (configure) StdoutLine: {'line': b'writing top-level names to ../build/configure/configure.egg-info/top_level.txt\n'}
+[1.713321] (weeding) StdoutLine: {'line': b'running egg_info\n'}
+[1.719458] (weeding) StdoutLine: {'line': b'writing ../build/weeding/weeding.egg-info/PKG-INFO\n'}
+[1.727437] (weeding) StdoutLine: {'line': b'writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt\n'}
+[1.736076] (weeding) StdoutLine: {'line': b'writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt\n'}
+[1.741774] (-) TimerEvent: {}
+[1.745140] (weeding) StdoutLine: {'line': b'writing requirements to ../build/weeding/weeding.egg-info/requires.txt\n'}
+[1.753560] (weeding) StdoutLine: {'line': b'writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt\n'}
+[1.842019] (-) TimerEvent: {}
+[1.851526] (configure) StdoutLine: {'line': b"reading manifest file '../build/configure/configure.egg-info/SOURCES.txt'\n"}
+[1.867727] (configure) StdoutLine: {'line': b"writing manifest file '../build/configure/configure.egg-info/SOURCES.txt'\n"}
+[1.875266] (configure) StdoutLine: {'line': b'running build\n'}
+[1.882432] (weeding) StdoutLine: {'line': b"reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[1.892885] (configure) StdoutLine: {'line': b'running build_py\n'}
+[1.897183] (configure) StdoutLine: {'line': b'running install\n'}
+[1.905611] (weeding) StdoutLine: {'line': b"writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[1.911303] (weeding) StdoutLine: {'line': b'running build\n'}
+[1.917378] (weeding) StdoutLine: {'line': b'running build_py\n'}
+[1.921751] (configure) StdoutLine: {'line': b'running install_lib\n'}
+[1.925248] (weeding) StdoutLine: {'line': b'running install\n'}
+[1.928695] (weeding) StdoutLine: {'line': b'running install_lib\n'}
+[1.937609] (configure) StdoutLine: {'line': b'running install_data\n'}
+[1.942230] (weeding) StdoutLine: {'line': b'running install_data\n'}
+[1.945846] (-) TimerEvent: {}
+[1.948085] (weeding) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.952892] (configure) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.957388] (weeding) StdoutLine: {'line': b"removing '/home/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[1.968196] (configure) StdoutLine: {'line': b"removing '/home/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[1.974671] (weeding) StdoutLine: {'line': b'Copying ../build/weeding/weeding.egg-info to /home/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info\n'}
+[1.988165] (configure) StdoutLine: {'line': b'Copying ../build/configure/configure.egg-info to /home/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info\n'}
+[2.046139] (-) TimerEvent: {}
+[2.131384] (weeding) StdoutLine: {'line': b'running install_scripts\n'}
+[2.146311] (-) TimerEvent: {}
+[2.163997] (configure) StdoutLine: {'line': b'running install_scripts\n'}
+[2.190558] (weeding) StdoutLine: {'line': b'Installing weeding_node script to /home/machine/src/install/weeding/lib/weeding\n'}
+[2.204457] (weeding) StdoutLine: {'line': b"writing list of installed files to '/home/machine/src/build/weeding/install.log'\n"}
+[2.227499] (configure) StdoutLine: {'line': b'Installing configure_node script to /home/machine/src/install/configure/lib/configure\n'}
+[2.233792] (configure) StdoutLine: {'line': b"writing list of installed files to '/home/machine/src/build/configure/install.log'\n"}
+[2.247071] (-) TimerEvent: {}
+[2.265713] (weeding) CommandEnded: {'returncode': 0}
+[2.347299] (-) TimerEvent: {}
+[2.449316] (-) TimerEvent: {}
+[2.488799] (weeding) JobEnded: {'identifier': 'weeding', 'rc': 0}
+[2.507732] (wheel) JobStarted: {'identifier': 'wheel'}
+[2.552266] (-) TimerEvent: {}
+[2.619711] (configure) CommandEnded: {'returncode': 0}
+[2.652007] (-) TimerEvent: {}
+[2.717975] (configure) JobEnded: {'identifier': 'configure', 'rc': 0}
+[2.752237] (-) TimerEvent: {}
+[2.853596] (-) TimerEvent: {}
+[2.955834] (-) TimerEvent: {}
+[3.057576] (-) TimerEvent: {}
+[3.158579] (-) TimerEvent: {}
+[3.250872] (wheel) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/wheel', 'build', '--build-base', '/home/machine/src/build/wheel/build', 'install', '--prefix', '/home/machine/src/install/wheel', '--record', '/home/machine/src/build/wheel/install.log', '--single-version-externally-managed'], 'cwd': '/home/machine/src/wheel', 'env': {'HOSTNAME': '4087f460d8ed', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/root', 'OLDPWD': '/home/machine', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/machine/src/install', 'ROS_DISTRO': 'foxy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'AMENT_PREFIX_PATH': '/home/machine/src/install/wheel:/home/machine/src/install/itof:/home/machine/src/install/header:/home/machine/src/install/configure:/home/machine/src/install/config:/opt/ros/foxy', 'PWD': '/home/machine/src/build/wheel', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/home/machine/src/install/wheel/lib/python3.8/site-packages:/home/machine/src/install/wheel/lib/python3.8/site-packages:/home/machine/src/install/header/lib/python3.8/site-packages:/home/machine/src/install/configure/lib/python3.8/site-packages:/home/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/machine/src/install/itof'}, 'shell': False}
+[3.281523] (-) TimerEvent: {}
+[3.383337] (-) TimerEvent: {}
+[3.484966] (-) TimerEvent: {}
+[3.585993] (-) TimerEvent: {}
+[3.600016] (wheel) StdoutLine: {'line': b'running egg_info\n'}
+[3.604546] (wheel) StdoutLine: {'line': b'writing ../build/wheel/wheel.egg-info/PKG-INFO\n'}
+[3.609084] (wheel) StdoutLine: {'line': b'writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt\n'}
+[3.615755] (wheel) StdoutLine: {'line': b'writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt\n'}
+[3.621851] (wheel) StdoutLine: {'line': b'writing requirements to ../build/wheel/wheel.egg-info/requires.txt\n'}
+[3.627735] (wheel) StdoutLine: {'line': b'writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt\n'}
+[3.686308] (-) TimerEvent: {}
+[3.704840] (wheel) StdoutLine: {'line': b"reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[3.717563] (wheel) StdoutLine: {'line': b"writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[3.722892] (wheel) StdoutLine: {'line': b'running build\n'}
+[3.727528] (wheel) StdoutLine: {'line': b'running build_py\n'}
+[3.730626] (wheel) StdoutLine: {'line': b'running install\n'}
+[3.736356] (wheel) StdoutLine: {'line': b'running install_lib\n'}
+[3.745336] (wheel) StdoutLine: {'line': b'running install_data\n'}
+[3.749458] (wheel) StdoutLine: {'line': b'running install_egg_info\n'}
+[3.754126] (wheel) StdoutLine: {'line': b"removing '/home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[3.773330] (wheel) StdoutLine: {'line': b'Copying ../build/wheel/wheel.egg-info to /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info\n'}
+[3.786676] (-) TimerEvent: {}
+[3.889516] (-) TimerEvent: {}
+[3.899328] (wheel) StdoutLine: {'line': b'running install_scripts\n'}
+[3.947331] (wheel) StdoutLine: {'line': b'Installing wheel_node_go script to /home/machine/src/install/wheel/lib/wheel\n'}
+[3.963958] (wheel) StdoutLine: {'line': b'Installing wheel_node_stop script to /home/machine/src/install/wheel/lib/wheel\n'}
+[3.972290] (wheel) StdoutLine: {'line': b"writing list of installed files to '/home/machine/src/build/wheel/install.log'\n"}
+[3.989719] (-) TimerEvent: {}
+[4.017733] (wheel) CommandEnded: {'returncode': 0}
+[4.089907] (-) TimerEvent: {}
+[4.126110] (wheel) JobEnded: {'identifier': 'wheel', 'rc': 0}
+[4.140801] (-) EventReactorShutdown: {}

@@ -1,0 +1,6 @@
+[0.557s] Invoking command in '/home/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/machine/src/build/itof -- -j2 -l2
+[0.765s] CMake Error: The current CMakeCache.txt directory /home/machine/src/build/itof/CMakeCache.txt is different than the directory /media/psf/Home/Desktop/machine/src/build/itof where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+[0.902s] CMake Error: The source directory "/media/psf/Home/Desktop/machine/src/itof" does not exist.
+[0.910s] Specify --help for usage, or press the help button on the CMake GUI.
+[0.922s] make: *** [Makefile:266: cmake_check_build_system] Error 1
+[0.936s] Invoked command in '/home/machine/src/build/itof' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/machine/src/build/itof -- -j2 -l2

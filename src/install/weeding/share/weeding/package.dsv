@@ -1,0 +1,6 @@
+source;share/weeding/hook/pythonpath.ps1
+source;share/weeding/hook/pythonpath.dsv
+source;share/weeding/hook/pythonpath.sh
+source;share/weeding/hook/ament_prefix_path.ps1
+source;share/weeding/hook/ament_prefix_path.dsv
+source;share/weeding/hook/ament_prefix_path.sh

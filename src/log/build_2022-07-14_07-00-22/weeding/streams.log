@@ -1,0 +1,24 @@
+[1.203s] Invoking command in '/home/machine/src/weeding': PYTHONPATH=/home/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /home/machine/src/build/weeding/build install --prefix /home/machine/src/install/weeding --record /home/machine/src/build/weeding/install.log --single-version-externally-managed
+[1.968s] running egg_info
+[2.020s] writing ../build/weeding/weeding.egg-info/PKG-INFO
+[2.037s] writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt
+[2.056s] writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt
+[2.071s] writing requirements to ../build/weeding/weeding.egg-info/requires.txt
+[2.084s] writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt
+[2.279s] reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[2.297s] writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[2.322s] running build
+[2.330s] running build_py
+[2.348s] copying weeding/weeding.py -> /home/machine/src/build/weeding/build/lib/weeding
+[2.373s] running install
+[2.379s] running install_lib
+[2.388s] copying /home/machine/src/build/weeding/build/lib/weeding/weeding.py -> /home/machine/src/install/weeding/lib/python3.8/site-packages/weeding
+[2.398s] byte-compiling /home/machine/src/install/weeding/lib/python3.8/site-packages/weeding/weeding.py to weeding.cpython-38.pyc
+[2.413s] running install_data
+[2.430s] running install_egg_info
+[2.465s] removing '/home/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)
+[2.537s] Copying ../build/weeding/weeding.egg-info to /home/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info
+[2.925s] running install_scripts
+[3.023s] Installing weeding_node script to /home/machine/src/install/weeding/lib/weeding
+[3.052s] writing list of installed files to '/home/machine/src/build/weeding/install.log'
+[3.722s] Invoked command in '/home/machine/src/weeding' returned '0': PYTHONPATH=/home/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /home/machine/src/build/weeding/build install --prefix /home/machine/src/install/weeding --record /home/machine/src/build/weeding/install.log --single-version-externally-managed

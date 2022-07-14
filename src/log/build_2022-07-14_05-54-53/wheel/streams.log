@@ -1,0 +1,32 @@
+[1.200s] Invoking command in '/home/machine/src/wheel': PYTHONPATH=/home/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /home/machine/src/build/wheel/build install --prefix /home/machine/src/install/wheel --record /home/machine/src/build/wheel/install.log --single-version-externally-managed
+[1.747s] running egg_info
+[1.751s] writing ../build/wheel/wheel.egg-info/PKG-INFO
+[1.756s] writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt
+[1.764s] writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt
+[1.777s] writing requirements to ../build/wheel/wheel.egg-info/requires.txt
+[1.787s] writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt
+[1.924s] reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[1.940s] writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[1.949s] running build
+[1.953s] running build_py
+[1.958s] copying wheel/__init__.py -> /home/machine/src/build/wheel/build/lib/wheel
+[1.971s] copying wheel/wheel_go.py -> /home/machine/src/build/wheel/build/lib/wheel
+[1.987s] copying wheel/wheel_stop.py -> /home/machine/src/build/wheel/build/lib/wheel
+[2.001s] running install
+[2.006s] running install_lib
+[2.011s] copying /home/machine/src/build/wheel/build/lib/wheel/__init__.py -> /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel
+[2.040s] copying /home/machine/src/build/wheel/build/lib/wheel/wheel_go.py -> /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel
+[2.062s] copying /home/machine/src/build/wheel/build/lib/wheel/wheel_stop.py -> /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel
+[2.088s] byte-compiling /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel/__init__.py to __init__.cpython-38.pyc
+[2.106s] byte-compiling /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel/wheel_go.py to wheel_go.cpython-38.pyc
+[2.120s] running install_data
+[2.127s] copying resource/wheel -> /home/machine/src/install/wheel/share/ament_index/resource_index/packages
+[2.147s] copying package.xml -> /home/machine/src/install/wheel/share/wheel
+[2.168s] running install_egg_info
+[2.173s] removing '/home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)
+[2.187s] Copying ../build/wheel/wheel.egg-info to /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info
+[2.312s] running install_scripts
+[2.379s] Installing wheel_node_go script to /home/machine/src/install/wheel/lib/wheel
+[2.406s] Installing wheel_node_stop script to /home/machine/src/install/wheel/lib/wheel
+[2.422s] writing list of installed files to '/home/machine/src/build/wheel/install.log'
+[2.525s] Invoked command in '/home/machine/src/wheel' returned '0': PYTHONPATH=/home/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /home/machine/src/build/wheel/build install --prefix /home/machine/src/install/wheel --record /home/machine/src/build/wheel/install.log --single-version-externally-managed

@@ -1,0 +1,22 @@
+[1.233s] Invoking command in '/home/machine/src/wheel': PYTHONPATH=/home/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /home/machine/src/build/wheel/build install --prefix /home/machine/src/install/wheel --record /home/machine/src/build/wheel/install.log --single-version-externally-managed
+[1.777s] running egg_info
+[1.784s] writing ../build/wheel/wheel.egg-info/PKG-INFO
+[1.791s] writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt
+[1.799s] writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt
+[1.807s] writing requirements to ../build/wheel/wheel.egg-info/requires.txt
+[1.814s] writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt
+[1.919s] reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[1.939s] writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'
+[1.951s] running build
+[1.955s] running build_py
+[1.961s] running install
+[1.968s] running install_lib
+[1.973s] running install_data
+[1.980s] running install_egg_info
+[1.990s] removing '/home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)
+[2.002s] Copying ../build/wheel/wheel.egg-info to /home/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info
+[2.194s] running install_scripts
+[2.239s] Installing wheel_node_go script to /home/machine/src/install/wheel/lib/wheel
+[2.252s] Installing wheel_node_stop script to /home/machine/src/install/wheel/lib/wheel
+[2.267s] writing list of installed files to '/home/machine/src/build/wheel/install.log'
+[2.324s] Invoked command in '/home/machine/src/wheel' returned '0': PYTHONPATH=/home/machine/src/install/wheel/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/wheel build --build-base /home/machine/src/build/wheel/build install --prefix /home/machine/src/install/wheel --record /home/machine/src/build/wheel/install.log --single-version-externally-managed

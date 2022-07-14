@@ -1,0 +1,3 @@
+[console_scripts]
+weeding_node = weeding.weeding:main
+

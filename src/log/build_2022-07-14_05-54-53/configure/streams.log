@@ -1,0 +1,21 @@
+[1.133s] Invoking command in '/home/machine/src/configure': PYTHONPATH=/home/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /home/machine/src/build/configure/build install --prefix /home/machine/src/install/configure --record /home/machine/src/build/configure/install.log --single-version-externally-managed
+[1.928s] running egg_info
+[1.935s] writing ../build/configure/configure.egg-info/PKG-INFO
+[1.946s] writing dependency_links to ../build/configure/configure.egg-info/dependency_links.txt
+[1.958s] writing entry points to ../build/configure/configure.egg-info/entry_points.txt
+[1.967s] writing requirements to ../build/configure/configure.egg-info/requires.txt
+[1.977s] writing top-level names to ../build/configure/configure.egg-info/top_level.txt
+[2.158s] reading manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[2.171s] writing manifest file '../build/configure/configure.egg-info/SOURCES.txt'
+[2.185s] running build
+[2.190s] running build_py
+[2.194s] running install
+[2.199s] running install_lib
+[2.203s] running install_data
+[2.207s] running install_egg_info
+[2.216s] removing '/home/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info' (and everything under it)
+[2.239s] Copying ../build/configure/configure.egg-info to /home/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info
+[2.373s] running install_scripts
+[2.499s] Installing configure_node script to /home/machine/src/install/configure/lib/configure
+[2.510s] writing list of installed files to '/home/machine/src/build/configure/install.log'
+[2.605s] Invoked command in '/home/machine/src/configure' returned '0': PYTHONPATH=/home/machine/src/install/configure/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/configure build --build-base /home/machine/src/build/configure/build install --prefix /home/machine/src/install/configure --record /home/machine/src/build/configure/install.log --single-version-externally-managed
