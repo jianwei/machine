@@ -5,7 +5,6 @@
 import time,os,sys,yaml
 from utils.camera import camera 
 from utils.speed import speed 
-from utils.point import point 
 from utils.line import line 
 from tools.weeding import weeding 
 from tools.slide import slide 
@@ -58,7 +57,6 @@ class main():
         self.cameraObj.setScreenSize(screen)
         self.line  = line(self.config)
         self.greenline = self.line.getLine()
-        # print(self.line.getLine())
         #除草头校准
         if(not isSliding):  
             self.slide = slide(self.config)
@@ -67,7 +65,7 @@ class main():
             isSliding = True
         #除草头工作
         self.weeding = weeding(self.config,self.greenline,10)
-        # self.weeding.calculate(self.greenline)
+        self.weeding.run()
         pass
     
 
