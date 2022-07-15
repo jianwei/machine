@@ -1,0 +1,178 @@
+[0.000000] (-) TimerEvent: {}
+[0.000568] (configure) JobQueued: {'identifier': 'configure', 'dependencies': OrderedDict()}
+[0.000768] (weeding) JobQueued: {'identifier': 'weeding', 'dependencies': OrderedDict()}
+[0.000933] (wheel) JobQueued: {'identifier': 'wheel', 'dependencies': OrderedDict()}
+[0.001272] (configure) JobStarted: {'identifier': 'configure'}
+[0.025049] (weeding) JobStarted: {'identifier': 'weeding'}
+[0.132471] (-) TimerEvent: {}
+[0.233426] (-) TimerEvent: {}
+[0.339287] (-) TimerEvent: {}
+[0.440023] (-) TimerEvent: {}
+[0.541234] (-) TimerEvent: {}
+[0.642462] (-) TimerEvent: {}
+[0.743958] (-) TimerEvent: {}
+[0.844631] (-) TimerEvent: {}
+[0.950673] (-) TimerEvent: {}
+[1.051385] (-) TimerEvent: {}
+[1.152943] (-) TimerEvent: {}
+[1.253534] (-) TimerEvent: {}
+[1.354433] (-) TimerEvent: {}
+[1.455194] (-) TimerEvent: {}
+[1.595369] (-) TimerEvent: {}
+[1.695788] (-) TimerEvent: {}
+[1.796234] (-) TimerEvent: {}
+[1.896744] (-) TimerEvent: {}
+[1.997161] (-) TimerEvent: {}
+[2.098528] (-) TimerEvent: {}
+[2.199587] (-) TimerEvent: {}
+[2.300112] (-) TimerEvent: {}
+[2.400787] (-) TimerEvent: {}
+[2.501334] (-) TimerEvent: {}
+[2.601895] (-) TimerEvent: {}
+[2.702424] (-) TimerEvent: {}
+[2.803276] (-) TimerEvent: {}
+[2.815546] (weeding) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/weeding', 'build', '--build-base', '/media/psf/Home/Desktop/machine/src/build/weeding/build', 'install', '--prefix', '/media/psf/Home/Desktop/machine/src/install/weeding', '--record', '/media/psf/Home/Desktop/machine/src/build/weeding/install.log', '--single-version-externally-managed'], 'cwd': '/media/psf/Home/Desktop/machine/src/weeding', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'parallels', 'SSH_AGENT_PID': '2066', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/parallels', 'OLDPWD': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1892', 'DBUS_STARTER_BUS_TYPE': 'session', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'parallels', 'JOURNAL_STREAM': '8:46179', '_': '/usr/bin/sh', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'parallels', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/home/parallels/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2106,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2106', 'INVOCATION_ID': '16160e39c4824133ad99b6dcbccc0ef1', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/7e626553_c853_41bf_a06a_9ad2c144f9c9', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.86', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config:/opt/ros/foxy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/media/psf/Home/Desktop/machine/src/build/weeding', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof'}, 'shell': False}
+[2.849062] (configure) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/configure', 'build', '--build-base', '/media/psf/Home/Desktop/machine/src/build/configure/build', 'install', '--prefix', '/media/psf/Home/Desktop/machine/src/install/configure', '--record', '/media/psf/Home/Desktop/machine/src/build/configure/install.log', '--single-version-externally-managed'], 'cwd': '/media/psf/Home/Desktop/machine/src/configure', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'parallels', 'SSH_AGENT_PID': '2066', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/parallels', 'OLDPWD': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1892', 'DBUS_STARTER_BUS_TYPE': 'session', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'parallels', 'JOURNAL_STREAM': '8:46179', '_': '/usr/bin/sh', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'parallels', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/home/parallels/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2106,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2106', 'INVOCATION_ID': '16160e39c4824133ad99b6dcbccc0ef1', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/7e626553_c853_41bf_a06a_9ad2c144f9c9', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.86', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config:/opt/ros/foxy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/media/psf/Home/Desktop/machine/src/build/configure', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof'}, 'shell': False}
+[2.903356] (-) TimerEvent: {}
+[3.003824] (-) TimerEvent: {}
+[3.104274] (-) TimerEvent: {}
+[3.125718] (weeding) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[3.126257] (weeding) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.127040] (weeding) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead\n"}
+[3.127401] (weeding) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.143763] (configure) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[3.144457] (configure) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.145107] (configure) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead\n"}
+[3.145722] (configure) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.204453] (-) TimerEvent: {}
+[3.305018] (-) TimerEvent: {}
+[3.406115] (-) TimerEvent: {}
+[3.506999] (-) TimerEvent: {}
+[3.607807] (-) TimerEvent: {}
+[3.708321] (-) TimerEvent: {}
+[3.808876] (-) TimerEvent: {}
+[3.848769] (weeding) StdoutLine: {'line': b'running egg_info\n'}
+[3.850030] (configure) StdoutLine: {'line': b'running egg_info\n'}
+[3.908980] (-) TimerEvent: {}
+[3.913560] (configure) StdoutLine: {'line': b'writing ../build/configure/configure.egg-info/PKG-INFO\n'}
+[3.914878] (weeding) StdoutLine: {'line': b'writing ../build/weeding/weeding.egg-info/PKG-INFO\n'}
+[3.962541] (configure) StdoutLine: {'line': b'writing dependency_links to ../build/configure/configure.egg-info/dependency_links.txt\n'}
+[3.970120] (weeding) StdoutLine: {'line': b'writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt\n'}
+[4.009081] (-) TimerEvent: {}
+[4.108905] (configure) StdoutLine: {'line': b'writing entry points to ../build/configure/configure.egg-info/entry_points.txt\n'}
+[4.109637] (-) TimerEvent: {}
+[4.117271] (weeding) StdoutLine: {'line': b'writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt\n'}
+[4.201982] (configure) StdoutLine: {'line': b'writing requirements to ../build/configure/configure.egg-info/requires.txt\n'}
+[4.209726] (-) TimerEvent: {}
+[4.215704] (weeding) StdoutLine: {'line': b'writing requirements to ../build/weeding/weeding.egg-info/requires.txt\n'}
+[4.252658] (configure) StdoutLine: {'line': b'writing top-level names to ../build/configure/configure.egg-info/top_level.txt\n'}
+[4.266107] (weeding) StdoutLine: {'line': b'writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt\n'}
+[4.310512] (-) TimerEvent: {}
+[4.346276] (configure) StdoutLine: {'line': b"reading manifest file '../build/configure/configure.egg-info/SOURCES.txt'\n"}
+[4.348768] (configure) StdoutLine: {'line': b"writing manifest file '../build/configure/configure.egg-info/SOURCES.txt'\n"}
+[4.350042] (configure) StdoutLine: {'line': b'running build\n'}
+[4.350407] (configure) StdoutLine: {'line': b'running build_py\n'}
+[4.352398] (configure) StdoutLine: {'line': b'running install\n'}
+[4.352961] (configure) StderrLine: {'line': b'/home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[4.353565] (configure) StderrLine: {'line': b'  warnings.warn(\n'}
+[4.358615] (configure) StdoutLine: {'line': b'running install_lib\n'}
+[4.359663] (weeding) StdoutLine: {'line': b"reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[4.362695] (weeding) StdoutLine: {'line': b"writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[4.363712] (weeding) StdoutLine: {'line': b'running build\n'}
+[4.364223] (weeding) StdoutLine: {'line': b'running build_py\n'}
+[4.365508] (weeding) StdoutLine: {'line': b'copying weeding/weeding.py -> /media/psf/Home/Desktop/machine/src/build/weeding/build/lib/weeding\n'}
+[4.367704] (weeding) StdoutLine: {'line': b'running install\n'}
+[4.368194] (weeding) StderrLine: {'line': b'/home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[4.368581] (weeding) StderrLine: {'line': b'  warnings.warn(\n'}
+[4.373375] (weeding) StdoutLine: {'line': b'running install_lib\n'}
+[4.410619] (-) TimerEvent: {}
+[4.427695] (configure) StdoutLine: {'line': b'running install_data\n'}
+[4.441146] (weeding) StdoutLine: {'line': b'copying /media/psf/Home/Desktop/machine/src/build/weeding/build/lib/weeding/weeding.py -> /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding\n'}
+[4.443603] (weeding) StdoutLine: {'line': b'byte-compiling /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/weeding.py to weeding.cpython-38.pyc\n'}
+[4.444077] (configure) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.446001] (weeding) StdoutLine: {'line': b'running install_data\n'}
+[4.460206] (weeding) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.510722] (-) TimerEvent: {}
+[4.511078] (configure) StdoutLine: {'line': b"removing '/media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[4.514298] (configure) StdoutLine: {'line': b'Copying ../build/configure/configure.egg-info to /media/psf/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages/configure-0.0.0-py3.8.egg-info\n'}
+[4.529610] (configure) StdoutLine: {'line': b'running install_scripts\n'}
+[4.533557] (weeding) StdoutLine: {'line': b"removing '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[4.539178] (weeding) StdoutLine: {'line': b'Copying ../build/weeding/weeding.egg-info to /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info\n'}
+[4.557392] (weeding) StdoutLine: {'line': b'running install_scripts\n'}
+[4.610826] (-) TimerEvent: {}
+[4.672261] (configure) StdoutLine: {'line': b'Installing configure_node script to /media/psf/Home/Desktop/machine/src/install/configure/lib/configure\n'}
+[4.674400] (configure) StdoutLine: {'line': b"writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/configure/install.log'\n"}
+[4.694602] (weeding) StdoutLine: {'line': b'Installing weeding_node script to /media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding\n'}
+[4.697466] (weeding) StdoutLine: {'line': b"writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/weeding/install.log'\n"}
+[4.710957] (-) TimerEvent: {}
+[4.714038] (configure) CommandEnded: {'returncode': 0}
+[4.752978] (configure) JobEnded: {'identifier': 'configure', 'rc': 0}
+[4.756137] (wheel) JobStarted: {'identifier': 'wheel'}
+[4.778269] (weeding) CommandEnded: {'returncode': 0}
+[4.810290] (weeding) JobEnded: {'identifier': 'weeding', 'rc': 0}
+[4.815270] (-) TimerEvent: {}
+[4.915933] (-) TimerEvent: {}
+[5.016864] (-) TimerEvent: {}
+[5.126471] (-) TimerEvent: {}
+[5.227112] (-) TimerEvent: {}
+[5.328184] (-) TimerEvent: {}
+[5.429035] (-) TimerEvent: {}
+[5.553217] (-) TimerEvent: {}
+[5.653878] (-) TimerEvent: {}
+[5.755140] (-) TimerEvent: {}
+[5.856015] (-) TimerEvent: {}
+[5.967626] (-) TimerEvent: {}
+[6.068101] (-) TimerEvent: {}
+[6.239014] (-) TimerEvent: {}
+[6.339617] (-) TimerEvent: {}
+[6.440217] (-) TimerEvent: {}
+[6.541909] (-) TimerEvent: {}
+[6.642468] (-) TimerEvent: {}
+[6.743572] (-) TimerEvent: {}
+[6.746247] (wheel) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/wheel', 'build', '--build-base', '/media/psf/Home/Desktop/machine/src/build/wheel/build', 'install', '--prefix', '/media/psf/Home/Desktop/machine/src/install/wheel', '--record', '/media/psf/Home/Desktop/machine/src/build/wheel/install.log', '--single-version-externally-managed'], 'cwd': '/media/psf/Home/Desktop/machine/src/wheel', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'parallels', 'SSH_AGENT_PID': '2066', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/parallels', 'OLDPWD': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1892', 'DBUS_STARTER_BUS_TYPE': 'session', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'parallels', 'JOURNAL_STREAM': '8:46179', '_': '/usr/bin/sh', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'parallels', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/home/parallels/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2106,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2106', 'INVOCATION_ID': '16160e39c4824133ad99b6dcbccc0ef1', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/7e626553_c853_41bf_a06a_9ad2c144f9c9', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.86', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config:/opt/ros/foxy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/media/psf/Home/Desktop/machine/src/build/wheel', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=5d0d6836765d6645980d2a4e62d0bfe7', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/header/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/configure/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/config/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003', 'CMAKE_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/itof'}, 'shell': False}
+[6.854670] (-) TimerEvent: {}
+[6.958349] (-) TimerEvent: {}
+[7.058011] (wheel) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead\n"}
+[7.058767] (-) TimerEvent: {}
+[7.059092] (wheel) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.059752] (wheel) StderrLine: {'line': b"/home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:772: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead\n"}
+[7.060286] (wheel) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.159607] (-) TimerEvent: {}
+[7.302204] (-) TimerEvent: {}
+[7.404537] (-) TimerEvent: {}
+[7.527341] (-) TimerEvent: {}
+[7.627967] (-) TimerEvent: {}
+[7.674407] (wheel) StdoutLine: {'line': b'running egg_info\n'}
+[7.728094] (-) TimerEvent: {}
+[7.739064] (wheel) StdoutLine: {'line': b'writing ../build/wheel/wheel.egg-info/PKG-INFO\n'}
+[7.788994] (wheel) StdoutLine: {'line': b'writing dependency_links to ../build/wheel/wheel.egg-info/dependency_links.txt\n'}
+[7.828225] (-) TimerEvent: {}
+[7.928860] (wheel) StdoutLine: {'line': b'writing entry points to ../build/wheel/wheel.egg-info/entry_points.txt\n'}
+[7.929414] (-) TimerEvent: {}
+[8.027471] (wheel) StdoutLine: {'line': b'writing requirements to ../build/wheel/wheel.egg-info/requires.txt\n'}
+[8.029619] (-) TimerEvent: {}
+[8.083859] (wheel) StdoutLine: {'line': b'writing top-level names to ../build/wheel/wheel.egg-info/top_level.txt\n'}
+[8.129785] (-) TimerEvent: {}
+[8.184867] (wheel) StdoutLine: {'line': b"reading manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[8.187398] (wheel) StdoutLine: {'line': b"writing manifest file '../build/wheel/wheel.egg-info/SOURCES.txt'\n"}
+[8.188979] (wheel) StdoutLine: {'line': b'running build\n'}
+[8.189769] (wheel) StdoutLine: {'line': b'running build_py\n'}
+[8.192013] (wheel) StdoutLine: {'line': b'running install\n'}
+[8.195494] (wheel) StderrLine: {'line': b'/home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[8.195996] (wheel) StderrLine: {'line': b'  warnings.warn(\n'}
+[8.198540] (wheel) StdoutLine: {'line': b'running install_lib\n'}
+[8.230015] (-) TimerEvent: {}
+[8.271487] (wheel) StdoutLine: {'line': b'running install_data\n'}
+[8.290486] (wheel) StdoutLine: {'line': b'running install_egg_info\n'}
+[8.330109] (-) TimerEvent: {}
+[8.363450] (wheel) StdoutLine: {'line': b"removing '/media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[8.367291] (wheel) StdoutLine: {'line': b'Copying ../build/wheel/wheel.egg-info to /media/psf/Home/Desktop/machine/src/install/wheel/lib/python3.8/site-packages/wheel-0.0.0-py3.8.egg-info\n'}
+[8.380452] (wheel) StdoutLine: {'line': b'running install_scripts\n'}
+[8.430259] (-) TimerEvent: {}
+[8.523401] (wheel) StdoutLine: {'line': b'Installing wheel_node_go script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel\n'}
+[8.525103] (wheel) StdoutLine: {'line': b'Installing wheel_node_stop script to /media/psf/Home/Desktop/machine/src/install/wheel/lib/wheel\n'}
+[8.527252] (wheel) StdoutLine: {'line': b"writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/wheel/install.log'\n"}
+[8.530359] (-) TimerEvent: {}
+[8.564379] (wheel) CommandEnded: {'returncode': 0}
+[8.594401] (wheel) JobEnded: {'identifier': 'wheel', 'rc': 0}
+[8.596627] (-) EventReactorShutdown: {}
