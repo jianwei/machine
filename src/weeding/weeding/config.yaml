@@ -1,0 +1,24 @@
+camera:
+    screen: #摄像头拍摄出来显示的像素
+      - 640   #宽
+      - 480   #高
+    height: 100  #cm 摄像头离地面的高度
+    unit: 1.12 #1.12um  像素大小
+    f: 3.04  # 3.04mm 焦距
+    defaultScreen:  #摄像头输出的像素
+      - 3280   #宽
+      - 2464   #高
+green:
+    width:  400  #cm  行距
+    height: 400  #cm  株距
+line:
+    diff: 2   #cm  误差3cm的算1行
+redis:  #redis key
+    camera: camera
+weedingtool:
+    diff: 10 #cm   工具和摄像头拍摄底部的距离
+    leftdiff: 5  #cm  工具左侧距离蔬菜长度
+    radius: 10 #cm   除草头半径
+    speed: 10 #cm 机器的速度
+    unit: 20 #cm 每10cm转1圈 
+

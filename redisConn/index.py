@@ -13,4 +13,8 @@ class redisDB ():
         self.redis_conn.set(key,value)
 
     def get (self,key):
-        return self.redis_conn.get(key).decode('utf-8')
+        value = self.redis_conn.get(key)
+        if value : 
+            return value.decode('utf-8')
+        else:
+            return ""
