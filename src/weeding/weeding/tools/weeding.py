@@ -6,7 +6,6 @@ class weeding ():
         self.greenline = greenline
         self.machineSpeed = machineSpeed
         self.calculate()
-        # print("weeding __init__",config)
         pass
 
     def calculate(self):
