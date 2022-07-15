@@ -34,7 +34,7 @@ class camera ():
     #px 转化为距离
     def sizey(self,px):
         pointy = round(px*self.unit*self.ratio/1000*self.hs,2)
-        print("pointy",pointy)
+        # print("pointy",pointy)
         return pointy
 
     def distanceToPointy(self,distance):
@@ -59,8 +59,8 @@ class camera ():
             allPhoto = allPhoto[:self.cameralength]
         allPhoto.insert(0,photo)
         # allPhoto = []
-        for item in allPhoto:
-            print("item---->",item)
+        # for item in allPhoto:
+        #     print("item---->",item)
         
         self.redis.set("camera",json.dumps(allPhoto))
         self.allPhoto = allPhoto

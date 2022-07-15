@@ -45,8 +45,11 @@ class weeding ():
         print("self.weedingTool",self.weedingTool)
         # pass
 
+    #停止工作,关闭除草头以及相机
+    def stop():
+        pass
 
-
-    def stop(self):
+    #暂停工作,关闭除草头
+    def pause(self):
         pass
 
