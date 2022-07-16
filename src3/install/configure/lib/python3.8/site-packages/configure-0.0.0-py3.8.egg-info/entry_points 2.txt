@@ -1,0 +1,3 @@
+[console_scripts]
+configure_node = configure.configure:main
+
