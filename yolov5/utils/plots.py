@@ -9,7 +9,7 @@ from copy import copy
 from pathlib import Path
 from urllib.error import URLError
 
-import cv2
+import cv2,time
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -115,7 +115,7 @@ class Annotator:
                             lineType=cv2.LINE_AA)
                 name  = label
         # return points
-        return {"name":name,"point":points}
+        return {"name":name,"point":points,"time":int(time.time())}
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)

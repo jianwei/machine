@@ -173,8 +173,8 @@ def run(
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # Write results
-                imagePointsArr = []
-                imageDistanceArr = []
+                # imagePointsArr = []
+                # imageDistanceArr = []
                 allPoints = []
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file

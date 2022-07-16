@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pickle import TRUE
+from time import time
 import rclpy,os,sys,yaml
 from rclpy.node import Node
 from std_msgs.msg import UInt32
@@ -43,6 +44,7 @@ class weedingNode(Node):
             # self.get_logger().info("open yolov5"  )
             # cmd = "python3 "+self.workDir+"/../yolov5/detect.py --source 0  --weight yolov5s.pt --conf 0.25"
             # os.system(cmd)
+            time.seep(10)
             screen = self.config.get("camera").get("screen")
             self.cameraObj.setScreenSize(screen)
             self.line  = line(self.config)
@@ -79,18 +81,17 @@ class weedingNode(Node):
 
     def msg_mock_data_callback (self,message):
         photo = [
-                        {'name': 'tv 0.75', 'point': [(50, 330), (70, 330), (50, 310), (50, 310)]},
-                        {'name': 'tv 0.35', 'point': [(230, 330), (250, 330), (230, 310), (250, 310)]},
-                        {'name': 'tv 0.15', 'point': [(410, 330), (430, 330), (410, 310), (430, 310)]},
+                        {'name': 'tv 0.75', 'point': [(50, 330), (70, 330), (50, 310), (50, 310)],'time': 1657954787},
+                        {'name': 'tv 0.35', 'point': [(230, 330), (250, 330), (230, 310), (250, 310)],'time': 1657954787},
+                        {'name': 'tv 0.15', 'point': [(410, 330), (430, 330), (410, 310), (430, 310)], 'time': 1657954787  },
 
+                        {'name': 'tv 0.75', 'point': [(50, 230), (70, 230), (50, 210), (50, 210)],'time': 1657954787},
+                        {'name': 'tv 0.35', 'point': [(230, 230), (250, 230), (230, 210), (250, 210)],'time': 1657954787},
+                        {'name': 'tv 0.15', 'point': [(410, 230), (430, 230), (410, 210), (430, 210)],'time': 1657954787},
 
-                        {'name': 'tv 0.75', 'point': [(50, 230), (70, 230), (50, 210), (50, 210)]},
-                        {'name': 'tv 0.35', 'point': [(230, 230), (250, 230), (230, 210), (250, 210)]},
-                        {'name': 'tv 0.15', 'point': [(410, 230), (430, 230), (410, 210), (430, 210)]},
-
-                        {'name': 'tv 0.75', 'point': [(50, 430), (70, 430), (50, 410), (50, 410)]},
-                        {'name': 'tv 0.35', 'point': [(230, 430), (250, 430), (230, 410), (250, 410)]},
-                        {'name': 'tv 0.15', 'point': [(410, 430), (430, 430), (410, 410), (430, 410)]},
+                        {'name': 'tv 0.75', 'point': [(50, 430), (70, 430), (50, 410), (50, 410)],'time': 1657954787},
+                        {'name': 'tv 0.35', 'point': [(230, 430), (250, 430), (230, 410), (250, 410)],'time': 1657954787},
+                        {'name': 'tv 0.15', 'point': [(410, 430), (430, 430), (410, 410), (430, 410)],'time': 1657954787},
                 ]
         self.get_logger().info("mockdata:%s" % photo)
         self.cameraObj.add(photo)
