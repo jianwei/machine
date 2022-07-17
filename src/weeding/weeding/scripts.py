@@ -21,10 +21,13 @@ def run():
                 os.system(cmd)
             # break
         else:
-            cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' |  awk '{print $2}'"
+            cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' | grep -v 'grep yolo'|  awk '{print $2}'"
+            # cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' | grep -v 'grep yolo'"
             pid=os.popen(cmd).read()
-            closecmd = "kill -9 "+ str(pid)
-            os.system(closecmd)
+            print ("pid:",pid)
+            if pid:
+                closecmd = "kill -9 "+ str(pid)
+                os.system(closecmd)
             redis.set("open_camera",0)
             # break
         time.sleep(1)
