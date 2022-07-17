@@ -67,7 +67,8 @@ class weedingNode(Node):
     def msg_machine_stop_callback(self,message):
         self.get_logger().info("msg_machine_stop_callback: %s" % message.data)
         #停止工作,关闭除草头以及相机
-        self.weeding.stop()
+        # self.weeding.stop()
+        self.redis.set("open_camera",0)
 
     #ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
     def meg_machine_pause_callback(self,message):
