@@ -1,0 +1,24 @@
+[0.697s] Invoking command in '/media/psf/Home/Desktop/machine/src/weeding': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /media/psf/Home/Desktop/machine/src/build/weeding/build install --prefix /media/psf/Home/Desktop/machine/src/install/weeding --record /media/psf/Home/Desktop/machine/src/build/weeding/install.log --single-version-externally-managed
+[0.985s] running egg_info
+[0.986s] writing ../build/weeding/weeding.egg-info/PKG-INFO
+[0.988s] writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt
+[0.989s] writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt
+[0.991s] writing requirements to ../build/weeding/weeding.egg-info/requires.txt
+[0.991s] writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt
+[1.001s] reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[1.003s] writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[1.004s] running build
+[1.004s] running build_py
+[1.005s] copying weeding/weeding.py -> /media/psf/Home/Desktop/machine/src/build/weeding/build/lib/weeding
+[1.009s] running install
+[1.009s] running install_lib
+[1.012s] copying /media/psf/Home/Desktop/machine/src/build/weeding/build/lib/weeding/weeding.py -> /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding
+[1.015s] byte-compiling /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/weeding.py to weeding.cpython-38.pyc
+[1.018s] running install_data
+[1.020s] running install_egg_info
+[1.022s] removing '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)
+[1.027s] Copying ../build/weeding/weeding.egg-info to /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info
+[1.052s] running install_scripts
+[1.073s] Installing weeding_node script to /media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding
+[1.076s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/weeding/install.log'
+[1.112s] Invoked command in '/media/psf/Home/Desktop/machine/src/weeding' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /media/psf/Home/Desktop/machine/src/build/weeding/build install --prefix /media/psf/Home/Desktop/machine/src/install/weeding --record /media/psf/Home/Desktop/machine/src/build/weeding/install.log --single-version-externally-managed

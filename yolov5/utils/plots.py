@@ -340,7 +340,7 @@ def plot_val_study(file='', dir='', x=None):  # from utils.plots import *; plot_
     ax2.set_ylabel('COCO AP val')
     ax2.legend(loc='lower right')
     f = save_dir / 'study.png'
-    print(f'Saving {f}...')
+    # print(f'Saving {f}...')
     plt.savefig(f, dpi=300)
 
 
@@ -403,7 +403,7 @@ def plot_evolve(evolve_csv='path/to/evolve.csv'):  # from utils.plots import *; 
     j = np.argmax(f)  # max fitness index
     plt.figure(figsize=(10, 12), tight_layout=True)
     matplotlib.rc('font', **{'size': 8})
-    print(f'Best results from row {j} of {evolve_csv}:')
+    # print(f'Best results from row {j} of {evolve_csv}:')
     for i, k in enumerate(keys[7:]):
         v = x[:, 7 + i]
         mu = v[j]  # best single result
@@ -413,11 +413,11 @@ def plot_evolve(evolve_csv='path/to/evolve.csv'):  # from utils.plots import *; 
         plt.title(f'{k} = {mu:.3g}', fontdict={'size': 9})  # limit to 40 characters
         if i % 5 != 0:
             plt.yticks([])
-        print(f'{k:>15}: {mu:.3g}')
+        # print(f'{k:>15}: {mu:.3g}')
     f = evolve_csv.with_suffix('.png')  # filename
     plt.savefig(f, dpi=200)
     plt.close()
-    print(f'Saved {f}')
+    # print(f'Saved {f}')
 
 
 def plot_results(file='path/to/results.csv', dir=''):

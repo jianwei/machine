@@ -1,3 +1,4 @@
 [console_scripts]
+camera_node = weeding.camera:main
 weeding_node = weeding.weeding:main
 

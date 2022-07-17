@@ -8,9 +8,11 @@ setup.py
 ../build/weeding/weeding.egg-info/requires.txt
 ../build/weeding/weeding.egg-info/top_level.txt
 ../build/weeding/weeding.egg-info/zip-safe
+launch/launch.py
 resource/weeding
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
 weeding/__init__.py
+weeding/camera.py
 weeding/weeding.py

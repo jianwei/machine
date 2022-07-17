@@ -13,6 +13,8 @@ class line ():
         self.redis = config.get("redisObj")
         self.camera = config.get("cameraObj")
         self.green = json.loads(self.redis.get("camera"))[0]
+        print("self.green",self.green)
+
         self.lineList = []
         self.sortGreen(self.green)
         self.convertLine(self.green)
@@ -52,6 +54,8 @@ class line ():
 
 
     def getCenter(self,green):
+        if (isinstance(green,str)):
+            green = json.loads(green)
         for item in green:
             point = item.get("point")
             centerx = round((point[0][0]+point[1][0]) /2,2)

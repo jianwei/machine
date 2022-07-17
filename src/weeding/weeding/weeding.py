@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-from pickle import TRUE
-from time import time
-import rclpy,os,sys,yaml
+import rclpy,os,sys,yaml,time,_thread
 from rclpy.node import Node
 from std_msgs.msg import UInt32
 from std_msgs.msg import String
@@ -21,10 +19,13 @@ class weedingNode(Node):
         super().__init__(name)
         self.get_logger().info("新节点：%s" % name)
         self.redis = redisDB()
+        
         # ros2 topic pub --once /mock_data std_msgs/msg/String 'data: "1"'
         self.create_subscription(String, "mock_data", self.msg_mock_data_callback, 0)
         self.create_subscription(String, "machine_prepare", self.msg_machine_prepare_callback, 0)
         self.create_subscription(String, "machine_work", self.msg_machine_work_callback, 0)
+        self.create_subscription(String, "machine_stop", self.msg_machine_stop_callback, 0)
+        self.create_subscription(String, "machine_pause", self.meg_machine_pause_callback, 0)
         self.workDir = os.getcwd()   # src目录
 
         with open(self.workDir+'/weeding/weeding/config.yaml',encoding='utf-8') as file1:
@@ -32,8 +33,9 @@ class weedingNode(Node):
         self.config["redisObj"] =  self.redis
         self.cameraObj  = camera(self.redis,self.config)
         self.config["cameraObj"] = self.cameraObj 
+        self.weeding=weeding(self.config)
 
-
+    # def open
 
     # ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
     def msg_machine_prepare_callback(self,message):
@@ -41,20 +43,17 @@ class weedingNode(Node):
         self.get_logger().info(os.getcwd())
         if(int(message.data)==1):
             #1. 打开摄像头
-            # self.get_logger().info("open yolov5"  )
-            # cmd = "python3 "+self.workDir+"/../yolov5/detect.py --source 0  --weight yolov5s.pt --conf 0.25"
-            # os.system(cmd)
-            time.seep(10)
-            screen = self.config.get("camera").get("screen")
-            self.cameraObj.setScreenSize(screen)
-            self.line  = line(self.config)
-            self.greenline = self.line.getLine()
-            #除草头校准
-            self.slide = slide(self.config)
-            self.slide.adjust(self.greenline,screen)
-            self.slide.insert()  # 插入土中
-            #除草头工作
-            self.weeding = weeding(self.config,self.greenline,10)
+            self.cameraObj.open()
+
+            # self.line  = line(self.config)
+            # self.greenline = self.line.getLine()
+            # #除草头校准
+            # self.slide = slide(self.config)
+            # self.slide.adjust(self.greenline)
+            # self.slide.insert()  # 插入土中
+            # #除草头工作
+            # self.weeding = weeding(self.config,self.greenline,10)
+            # self.get_logger().info("prepare done")
 
     
     def msg_machine_work_callback(self,message):

@@ -12,20 +12,22 @@ class slide():
         self.toolPointer = []
 
     
-    def adjust(self,lineList,screen) :
+    def adjust(self,lineList) :
+        print("lineList",lineList)
         lastLine = lineList[len(lineList)-1]
-        diffPx = self.camera.distanceToPointx(self.diff)
+        # diffPx = self.camera.distanceToPointx(self.diff)
         radiusPx = self.camera.distanceToPointx(self.radius)
         leftdiffPx = self.camera.distanceToPointx(self.leftdiff)
-        firstCenter = lastLine[0].get("center") 
+        # firstCenter = lastLine[0].get("center") 
         for item in lastLine:
             point = item.get("point")
             adjustPointerItem = point[0][0]-leftdiffPx
-            toolItem = adjustPointerItem+radiusPx
+            toolItem = adjustPointerItem+radiusPx           
             self.adjustPointer.append(adjustPointerItem)
             self.toolPointer.append(toolItem)
-        ret = {"adjustPointer":self.adjustPointer,"toolPointer":self.toolPointer}
-        return   ret  #eg: {'adjustPointer': [24, 204, 384], 'toolPointer': [76, 256, 436]}
+        self.ret = {"adjustPointer":self.adjustPointer,"toolPointer":self.toolPointer}
+        return   self.ret  #eg: {'adjustPointer': [24, 204, 384], 'toolPointer': [76, 256, 436]}
 
     def insert(self):  # 插入土中
+        print("slide:self.ret",self.ret)
         pass

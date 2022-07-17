@@ -1,9 +1,12 @@
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/__init__.py
+/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/camera.py
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/weeding.py
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/__pycache__/__init__.cpython-38.pyc
+/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/__pycache__/camera.cpython-38.pyc
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding/__pycache__/weeding.cpython-38.pyc
 /media/psf/Home/Desktop/machine/src/install/weeding/share/ament_index/resource_index/packages/weeding
 /media/psf/Home/Desktop/machine/src/install/weeding/share/weeding/package.xml
+/media/psf/Home/Desktop/machine/src/install/weeding/share/weeding/launch/launch.py
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/PKG-INFO
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/zip-safe
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/SOURCES.txt
@@ -11,4 +14,5 @@
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/requires.txt
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/top_level.txt
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info/dependency_links.txt
+/media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding/camera_node
 /media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding/weeding_node
