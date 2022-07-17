@@ -26,7 +26,6 @@ class cameraNode(Node):
 
 
     def msg_camera_open_callback(self,message):
-        # print("msg_camera_open_callback")
         self.get_logger().info("msg.data：%s" % message.data)
         if(int(message.data)==1):
             #1. 打开摄像头
