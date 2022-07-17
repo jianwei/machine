@@ -207,7 +207,8 @@ def export_coreml(model, im, file, int8, half, prefix=colorstr('CoreML:')):
                     warnings.filterwarnings("ignore", category=DeprecationWarning)  # suppress numpy==1.20 float warning
                     ct_model = ct.models.neural_network.quantization_utils.quantize_weights(ct_model, bits, mode)
             else:
-                print(f'{prefix} quantization only supported on macOS, skipping...')
+                # print(f'{prefix} quantization only supported on macOS, skipping...')
+                pass
         ct_model.save(f)
 
         LOGGER.info(f'{prefix} export success, saved as {f} ({file_size(f):.1f} MB)')

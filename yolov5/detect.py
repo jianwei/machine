@@ -37,7 +37,8 @@ import torch.backends.cudnn as cudnn
 
 
 from time import time
-sys.path.append("..")
+path = str(Path(__file__).resolve().parents[1])
+sys.path.append(path)
 from redisConn.index import redisDB
 
 
@@ -196,12 +197,12 @@ def run(
                         # imgDistance(points)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-                # print("----------------------------------------------------------------------------------------")
+                print("----------------------------------------------------------------------------------------")
                 # print("imagePointsArr:",imagePointsArr)
                 # print("imageDistanceArr:",imageDistanceArr)
                 # redis.set("imagePoints",json.dumps(imagePointsArr))
                 redis.set("singlephoto",json.dumps(allPoints))
-                # print("allPoints",allPoints)
+                print("allPoints",allPoints)
                 # for item in allPoints:
                 #     print("point:",item)
                    # 计算并绘制结果

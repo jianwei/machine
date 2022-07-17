@@ -10,11 +10,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sun Jul 17 12:31:44 2022
+# Make data base, printed on Sun Jul 17 15:54:27 2022
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -32,6 +31,7 @@ CURDIR := /Users/carlos/Desktop/machine
 # makefile
 SHELL = /bin/sh
 # environment
+ 
 VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/30d9c6cd9483b2cc586687151bcbcd635f373630","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/bbca1a7059cee8a1b93da8947fee1c4f.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
@@ -44,7 +44,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /usr/local/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-f24bb4d5-6ee9-4dec-a2ce-cf662ebe2471.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-92655868-0fa1-4dfc-8d27-e76a156f1c5f.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -56,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.AN6EWU3fDM/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.gZW4u8xZVp/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,7 +139,6 @@ HOMEBREW_PREFIX = /usr/local
 HOMEBREW_REPOSITORY = /usr/local/Homebrew
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
- 
 # environment
 COMMAND_MODE = unix2003
 # default
@@ -163,10 +162,11 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 1125
+VSCODE_PID = 1352
 # environment
 _CE_CONDA = 
 # environment
+ 
 LANG = C
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=2/97=2%
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Jul 17 12:31:44 2022
+# Finished Make data base on Sun Jul 17 15:54:27 2022
 
  

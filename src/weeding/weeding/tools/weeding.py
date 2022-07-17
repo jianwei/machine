@@ -80,9 +80,10 @@ class weeding ():
 
     #暂停工作,关闭除草头
     def pause(self):
-        cmd  = "ps aux | grep yolo | grep -v 'auto'| awk '{print $2}'"
+        cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' |  awk '{print $2}'"
         pid=os.popen(cmd).read()
         closecmd = "kill -9 "+ str(pid)
         os.system(closecmd)
+        self.redis.set("open_camera",0)
         pass
 

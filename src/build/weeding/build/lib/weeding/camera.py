@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-import rclpy,os,sys,yaml,time,_thread
+import rclpy,os,sys,yaml,time,threading
 from rclpy.node import Node
-from std_msgs.msg import UInt32
 from std_msgs.msg import String
 sys.path.append(os.getcwd()+"/weeding/weeding/")
 from utils.camera import camera 
@@ -23,13 +22,12 @@ class cameraNode(Node):
         self.cameraObj  = camera(self.redis,self.config)
         self.config["cameraObj"] = self.cameraObj 
         
-
-
     def msg_camera_open_callback(self,message):
         self.get_logger().info("msg.data：%s" % message.data)
         if(int(message.data)==1):
             #1. 打开摄像头
-            self.cameraObj.open()
+            phone = threading.Thread(target=self.cameraObj.open,name="camera")
+            phone.start()
         pass
     
 

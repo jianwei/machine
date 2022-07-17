@@ -43,7 +43,8 @@ class weedingNode(Node):
         self.get_logger().info(os.getcwd())
         if(int(message.data)==1):
             #1. 打开摄像头
-            self.cameraObj.open()
+            self.redis.set("open_camera",1)
+            # self.cameraObj.open()
 
             # self.line  = line(self.config)
             # self.greenline = self.line.getLine()
@@ -62,13 +63,13 @@ class weedingNode(Node):
         self.weeding.run()
         pass
 
-
+    #ros2 topic pub --once /machine_stop std_msgs/msg/String 'data: "1"'
     def msg_machine_stop_callback(self,message):
         self.get_logger().info("msg_machine_stop_callback: %s" % message.data)
         #停止工作,关闭除草头以及相机
         self.weeding.stop()
 
-
+    #ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
     def meg_machine_pause_callback(self,message):
         self.get_logger().info("meg_machine_pause_callback: %s" % message.data)
         #暂停工作,关闭除草头
