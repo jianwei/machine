@@ -30,4 +30,6 @@ open machine
 
 close camera
 ==================
->>ros2 topic pub --once /machine_stop std_msgs/msg/String 'data: "1"'
+>>ros2 topic pub --once /machine_stop std_msgs/msg/String 'data: "1"'\
+
+>>branch
