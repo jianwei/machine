@@ -356,7 +356,7 @@ class LoadStreams:
         # Read stream `i` frames in daemon thread
         n, f, read = 0, self.frames[i], 1  # frame number, frame array, inference every 'read' frame
         while cap.isOpened() and n < f:
-            
+            #123
             n += 1
             print("n===",n,f)
             # _, self.imgs[index] = cap.read()
