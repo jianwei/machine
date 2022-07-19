@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 class stepper_motor():
     '''
         Test script for step motor HW23-601 (https://www.mouser.com/c/?q=HW23-601) 
@@ -6,8 +7,8 @@ class stepper_motor():
     '''
     num_of_steps_for_360 = 2000                 # this could be changed, please see the totorial of STR2/4
     resolution = num_of_steps_for_360 / 360     # resolution, how many steps would trigger 1 degree rotation
-    CW_control_port = 4                        # GPIO 21 for clockwise (physically connected to dir+ port in the driver)
-    CCW_control_port = 17                       # GPIO 18 for counter clockwise (physically connected to step+ port in the driver)
+    CW_control_port = 30                        # GPIO 21 for clockwise (physically connected to dir+ port in the driver)
+    CCW_control_port = 31                       # GPIO 18 for counter clockwise (physically connected to step+ port in the driver)
     inner_speed = 120                           # rotation speed: 120 rpm, outer would be 30 rpm
     gear_ratio = 4                              # radius of the outer gear is 4 times than the radius of the inner gear
     outer_speed = inner_speed / gear_ratio      # acutal speed: 30 rpm, that means it will take around 1 second to rotate 180 degree
