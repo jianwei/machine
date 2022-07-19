@@ -42,7 +42,7 @@ class stepper_motor():
         num_of_steps = self.resolution * angle * self.gear_ratio  # gear ratio is 4, so the outer speed is 1/4 of inner gear, need more pulse
         angle = -angle if direction == 'CCW' else angle           # decrease the angle if direction is CCW
         self.cur_position += angle
-        print('start to move')
+        print('start to move：',self.cur_position)
         if self.cur_position > 360 or self.cur_position < -360:
             self.log.error("rotation angle will exceeded 360 degree, wire might get twisted, current movement cancelled")
             self.log.info("movement: <moved %d degree, direction:%s> has been cancelled" % (angle, direction))
