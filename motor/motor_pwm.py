@@ -44,8 +44,8 @@ class stepper_motor():
         self.cur_position += angle
         print('start to move：',self.cur_position)
         if self.cur_position > 360 or self.cur_position < -360:
-            self.log.error("rotation angle will exceeded 360 degree, wire might get twisted, current movement cancelled")
-            self.log.info("movement: <moved %d degree, direction:%s> has been cancelled" % (angle, direction))
+            print("rotation angle will exceeded 360 degree, wire might get twisted, current movement cancelled")
+            print("movement: <moved %d degree, direction:%s> has been cancelled" % (angle, direction))
             self.cur_position -= angle
             return False
         else:
