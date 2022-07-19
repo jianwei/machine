@@ -62,5 +62,5 @@ class stepper_motor():
 
 m = stepper_motor()
 m.send_pulse(1000,31)
-m.move(530, 'CCW')
+m.move(120, 'CW')
 
