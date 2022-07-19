@@ -1,58 +1,59 @@
-class servo_motor(object):
+class stepper_motor(object):
     '''
-        Servo motor type: 
-            ANNIMOS 20KG Digital Servo High Torque Full Metal Gear Waterproof for RC Model DIY, DS3218MG,Control Angle 270°
-            2% duty cycle -> 0 degree
-            12% duty cycle -> 270 degree
-        Servo motor is only used for testing the calibration algorithm
+        Test script for step motor HW23-601 (https://www.mouser.com/c/?q=HW23-601) 
+        with driver STR2 (https://www.applied-motion.com/products/stepper-drives/str2)
     '''
-    control_channel = 26    # set GPIO 26 for output PWM to servo motor 
-    init_freq = 50          # initil frequency = 50Hz
-    init_duty_cycle = 0     # set duty cycle as 2% (0 degree)
-    cur_position = 0        # range (0 - 270 degree)
-    name = 'servo_motor'
+    num_of_steps_for_360 = 2000                 # this could be changed, please see the totorial of STR2/4
+    resolution = num_of_steps_for_360 / 360     # resolution, how many steps would trigger 1 degree rotation
+    CW_control_port = 21                        # GPIO 21 for clockwise (physically connected to dir+ port in the driver)
+    CCW_control_port = 18                       # GPIO 18 for counter clockwise (physically connected to step+ port in the driver)
+    inner_speed = 120                           # rotation speed: 120 rpm, outer would be 30 rpm
+    gear_ratio = 4                              # radius of the outer gear is 4 times than the radius of the inner gear
+    outer_speed = inner_speed / gear_ratio      # acutal speed: 30 rpm, that means it will take around 1 second to rotate 180 degree
+    cur_position = 0
+    # delay = 1 / 2 * (num_of_steps_for_360 * inner_speed / 60) 
+    delay = 0.00075
+    name = 'stepper_motor'
 
     def __init__(self, log):
-        self.log = log      # initialize the logging
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.control_channel, GPIO.OUT)
-        self.PWM = GPIO.PWM(self.control_channel, self.init_freq)
-        self.PWM.start(self.init_duty_cycle)
-        self.set_posiotion(200)
-        time.sleep(2)
-        self.log.info('servo initialization accomplished')
+        self.log = log
+        GPIO.setmode(GPIO.BCM)                                    # set the GPIO mode  
+        GPIO.setup(self.CCW_control_port, GPIO.OUT)               # set GPIO 18 as output
+        GPIO.setup(self.CW_control_port, GPIO.OUT)                # set GPIO 21 as output
+        time.sleep(0.5) 
+        self.log.info("stepper motor initialization accomplished, outer speed: %d rpm, resolution: %d steps/degree" % (self.outer_speed, self.resolution))
 
     def __del__(self):
-        self.PWM.stop()
         GPIO.cleanup()
-    
-    def set_posiotion(self, position):
-        '''
-            PWM: the class initialized by GPIO.PWM
-            angle: the angle you want to rotate (absolute position)
-            2% duty cycle -> 0 degree
-            12% duty cycle -> 270 degree
-            angle/degree = duty cycle * 27 - 54
-        '''
-        if 0.0 <= position <= 270.0:
-            duty_cycle = (position + 54.0) / 27.0
-            self.PWM.ChangeDutyCycle(duty_cycle)
-            self.cur_position = position
-            log_str = 'current position:' + str(self.cur_position)
-            self.log.info(log_str)
-            self.log.info('current_position=%d degree' % (self.cur_position))
-            time.sleep(1)           # wait one second to reach the position
-        else:
-            self.log.warning("invalid rotation angle")
 
-    def move(self, move_angle, direction):
-        if move_angle < 0 or self.cur_position + move_angle > 270:
-            self.log.error("exceed the 270 degree")
+    def send_pulse(self, num_of_pulse, control_port):
+        print('send pulse: %d' % num_of_pulse)
+        time.sleep(10 / 1000)
+        for i in range(int(num_of_pulse)):
+            GPIO.output(control_port, GPIO.HIGH)
+            time.sleep(self.delay)
+            GPIO.output(control_port, GPIO.LOW)
+            time.sleep(self.delay)
+        print('send pulse done')
+
+    def move(self, angle, direction):
+        num_of_steps = self.resolution * angle * self.gear_ratio  # gear ratio is 4, so the outer speed is 1/4 of inner gear, need more pulse
+        angle = -angle if direction == 'CCW' else angle           # decrease the angle if direction is CCW
+        self.cur_position += angle
+        print('start to move')
+        if self.cur_position > 360 or self.cur_position < -360:
+            self.log.error("rotation angle will exceeded 360 degree, wire might get twisted, current movement cancelled")
+            self.log.info("movement: <moved %d degree, direction:%s> has been cancelled" % (angle, direction))
+            self.cur_position -= angle
             return False
-        move_angle = -move_angle if direction == 'CW' else move_angle
-        self.set_posiotion(self.cur_position + move_angle)
-        self.log.info('move_angle=%d degree, direction=%s' % (abs(move_angle), direction))
-        return True
-    
+        else:
+            if direction == 'CW':
+                self.send_pulse(num_of_steps, self.CW_control_port)
+            else:
+                self.send_pulse(num_of_steps, self.CCW_control_port)
+            self.log.info("moved %d degree, direction:%s, current position: %d" % (angle, direction, self.cur_position))
+            print('move done')
+            return True
+        
     def get_motor_type(self):
         return self.name

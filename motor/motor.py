@@ -1,77 +1,42 @@
-# -*- coding: utf-8 -*-
-#coding:utf-8
-#coding=utf-8
-
 import RPi.GPIO as GPIO
 import time
-
- # 规定GPIO引脚
-IN1 = 18      # 接PUL-
-IN2 = 16      # 接PUL+
-IN3 = 15      # 接DIR-
-IN4 = 13      # 接DIR+
+ 
+delay=2 #delay 2ms
+ 
+pin_4 = 4
+pin_17 = 17
+pin_23 = 23
+pin_24 = 24
+ 
+GPIO.setmode(GPIO.BCM) #设置引脚的编码方式
+    
+def init():
+    GPIO.setwarnings(False)
+    GPIO.setup(pin_4, GPIO.OUT)
+    GPIO.setup(pin_17, GPIO.OUT)
+    GPIO.setup(pin_23, GPIO.OUT)
+    GPIO.setup(pin_24, GPIO.OUT)
+ 
+ 
+def forward(delay):  
+    setStep(1, 0, 0, 0)
+    time.sleep(delay)
+    setStep(0, 1, 0, 0)
+    time.sleep(delay)
+    setStep(0, 0, 1, 0)
+    time.sleep(delay)
+    setStep(0, 0, 0, 1)
+    time.sleep(delay)
  
 def setStep(w1, w2, w3, w4):
-    GPIO.output(IN1, w1)
-    GPIO.output(IN2, w2)
-    GPIO.output(IN3, w3)
-    GPIO.output(IN4, w4)
- 
-def stop():
-    setStep(0, 0, 0, 0)
- 
-def forward(delay, steps):  
-    for i in range(0, steps):
-        setStep(1, 0, 1, 0)
-        time.sleep(delay)
-        setStep(0, 1, 1, 0)
-        time.sleep(delay)
-        setStep(0, 1, 0, 1)
-        time.sleep(delay)
-        setStep(1, 0, 0, 1)
-        time.sleep(delay)
- 
-def backward(delay, steps):  
-    for i in range(0, steps):
-        setStep(1, 0, 0, 1)
-        time.sleep(delay)
-        setStep(0, 1, 0, 1)
-        time.sleep(delay)
-        setStep(0, 1, 1, 0)
-        time.sleep(delay)
-        setStep(1, 0, 1, 0)
-        time.sleep(delay)
- 
-def setup():
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
-    GPIO.setup(IN1, GPIO.OUT)      # Set pin's mode is output
-    GPIO.setup(IN2, GPIO.OUT)
-    GPIO.setup(IN3, GPIO.OUT)
-    GPIO.setup(IN4, GPIO.OUT)
- 
-def loop():
+  GPIO.output(pin_4, w1)
+  GPIO.output(pin_17, w2)
+  GPIO.output(pin_23, w3)
+  GPIO.output(pin_24, w4)
+  
+def main():
+    init() 
     while True:
-        print ("backward...")
-        backward(0.0001, 1000)   # 发射脉冲时间间隔0.0001（单位秒）   脉冲个数1000
-        
-        print ("stop...")
-        stop()                 # stop
-        time.sleep(3)          # sleep 3s
-        
-        print ("forward...")
-        forward(0.0001, 1000)
-        
-        print ("stop...")
-        stop()
-        time.sleep(3)
- 
-def destroy():
-    GPIO.cleanup()             # 释放数据
- 
-if __name__ == '__main__':     # Program start from here
-    setup()
-    try:
-        loop()
-    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child function destroy() will be  executed.
-        destroy()
+        forward(int(delay) / 1000.0)
+         
+main() # 调用main
