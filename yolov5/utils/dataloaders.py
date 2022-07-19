@@ -356,7 +356,9 @@ class LoadStreams:
         # Read stream `i` frames in daemon thread
         n, f, read = 0, self.frames[i], 1  # frame number, frame array, inference every 'read' frame
         while cap.isOpened() and n < f:
+            
             n += 1
+            print("n===",n,f)
             # _, self.imgs[index] = cap.read()
             cap.grab()
             if n % read == 0:
@@ -367,7 +369,9 @@ class LoadStreams:
                     LOGGER.warning('WARNING: Video stream unresponsive, please check your IP camera connection.')
                     self.imgs[i] = np.zeros_like(self.imgs[i])
                     cap.open(stream)  # re-open stream if signal was lost
-            time.sleep(0.0)  # wait time
+            # time.sleep(0.0)  # wait time
+            time.sleep(1.0)  # wait time
+            break
 
     def __iter__(self):
         self.count = -1
