@@ -61,6 +61,6 @@ class stepper_motor():
         return self.name
 
 m = stepper_motor()
-m.send_pulse(50,30)
+m.send_pulse(1000,30)
 m.move(360, 230)
 
