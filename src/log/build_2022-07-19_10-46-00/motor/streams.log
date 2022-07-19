@@ -1,0 +1,41 @@
+[1.133s] Invoking command in '/media/psf/Home/Desktop/machine/src/motor': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/motor build --build-base /media/psf/Home/Desktop/machine/src/build/motor/build install --prefix /media/psf/Home/Desktop/machine/src/install/motor --record /media/psf/Home/Desktop/machine/src/build/motor/install.log --single-version-externally-managed
+[1.397s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:717: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[1.397s]   warnings.warn(
+[1.398s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/dist.py:717: UserWarning: Usage of dash-separated 'install-scripts' will not be supported in future versions. Please use the underscore name 'install_scripts' instead
+[1.398s]   warnings.warn(
+[1.441s] running egg_info
+[1.442s] creating ../build/motor/motor.egg-info
+[1.444s] writing ../build/motor/motor.egg-info/PKG-INFO
+[1.452s] writing dependency_links to ../build/motor/motor.egg-info/dependency_links.txt
+[1.454s] writing entry points to ../build/motor/motor.egg-info/entry_points.txt
+[1.456s] writing requirements to ../build/motor/motor.egg-info/requires.txt
+[1.459s] writing top-level names to ../build/motor/motor.egg-info/top_level.txt
+[1.464s] writing manifest file '../build/motor/motor.egg-info/SOURCES.txt'
+[1.479s] reading manifest file '../build/motor/motor.egg-info/SOURCES.txt'
+[1.482s] writing manifest file '../build/motor/motor.egg-info/SOURCES.txt'
+[1.484s] running build
+[1.484s] running build_py
+[1.486s] creating /media/psf/Home/Desktop/machine/src/build/motor/build
+[1.486s] creating /media/psf/Home/Desktop/machine/src/build/motor/build/lib
+[1.489s] creating /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor
+[1.491s] copying motor/motor.py -> /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor
+[1.495s] copying motor/__init__.py -> /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor
+[1.498s] running install
+[1.499s] running install_lib
+[1.504s] creating /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor
+[1.510s] copying /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor/motor.py -> /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor
+[1.514s] copying /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor/__init__.py -> /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor
+[1.520s] byte-compiling /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor/motor.py to motor.cpython-38.pyc
+[1.526s] byte-compiling /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor/__init__.py to __init__.cpython-38.pyc
+[1.530s] running install_data
+[1.532s] creating /media/psf/Home/Desktop/machine/src/install/motor/share/ament_index
+[1.532s] creating /media/psf/Home/Desktop/machine/src/install/motor/share/ament_index/resource_index
+[1.534s] creating /media/psf/Home/Desktop/machine/src/install/motor/share/ament_index/resource_index/packages
+[1.535s] copying resource/motor -> /media/psf/Home/Desktop/machine/src/install/motor/share/ament_index/resource_index/packages
+[1.539s] copying package.xml -> /media/psf/Home/Desktop/machine/src/install/motor/share/motor
+[1.543s] running install_egg_info
+[1.546s] Copying ../build/motor/motor.egg-info to /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor-0.0.0-py3.8.egg-info
+[1.581s] running install_scripts
+[1.604s] Installing motor_node script to /media/psf/Home/Desktop/machine/src/install/motor/lib/motor
+[1.608s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/motor/install.log'
+[1.665s] Invoked command in '/media/psf/Home/Desktop/machine/src/motor' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/motor build --build-base /media/psf/Home/Desktop/machine/src/build/motor/build install --prefix /media/psf/Home/Desktop/machine/src/install/motor --record /media/psf/Home/Desktop/machine/src/build/motor/install.log --single-version-externally-managed

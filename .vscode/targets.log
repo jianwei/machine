@@ -10,9 +10,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Mon Jul 18 21:14:32 2022
+# Make data base, printed on Tue Jul 19 10:39:25 2022
 
- 
 # Variables
 
 # automatic
@@ -24,6 +23,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
+ 
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
@@ -42,13 +42,13 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-INFOPATH = /usr/local/share/info:/usr/local/share/info:
+INFOPATH = /usr/local/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-2266d201-b11a-496b-bb78-81e9800fca3e.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/vscode-ipc-1a292c65-ed80-4881-95a3-e2b39dd62555.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/sbin
+PATH = /Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -56,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.lKutRmbtRy/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.nC1JwFGaY2/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -70,7 +70,7 @@ HOMEBREW_CELLAR = /usr/local/Cellar
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /usr/local/share/man:/usr/share/man:/usr/local/share/man:
+MANPATH = /usr/local/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -99,11 +99,8 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# environment
-LOCAL_GIT_DIRECTORY = /Applications/GitHub Desktop.app/Contents/Resources/app/git
 # default
 MAKE_VERSION := 3.81
- 
 # environment
 USER = carlos
 # makefile
@@ -137,6 +134,7 @@ HOMEBREW_PREFIX = /usr/local
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
+ 
 +F = $(notdir $+)
 # environment
 HOMEBREW_REPOSITORY = /usr/local/Homebrew
@@ -144,7 +142,6 @@ HOMEBREW_REPOSITORY = /usr/local/Homebrew
 __CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
 # environment
 COMMAND_MODE = unix2003
- 
 # default
 MAKEFILES := 
 # automatic
@@ -166,13 +163,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 1874
+VSCODE_PID = 1594
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=2/98=2%
+# Load=76/1024=7%, Rehash=0, Collisions=2/97=2%
 
 # Pattern-specific Variable Values
 
@@ -180,7 +177,7 @@ LANG = C
 
 # Directories
 
-# . (device 16777220, inode 4605289): 18 files, no impossibilities.
+# . (device 16777224, inode 4605289): 18 files, no impossibilities.
 
 # 18 files, no impossibilities in 1 directories.
 
@@ -254,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Jul 18 21:14:32 2022
+# Finished Make data base on Tue Jul 19 10:39:25 2022
 
  

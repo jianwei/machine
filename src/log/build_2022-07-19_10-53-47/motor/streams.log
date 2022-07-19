@@ -1,0 +1,24 @@
+[1.218s] Invoking command in '/media/psf/Home/Desktop/machine/src/motor': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/motor build --build-base /media/psf/Home/Desktop/machine/src/build/motor/build install --prefix /media/psf/Home/Desktop/machine/src/install/motor --record /media/psf/Home/Desktop/machine/src/build/motor/install.log --single-version-externally-managed
+[1.555s] running egg_info
+[1.556s] writing ../build/motor/motor.egg-info/PKG-INFO
+[1.558s] writing dependency_links to ../build/motor/motor.egg-info/dependency_links.txt
+[1.561s] writing entry points to ../build/motor/motor.egg-info/entry_points.txt
+[1.564s] writing requirements to ../build/motor/motor.egg-info/requires.txt
+[1.565s] writing top-level names to ../build/motor/motor.egg-info/top_level.txt
+[1.579s] reading manifest file '../build/motor/motor.egg-info/SOURCES.txt'
+[1.584s] writing manifest file '../build/motor/motor.egg-info/SOURCES.txt'
+[1.585s] running build
+[1.586s] running build_py
+[1.589s] copying motor/motor.py -> /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor
+[1.591s] running install
+[1.592s] running install_lib
+[1.596s] copying /media/psf/Home/Desktop/machine/src/build/motor/build/lib/motor/motor.py -> /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor
+[1.600s] byte-compiling /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor/motor.py to motor.cpython-38.pyc
+[1.604s] running install_data
+[1.606s] running install_egg_info
+[1.610s] removing '/media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor-0.0.0-py3.8.egg-info' (and everything under it)
+[1.616s] Copying ../build/motor/motor.egg-info to /media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages/motor-0.0.0-py3.8.egg-info
+[1.661s] running install_scripts
+[1.683s] Installing motor_node script to /media/psf/Home/Desktop/machine/src/install/motor/lib/motor
+[1.687s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/motor/install.log'
+[1.729s] Invoked command in '/media/psf/Home/Desktop/machine/src/motor' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/motor/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/motor build --build-base /media/psf/Home/Desktop/machine/src/build/motor/build install --prefix /media/psf/Home/Desktop/machine/src/install/motor --record /media/psf/Home/Desktop/machine/src/build/motor/install.log --single-version-externally-managed

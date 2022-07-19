@@ -7,10 +7,14 @@ def generate_launch_description():
     weeding_node = Node(
         package="weeding",
         executable="weeding_node"
-        )
+    )
     camera_node = Node(
         package="weeding",
         executable="camera_node"
-        )        
-    launch_description = LaunchDescription([weeding_node,camera_node])
+    ) 
+    motor_node = Node(
+        package="motor",
+        executable="motor_node"
+    )         
+    launch_description = LaunchDescription([weeding_node,camera_node,motor_node])
     return launch_description
