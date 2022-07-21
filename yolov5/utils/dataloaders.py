@@ -358,7 +358,7 @@ class LoadStreams:
         while cap.isOpened() and n < f:
             
             n += 1
-            print("n===",n,f)
+            # print("n===",n,f)
             # _, self.imgs[index] = cap.read()
             cap.grab()
             if n % read == 0:
@@ -371,7 +371,7 @@ class LoadStreams:
                     cap.open(stream)  # re-open stream if signal was lost
             # time.sleep(0.0)  # wait time
             time.sleep(1.0)  # wait time
-            break
+            # break
 
     def __iter__(self):
         self.count = -1
