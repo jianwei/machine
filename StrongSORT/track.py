@@ -300,9 +300,9 @@ def run(
 
 def addPhoto(photo):
     if len(photo)>0:
-        key = "allPhoto"
-        photoLength = 60*10 #存储10分钟的数据，每秒钟1张
-        # photoLength = 10 #存储10分钟的数据，每秒钟1张
+        key = "allPoints"
+        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+        photoLength = 10 #存储10分钟的数据，每秒钟1张
         allPhoto = redis.get(key)
         if not allPhoto :
             allPhoto = []
@@ -316,8 +316,8 @@ def addPhoto(photo):
             now =  photo[0]['time']
             if(firstTime!=now):  
                 allPhoto.insert(0,photo)
-            for item in allPhoto:
-                print("item:",item,firstTime)
+            # for item in allPhoto:
+            #     print("item:",item,firstTime)
             redis.set(key,json.dumps(allPhoto))
         pass
 

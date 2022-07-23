@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 import rclpy,os,sys,yaml,time,_thread
 from rclpy.node import Node
 from std_msgs.msg import UInt32
@@ -11,7 +12,7 @@ from utils.speed import speed
 from utils.line import line 
 from tools.weeding import weeding 
 from tools.slide import slide 
-from tools.wheel import wheel 
+# from tools.wheel import wheel 
 
 
 
@@ -22,10 +23,11 @@ class weedingNode(Node):
         self.redis = redisDB()
         
         # ros2 topic pub --once /mock_data std_msgs/msg/String 'data: "1"'
-        self.create_subscription(String, "mock_data", self.msg_mock_data_callback, 0)
-        self.create_subscription(String, "machine_prepare", self.msg_machine_prepare_callback, 0)
-        self.create_subscription(String, "machine_work", self.msg_machine_work_callback, 0)
-        self.create_subscription(String, "machine_stop", self.msg_machine_stop_callback, 0)
+        # self.create_subscription(String, "mock_data", self.msg_mock_data_callback, 0)
+        # self.create_subscription(String, "machine_prepare", self.msg_machine_prepare_callback, 0)
+        # self.create_subscription(String, "machine_work", self.msg_machine_work_callback, 0)
+        # self.create_subscription(String, "machine_stop", self.msg_machine_stop_callback, 0)
+        self.create_subscription(String, "open_camera", self.open_camera, 0)
         self.create_subscription(String, "machine_pause", self.meg_machine_pause_callback, 0)
         # self.pub_novel = self.create_publisher(String,"wheel", 10)
 
@@ -38,19 +40,16 @@ class weedingNode(Node):
         self.config["cameraObj"] = self.cameraObj 
         self.weeding=weeding(self.config)
 
-    # def open wheel_control
 
-    def msg_wheel_control_callback(self,message):
-
-        pass
-
-    # ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
-    def msg_machine_prepare_callback(self,message):
-        self.get_logger().info("msg_machine_prepare_callback: %s" % message.data)
-        self.get_logger().info(os.getcwd())
-        if(int(message.data)==1):
-            #1. 打开摄像头
-            self.redis.set("open_camera",1)
+    # ros2 topic pub --once /open_camera std_msgs/msg/String 'data: "1"'
+    def open_camera(self,message):
+        self.get_logger().info("open_camera" )
+        #1. 打开摄像头
+        self.redis.set("open_camera",1)
+        # self.get_logger().info(os.getcwd())
+        # if(int(message.data)==1):
+        #     #1. 打开摄像头
+        #     self.redis.set("open_camera",1)
             # self.pub_novel.publish(msg)
             # self.cameraObj.open()
             # self.line  = line(self.config)
@@ -76,12 +75,14 @@ class weedingNode(Node):
         #停止工作,关闭除草头以及相机
         # self.weeding.stop()
         self.redis.set("open_camera",0)
+        self.redis.set("allPoints",json.dumps([]))
 
-    #ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
+    #ros2 topic pub --once /machine_pause std_msgs/msg/String 'data: "1"'
     def meg_machine_pause_callback(self,message):
         self.get_logger().info("meg_machine_pause_callback: %s" % message.data)
+        self.redis.set("open_camera",0)
         #暂停工作,关闭除草头
-        self.weeding.pause()
+        # self.weeding.pause()
         pass
  
 
@@ -125,7 +126,9 @@ class weedingNode(Node):
         self.weeding = weeding(self.config,self.greenline,10)
         self.weeding.run()
         pass
-
+    
+    def main(self):
+        self.open_camera('')
             
         
 
@@ -133,6 +136,7 @@ class weedingNode(Node):
    
 def main(args=None):
     rclpy.init(args=args)  
-    node = weedingNode("weeding_node")  
+    node = weedingNode("weeding_node")
+    node.main()  
     rclpy.spin(node) 
     rclpy.shutdown()  

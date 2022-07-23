@@ -10,11 +10,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Jul 23 09:08:49 2022
+# Make data base, printed on Sat Jul 23 15:59:07 2022
 
 # Variables
-
  
+
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -50,7 +50,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.oLl1SzEzEj/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7kYU1uPF7w/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -135,6 +135,7 @@ HOMEBREW_PREFIX = /usr/local
 +F = $(notdir $+)
 # environment
 HOMEBREW_REPOSITORY = /usr/local/Homebrew
+ 
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
 # environment
@@ -162,11 +163,10 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 744
+VSCODE_PID = 1861
 # environment
 _CE_CONDA = 
 # environment
- 
 LANG = C
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
@@ -177,9 +177,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777220, inode 4605289): 20 files, no impossibilities.
+# . (device 16777220, inode 4605289): 21 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 21 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Jul 23 09:08:49 2022
+# Finished Make data base on Sat Jul 23 15:59:07 2022
 
  
