@@ -31,3 +31,9 @@ open machine
 close camera
 ==================
 >>ros2 topic pub --once /machine_stop std_msgs/msg/String 'data: "1"'
+
+deepsort
+==================
+>>  refer: https://colab.research.google.com/drive/18nIqkBr68TkK8dHdarxTco6svHUJGggY?usp=sharing#scrollTo=1JQRVPMtA9Cr 
+>>  deepsort/yolo5/crowdhuman_yolov5m.pt
+>>  deepsort/yolo5/yolov5s.pt
