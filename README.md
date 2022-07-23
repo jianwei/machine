@@ -35,5 +35,6 @@ close camera
 deepsort
 ==================
 >>  refer: https://colab.research.google.com/drive/18nIqkBr68TkK8dHdarxTco6svHUJGggY?usp=sharing#scrollTo=1JQRVPMtA9Cr 
+>>  
 >>  deepsort/yolo5/crowdhuman_yolov5m.pt
 >>  deepsort/yolo5/yolov5s.pt
