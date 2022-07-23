@@ -1,4 +1,5 @@
 import argparse
+import json
 
 import os
 # limit the number of cpus used by high performance libraries
@@ -36,8 +37,13 @@ from yolov5.utils.plots import Annotator, colors, save_one_box
 from strong_sort.utils.parser import get_config
 from strong_sort.strong_sort import StrongSORT
 
+path = str(Path(__file__).resolve().parents[1])
+sys.path.append(path)
+from redisConn.index import redisDB
+
 # remove duplicated stream handler to avoid duplicated logging
 logging.getLogger().removeHandler(logging.getLogger().handlers[0])
+redis = redisDB()
 
 @torch.no_grad()
 def run(
@@ -71,7 +77,7 @@ def run(
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
 ):
-
+    
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
@@ -98,11 +104,13 @@ def run(
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
     # Dataloader
+    screenSize = [640,480]
     if webcam:
         show_vid = check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
+        screenSize = dataset.getScreen()
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = 1
@@ -135,7 +143,17 @@ def run(
     model.warmup(imgsz=(1 if pt else nr_sources, 3, *imgsz))  # warmup
     dt, seen = [0.0, 0.0, 0.0, 0.0], 0
     curr_frames, prev_frames = [None] * nr_sources, [None] * nr_sources
+
+    # tt=1
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
+        # tt +=1
+        # print("tt---break:",tt)
+        # if (tt>50):
+            # break
+        open_camera = redis.get("open_camera")
+        if(open_camera and int(open_camera)==0):
+            break
+        
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if half else im.float()  # uint8 to fp16/32
@@ -233,19 +251,19 @@ def run(
                             box_label["id"] = id
                             box_label["name"] = names[c]
                             box_label["time"] = int(time.time())
+                            box_label["screenSize"] = screenSize
                             
                             allPoints.append(box_label)
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
-                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
-
-                    print("track.py--allPoints--:",allPoints)
-
+                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)   
                 LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
-
+                addPhoto(allPoints)
+                print("track.py--allPoints--:",allPoints)
             else:
                 strongsort_list[i].increment_ages()
                 LOGGER.info('No detections')
+            
 
             # Stream results
             im0 = annotator.result()
@@ -280,6 +298,28 @@ def run(
     if update:
         strip_optimizer(yolo_weights)  # update model (to fix SourceChangeWarning)
 
+def addPhoto(photo):
+    if len(photo)>0:
+        key = "allPhoto"
+        photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+        # photoLength = 10 #存储10分钟的数据，每秒钟1张
+        allPhoto = redis.get(key)
+        if not allPhoto :
+            allPhoto = []
+        else:
+            allPhoto = json.loads(allPhoto)
+        if(len(allPhoto)>photoLength) : 
+            allPhoto = allPhoto[:photoLength:1]
+        first = allPhoto[0]
+        if(first) : 
+            firstTime =  first[0]['time']
+            now =  photo[0]['time']
+            if(firstTime!=now):  
+                allPhoto.insert(0,photo)
+            for item in allPhoto:
+                print("item:",item,firstTime)
+            redis.set(key,json.dumps(allPhoto))
+        pass
 
 def parse_opt():
     parser = argparse.ArgumentParser()
