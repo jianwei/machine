@@ -24,7 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             "weeding_node = weeding.weeding:main",
-            "camera_node = weeding.camera:main",
+            # "camera_node = weeding.camera:main",
         ],
     },
 )

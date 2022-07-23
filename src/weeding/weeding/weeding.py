@@ -11,6 +11,7 @@ from utils.speed import speed
 from utils.line import line 
 from tools.weeding import weeding 
 from tools.slide import slide 
+from tools.wheel import wheel 
 
 
 
@@ -26,6 +27,8 @@ class weedingNode(Node):
         self.create_subscription(String, "machine_work", self.msg_machine_work_callback, 0)
         self.create_subscription(String, "machine_stop", self.msg_machine_stop_callback, 0)
         self.create_subscription(String, "machine_pause", self.meg_machine_pause_callback, 0)
+        # self.pub_novel = self.create_publisher(String,"wheel", 10)
+
         self.workDir = os.getcwd()   # src目录
 
         with open(self.workDir+'/weeding/weeding/config.yaml',encoding='utf-8') as file1:
@@ -35,7 +38,11 @@ class weedingNode(Node):
         self.config["cameraObj"] = self.cameraObj 
         self.weeding=weeding(self.config)
 
-    # def open
+    # def open wheel_control
+
+    def msg_wheel_control_callback(self,message):
+
+        pass
 
     # ros2 topic pub --once /machine_prepare std_msgs/msg/String 'data: "1"'
     def msg_machine_prepare_callback(self,message):
@@ -44,7 +51,7 @@ class weedingNode(Node):
         if(int(message.data)==1):
             #1. 打开摄像头
             self.redis.set("open_camera",1)
-            
+            # self.pub_novel.publish(msg)
             # self.cameraObj.open()
             # self.line  = line(self.config)
             # self.greenline = self.line.getLine()

@@ -44,8 +44,8 @@ class weedingNode(Node):
         if(int(message.data)==1):
             #1. 打开摄像头
             self.redis.set("open_camera",1)
+            
             # self.cameraObj.open()
-
             # self.line  = line(self.config)
             # self.greenline = self.line.getLine()
             # #除草头校准

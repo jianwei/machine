@@ -14,25 +14,12 @@ def run():
             cmd  = "ps aux | grep StrongSORT | grep -v 'auto'| grep -v 'sh -c' | grep -v 'grep StrongSORT' |  awk '{print $2}'"
             pid = os.popen(cmd).read()
             print (pid)
+            print (os.getcwd())
             if not pid:
-                # pass
-                # StrongSORT/track.py
-                cmd = "python3 "+os.getcwd()+"/../../../StrongSORT/track.py --source 0  &" 
+                cmd = "cd ../../../StrongSORT/ && python3 track.py --source 0 " 
                 os.system(cmd)
-            # break
         time.sleep(1)
-        # else:
-        #     cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' | grep -v 'grep yolo'|  awk '{print $2}'"
-        #     # cmd  = "ps aux | grep yolo | grep -v 'auto'| grep -v 'sh -c' | grep -v 'grep yolo'"
-        #     pid=os.popen(cmd).read()
-        #     print ("pid:",pid)
-        #     if pid:
-        #         closecmd = "kill -9 "+ str(pid)
-        #         os.system(closecmd)
-        #     redis.set("open_camera",0)
-        #     # break
-        # time.sleep(1)
-   
+        
 
 if __name__ =="__main__":
     run()
