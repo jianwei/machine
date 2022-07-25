@@ -205,13 +205,15 @@ def run(
             imc = im0.copy() if save_crop else im0  # for save_crop
 
             annotator = Annotator(im0, line_width=2, pil=not ascii)
+            print("line:208")
             if cfg.STRONGSORT.ECC:  # camera motion compensation
+                print("line:210")
                 strongsort_list[i].tracker.camera_update(prev_frames[i], curr_frames[i])
             
-            print("line:210")
-            print("det",det)
+            print("line:213:",det)
+            # print("det",det)
             if det is not None and len(det):
-                print("line:212")
+                print("line:216")
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
 
