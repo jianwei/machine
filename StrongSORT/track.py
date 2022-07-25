@@ -208,6 +208,7 @@ def run(
                 strongsort_list[i].tracker.camera_update(prev_frames[i], curr_frames[i])
             
             print("line:210")
+            print("det",det)
             if det is not None and len(det):
                 print("line:212")
                 # Rescale boxes from img_size to im0 size
