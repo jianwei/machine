@@ -12,7 +12,7 @@ class line ():
         self.config = config
         self.redis = config.get("redisObj")
         self.camera = config.get("cameraObj")
-        self.green = json.loads(self.redis.get("camera"))[0]
+        self.green = json.loads(self.redis.get("allPoints"))[0]
         print("self.green",self.green)
 
         self.lineList = []
