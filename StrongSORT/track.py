@@ -148,6 +148,7 @@ def run(
     # tt=1
     print("line:149")
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
+        print("time:",int(time.time()))
         print("line:151")
         # tt +=1
         # print("tt---break:",tt)
@@ -232,7 +233,7 @@ def run(
                 allPoints = []
                 # draw boxes for visualization
                 print("line:234")
-                print("line:235",outputs[i])
+                print("line:235",outputs[i],len(outputs[i]))
                 if len(outputs[i]) > 0:
                     print("line:237")
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
