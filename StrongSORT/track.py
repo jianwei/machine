@@ -206,8 +206,10 @@ def run(
             annotator = Annotator(im0, line_width=2, pil=not ascii)
             if cfg.STRONGSORT.ECC:  # camera motion compensation
                 strongsort_list[i].tracker.camera_update(prev_frames[i], curr_frames[i])
-
+            
+            print("line:210")
             if det is not None and len(det):
+                print("line:212")
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
 
