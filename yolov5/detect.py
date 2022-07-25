@@ -59,6 +59,8 @@ from distance  import imgDistance
 
 redis = redisDB()
 
+
+
 @torch.no_grad()
 def run(
         weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
@@ -87,8 +89,10 @@ def run(
         hide_conf=False,  # hide confidences
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
+        viewImg=False
 ):
     source = str(source)
+    print("viewImg------",viewImg)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
     is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
@@ -105,12 +109,13 @@ def run(
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
-    # print("imgsz",imgsz)
     # Dataloader
     screenSize = [640,480]
     if webcam:
-        # view_img = check_imshow()
-        view_img = False
+        if viewImg:
+            view_img = check_imshow()
+        else :
+            view_img = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         bs = len(dataset)  # batch_size
@@ -125,7 +130,11 @@ def run(
     # Run inference
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     dt, seen = [0.0, 0.0, 0.0], 0
+
     for path, im, im0s, vid_cap, s in dataset:
+        # open_camera = redis.get("open_camera")
+        # if(open_camera and int(open_camera)==0):
+        #     break
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
@@ -315,6 +324,7 @@ def parse_opt():
     parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
     parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
+    parser.add_argument('--viewImg', action='store_true', help='view_img debugger')
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     print_args(vars(opt))
