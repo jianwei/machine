@@ -231,6 +231,8 @@ def run(
 
                 allPoints = []
                 # draw boxes for visualization
+                print("line:234")
+                print("line:235",outputs[i])
                 if len(outputs[i]) > 0:
                     print("line:229")
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
