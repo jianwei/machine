@@ -120,8 +120,6 @@ def run(
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         bs = len(dataset)  # batch_size
         screenSize = dataset.getScreen()
-        # print("screen",screen)
-        # redis.set("screenSize",json.dumps(screen))
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
@@ -217,19 +215,6 @@ def run(
                 print("detect.py--allPoints--:",allPoints)
                 print("----------------------------------------------------------------------------------------")
                 addPhoto(allPoints)
-                # print("imagePointsArr:",imagePointsArr)
-                # print("imageDistanceArr:",imageDistanceArr)
-                # redis.set("imagePoints",json.dumps(imagePointsArr))
-                # redis.set("singlephoto",json.dumps(allPoints))
-                # print("allPoints",allPoints)
-                # for item in allPoints:
-                #     print("point:",item)
-                   # 计算并绘制结果
-                    # xyz_in_camera = draw_measure_line(xyxy, im0, size=2, color=colors[int(cls)], label=cls,
-                    #                                       intrinsics_matrix=intrinsics_matrix) 
-                    # print ("draw_measure_line",draw_measure_line)
-                    # location.append(xyz_in_camera)
-
             # Stream results
             im0 = annotator.result()
             if view_img:
@@ -270,7 +255,6 @@ def run(
 
 
 def addPhoto(photo):
-    # pass
     if len(photo)>0:
         key = "allPoints"
         # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
@@ -284,7 +268,6 @@ def addPhoto(photo):
             allPhoto = allPhoto[:photoLength:1]
         if(len(allPhoto)>1):
             first = allPhoto[0]
-            # print("first",first)
             firstTime =  first[0]['time']
             now =  photo[0]['time']
             if(firstTime!=now):  
@@ -292,7 +275,7 @@ def addPhoto(photo):
         else:
             allPhoto.append(photo)
         redis.set(key,json.dumps(allPhoto))
-        # print ("allPhoto",len(allPhoto))
+        print("allPhoto",allPhoto)
 
 
 
