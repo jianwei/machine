@@ -106,7 +106,8 @@ def run(
     # Dataloader
     screenSize = [640,480]
     if webcam:
-        show_vid = check_imshow()
+        # show_vid = check_imshow()
+        show_vid = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
