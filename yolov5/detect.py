@@ -275,7 +275,7 @@ def addPhoto(photo):
             allPhoto = allPhoto[:photoLength:1]
         if(len(allPhoto)>1):
             first = allPhoto[0]
-            print("first",first)
+            # print("first",first)
             firstTime =  first[0]['time']
             now =  photo[0]['time']
             if(firstTime!=now):  
