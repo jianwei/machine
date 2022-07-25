@@ -146,7 +146,9 @@ def run(
     curr_frames, prev_frames = [None] * nr_sources, [None] * nr_sources
 
     # tt=1
+    print("line:149")
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
+        print("line:151")
         # tt +=1
         # print("tt---break:",tt)
         # if (tt>50):
@@ -176,6 +178,7 @@ def run(
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
+            print("line:181")
             seen += 1
             if webcam:  # nr_sources >= 1
                 p, im0, _ = path[i], im0s[i].copy(), dataset.count
