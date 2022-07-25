@@ -113,11 +113,11 @@ class weedingNode(Node):
     def loop(self):
         self.get_logger().info("------------------------loop begin-----------------------" )
 
-        # while (True):
-        allPoints = self.redis.get("allPoints")
-        self.get_logger().info(allPoints)
-        self.get_logger().info("-------------------------------------loop end-----------------------------------------------" )
-        time.sleep(5)
+        while (True):
+            allPoints = self.redis.get("allPoints")
+            self.get_logger().info(allPoints)
+            self.get_logger().info("-------------------------------------loop end-----------------------------------------------" )
+            time.sleep(5)
 
         # isSliding = False   #只有第一次校准
         # while True : 
