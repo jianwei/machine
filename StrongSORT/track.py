@@ -146,10 +146,10 @@ def run(
     curr_frames, prev_frames = [None] * nr_sources, [None] * nr_sources
 
     # tt=1
-    print("line:149")
+    # print("line:149")
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
         print("time:",int(time.time()))
-        print("line:151")
+        # print("line:151")
         # tt +=1
         # print("tt---break:",tt)
         # if (tt>50):
@@ -179,7 +179,7 @@ def run(
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
-            print("line:181")
+            # print("line:181")
             seen += 1
             if webcam:  # nr_sources >= 1
                 p, im0, _ = path[i], im0s[i].copy(), dataset.count
@@ -205,15 +205,15 @@ def run(
             imc = im0.copy() if save_crop else im0  # for save_crop
 
             annotator = Annotator(im0, line_width=2, pil=not ascii)
-            print("line:208")
+            # print("line:208")
             if cfg.STRONGSORT.ECC:  # camera motion compensation
-                print("line:210")
+                # print("line:210")
                 strongsort_list[i].tracker.camera_update(prev_frames[i], curr_frames[i])
             
-            print("line:213:",det)
+            # print("line:213:",det)
             # print("det",det)
             if det is not None and len(det):
-                print("line:216")
+                # print("line:216")
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
 
@@ -234,18 +234,18 @@ def run(
 
                 allPoints = []
                 # draw boxes for visualization
-                print("line:234")
-                print("line:235",outputs[i],len(outputs[i]))
+                # print("line:234")
+                # print("line:235",outputs[i],len(outputs[i]))
                 if len(outputs[i]) > 0:
-                    print("line:237")
+                    # print("line:237")
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
-                        print("line:239")
+                        # print("line:239")
                         bboxes = output[0:4]
                         id = output[4]
                         cls = output[5]
 
                         if save_txt:
-                            print("line:245")
+                            # print("line:245")
                             # to MOT format
                             bbox_left = output[0]
                             bbox_top = output[1]
@@ -258,7 +258,7 @@ def run(
 
                         # if save_vid or save_crop or show_vid:  # Add bbox to image
                         if True:  # Add bbox to image
-                            print("257:line")
+                            # print("257:line")
                             c = int(cls)  # integer class
                             id = int(id)  # integer id
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
@@ -316,26 +316,27 @@ def run(
         strip_optimizer(yolo_weights)  # update model (to fix SourceChangeWarning)
 
 def addPhoto(photo):
-    if len(photo)>0:
-        key = "allPoints"
-        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
-        photoLength = 10 #存储10分钟的数据，每秒钟1张
-        allPhoto = redis.get(key)
-        if not allPhoto :
-            allPhoto = []
-        else:
-            allPhoto = json.loads(allPhoto)
-        if(len(allPhoto)>photoLength) : 
-            allPhoto = allPhoto[:photoLength:1]
-        if(len(allPhoto)>1):
-            first = allPhoto[0]
-            firstTime =  first[0]['time']
-            now =  photo[0]['time']
-            if(firstTime!=now):  
-                allPhoto.insert(0,photo)
-        else:
-            allPhoto.append(photo)
-        redis.set(key,json.dumps(allPhoto))
+    pass
+    # if len(photo)>0:
+    #     key = "allPoints"
+    #     # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+    #     photoLength = 10 #存储10分钟的数据，每秒钟1张
+    #     allPhoto = redis.get(key)
+    #     if not allPhoto :
+    #         allPhoto = []
+    #     else:
+    #         allPhoto = json.loads(allPhoto)
+    #     if(len(allPhoto)>photoLength) : 
+    #         allPhoto = allPhoto[:photoLength:1]
+    #     if(len(allPhoto)>1):
+    #         first = allPhoto[0]
+    #         firstTime =  first[0]['time']
+    #         now =  photo[0]['time']
+    #         if(firstTime!=now):  
+    #             allPhoto.insert(0,photo)
+    #     else:
+    #         allPhoto.append(photo)
+    #     redis.set(key,json.dumps(allPhoto))
 
 def parse_opt():
     parser = argparse.ArgumentParser()
