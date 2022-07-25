@@ -153,9 +153,9 @@ def run(
         # print("tt---break:",tt)
         # if (tt>50):
             # break
-        open_camera = redis.get("open_camera")
-        if(open_camera and int(open_camera)==0):
-            break
+        # open_camera = redis.get("open_camera")
+        # if(open_camera and int(open_camera)==0):
+        #     break
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
