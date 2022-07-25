@@ -107,7 +107,6 @@ def run(
     screenSize = [640,480]
     if webcam:
         # show_vid = check_imshow()
-
         show_vid = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
@@ -227,13 +226,15 @@ def run(
                 allPoints = []
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
+                    print("line:229")
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
-    
+                        print("line:231")
                         bboxes = output[0:4]
                         id = output[4]
                         cls = output[5]
 
                         if save_txt:
+                            print("line:237")
                             # to MOT format
                             bbox_left = output[0]
                             bbox_top = output[1]
@@ -245,7 +246,7 @@ def run(
                                                                bbox_top, bbox_w, bbox_h, -1, -1, -1, i))
 
                         if save_vid or save_crop or show_vid:  # Add bbox to image
-                            print("248:line")
+                            print("249:line")
                             c = int(cls)  # integer class
                             id = int(id)  # integer id
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
