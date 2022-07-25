@@ -26,7 +26,7 @@ Usage - formats:
 
 import argparse
 from email.mime import image
-import os
+import os,time
 import sys
 from pathlib import Path
 from turtle import distance
@@ -36,7 +36,7 @@ import torch
 import torch.backends.cudnn as cudnn
 
 
-from time import time
+# from time import time
 path = str(Path(__file__).resolve().parents[1])
 sys.path.append(path)
 from redisConn.index import redisDB
@@ -107,15 +107,16 @@ def run(
     imgsz = check_img_size(imgsz, s=stride)  # check image size
     # print("imgsz",imgsz)
     # Dataloader
+    screenSize = [640,480]
     if webcam:
         # view_img = check_imshow()
         view_img = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         bs = len(dataset)  # batch_size
-        screen = dataset.getScreen()
+        screenSize = dataset.getScreen()
         # print("screen",screen)
-        redis.set("screenSize",json.dumps(screen))
+        # redis.set("screenSize",json.dumps(screen))
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
@@ -190,20 +191,28 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
-                        # points = box_label.point
+                        # box_label["id"] = id
+                        box_label["name"] = names[c]
+                        box_label["time"] = int(time.time())
+                        box_label["screenSize"] = screenSize
                         allPoints.append(box_label)
+                        # points = box_label.point
+                        # allPoints.append(box_label)
                         # singleDistance = imgDistance(points)
                         # print("singleDistance:",singleDistance)
                         # imageDistanceArr.append(singleDistance)
                         # imgDistance(points)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                # addPhoto(allPoints)
+                print("detect.py--allPoints--:",allPoints)
                 print("----------------------------------------------------------------------------------------")
+                addPhoto(allPoints)
                 # print("imagePointsArr:",imagePointsArr)
                 # print("imageDistanceArr:",imageDistanceArr)
                 # redis.set("imagePoints",json.dumps(imagePointsArr))
-                redis.set("singlephoto",json.dumps(allPoints))
-                print("allPoints",allPoints)
+                # redis.set("singlephoto",json.dumps(allPoints))
+                # print("allPoints",allPoints)
                 # for item in allPoints:
                 #     print("point:",item)
                    # 计算并绘制结果
@@ -249,6 +258,33 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
+
+
+def addPhoto(photo):
+    # pass
+    if len(photo)>0:
+        key = "allPoints"
+        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+        photoLength = 10 #存储10分钟的数据，每秒钟1张
+        allPhoto = redis.get(key)
+        if not allPhoto :
+            allPhoto = []
+        else:
+            allPhoto = json.loads(allPhoto)
+        if(len(allPhoto)>photoLength) : 
+            allPhoto = allPhoto[:photoLength:1]
+        if(len(allPhoto)>1):
+            first = allPhoto[0]
+            print("first",first)
+            firstTime =  first[0]['time']
+            now =  photo[0]['time']
+            if(firstTime!=now):  
+                allPhoto.insert(0,photo)
+        else:
+            allPhoto.append(photo)
+        redis.set(key,json.dumps(allPhoto))
+        # print ("allPhoto",len(allPhoto))
+
 
 
 def parse_opt():

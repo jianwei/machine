@@ -115,7 +115,7 @@ class Annotator:
                             lineType=cv2.LINE_AA)
                 name  = label
         # return points
-        return {"name":name,"point":points,"time":int(time.time())}
+        return {"point":points}
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)
