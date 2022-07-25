@@ -1,0 +1,23 @@
+[2.162s] Invoking command in '/media/psf/Home/Desktop/machine/src/weeding': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /media/psf/Home/Desktop/machine/src/build/weeding/build install --prefix /media/psf/Home/Desktop/machine/src/install/weeding --record /media/psf/Home/Desktop/machine/src/build/weeding/install.log --single-version-externally-managed
+[3.160s] running egg_info
+[3.233s] writing ../build/weeding/weeding.egg-info/PKG-INFO
+[3.295s] writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt
+[3.468s] writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt
+[3.586s] writing requirements to ../build/weeding/weeding.egg-info/requires.txt
+[3.646s] writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt
+[3.743s] reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[3.745s] writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'
+[3.747s] running build
+[3.748s] running build_py
+[3.750s] running install
+[3.751s] /home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[3.751s]   warnings.warn(
+[3.755s] running install_lib
+[3.841s] running install_data
+[3.858s] running install_egg_info
+[3.921s] removing '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)
+[3.925s] Copying ../build/weeding/weeding.egg-info to /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info
+[3.944s] running install_scripts
+[4.075s] Installing weeding_node script to /media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding
+[4.078s] writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/weeding/install.log'
+[4.114s] Invoked command in '/media/psf/Home/Desktop/machine/src/weeding' returned '0': PYTHONPATH=/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/weeding build --build-base /media/psf/Home/Desktop/machine/src/build/weeding/build install --prefix /media/psf/Home/Desktop/machine/src/install/weeding --record /media/psf/Home/Desktop/machine/src/build/weeding/install.log --single-version-externally-managed

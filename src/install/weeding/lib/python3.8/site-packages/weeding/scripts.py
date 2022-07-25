@@ -3,10 +3,10 @@ import os,sys,time
 
 sys.path.append(os.getcwd()+"/../../../")
 from redisConn.index import redisDB
+redis = redisDB()
 
 
 def run():
-    redis = redisDB()
     while (True) : 
         value = redis.get("open_camera")
         print("value:>>",value,time.time())
@@ -22,4 +22,8 @@ def run():
         
 
 if __name__ =="__main__":
-    run()
+    try:
+        run()
+    except KeyboardInterrupt:
+        redis.set("open_camera",0)
+        pass

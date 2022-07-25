@@ -10,10 +10,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Jul 23 15:59:07 2022
+# Make data base, printed on Mon Jul 25 09:35:51 2022
 
 # Variables
- 
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -50,7 +49,8 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7kYU1uPF7w/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.sF4NmzZZUi/Listeners
+ 
 # automatic
 %F = $(notdir $%)
 # environment
@@ -74,7 +74,7 @@ VSCODE_CODE_CACHE_PATH = /Users/carlos/Library/Application Support/Code/CachedDa
 # environment
 LOGNAME = carlos
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 CONDA_PROMPT_MODIFIER = (base) 
 # environment
@@ -84,7 +84,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
 CONDA_DEFAULT_ENV = base
 # environment
-PLATFORMIO_PATH = /Users/carlos/.platformio/python3/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
+PLATFORMIO_PATH = /Users/carlos/.platformio/penv/bin:/Users/carlos/.platformio/penv:/Users/carlos/.platformio/python3/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -135,7 +135,6 @@ HOMEBREW_PREFIX = /usr/local
 +F = $(notdir $+)
 # environment
 HOMEBREW_REPOSITORY = /usr/local/Homebrew
- 
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
 # environment
@@ -163,7 +162,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 1861
+VSCODE_PID = 1193
 # environment
 _CE_CONDA = 
 # environment
@@ -223,6 +222,7 @@ makefile:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Jul 23 15:59:07 2022
+# Finished Make data base on Mon Jul 25 09:35:51 2022
 
  

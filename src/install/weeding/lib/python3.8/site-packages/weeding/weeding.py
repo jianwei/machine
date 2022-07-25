@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 import rclpy,os,sys,yaml,time,_thread
 from rclpy.node import Node
 from std_msgs.msg import UInt32
@@ -39,22 +40,14 @@ class weedingNode(Node):
         self.config["cameraObj"] = self.cameraObj 
         self.weeding=weeding(self.config)
 
-    # def open wheel_control
-
-    def msg_wheel_control_callback(self,message):
-
-        pass
-
-    # def msg_open_camera_callback(self,message):
-
-    #     pass
 
     # ros2 topic pub --once /open_camera std_msgs/msg/String 'data: "1"'
-    # def msg_machine_prepare_callback(self,message):
     def open_camera(self,message):
         self.get_logger().info("open_camera" )
         #1. 打开摄像头
         self.redis.set("open_camera",1)
+        time.sleep(10)
+        self.loop()
         # self.get_logger().info(os.getcwd())
         # if(int(message.data)==1):
         #     #1. 打开摄像头
@@ -84,6 +77,7 @@ class weedingNode(Node):
         #停止工作,关闭除草头以及相机
         # self.weeding.stop()
         self.redis.set("open_camera",0)
+        self.redis.set("allPoints",json.dumps([]))
 
     #ros2 topic pub --once /machine_pause std_msgs/msg/String 'data: "1"'
     def meg_machine_pause_callback(self,message):
@@ -117,22 +111,29 @@ class weedingNode(Node):
     
         
     def loop(self):
-        # while (TRUE):
-        isSliding = False   #只有第一次校准
+        self.get_logger().info("------------------------loop begin-----------------------" )
+
+        # while (True):
+        allPoints = self.redis.get("allPoints")
+        self.get_logger().info(allPoints)
+        self.get_logger().info("-------------------------------------loop end-----------------------------------------------" )
+        time.sleep(5)
+
+        # isSliding = False   #只有第一次校准
         # while True : 
-        screen = self.config.get("camera").get("screen")
-        self.cameraObj.setScreenSize(screen)
-        self.line  = line(self.config)
-        self.greenline = self.line.getLine()
-        #除草头校准
-        if(not isSliding):  
-            self.slide = slide(self.config)
-            self.slide.adjust(self.greenline,screen)
-            self.slide.insert()  # 插入土中
-            isSliding = True
-        #除草头工作
-        self.weeding = weeding(self.config,self.greenline,10)
-        self.weeding.run()
+        # screen = self.config.get("camera").get("screen")
+        # self.cameraObj.setScreenSize(screen)
+        # self.line  = line(self.config)
+        # self.greenline = self.line.getLine()
+        # #除草头校准
+        # if(not isSliding):  
+        #     self.slide = slide(self.config)
+        #     self.slide.adjust(self.greenline,screen)
+        #     self.slide.insert()  # 插入土中
+        #     isSliding = True
+        # #除草头工作
+        # self.weeding = weeding(self.config,self.greenline,10)
+        # self.weeding.run()
         pass
     
     def main(self):

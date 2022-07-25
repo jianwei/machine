@@ -46,6 +46,8 @@ class weedingNode(Node):
         self.get_logger().info("open_camera" )
         #1. 打开摄像头
         self.redis.set("open_camera",1)
+        time.sleep(10)
+        self.loop()
         # self.get_logger().info(os.getcwd())
         # if(int(message.data)==1):
         #     #1. 打开摄像头
@@ -109,22 +111,29 @@ class weedingNode(Node):
     
         
     def loop(self):
-        # while (TRUE):
-        isSliding = False   #只有第一次校准
+        self.get_logger().info("------------------------loop begin-----------------------" )
+
+        # while (True):
+        allPoints = self.redis.get("allPoints")
+        self.get_logger().info(allPoints)
+        self.get_logger().info("-------------------------------------loop end-----------------------------------------------" )
+        time.sleep(5)
+
+        # isSliding = False   #只有第一次校准
         # while True : 
-        screen = self.config.get("camera").get("screen")
-        self.cameraObj.setScreenSize(screen)
-        self.line  = line(self.config)
-        self.greenline = self.line.getLine()
-        #除草头校准
-        if(not isSliding):  
-            self.slide = slide(self.config)
-            self.slide.adjust(self.greenline,screen)
-            self.slide.insert()  # 插入土中
-            isSliding = True
-        #除草头工作
-        self.weeding = weeding(self.config,self.greenline,10)
-        self.weeding.run()
+        # screen = self.config.get("camera").get("screen")
+        # self.cameraObj.setScreenSize(screen)
+        # self.line  = line(self.config)
+        # self.greenline = self.line.getLine()
+        # #除草头校准
+        # if(not isSliding):  
+        #     self.slide = slide(self.config)
+        #     self.slide.adjust(self.greenline,screen)
+        #     self.slide.insert()  # 插入土中
+        #     isSliding = True
+        # #除草头工作
+        # self.weeding = weeding(self.config,self.greenline,10)
+        # self.weeding.run()
         pass
     
     def main(self):

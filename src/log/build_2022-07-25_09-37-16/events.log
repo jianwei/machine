@@ -1,0 +1,64 @@
+[0.000000] (-) TimerEvent: {}
+[0.000342] (weeding) JobQueued: {'identifier': 'weeding', 'dependencies': OrderedDict()}
+[0.001514] (weeding) JobStarted: {'identifier': 'weeding'}
+[0.099439] (-) TimerEvent: {}
+[0.200198] (-) TimerEvent: {}
+[0.301133] (-) TimerEvent: {}
+[0.401718] (-) TimerEvent: {}
+[0.503441] (-) TimerEvent: {}
+[0.607251] (-) TimerEvent: {}
+[0.716525] (-) TimerEvent: {}
+[0.817663] (-) TimerEvent: {}
+[0.918873] (-) TimerEvent: {}
+[1.019596] (-) TimerEvent: {}
+[1.120101] (-) TimerEvent: {}
+[1.221868] (-) TimerEvent: {}
+[1.329756] (-) TimerEvent: {}
+[1.436580] (-) TimerEvent: {}
+[1.562947] (-) TimerEvent: {}
+[1.663540] (-) TimerEvent: {}
+[1.797273] (-) TimerEvent: {}
+[1.897766] (-) TimerEvent: {}
+[1.902978] (weeding) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', '../build/weeding', 'build', '--build-base', '/media/psf/Home/Desktop/machine/src/build/weeding/build', 'install', '--prefix', '/media/psf/Home/Desktop/machine/src/install/weeding', '--record', '/media/psf/Home/Desktop/machine/src/build/weeding/install.log', '--single-version-externally-managed'], 'cwd': '/media/psf/Home/Desktop/machine/src/weeding', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'parallels', 'SSH_AGENT_PID': '2059', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib', 'HOME': '/home/parallels', 'OLDPWD': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'MANAGERPID': '1884', 'DBUS_STARTER_BUS_TYPE': 'session', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus,guid=e0f5941d918470214979aa4262ddf2d6', 'COLORTERM': 'truecolor', 'IM_CONFIG_PHASE': '1', 'COLCON_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install', 'ROS_DISTRO': 'foxy', 'LOGNAME': 'parallels', 'JOURNAL_STREAM': '8:46608', '_': '/usr/bin/sh', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'parallels', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/foxy/bin:/home/parallels/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSION_MANAGER': 'local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2096,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2096', 'INVOCATION_ID': '5486ac626ff3417a8e4ad7bda721423d', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/d8094107_87e2_4e79_b27b_d8fe6216993a', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.71', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding:/opt/ros/foxy', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/media/psf/Home/Desktop/machine/src/build/weeding', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'DBUS_STARTER_ADDRESS': 'unix:path=/run/user/1000/bus,guid=e0f5941d918470214979aa4262ddf2d6', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages', 'COLCON': '1', 'VTE_VERSION': '6003'}, 'shell': False}
+[2.002474] (-) TimerEvent: {}
+[2.103203] (-) TimerEvent: {}
+[2.203685] (-) TimerEvent: {}
+[2.311794] (-) TimerEvent: {}
+[2.412299] (-) TimerEvent: {}
+[2.512790] (-) TimerEvent: {}
+[2.613241] (-) TimerEvent: {}
+[2.721665] (-) TimerEvent: {}
+[2.822068] (-) TimerEvent: {}
+[2.874990] (weeding) StdoutLine: {'line': b'running egg_info\n'}
+[2.934159] (-) TimerEvent: {}
+[2.942945] (weeding) StdoutLine: {'line': b'writing ../build/weeding/weeding.egg-info/PKG-INFO\n'}
+[2.996450] (weeding) StdoutLine: {'line': b'writing dependency_links to ../build/weeding/weeding.egg-info/dependency_links.txt\n'}
+[3.034450] (-) TimerEvent: {}
+[3.134979] (-) TimerEvent: {}
+[3.146634] (weeding) StdoutLine: {'line': b'writing entry points to ../build/weeding/weeding.egg-info/entry_points.txt\n'}
+[3.250273] (weeding) StdoutLine: {'line': b'writing requirements to ../build/weeding/weeding.egg-info/requires.txt\n'}
+[3.251456] (-) TimerEvent: {}
+[3.302148] (weeding) StdoutLine: {'line': b'writing top-level names to ../build/weeding/weeding.egg-info/top_level.txt\n'}
+[3.351590] (-) TimerEvent: {}
+[3.384757] (weeding) StdoutLine: {'line': b"reading manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[3.387729] (weeding) StdoutLine: {'line': b"writing manifest file '../build/weeding/weeding.egg-info/SOURCES.txt'\n"}
+[3.388716] (weeding) StdoutLine: {'line': b'running build\n'}
+[3.389251] (weeding) StdoutLine: {'line': b'running build_py\n'}
+[3.390922] (weeding) StdoutLine: {'line': b'running install\n'}
+[3.391419] (weeding) StderrLine: {'line': b'/home/parallels/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[3.391800] (weeding) StderrLine: {'line': b'  warnings.warn(\n'}
+[3.395989] (weeding) StdoutLine: {'line': b'running install_lib\n'}
+[3.451702] (-) TimerEvent: {}
+[3.463582] (weeding) StdoutLine: {'line': b'running install_data\n'}
+[3.478141] (weeding) StdoutLine: {'line': b'running install_egg_info\n'}
+[3.552937] (-) TimerEvent: {}
+[3.558611] (weeding) StdoutLine: {'line': b"removing '/media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info' (and everything under it)\n"}
+[3.562361] (weeding) StdoutLine: {'line': b'Copying ../build/weeding/weeding.egg-info to /media/psf/Home/Desktop/machine/src/install/weeding/lib/python3.8/site-packages/weeding-0.0.0-py3.8.egg-info\n'}
+[3.582133] (weeding) StdoutLine: {'line': b'running install_scripts\n'}
+[3.655021] (-) TimerEvent: {}
+[3.708145] (weeding) StdoutLine: {'line': b'Installing weeding_node script to /media/psf/Home/Desktop/machine/src/install/weeding/lib/weeding\n'}
+[3.712368] (weeding) StdoutLine: {'line': b"writing list of installed files to '/media/psf/Home/Desktop/machine/src/build/weeding/install.log'\n"}
+[3.753447] (weeding) CommandEnded: {'returncode': 0}
+[3.755236] (-) TimerEvent: {}
+[3.795716] (weeding) JobEnded: {'identifier': 'weeding', 'rc': 0}
+[3.798212] (-) EventReactorShutdown: {}

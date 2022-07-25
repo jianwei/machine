@@ -310,16 +310,15 @@ def addPhoto(photo):
             allPhoto = json.loads(allPhoto)
         if(len(allPhoto)>photoLength) : 
             allPhoto = allPhoto[:photoLength:1]
-        if allPhoto:
+        if(len(allPhoto)>1):
             first = allPhoto[0]
-            if(first) : 
-                firstTime =  first[0]['time']
-                now =  photo[0]['time']
-                if(firstTime!=now):  
-                    allPhoto.insert(0,photo)
-                # for item in allPhoto:
-                #     print("item:",item,firstTime)
-                redis.set(key,json.dumps(allPhoto))
+            firstTime =  first[0]['time']
+            now =  photo[0]['time']
+            if(firstTime!=now):  
+                allPhoto.insert(0,photo)
+        else:
+            allPhoto.append(photo)
+        redis.set(key,json.dumps(allPhoto))
 
 def parse_opt():
     parser = argparse.ArgumentParser()
