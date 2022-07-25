@@ -234,15 +234,15 @@ def run(
                 print("line:234")
                 print("line:235",outputs[i])
                 if len(outputs[i]) > 0:
-                    print("line:229")
+                    print("line:237")
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
-                        print("line:231")
+                        print("line:239")
                         bboxes = output[0:4]
                         id = output[4]
                         cls = output[5]
 
                         if save_txt:
-                            print("line:237")
+                            print("line:245")
                             # to MOT format
                             bbox_left = output[0]
                             bbox_top = output[1]
@@ -253,8 +253,9 @@ def run(
                                 f.write(('%g ' * 10 + '\n') % (frame_idx + 1, id, bbox_left,  # MOT format
                                                                bbox_top, bbox_w, bbox_h, -1, -1, -1, i))
 
-                        if save_vid or save_crop or show_vid:  # Add bbox to image
-                            print("249:line")
+                        # if save_vid or save_crop or show_vid:  # Add bbox to image
+                        if True:  # Add bbox to image
+                            print("257:line")
                             c = int(cls)  # integer class
                             id = int(id)  # integer id
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
