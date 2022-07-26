@@ -6,21 +6,22 @@ from redisConn.index import redisDB
 redis = redisDB()            
 class serial_control ():
     def __init__(self):
-        self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
-        # pass
+        # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
+        pass
     
     def sendMsg(self):
         while (True):
             print("serial_control:",time.time())
             cmd = redis.get("arduino_cmd")
             if(cmd):
-                self.ser.write(cmd)
-                try:    
-                    response = self.ser.readall() #read a string from port
-                    print ("serial_control:cmd",cmd,response)
-                except expression:
-                    print("serial_control,expression:",cmd,expression)
-                time.sleep(1)
+                # self.ser.write(cmd)
+                # try:    
+                #     response = self.ser.readall() #read a string from port
+                #     print ("serial_control:cmd",cmd,response)
+                # except expression:
+                #     print("serial_control,expression:",cmd,expression)
+                pass
+            time.sleep(1)
 
 
 
