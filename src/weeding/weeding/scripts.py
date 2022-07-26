@@ -17,14 +17,14 @@ def run():
             print (os.getcwd())
             if not pid:
                 # cmd = "cd ../../../StrongSORT/ && python3 track.py --source 0 " 
-                cmd = "cd ../../../yolov5/ && python3 detect.py --source 0  --weight yolov5s.pt --conf 0.25" 
+                cmd = "cd ../../../yolov5/ && python3 detect.py --source 0  --weight yolov5s.pt --conf 0.25 &" 
                 os.system(cmd)
         time.sleep(1)
         
 
 if __name__ =="__main__":
     try:
-        # run()
+        run()
         # arduino_cmd
         cmd = "cd utils && python3 serial_control.py &"
         os.system(cmd)

@@ -7,11 +7,11 @@ redis = redisDB()
 class serial_control ():
     def __init__(self):
         self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
-        pass
+        # pass
     
     def sendMsg(self):
         while (True):
-            print(time.time())
+            # print(time.time())
             cmd = redis.get("arduino_cmd")
             if(cmd):
                 self.ser.write(cmd)
