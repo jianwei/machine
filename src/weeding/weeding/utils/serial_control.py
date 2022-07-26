@@ -11,7 +11,7 @@ class serial_control ():
     
     def sendMsg(self):
         while (True):
-            # print(time.time())
+            print("serial_control:",time.time())
             cmd = redis.get("arduino_cmd")
             if(cmd):
                 self.ser.write(cmd)
@@ -20,7 +20,7 @@ class serial_control ():
                     print ("serial_control:cmd",cmd,response)
                 except expression:
                     print("serial_control,expression:",cmd,expression)
-                time.sleep(0.1)
+                time.sleep(1)
 
 
 
