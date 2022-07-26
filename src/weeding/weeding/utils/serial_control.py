@@ -14,9 +14,13 @@ class serial_control ():
         while (True):
             cmd = redis.get("arduino_cmd")
             self.ser.write(cmd)
-            response = self.ser.readall() #read a string from port
-            print (response)
-            pass
+            try:    
+                response = self.ser.readall() #read a string from port
+                print ("serial_control:cmd",cmd,response)
+            except expression:
+                print("serial_control,expression:",cmd,expression)
+
+
 
 if __name__ =="__main__":
     # try:
