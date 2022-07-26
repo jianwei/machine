@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os,sys,time
-
+# from utils.serial_control import serial_control 
 sys.path.append(os.getcwd()+"/../../../")
 from redisConn.index import redisDB
 redis = redisDB()
@@ -24,7 +24,11 @@ def run():
 
 if __name__ =="__main__":
     try:
-        run()
+        # run()
+        # arduino_cmd
+        cmd = "cd utils && python3 serial_control.py &"
+        os.system(cmd)
+
     except KeyboardInterrupt:
         redis.set("open_camera",0)
         pass
