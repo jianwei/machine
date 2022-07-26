@@ -31,7 +31,8 @@ class weedingNode(Node):
         self.create_subscription(String, "machine_pause", self.meg_machine_pause_callback, 0)
         # self.pub_novel = self.create_publisher(String,"wheel", 10)
 
-        self.workDir = os.getcwd()   # src目录
+        self.workDir = os.getcwd()              # src目录
+        self.redis.set("arduino_cmd","RST")     # 校准
 
         with open(self.workDir+'/weeding/weeding/config.yaml',encoding='utf-8') as file1:
             self.config = yaml.load(file1,Loader=yaml.FullLoader)#读取yaml文件

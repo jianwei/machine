@@ -21,6 +21,8 @@ class serial_control ():
                 except expression:
                     print("serial_control,expression:",cmd,expression)
                 pass
+                redis.set("arduino_cmd","")
+                
             time.sleep(1)
 
 
