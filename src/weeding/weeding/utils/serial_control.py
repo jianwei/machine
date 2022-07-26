@@ -1,4 +1,5 @@
 #导入pyserial模块
+# chmod -R 777 /dev/ttyAMA0
 import serial,sys,os
 import redis
 sys.path.append(os.getcwd()+"/../../../../")
@@ -12,8 +13,8 @@ class serial_control ():
     def sendMsg(self):
         while (True):
             cmd = redis.get("arduino_cmd")
-            ser.write(cmd)
-            response = ser.readall() #read a string from port
+            self.ser.write(cmd)
+            response = self.ser.readall() #read a string from port
             print (response)
             pass
 
