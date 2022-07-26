@@ -1,5 +1,5 @@
 #导入pyserial模块
-import serial,sys
+import serial,sys,os
 sys.path.append(os.getcwd()+"/../../../../")
 from redisConn.index import redisDB
 redis = redisDB()              
