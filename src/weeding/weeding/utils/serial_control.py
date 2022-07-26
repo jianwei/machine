@@ -1,7 +1,6 @@
 #导入pyserial模块
 # chmod -R 777 /dev/ttyAMA0
-import serial,sys,os
-import redis
+import serial,sys,os,redis
 sys.path.append(os.getcwd()+"/../../../../")
 from redisConn.index import redisDB
 redis = redisDB()            
