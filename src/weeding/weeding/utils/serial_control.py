@@ -12,12 +12,13 @@ class serial_control ():
     def sendMsg(self):
         while (True):
             cmd = redis.get("arduino_cmd")
-            self.ser.write(cmd)
-            try:    
-                response = self.ser.readall() #read a string from port
-                print ("serial_control:cmd",cmd,response)
-            except expression:
-                print("serial_control,expression:",cmd,expression)
+            if(cmd):
+                self.ser.write(cmd)
+                try:    
+                    response = self.ser.readall() #read a string from port
+                    print ("serial_control:cmd",cmd,response)
+                except expression:
+                    print("serial_control,expression:",cmd,expression)
 
 
 
