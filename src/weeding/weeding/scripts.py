@@ -24,10 +24,12 @@ def run():
 
 if __name__ =="__main__":
     try:
-        run()
         # arduino_cmd
         cmd = "cd utils && python3 serial_control.py &"
         os.system(cmd)
+        
+        run()
+        
 
     except KeyboardInterrupt:
         redis.set("open_camera",0)
