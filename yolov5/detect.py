@@ -268,8 +268,11 @@ def addPhoto(photo):
             allPhoto = allPhoto[:photoLength:1]
         if(len(allPhoto)>1):
             first = allPhoto[0]
-            print("allPhoto,first",allPhoto,first)
-            firstTime =  first[0]['time']
+            # print("allPhoto,first",allPhoto,first)
+            if first.__contains__("time"):
+                firstTime =  first[0]['time']
+            else:
+                firstTime = ""
             now =  photo[0]['time']
             if(firstTime!=now):  
                 allPhoto.insert(0,photo)
