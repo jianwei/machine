@@ -5,7 +5,7 @@ class serial_control ():
         self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         pass
     
-    def sendMsg():
+    def sendMsg(self):
         while (True):
             cmd = redis.get("arduino_cmd")
             ser.write(cmd)
