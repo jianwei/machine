@@ -36,3 +36,6 @@ deepsort
 ==================
 >> deepsort/yolo5/crowdhuman_yolov5m.pt
 >> deepsort/yolo5/yolov5s.pt
+
+
+https://wiki.tuniu.org/pages/viewpage.action?pageId=141603526
