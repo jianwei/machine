@@ -38,4 +38,4 @@ deepsort
 >> deepsort/yolo5/yolov5s.pt
 
 
-https://wiki.tuniu.org/pages/viewpage.action?pageId=141603526
+https://tuniu-inc.feishu.cn/docx/doxcnTMR7N8SylstHDN0VTKi0Bf
