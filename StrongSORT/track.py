@@ -106,8 +106,8 @@ def run(
     # Dataloader
     screenSize = [640,480]
     if webcam:
-        # show_vid = check_imshow()
-        show_vid = False
+        show_vid = check_imshow()
+        # show_vid = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
@@ -316,27 +316,32 @@ def run(
         strip_optimizer(yolo_weights)  # update model (to fix SourceChangeWarning)
 
 def addPhoto(photo):
-    pass
-    # if len(photo)>0:
-    #     key = "allPoints"
-    #     # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
-    #     photoLength = 10 #存储10分钟的数据，每秒钟1张
-    #     allPhoto = redis.get(key)
-    #     if not allPhoto :
-    #         allPhoto = []
-    #     else:
-    #         allPhoto = json.loads(allPhoto)
-    #     if(len(allPhoto)>photoLength) : 
-    #         allPhoto = allPhoto[:photoLength:1]
-    #     if(len(allPhoto)>1):
-    #         first = allPhoto[0]
-    #         firstTime =  first[0]['time']
-    #         now =  photo[0]['time']
-    #         if(firstTime!=now):  
-    #             allPhoto.insert(0,photo)
-    #     else:
-    #         allPhoto.append(photo)
-    #     redis.set(key,json.dumps(allPhoto))
+    if len(photo)>0:
+        key = "allPoints"
+        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+        photoLength = 10 #存储10分钟的数据，每秒钟1张
+        allPhoto = redis.get(key)
+        if not allPhoto :
+            allPhoto = []
+        else:
+            allPhoto = json.loads(allPhoto)
+        if(len(allPhoto)>photoLength) : 
+            allPhoto = allPhoto[:photoLength:1]
+        if(len(allPhoto)>1):
+            first = allPhoto[0]
+            # print("allPhoto,first",allPhoto,first)
+            if first.__contains__("time"):
+                firstTime =  first[0]['time']
+            else:
+                firstTime = ""
+            now =  photo[0]['time']
+            if(firstTime!=now):  
+                allPhoto.insert(0,photo)
+        else:
+            allPhoto.append(photo)
+        redis.set(key,json.dumps(allPhoto))
+        print("allPhoto",allPhoto)
+
 
 def parse_opt():
     parser = argparse.ArgumentParser()

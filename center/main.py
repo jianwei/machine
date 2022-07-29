@@ -1,93 +1,69 @@
 from convertPoints import ConvertPoints
-import time,os,sys
-# from work import work
-# from run import run
-# from scan import scan
+import time,os,sys,serial
 import json
 sys.path.append("..")
 from redisConn.index import redisDB
-
+# chmod -R 777 /dev/ttyAMA0
+# import serial,sys,os,redis,time
 
 class machine ():
     def __init__(self):
         self.redis = redisDB()
-        # self.work = work()
-        # self.scan = scan()
-        # self.run = run()
-        self.convertPoints = ConvertPoints()
+        self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
+        # self.convertPoints = ConvertPoints()
 
-    # def scan(self):
-    #     self.scan.scan()
 
-    def go(self):
-        # self.run.go(self.greens)
-        pass
-
-    def stop(self):
-        self.run.stop()
-        pass
-
-    def work(self):
-        self.work.work()
-        pass
+    def send_cmd(self,msg):
+        self.ser.write(cmd)
+        try:    
+            response = self.ser.readall() #read a string from port
+            print ("serial_control:cmd",cmd,response)
+        except expression:
+            print("serial_control,expression:",cmd,expression)
+  
 
     def loop(self):
         while (True):
-            greens = self.getGreen()
-            self.go()
+            value = self.redis.get("machine_cmd")
+            print("loop:",value)
+            if(value):
+                value = json.loads(value)
+            if(value):
+                if ("wheel" in value):
+                    if ("RST" in value.get("wheel")):
+                        self.send_cmd("RST")        # 复位，返回0执行成功
+                    if ("QMS" in value.get("wheel")):
+                        self.send_cmd("QMS")        # query movement status查询行进速度等信息
+                    if ("QOS" in value.get("wheel")):
+                        self.send_cmd("QOS")        #  query_operation_status查询滑轨所在的位置等
+                    if ("MF" in value.get("wheel")):
+                        self.send_cmd("MF "+value.get("wheel").get("speed"))       # move_forward以指定速度持续前进；返回0执行成功
+                    if ("MB" in value.get("wheel")):
+                        self.send_cmd("MB "+value.get("wheel").get("speed"))       #  move_backward以指定速度持续后退；返回0执行成功
+                    if ("STOP" in value.get("wheel")):
+                        self.send_cmd("MF "+value.get("wheel").get("type"))       #  type: 0全停；1刹车；2操作臂停止；返回0执行成功
+                    if ("TA" in value.get("wheel")):
+                        self.send_cmd("TA "+value.get("wheel").get("angle"))       # turn_angle，angle为int度数；返回0执行成功
+
+                if ("slide" in value):
+                    if ("ML" in value.get("slide")):
+                        self.send_cmd("MF "+value.get("slide").get("distance"))       # move_forward以指定速度持续前进；返回0执行成功
+                    if ("MR" in value.get("slide")):
+                        self.send_cmd("MR "+value.get("slide").get("distance"))       #  move_backward以指定速度持续后退；返回0执行成功
+                    if ("MU" in value.get("slide")):
+                        self.send_cmd("MU "+value.get("slide").get("distance"))       #  type: 0全停；1刹车；2操作臂停止；返回0执行成功
+                    if ("MD" in value.get("slide")):
+                        self.send_cmd("MD "+value.get("slide").get("distance"))       # turn_angle，angle为int度数；返回0执行成功
+                if ("motion" in value):
+                    if ("ROT" in value.get("motion")):
+                        self.send_cmd("ROT "+value.get("motion").get("angle"))       #  rotate按指定角度（int）旋转；返回0执行成功
+                    if ("STOP" in value.get("motion")):
+                        self.send_cmd("STOP "+value.get("motion").get("type"))       #  0全停；1刹车；2操作臂停止；返回0执行成功
+            self.redis.set("machine_cmd","")
             time.sleep(5)
-            # print("greens",greens)
-            print("loop")
-            
-            # break
-        pass
+        # pass
 
-    def getGreen(self):
-        # imagePoints
-        # imageDistance
-        # screenSize = json.dumps([1280, 720])
-        # greens = json.dumps([[(1178, 457), (1279, 457), (1178, 663), (1279, 663)], [(1189, 459), (1240, 459), (1189, 505), (1240, 505)], [(939, 408), (1269, 408), (939, 717), (1269, 717)], [
-        #                     (226, 508), (331, 508), (226, 626), (331, 626)], [(939, 404), (1268, 404), (939, 712), (1268, 712)], [(77, 332), (888, 332), (77, 711), (888, 711)]])
-        # # try:
-        greens = self.redis.get("allPoints")
-        screenSize = self.redis.get("screenSize")
-        greens = json.loads(greens)
-        print("--------------------------------------------------------------------------------------------------")
-        # print("greens",greens)
-        # print("screenSize",screenSize)
-
-        
-        # self.convertPoints.setScreenSize(json.loads(screenSize))
-        # self.convertPoints = 3 # 误差3cm
-        # self.convertPoints.formatLineByPoints(self.greens)
-
-        # self.convertPoints.getPx(3)
-        # realGreensPoints = []
-        for i in range(len(greens)):
-            item = greens[i]
-            print("phone--", item)
-            # if (item["name"].find("cup")!=-1):
-            #     print("cup--", item)
-            # if (item["name"].find("phone")!=-1):
-            #     print("phone--", item)
-            # realPoints = self.convertPoints.converPoints(item)
-            # print("realPoints", realPoints)
-            # realGreensPoints.append(realPoints)
-        # print("realGreensPoints", realGreensPoints)
-        # greenLine = self.convertPoints.formatLine(realGreensPoints)
-        # for j in greenLine:
-        #     print("greenLineitem---", j)
-        # print("greenLine",greenLine)
-        # isCenter = self.convertPoints.isCenter(greenLine)
-        # print ("screenSize:",screenSize)
-        # print ("greens:",greens)
-        # print ("greenLine:",greenLine)
-        # print ("isCenter:",isCenter)
-        # return self.greens
-
-    def getDistance(self):
-        distance = 80  # cm
-        return distance
+    
 
 
 if __name__ == "__main__":
