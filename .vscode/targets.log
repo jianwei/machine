@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Mon Jul 25 09:35:51 2022
+# Make data base, printed on Sun Jul 31 17:50:59 2022
 
 # Variables
 
@@ -22,6 +22,7 @@ make: *** No rule to make target `all'.  Stop.
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
 PLATFORMIO_IDE = 2.5.0
+ 
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
@@ -49,8 +50,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.sF4NmzZZUi/Listeners
- 
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.TCxUCspMkB/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -156,13 +156,14 @@ SUFFIXES :=
 # environment
 _CE_M = 
 # default
+ 
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 1193
+VSCODE_PID = 3691
 # environment
 _CE_CONDA = 
 # environment
@@ -176,9 +177,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777220, inode 4605289): 21 files, no impossibilities.
+# . (device 16777220, inode 9574790): 22 files, no impossibilities.
 
-# 21 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -222,7 +223,6 @@ makefile:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
- 
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Mon Jul 25 09:35:51 2022
+# Finished Make data base on Sun Jul 31 17:50:59 2022
 
  
