@@ -1,0 +1,4 @@
+python3 detect.py --source 0  --weight yolov5s.pt --conf 0.25
+https://tuniu-inc.feishu.cn/docx/doxcnTMR7N8SylstHDN0VTKi0Bf
+https://github.com/jianwei/Yolov5_StrongSORT_OSNet
+python track.py --source 0
