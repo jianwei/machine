@@ -9,7 +9,7 @@ if video_capture.isOpened():
     try:
         window_handle = cv2.namedWindow(window_title, cv2.WINDOW_AUTOSIZE)
         while True:
-            ret_val, frame = video_capture._read()
+            frame = video_capture._read()
             if cv2.getWindowProperty(window_title, cv2.WND_PROP_AUTOSIZE) >= 0:
                 cv2.imshow(window_title, frame)
             else:
