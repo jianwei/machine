@@ -1,5 +1,5 @@
 import cv2
-from csi_camera import CSICamera
+from jetcam.csi_camera import CSICamera
 
 camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
 
