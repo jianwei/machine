@@ -15,16 +15,16 @@ class CSICamera(Camera):
     
     def __init__(self, *args, **kwargs):
         super(CSICamera, self).__init__(*args, **kwargs)
-        try:
-            self.cap = cv2.VideoCapture(self._gst_str(), cv2.CAP_GSTREAMER)
+        # try:
+        self.cap = cv2.VideoCapture(self._gst_str(), cv2.CAP_GSTREAMER)
 
-            re, image = self.cap.read()
+        re, image = self.cap.read()
 
-            if not re:
-                raise RuntimeError('Could not read image from camera.')
-        except:
-            raise RuntimeError(
-                'Could not initialize camera.  Please see error trace.')
+        if not re:
+            raise RuntimeError('Could not read image from camera.')
+        # except:
+        #     raise RuntimeError(
+        #         'Could not initialize camera.  Please see error trace.')
 
         atexit.register(self.cap.release)
                 
