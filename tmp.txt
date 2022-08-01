@@ -1,11 +1,11 @@
 python3 detect.py --source 0  --weight yolov5s.pt --conf 0.25
 https://tuniu-inc.feishu.cn/docx/doxcnTMR7N8SylstHDN0VTKi0Bf
 https://github.com/jianwei/Yolov5_StrongSORT_OSNet
-python track.py --source 0
+python3 track.py --source 0
 
 
- default Version ：
- cv2:4.5.4
+default Version ：
+cv2:4.5.4
 
 python :
 sudo apt-get update 
