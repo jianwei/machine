@@ -30,7 +30,7 @@ six
 tb-nightly
 future
 yacs
-# gdown
+gdown
 # flake8
 # yapf
 # isort==4.3.21
