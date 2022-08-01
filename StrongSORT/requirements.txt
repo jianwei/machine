@@ -24,7 +24,7 @@ easydict
 
 # # torchreid
 
-# Cython
+Cython
 # h5py
 # six
 # tb-nightly
