@@ -4,6 +4,9 @@ https://github.com/jianwei/Yolov5_StrongSORT_OSNet
 python track.py --source 0
 
 
+ default Version ：
+ cv2:4.5.4
+
 python :
 sudo apt-get update 
 sudo apt-get install python3-pip
