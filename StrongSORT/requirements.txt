@@ -25,7 +25,7 @@ easydict
 # # torchreid
 
 Cython
-# h5py
+h5py
 # six
 # tb-nightly
 # future
