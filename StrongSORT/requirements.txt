@@ -29,7 +29,7 @@ h5py
 six
 tb-nightly
 future
-# yacs
+yacs
 # gdown
 # flake8
 # yapf
