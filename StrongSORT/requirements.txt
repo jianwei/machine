@@ -28,7 +28,7 @@ Cython
 h5py
 six
 tb-nightly
-# future
+future
 # yacs
 # gdown
 # flake8
