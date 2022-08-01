@@ -17,7 +17,7 @@ from pathlib import Path
 from threading import Thread
 from urllib.parse import urlparse
 from zipfile import ZipFile
-from jetcam.csi_camera import CSICamera
+from utils.jetcam.csi_camera import CSICamera
 
 import numpy as np
 import torch
