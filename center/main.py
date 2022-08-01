@@ -25,10 +25,10 @@ class machine ():
     def loop(self):
         while (True):
             value = self.redis.get("machine_cmd")
-            print("loop1:",value,type(value))
+            # print("loop1:",value,type(value))
             if(value):
                 value = json.loads(value)
-            print("loop2:",value,type(value))
+            # print("loop2:",value,type(value))
             if(value):
                 if ("wheel" in value):
                     if ( "RST" == value.get("wheel")):
@@ -48,7 +48,7 @@ class machine ():
 
                 if ("slide" in value):
                     if ("ML" == value.get("slide")):
-                        self.send_cmd("MF "+str(value.get("distance")))       # move_forward以指定速度持续前进；返回0执行成功
+                        self.send_cmd("ML "+str(value.get("distance")))       # move_forward以指定速度持续前进；返回0执行成功
                     if ("MR" == value.get("slide")):
                         self.send_cmd("MR "+str(value.get("distance")))       #  move_backward以指定速度持续后退；返回0执行成功
                     if ("MU" == value.get("slide")):
@@ -61,7 +61,7 @@ class machine ():
                     if ("STOP" in value.get("motion")):
                         self.send_cmd("STOP "+str(value.get("type")))       #  0全停；1刹车；2操作臂停止；返回0执行成功
             self.redis.set("machine_cmd","")
-            time.sleep(5)
+            time.sleep(0.1)
         # pass
 
     

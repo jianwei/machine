@@ -14,7 +14,7 @@ redis = redisDB()
 def on_press(key):
     try:
         cmd = {}
-        print('alphanumeric key {0} pressed'.format(key.char))
+        # print('alphanumeric key {0} pressed'.format(key.char))
         if (key.char=="w"): 
             cmd["wheel"] =  "MF"
             cmd["speed"] =  10
@@ -25,23 +25,22 @@ def on_press(key):
             cmd["slide"] =  "ML"
             cmd["distance"] =  10
         if (key.char=="i"): 
-            cmd["wheel"] =  "MR"
+            cmd["slide"] =  "MR"
             cmd["distance"] =  10
         if (key.char=="j"): 
-            cmd["wheel"] =  "MU"
+            cmd["slide"] = "MU"
             cmd["distance"] =  10
         if (key.char=="k"): 
-            cmd["wheel"] =  "MD"
+            cmd["slide"] =  "MD"
             cmd["distance"] =  10
         print (cmd)
         redis.set("machine_cmd", json.dumps(cmd))
     except AttributeError:
-        print('special key {0} pressed'.format(
-            key))
+        pass
+        # print('special key {0} pressed'.format(key))
 
 def on_release(key):
-    print('{0} released'.format(
-        key))
+    # print('{0} released'.format( key))
     if key == keyboard.Key.esc:
         # Stop listener
         return False
