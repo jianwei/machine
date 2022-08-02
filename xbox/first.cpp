@@ -236,7 +236,7 @@ void go(int ry){
 
 
     
-    printf("go:%s,ry:%d,global_max:%d,absry:%f,pre:%f",direction.c_str(),ry,global_max,absry,pre);
+    printf("go:%s,ry:%d,global_max:%d,absry:%d,pre:%f",direction.c_str(),ry,global_max,absry,pre);
    
     
 }
