@@ -241,10 +241,8 @@ void go(int ry){
 
 
 void turn(int x,int y){
-    
     double angle = 0;
     string cmd = "";
-    // printf("x:%d,y:%d",x,y);
     //下面2象限 复原
     if( (x>0 && y>0) || (x<0 && y>0) ){
         angle = 0;
@@ -255,6 +253,7 @@ void turn(int x,int y){
         int yy = abs(y);
         if (yy!=0){
             double z = xx/yy;
+            printf("z:%f",z);
             angle = atan(z) * 180.0/3.1415926;
         }
     }
@@ -336,39 +335,11 @@ int main(void)
         if( map.yy!=0){
             up_down(map.yy);
         }
-        // // 左右
+        // 左右
         if(map.xx!=0 ){
             left_right(map.xx);
         }
-
-
-         
-
-        // rx = abs((int)map.rx);
-        // ry = abs((int)map.ry);
-        // lx = abs((int)map.lx);
-        // ly = abs((int)map.ly);
-        // prx = (int)rx/max*100.0;
-        // pry = (int)ry/max*100.0;
-        // plx = (int)rx/max*100.0;
-        // ply = (int)ry/max*100.0;
-
-        // if(map.rx>0 && map.ry==0){
-        //     sprintf (cmd,"MF %f",precentx);
-        // }else if(map.rx<0 && map.ry==0){
-        //     sprintf (cmd,"MB %f",precentx);
-        // }else if(map.ry>0 && map.rx==0){
-
-        // }else if(map.ry<0 && map.rx==0){
-
-        // }else if(map.rx!=0 && map.ry!=0){
-        //     sprintf (cmd,"angle 0");
-        // }else{
-        //     sprintf (cmd,"STOP 0");
-        // }
-        //  printf("\rTime:%8d  LX:%f, LY:%f, RX:%f, RY:%f,plx:%d,ply:%d,prx:%d,pry:%d",map.time,lx,ly,rx,ry,plx,ply,prx,pry);     
-
-        // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
+        
         fflush(stdout);
     }
 
