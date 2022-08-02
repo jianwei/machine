@@ -234,7 +234,8 @@ void go(int ry){
     int absry = abs(ry);
     float pre = (absry/global_max) * 100;
     cmd = direction+" "+to_string((int)pre);
-    printf("go:%s,ry:%d,global_max:%f,absry:%d,pre:%f,intpre:%d,cmd:%s \r\n",direction.c_str(),ry,global_max,absry,pre,(int)pre,cmd.c_str());    
+    // printf("go:%s,ry:%d,global_max:%f,absry:%d,pre:%f,intpre:%d,cmd:%s \r\n",direction.c_str(),ry,global_max,absry,pre,(int)pre,cmd.c_str());    
+    printf("cmd:%s \r\n",cmd.c_str());    
     send_cmd(cmd.c_str());
 }
 
@@ -257,7 +258,7 @@ void turn(int x,int y){
             angle = atan(z) * 180.0/3.1415926;
         }
     }
-    cmd = "TA "+to_string(angle);
+    cmd = "TA "+to_string((int)angle);
     // printf("turn,x:%d,y:%d,angle:%f \r\n",x,y,angle);
     send_cmd(cmd.c_str());
 }
@@ -314,9 +315,9 @@ int main(void)
             usleep(10 * 1000);
             continue;
         }
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
-                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+        //         map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
         // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
         //停车
@@ -339,7 +340,7 @@ int main(void)
         if(map.xx!=0 ){
             left_right(map.xx);
         }
-        
+
         fflush(stdout);
     }
 
