@@ -74,6 +74,8 @@ typedef struct xbox_map
 
 } xbox_map_t;
 
+// int globalRo = 0;
+
 int xbox_open(const char *file_name)
 {
     int xbox_fd;
@@ -219,7 +221,7 @@ void go(int number){
 }
 
 void stop (int type){
-
+    printf("stop:%d",type)
 }
 
 void turn(int x,int y){
@@ -262,7 +264,9 @@ int main(void)
                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
         
-        // if()
+        if(map.ro==1){
+            stop(1)
+        }
 
 
          
