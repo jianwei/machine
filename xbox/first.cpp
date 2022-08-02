@@ -74,7 +74,7 @@ typedef struct xbox_map
 
 } xbox_map_t;
 
-// int globalRo = 0;
+int global_max = 32767;
 
 int xbox_open(const char *file_name)
 {
@@ -226,16 +226,13 @@ void stop (int type){
 }
 
 void go(int ry){
-
-    // char direction[] = (ry>0)?"MF":"MB";
-    // char direction[] =  "MF";
     string direction =  "MF";
     if(ry>0){
         direction = "MB";
     }
-
+    string cmd = ""
     
-    printf("go:%s",direction.c_str());
+    printf("go:%s,rx:%d,global_max:%d",direction.c_str(),rx,global_max);
    
     
 }
