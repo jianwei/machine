@@ -220,11 +220,11 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
-    double rx,ry;
-    int precentx,precenty;
+    double rx,ry,lx,ly;
+    int plx,ply,prx,pry;
     double max = 32767;
-    string angle;
-    char cmd[] = "";
+    // string angle;
+    // char cmd[] = "";
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -252,17 +252,27 @@ int main(void)
 
         rx = abs((int)map.rx);
         ry = abs((int)map.ry);
-        precentx = rx/max*100;
-        precenty = ry/max*100;
+        lx = abs((int)map.lx);
+        ly = abs((int)map.ly);
+        prx = (int)rx/max*100.0;
+        pry = (int)ry/max*100.0;
+        plx = (int)rx/max*100.0;
+        ply = (int)ry/max*100.0;
 
-        if(map.rx>0){
-            sprintf (cmd,"MF %f",precentx);
-        }else if(map.rx<0){
-            sprintf (cmd,"MB %f",precentx);
-        }else if(map.rx==0 && map.ry==0){
-            sprintf (cmd,"STOP 0");
-        }
-         printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d,rx:%f,ry:%f,precentx:%d,precenty:%d,cmd:%s",map.time,map.lx, map.ly, map.rx, map.ry,precentx,precenty,cmd);     
+        // if(map.rx>0 && map.ry==0){
+        //     sprintf (cmd,"MF %f",precentx);
+        // }else if(map.rx<0 && map.ry==0){
+        //     sprintf (cmd,"MB %f",precentx);
+        // }else if(map.ry>0 && map.rx==0){
+
+        // }else if(map.ry<0 && map.rx==0){
+
+        // }else if(map.rx!=0 && map.ry!=0){
+        //     sprintf (cmd,"angle 0");
+        // }else{
+        //     sprintf (cmd,"STOP 0");
+        // }
+         printf("\rTime:%8d  LX:%f, LY:%f, RX:%f, RY:%f,plx:%d,ply:%d,prx:%d,pry:%d",map.time,lx,ly,rx,ry,plx,ply,prx,pry);     
 
         // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
