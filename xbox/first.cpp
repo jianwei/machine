@@ -74,7 +74,7 @@ typedef struct xbox_map
 
 } xbox_map_t;
 
-int global_max = 32767;
+double global_max = 32767.0;
 
 int xbox_open(const char *file_name)
 {
