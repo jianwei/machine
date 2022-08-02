@@ -232,7 +232,7 @@ void go(int ry){
     }
     string cmd = "";
     
-    printf("go:%s,rx:%d,global_max:%d",direction.c_str(),rx,global_max);
+    printf("go:%s,ry:%d,global_max:%d",direction.c_str(),ry,global_max);
    
     
 }
