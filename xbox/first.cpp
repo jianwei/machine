@@ -235,7 +235,7 @@ void go(int ry){
     }
 
     
-    printf("go:%s",direction);
+    printf("go:%s",direction.c_str());
    
     
 }
