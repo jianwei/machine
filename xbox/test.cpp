@@ -4,15 +4,20 @@
 #include <stdlib.h>
 
 using namespace std;
+void a();
+void b();
 
-int main(int argc, char const *argv[])
+
+int main()
 {
-    double a=32767;
-    int b=abs(-1234);
-    float c = b/a;
-    double d = 1.0/3.0;
-    printf ("a:%f,b:%d,c:%f,d:%f",a,b,c,d);
-
+    a();
     return 0;
+}
+void b(){
+    printf("b");
+}
+void a(){
+    printf("a");
+    b();
 }
 

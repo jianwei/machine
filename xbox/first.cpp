@@ -215,6 +215,10 @@ void xbox_close(int xbox_fd)
     return;
 }
 
+void send_cmd(string cmd)
+{
+    printf("send_cmd:%s \r\n",cmd);
+}
 
 void go(int number){
     
@@ -230,10 +234,6 @@ void turn(int x,int y){
 }
 
 
-void send_cmd(string cmd)
-{
-    printf("send_cmd:%s\r\n",cmd);
-}
 
 
 int main(void)
