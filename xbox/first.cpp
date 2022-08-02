@@ -222,7 +222,7 @@ int send_cmd(char* cmd){
 
 void stop (int type){
     printf("stop:%d\r\n",type);
-    send_cmd("stop".c_str());
+    send_cmd("stop");
 }
 
 void go(int number){}
