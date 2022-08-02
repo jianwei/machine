@@ -243,9 +243,12 @@ int main(void)
             continue;
         }
 
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%d YY:%d LX:%d LY:%d RX:%d RY:%d LT:%d RT:%d",
-               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%d YY:%d LX:%d LY:%d RX:%d RY:%d LT:%d RT:%d",
+        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+
+
+        printf("\rTime:%8d  LX:%d LY:%d ");       
 
         // rx = abs((int)map.x);
         // ry = abs((int)map.y);
