@@ -215,7 +215,7 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-int send_cmd(char* cmd){
+int send_cmd(const char* cmd){
     printf("send_cmd:%s \r\n",cmd);
     return 0;
 }
@@ -226,7 +226,7 @@ void stop (int type){
 }
 
 void go(int ry){
-    char[] direction = (ry>0)?"MF":"MB"
+    char direction[] = (ry>0)?"MF":"MB"
     printf("go:%s",direction)
    
     
