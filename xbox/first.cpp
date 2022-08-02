@@ -220,8 +220,8 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
-    int rx,ry;
-    int precentx,precenty;
+    double rx,ry;
+    double precentx,precenty;
     double max = 32767;
     string angle;
     char cmd[] = "";
