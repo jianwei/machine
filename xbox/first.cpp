@@ -255,11 +255,11 @@ int main(void)
 
         if(map.rx>0)
         {
-            sprintf (cmd,"MF %d",precentx);
+            sprintf (cmd,"MF %f",precentx);
         }
         if(map.rx<0)
         {
-            sprintf (cmd,"MB %d",precentx);
+            sprintf (cmd,"MB %f",precentx);
         }
         if(map.rx==0 && map.ry==0)
         {
