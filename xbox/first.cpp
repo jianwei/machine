@@ -226,8 +226,8 @@ void stop (int type){
 }
 
 void go(int ry){
-    char direction[] = (ry>0)?"MF":"MB"
-    printf("go:%s",direction)
+    char direction[] = (ry>0)?"MF":"MB";
+    printf("go:%s",direction);
    
     
 }
@@ -243,11 +243,7 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
-    // double rx,ry,lx,ly;
-    // int plx,ply,prx,pry;
-    // double max = 32767;
-    // string angle;
-    // char cmd[] = "";
+  
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -273,7 +269,7 @@ int main(void)
         }
         //前进 后退
         if(map.ry!=0){
-           go(map.ry) 
+           go(map.ry);
         }
 
 
