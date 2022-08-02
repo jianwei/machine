@@ -246,8 +246,8 @@ int main(void)
         //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
         //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        precentx = map.rx/max;
-        precenty = map.ry/max;
+        precentx = map.rx/max*100;
+        precenty = map.ry/max*100;
         printf("rx:%-6d,ry:%-6d,precentx:%d ,precenty:%d \r\n",map.rx,map.ry,precentx,precenty);
         fflush(stdout);
     }
