@@ -226,7 +226,7 @@ void go(int number){
 
 void stop (int type){
     printf("stop:%d\r\n",type);
-    send_cmd("stop")；
+    send_cmd("stop");
 }
 
 void turn(int x,int y){
