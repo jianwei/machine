@@ -230,7 +230,7 @@ void go(int ry){
     if(ry>0){
         direction = "MB";
     }
-    string cmd = ""
+    string cmd = "";
     
     printf("go:%s,rx:%d,global_max:%d",direction.c_str(),rx,global_max);
    
