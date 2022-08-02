@@ -228,7 +228,8 @@ void stop (int type){
 void go(int ry){
 
     // char direction[] = (ry>0)?"MF":"MB";
-    char direction[] =  "MF";
+    // char direction[] =  "MF";
+    string direction =  "MF";
     if(ry>0){
         direction = "MB";
     }
