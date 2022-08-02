@@ -248,10 +248,10 @@ int main(void)
         //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
 
-        printf("\rTime:%8d  LX:%d LY:%d ");       
+        printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d ",map.time,map.lx, map.ly, map.rx, map.ry);       
 
-        // rx = abs((int)map.x);
-        // ry = abs((int)map.y);
+        // rx = abs((int)map.rx);
+        // ry = abs((int)map.ry);
         // precentx = rx/max;
         // precenty = ry/max*100;
 
