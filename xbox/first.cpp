@@ -74,7 +74,7 @@ typedef struct xbox_map
 
 } xbox_map_t;
 
-double global_max = 32767.0;
+double global_max = 32767;
 
 int xbox_open(const char *file_name)
 {
@@ -234,11 +234,7 @@ void go(int ry){
     int absry = abs(ry);
     double pre = (absry/global_max) * 100;
 
-
-    
-    printf("go:%s,ry:%d,global_max:%d,absry:%d,pre:%f",direction.c_str(),ry,global_max,absry,pre);
-   
-    
+    printf("go:%s,ry:%d,global_max:%d,absry:%d,pre:%f",direction.c_str(),ry,global_max,absry,pre);    
 }
 void turn(int x,int y){}
 
