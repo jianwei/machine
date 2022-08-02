@@ -247,8 +247,8 @@ int main(void)
         //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
         //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        rx = abs(map.x);
-        ry = abs(map.y);
+        rx = abs((int)map.x);
+        ry = abs((int)map.y);
         precentx = rx/max;
         precenty = ry/max*100;
 
