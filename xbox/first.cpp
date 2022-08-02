@@ -225,7 +225,6 @@ int main(void)
     double max = 32767;
     string angle;
     char cmd[] = "";
-    // DecimalFormat fnum= new DecimalFormat("##0.00");
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -262,7 +261,7 @@ int main(void)
         }
 
 
-        printf("rx:%-6d,ry:%-6d,precentx:%f ,precenty:%f,cmd:%s \r\n",map.rx,map.ry,precentx,precenty,cmd);
+        printf("rx:%-6d,ry:%-6d,precentx:%f ,precenty:%f,cmd:%s \r\n",rx,ry,precentx,precenty,cmd);
         fflush(stdout);
     }
 
