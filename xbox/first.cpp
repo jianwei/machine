@@ -261,7 +261,7 @@ int main(void)
         }
 
 
-        printf("rx:%-6d,ry:%-6d,precentx:%f ,precenty:%f,cmd:%s \r\n",rx,ry,precentx,precenty,cmd);
+        printf("map.x:%d,map.y:%d,rx:%d,ry:%d,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
     }
 
