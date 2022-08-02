@@ -221,13 +221,19 @@ void go(int number){
 }
 
 void stop (int type){
-    printf("stop:%d",type);
+    printf("stop:%d\r\n",type);
+    send_cmd("stop")
 }
 
 void turn(int x,int y){
 
 }
 
+
+void send_cmd(string cmd)
+{
+    printf("send_cmd:%s\r\n",cmd);
+}
 
 
 int main(void)
