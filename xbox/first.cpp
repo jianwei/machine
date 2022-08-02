@@ -250,19 +250,14 @@ int main(void)
 
         rx = abs(map.x);
         ry = abs(map.y);
-        precentx = rx/max*100;
+        precentx = rx/max;
         precenty = ry/max*100;
 
-        if(map.rx>0)
-        {
+        if(map.rx>0){
             sprintf (cmd,"MF %f",precentx);
-        }
-        if(map.rx<0)
-        {
+        }else if(map.rx<0){
             sprintf (cmd,"MB %f",precentx);
-        }
-        if(map.rx==0 && map.ry==0)
-        {
+        }else if(map.rx==0 && map.ry==0){
             sprintf (cmd,"STOP 0");
         }
 
