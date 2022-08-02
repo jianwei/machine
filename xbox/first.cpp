@@ -104,8 +104,8 @@ int xbox_map_read(int xbox_fd, xbox_map_t *map)
     value = js.value;
 
     map->time = js.time;
-    cout << "type:" << type << endl;
-    cout << "number:" << number << endl;
+    // cout << "type:" << type << endl;
+    // cout << "number:" << number << endl;
     if (type == JS_EVENT_BUTTON)
     {
         switch (number)
@@ -219,6 +219,7 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
+    int rx,ry;
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -237,9 +238,12 @@ int main(void)
             continue;
         }
 
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
-               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        rx = map.rx;
+        ry = map.ry;
+        printf("rx:%-6d,ry:%-6d",rx,ry)
         fflush(stdout);
     }
 
