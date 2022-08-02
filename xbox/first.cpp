@@ -221,7 +221,7 @@ int main(void)
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
     double rx,ry;
-    double precentx,precenty;
+    int precentx,precenty;
     double max = 32767;
     string angle;
     char cmd[] = "";
@@ -252,7 +252,7 @@ int main(void)
 
         rx = abs((int)map.rx);
         ry = abs((int)map.ry);
-        precentx = rx/max;
+        precentx = rx/max*100;
         precenty = ry/max*100;
 
         // if(map.rx>0){
@@ -262,7 +262,7 @@ int main(void)
         // }else if(map.rx==0 && map.ry==0){
         //     sprintf (cmd,"STOP 0");
         // }
-         printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d,rx:%d,ry:%d,precentx:%f,precenty:%f ",map.time,map.lx, map.ly, map.rx, map.ry,precentx,precenty);     
+         printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d,rx:%f,ry:%f,precentx:%d,precenty:%d",map.time,map.lx, map.ly, map.rx, map.ry,precentx,precenty);     
 
         // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
