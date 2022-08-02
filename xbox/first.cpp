@@ -215,23 +215,16 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-void send_cmd(string cmd)
-{
+void send_cmd(string cmd){
     printf("send_cmd:%s \r\n",cmd);
-}
-
-void go(int number){
-    
 }
 
 void stop (int type){
     printf("stop:%d\r\n",type);
     send_cmd("stop");
 }
-
-void turn(int x,int y){
-
-}
+void go(int number){}
+void turn(int x,int y){}
 
 
 
@@ -266,7 +259,7 @@ int main(void)
             continue;
         }
 
-        printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d ", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
+        printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
         
         if(map.ro==1){
             stop(1);
