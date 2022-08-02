@@ -221,7 +221,7 @@ void go(int number){
 }
 
 void stop (int type){
-    printf("stop:%d",type)
+    printf("stop:%d",type);
 }
 
 void turn(int x,int y){
@@ -265,7 +265,7 @@ int main(void)
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
         
         if(map.ro==1){
-            stop(1)
+            stop(1);
         }
 
 
