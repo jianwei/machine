@@ -255,14 +255,14 @@ int main(void)
         precentx = rx/max*100;
         precenty = ry/max*100;
 
-        // if(map.rx>0){
-        //     sprintf (cmd,"MF %f",precentx);
-        // }else if(map.rx<0){
-        //     sprintf (cmd,"MB %f",precentx);
-        // }else if(map.rx==0 && map.ry==0){
-        //     sprintf (cmd,"STOP 0");
-        // }
-         printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d,rx:%f,ry:%f,precentx:%d,precenty:%d",map.time,map.lx, map.ly, map.rx, map.ry,precentx,precenty);     
+        if(map.rx>0){
+            sprintf (cmd,"MF %f",precentx);
+        }else if(map.rx<0){
+            sprintf (cmd,"MB %f",precentx);
+        }else if(map.rx==0 && map.ry==0){
+            sprintf (cmd,"STOP 0");
+        }
+         printf("\rTime:%8d  LX:%d LY:%d RX:%d RY:%d,rx:%f,ry:%f,precentx:%d,precenty:%d,cmd:%s",map.time,map.lx, map.ly, map.rx, map.ry,precentx,precenty,cmd);     
 
         // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
