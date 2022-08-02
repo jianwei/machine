@@ -222,7 +222,7 @@ int main(void)
     // int rx,ry;
     float precentx,precenty;
     int max = 32767;
-    DecimalFormat fnum= new DecimalFormat("##0.00");
+    // DecimalFormat fnum= new DecimalFormat("##0.00");
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -247,8 +247,8 @@ int main(void)
         // rx = map.rx;
         // ry = map.ry;
         // precentx =(float)(map.rx/max*100)/100;
-        // precentx = map.rx/max
-        String  precentx=fnum.format(map.rx/max);
+        precentx = map.rx/max;
+        // String  precentx=fnum.format(map.rx/max);
 
 
         precenty =(float)(map.ry/max*100)/100;
