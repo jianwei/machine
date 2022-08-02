@@ -69,7 +69,8 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__functional_base_03": "cpp"
     },
     "MicroPython.executeButton": [
         {

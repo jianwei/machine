@@ -213,6 +213,21 @@ void xbox_close(int xbox_fd)
     return;
 }
 
+
+void go(int number){
+    
+}
+
+void stop (int type){
+
+}
+
+void turn(int x,int y){
+
+}
+
+
+
 int main(void)
 {
     int xbox_fd;
@@ -220,9 +235,9 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
-    double rx,ry,lx,ly;
-    int plx,ply,prx,pry;
-    double max = 32767;
+    // double rx,ry,lx,ly;
+    // int plx,ply,prx,pry;
+    // double max = 32767;
     // string angle;
     // char cmd[] = "";
 
@@ -243,21 +258,23 @@ int main(void)
             continue;
         }
 
-        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%d YY:%d LX:%d LY:%d RX:%d RY:%d LT:%d RT:%d",
-        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%d YY:%d LX:%d LY:%d RX:%d RY:%d LT:%d RT:%d",
+               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        
+        // if()
 
 
          
 
-        rx = abs((int)map.rx);
-        ry = abs((int)map.ry);
-        lx = abs((int)map.lx);
-        ly = abs((int)map.ly);
-        prx = (int)rx/max*100.0;
-        pry = (int)ry/max*100.0;
-        plx = (int)rx/max*100.0;
-        ply = (int)ry/max*100.0;
+        // rx = abs((int)map.rx);
+        // ry = abs((int)map.ry);
+        // lx = abs((int)map.lx);
+        // ly = abs((int)map.ly);
+        // prx = (int)rx/max*100.0;
+        // pry = (int)ry/max*100.0;
+        // plx = (int)rx/max*100.0;
+        // ply = (int)ry/max*100.0;
 
         // if(map.rx>0 && map.ry==0){
         //     sprintf (cmd,"MF %f",precentx);
@@ -272,7 +289,7 @@ int main(void)
         // }else{
         //     sprintf (cmd,"STOP 0");
         // }
-         printf("\rTime:%8d  LX:%f, LY:%f, RX:%f, RY:%f,plx:%d,ply:%d,prx:%d,pry:%d",map.time,lx,ly,rx,ry,plx,ply,prx,pry);     
+        //  printf("\rTime:%8d  LX:%f, LY:%f, RX:%f, RY:%f,plx:%d,ply:%d,prx:%d,pry:%d",map.time,lx,ly,rx,ry,plx,ply,prx,pry);     
 
         // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
