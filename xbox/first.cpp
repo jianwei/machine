@@ -243,7 +243,7 @@ int main(void)
         //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
         rx = map.rx;
         ry = map.ry;
-        printf("\r rx:%-6d,ry:%-6d",rx,ry);
+        printf("rx:%-6d,ry:%-6d \r\n",rx,ry);
         fflush(stdout);
     }
 
