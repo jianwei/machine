@@ -243,25 +243,25 @@ int main(void)
             continue;
         }
 
-        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
-        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        rx = abs((int)map.x);
-        ry = abs((int)map.y);
-        precentx = rx/max;
-        precenty = ry/max*100;
+        // rx = abs((int)map.x);
+        // ry = abs((int)map.y);
+        // precentx = rx/max;
+        // precenty = ry/max*100;
 
-        if(map.rx>0){
-            sprintf (cmd,"MF %f",precentx);
-        }else if(map.rx<0){
-            sprintf (cmd,"MB %f",precentx);
-        }else if(map.rx==0 && map.ry==0){
-            sprintf (cmd,"STOP 0");
-        }
+        // if(map.rx>0){
+        //     sprintf (cmd,"MF %f",precentx);
+        // }else if(map.rx<0){
+        //     sprintf (cmd,"MB %f",precentx);
+        // }else if(map.rx==0 && map.ry==0){
+        //     sprintf (cmd,"STOP 0");
+        // }
 
 
-        printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
+        // printf("map.x:%d,map.y:%d,rx:%f,ry:%f,precentx:%f ,precenty:%f,cmd:%s \r\n",map.x,map.y,rx,ry,precentx,precenty,cmd);
         fflush(stdout);
     }
 
