@@ -2,16 +2,22 @@
 #include <unistd.h>
 #include <string.h>
 
+using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-    // printf("12");
     double a=32767;
     int b=1234;
-    int c = b/a *100;
-
-    printf ("c:%d",c);
+    float c = b/a *100;
+    char d[] = "aaaa ";
+    char f[]="";
+    // char f[] = (string) b+d;
+    sprintf(f,"%s,%d",d,b);
+    if(b>0 && a<0)
+    {
+        printf ("d:%s",f);
+    }
+    
     return 0;
 }
 
