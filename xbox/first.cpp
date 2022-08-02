@@ -215,14 +215,16 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-void send_cmd(string cmd){
+int send_cmd(char* cmd){
     printf("send_cmd:%s \r\n",cmd);
+    return 0;
 }
 
 void stop (int type){
     printf("stop:%d\r\n",type);
     send_cmd("stop");
 }
+
 void go(int number){}
 void turn(int x,int y){}
 
