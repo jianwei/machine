@@ -228,7 +228,7 @@ void stop (int type){
 void go(int ry){
     char direction[] = "MB";
     if (ry>0){
-        direction[] = "MF";
+        direction = "MF";
     }
     printf("go:%s",direction);
    
