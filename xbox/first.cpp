@@ -225,7 +225,12 @@ void stop (int type){
     send_cmd("stop");
 }
 
-void go(int number){}
+void go(int ry){
+    char[] direction = (ry>0)?"MF":"MB"
+    printf("go:%s",direction)
+   
+    
+}
 void turn(int x,int y){}
 
 
@@ -262,9 +267,13 @@ int main(void)
         }
 
         printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
-        
+        //停车
         if(map.ro==1){
             stop(1);
+        }
+        //前进 后退
+        if(map.ry!=0){
+           go(map.ry) 
         }
 
 
