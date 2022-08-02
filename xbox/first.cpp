@@ -221,8 +221,8 @@ int send_cmd(const char* cmd){
 }
 
 void stop (int type){
-    printf("stop:%d\r\n",type);
-    send_cmd("stop");
+    string cmd = "stop "+to_string(type);
+    send_cmd(cmd.c_str());
 }
 
 void go(int ry){
@@ -232,12 +232,61 @@ void go(int ry){
     }
     string cmd = "";
     int absry = abs(ry);
-    double pre = (absry/global_max) * 100;
-
-    printf("go:%s,ry:%d,global_max:%d,absry:%d,pre:%f",direction.c_str(),ry,global_max,absry,pre);    
+    float pre = (absry/global_max) * 100;
+    cmd = direction+" "+to_string((int)pre);
+    printf("go:%s,ry:%d,global_max:%f,absry:%d,pre:%f,intpre:%d,cmd:%s \r\n",direction.c_str(),ry,global_max,absry,pre,(int)pre,cmd.c_str());    
+    send_cmd(cmd.c_str());
 }
-void turn(int x,int y){}
 
+
+
+void turn(int x,int y){
+    
+    double angle = 0;
+    string cmd = "";
+    // printf("x:%d,y:%d",x,y);
+    //下面2象限 复原
+    if( (x>0 && y>0) || (x<0 && y>0) ){
+        angle = 0;
+    }else if (x!=0 && y==0){
+        angle = 90;
+    }else{
+        int xx = abs(x);
+        int yy = abs(y);
+        if (yy!=0){
+            double z = xx/yy;
+            angle = atan(z) * 180.0/3.1415926;
+        }
+    }
+    cmd = "TA "+to_string(angle);
+    // printf("turn,x:%d,y:%d,angle:%f \r\n",x,y,angle);
+    send_cmd(cmd.c_str());
+}
+
+
+void left_right(int x){
+    if(x!=0){
+        string cmd = "";
+        if (x>0){
+            cmd = "ML 10";
+        }else{
+            cmd = "MR 10";
+        }
+        send_cmd(cmd.c_str());
+    }
+}
+
+void up_down(int y){
+    if(y!=0){
+        string cmd = "";
+        if (y>0){
+            cmd = "MU 10";
+        }else{
+            cmd = "MD 10";
+        }
+        send_cmd(cmd.c_str());
+    }
+}
 
 
 
@@ -252,7 +301,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
@@ -266,8 +315,11 @@ int main(void)
             usleep(10 * 1000);
             continue;
         }
+        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
+        // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
         //停车
         if(map.ro==1){
             stop(1);
@@ -275,6 +327,18 @@ int main(void)
         //前进 后退
         if(map.ry!=0){
            go(map.ry);
+        }
+        //转向
+        if(map.lx!=0 || map.ly!=0){
+            turn(map.lx,map.ly);
+        }
+        // 上下
+        if( map.yy!=0){
+            up_down(map.yy);
+        }
+        // // 左右
+        if(map.xx!=0 ){
+            left_right(map.xx);
         }
 
 
