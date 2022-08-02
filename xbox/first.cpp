@@ -231,8 +231,12 @@ void go(int ry){
         direction = "MB";
     }
     string cmd = "";
+    int absry = abs(ry);
+    double pre = (absry/global_max) * 100;
+
+
     
-    printf("go:%s,ry:%d,global_max:%d",direction.c_str(),ry,global_max);
+    printf("go:%s,ry:%d,global_max:%d,absry:%f,pre:%f",direction.c_str(),ry,global_max,absry,pre);
    
     
 }
