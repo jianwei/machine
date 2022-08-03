@@ -266,7 +266,7 @@ def run(
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             box_label["id"] = id
                             box_label["name"] = names[c]
-                            box_label["time"] = int(time.time())
+                            box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
                             
                             allPoints.append(box_label)
@@ -318,8 +318,8 @@ def run(
 def addPhoto(photo):
     if len(photo)>0:
         key = "allPoints"
-        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
-        photoLength = 10 #存储10分钟的数据，每秒钟1张
+        photoLength = 60*60*10 #存储10分钟的数据，默认fps=10
+        # photoLength = 10 #存储10分钟的数据，每秒钟1张
         allPhoto = redis.get(key)
         if not allPhoto :
             allPhoto = []

@@ -10,35 +10,37 @@
 void serial_port_init(int fd);   //串口初始化说明
 using namespace std;
 
-int main()
-{
-    //1.打开串口
-    char buf[1024] = "";
-    int open_USB = open(File_open_USB, O_RDWR);
-    if (open_USB < 0)
-    {
-        return -1;
-    }
+// int main()
+// {
+//     //1.打开串口
+//     char buf[1024] = "";
+//     int open_USB = open(File_open_USB, O_RDWR);
+//     if (open_USB < 0)
+//     {
+//         return -1;
+//     }
 
-    //2.串口初始化
-    serial_port_init(open_USB);
-    while (1)
-    {
-        printf("请输入:");
-        scanf("%s", buf);
-        write(open_USB, buf, strlen(buf));
-        memset(buf, 0, sizeof(buf));
-        read(open_USB, buf, sizeof(buf) - 1);
-        printf("接受的数据是:%s\n", buf);
-        memset(buf, 0, sizeof(buf));
-    }
+//     //2.串口初始化
+//     serial_port_init(open_USB);
+//     while (1)
+//     {
+//         printf("请输入:");
+//         scanf("%s", buf);
+//         write(open_USB, buf, strlen(buf));
+//         memset(buf, 0, sizeof(buf));
+//         read(open_USB, buf, sizeof(buf) - 1);
+//         printf("接受的数据是:%s\n", buf);
+//         memset(buf, 0, sizeof(buf));
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 // https://www.cnblogs.com/wang1299/p/14548339.html
+// char writeMsg(string msg){
 char writeMsg(string msg){
+    printf("writeMsg:%s", msg);
     int open_USB = open(File_open_USB, O_RDWR);
     if (open_USB < 0)
     {

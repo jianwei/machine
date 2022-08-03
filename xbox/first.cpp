@@ -9,7 +9,7 @@
 #include <linux/joystick.h>
 #include <iostream>
 #include <math.h>
-// #include <seria.cpp>
+#include "./seria.cpp"
 
 #define XBOX_TYPE_BUTTON 0x01
 #define XBOX_TYPE_AXIS 0x02
@@ -76,6 +76,7 @@ typedef struct xbox_map
 } xbox_map_t;
 
 double global_max = 32767;
+char writeMsg(string msg);
 
 int xbox_open(const char *file_name)
 {
@@ -216,11 +217,16 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-int send_cmd(const char* cmd){
+
+
+int send_cmd(const char *cmd){
     printf("send_cmd:%s \r\n",cmd);
-    write(cmd)
+    string msg =  cmd;
+    printf("send_cmd,msg:%s \r\n",msg.c_str());
+    writeMsg(msg.c_str());  
     return 0;
 }
+
 
 void stop (int type){
     string cmd = "stop "+to_string(type);
@@ -256,12 +262,10 @@ void turn(int x,int y){
         double yy = abs(y);
         if (yy!=0){
             double z = xx/yy;
-            // printf("z------------------------------,xx%f,yy:%f:%f",z,xx,yy);
             angle = atan(z) * 180.0/3.1415926;
         }
     }
     cmd = "TA "+to_string((int)angle);
-    // printf("turn,x:%d,y:%d,angle:%f \r\n",x,y,angle);
     send_cmd(cmd.c_str());
 }
 
