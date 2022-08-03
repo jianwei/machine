@@ -9,7 +9,7 @@
 #include <linux/joystick.h>
 #include <iostream>
 #include <math.h>
-#include "./seria.cpp"
+// #include "./seria.cpp"
 
 #define XBOX_TYPE_BUTTON 0x01
 #define XBOX_TYPE_AXIS 0x02
@@ -76,7 +76,7 @@ typedef struct xbox_map
 } xbox_map_t;
 
 double global_max = 32767;
-char writeMsg(string msg);
+// char writeMsg(string msg);
 
 int xbox_open(const char *file_name)
 {
@@ -223,8 +223,18 @@ int send_cmd(const char *cmd){
     printf("send_cmd:%s \r\n",cmd);
     string msg =  cmd;
     printf("send_cmd,msg:%s \r\n",msg.c_str());
-    writeMsg(msg.c_str());  
+    // writeMsg(msg.c_str());  
     return 0;
+}
+
+
+void exec_shell(string cmd, char* &ret){
+    FILE *fp;
+    char buffer[80]; 
+    fp = popen(cmd.c_str(),"r");
+    fgets(buffer,sizeof(buffer),fp);
+    pclose(fp);
+    ret = buffer;
 }
 
 
@@ -321,11 +331,18 @@ int main(void)
             usleep(10 * 1000);
             continue;
         }
-        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
-        //         map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
         // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
+        //开始工作、停止工作
+        if(map.rb==1){
+            char* val;
+            exec_shell("echo 1",val);
+            printf("shell:%s",val);
+        }
+
         //停车
         if(map.ro==1){
             stop(1);
