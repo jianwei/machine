@@ -1,27 +1,37 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <iostream>
 #include <math.h>
 
 using namespace std;
-void a();
-void b();
+
+void exec_shell(char* cmd, char* &ret){
+    char buf[80];
+    char* cmd_all;   
+    getcwd(buf,sizeof(buf));
+    cout << buf << endl;
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",buf,cmd);
+    cout << cmd_all << endl;
+    // FILE *fp;
+    char buffer[80]; 
+    
+    fp = popen(cmd_all,"r");
+    fgets(buffer,sizeof(buffer),fp);
+    pclose(fp);
+    ret = buffer;
+}
 
 
-int main()
-{
-    a();
-    float z=100;
-    double angle = atan(z) * 180.0/3.1415926;
-    printf("s:%f",angle);
-    return 0;
-}
-void b(){
-    printf("b");
-}
-void a(){
-    printf("a");
-    b();
+int main () {
+    char* val;
+    char cmd[] = "--type 1 --cmd 1";
+    exec_shell(cmd,val);
+
+   return(0);
 }
 

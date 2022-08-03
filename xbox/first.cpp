@@ -229,9 +229,13 @@ int send_cmd(const char *cmd){
 
 
 void exec_shell(string cmd, char* &ret){
+    char buf[80];
+    getcwd(buf,sizeof(buf));
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",buf,cmd);
+
     FILE *fp;
     char buffer[80]; 
-    fp = popen(cmd.c_str(),"r");
+    fp = popen(cmd_all,"r");
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
     ret = buffer;
@@ -339,7 +343,9 @@ int main(void)
         //开始工作、停止工作
         if(map.rb==1){
             char* val;
-            exec_shell("echo 1",val);
+            // string cmd = "echo 1";
+            string cmd = "--type 1 --cmd 1";
+            exec_shell(cmd,val);
             printf("shell:%s",val);
         }
 
