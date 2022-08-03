@@ -20,6 +20,7 @@ void exec_shell(char* cmd, char* &ret){
     // FILE *fp;
     char buffer[80]; 
     
+    FILE *fp; 
     fp = popen(cmd_all,"r");
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
