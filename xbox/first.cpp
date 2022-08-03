@@ -9,6 +9,7 @@
 #include <linux/joystick.h>
 #include <iostream>
 #include <math.h>
+// #include <seria.cpp>
 
 #define XBOX_TYPE_BUTTON 0x01
 #define XBOX_TYPE_AXIS 0x02
@@ -217,6 +218,7 @@ void xbox_close(int xbox_fd)
 
 int send_cmd(const char* cmd){
     printf("send_cmd:%s \r\n",cmd);
+    write(cmd)
     return 0;
 }
 
@@ -244,7 +246,7 @@ void go(int ry){
 void turn(int x,int y){
     double angle = 0;
     string cmd = "";
-    //下面2象限 复原
+    //下面2象限 复原 
     if( (x>0 && y>0) || (x<0 && y>0) ){
         angle = 0;
     }else if (x!=0 && y==0){
