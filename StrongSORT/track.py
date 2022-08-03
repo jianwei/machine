@@ -339,8 +339,10 @@ def addPhoto(photo):
                 allPhoto.insert(0,photo)
         else:
             allPhoto.append(photo)
+        for item in allPhoto:
+            print("item",item)
         redis.set(key,json.dumps(allPhoto))
-        print("allPhoto",allPhoto)
+        # print("allPhoto",allPhoto)
 
 
 def parse_opt():
