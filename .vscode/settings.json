@@ -100,5 +100,6 @@
     "python.analysis.extraPaths": [
         "/Users/chenjianwei2/.vscode/extensions/rt-thread.rt-thread-micropython-1.0.11/microExamples/code-completion"
     ],
-    "svn.ignoreMissingSvnWarning": true
+    "svn.ignoreMissingSvnWarning": true,
+    "C_Cpp.errorSquiggles": "Disabled"
 }

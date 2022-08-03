@@ -10,11 +10,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Aug  2 16:29:49 2022
+# Make data base, printed on Wed Aug  3 09:18:47 2022
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -32,6 +31,7 @@ CURDIR := /Users/carlos/Desktop/machine
 # makefile
 SHELL = /bin/sh
 # environment
+ 
 VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/3b889b090b5ad5793f524b5d1d39fda662b96a2a","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
@@ -50,7 +50,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.seVNiISIig/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QWGdjMY08T/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -154,7 +154,6 @@ CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
 # default
 SUFFIXES := 
 # environment
- 
 _CE_M = 
 # default
 .INCLUDE_DIRS = /usr/local/include
@@ -163,12 +162,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 1501
+VSCODE_PID = 781
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
+ 
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
 # Pattern-specific Variable Values
@@ -251,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Aug  2 16:29:49 2022
+# Finished Make data base on Wed Aug  3 09:18:47 2022
 
  

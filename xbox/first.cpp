@@ -250,11 +250,11 @@ void turn(int x,int y){
     }else if (x!=0 && y==0){
         angle = 90;
     }else{
-        int xx = abs(x);
-        int yy = abs(y);
+        double xx = abs(x);
+        double yy = abs(y);
         if (yy!=0){
             double z = xx/yy;
-            printf("z:%f",z);
+            // printf("z------------------------------,xx%f,yy:%f:%f",z,xx,yy);
             angle = atan(z) * 180.0/3.1415926;
         }
     }
