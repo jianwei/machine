@@ -24,27 +24,17 @@ def exec_cmd(cmd):
 
 def set_redis(redisDict):
     dict = json.loads(redisDict)
-    print("dict",dict,type(dict))
     for key in dict:
         val = dict[key]
         if(key=="begin_work"):
-            print("1")
+            val=1
             begin_work = redis.get("begin_work")
             if(begin_work!=""):
-                print("2",dict["begin_work"],int(dict["begin_work"])==1)
                 if (int(dict["begin_work"])==1):
-                    print("3")
                     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
                     os.system(cmd)
-                    val=1
-                else:
-                    val=0
-            # if (begin_work!="" and int(begin_work)==1):
-            #     val = 0
-            # else:
-            #     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-            #     os.system(cmd)
-            
+                    if(begin_work==1):
+                        val=0 
         redis.set(key,val)
         
 
