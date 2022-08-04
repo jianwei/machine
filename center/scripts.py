@@ -47,14 +47,14 @@ def set_redis(redisDict):
         redis.set(key,val)
         
 def open_camera():
-    print ("open camera fun")
-    cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
-    pid = os.popen(cmd).read()
-    print (pid)
-    if not pid:
-        print ("open camera")
-        cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-        os.system(cmd)
+    # print ("open camera fun")
+    # cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
+    # pid = os.popen(cmd).read()
+    # print (pid)
+    # if not pid:
+    #     print ("open camera")
+    cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+    os.system(cmd)
     
 
 def parse_opt():
