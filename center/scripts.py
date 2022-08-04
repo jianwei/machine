@@ -28,21 +28,34 @@ def set_redis(redisDict):
         val = dict[key]
         if(key=="begin_work"):
             val=1
-            begin_work = redis.get("begin_work")
-            if(begin_work!=""):
+            begin_work_cache = redis.get("begin_work")
+            if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
-                    if(int(begin_work)!=1):
-                        cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
-                        pid = os.popen(cmd).read()
-                        print (pid)
-                        if not pid:
-                            print ("open camera")
-                            cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-                            os.system(cmd)
+                    if(int(begin_work_cache)!=1):
+                        # cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
+                        # pid = os.popen(cmd).read()
+                        # print (pid)
+                        # if not pid:
+                        #     print ("open camera")
+                        #     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+                        #     os.system(cmd)
+                        open_camera()
                     else:
-                        val=0 
+                        val=0
+            else:
+                open_camera()
         redis.set(key,val)
         
+def open_camera():
+    print ("open camera fun")
+    cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
+    pid = os.popen(cmd).read()
+    print (pid)
+    if not pid:
+        print ("open camera")
+        cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+        os.system(cmd)
+    
 
 def parse_opt():
     parser = argparse.ArgumentParser()
