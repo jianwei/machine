@@ -1,6 +1,6 @@
 import argparse
 import string
-import serial,json,sys
+import serial,json,sys,os
 sys.path.append("..")
 from redisConn.index import redisDB
 
@@ -29,8 +29,18 @@ def set_redis(redisDict):
         val = dict[key]
         if(key=="begin_work"):
             begin_work = redis.get("begin_work")
-            if (begin_work!="" and int(begin_work)==1):
-                val = 0
+            if(begin_work!=""):
+                if (int(begin_work)==1):
+                    cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+                    os.system(cmd)
+                    val=1
+                else:
+                    val=0
+            # if (begin_work!="" and int(begin_work)==1):
+            #     val = 0
+            # else:
+            #     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+            #     os.system(cmd)
             
         redis.set(key,val)
         
