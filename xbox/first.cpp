@@ -246,12 +246,12 @@ void exec_shell(char params[], char* &ret){
 
 
 
-int send_cmd(const char *cmd){
-    printf("send_cmd:%s \r\n",cmd);
-    string msg =  cmd;
-    printf("send_cmd,msg:%s \r\n",msg.c_str());
-    // writeMsg(msg.c_str());  
-    return 0;
+char* send_cmd(const char* cmd){
+    char params[64] = "--type 1 --cmd ";
+    sprintf(params,"%s",cmd);
+    char* ret;
+    exec_shell(params,ret);
+    return ret;
 }
 
 
