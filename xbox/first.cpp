@@ -243,9 +243,9 @@ void exec_shell(char* params, char* &ret){
 
 
 char* send_cmd(const char* cmd){
+    char* ret;
     char params[64] = "";
     sprintf(params,"--type 1 --cmd %s",cmd);
-    char* ret;
     exec_shell(params,ret);
     return ret;
 }
@@ -258,17 +258,22 @@ void stop (int type){
 }
 
 void go(int ry){
-    string direction =  "MF";
+    char* ret;
+    char* direction =  "MF";
     if(ry>0){
         direction = "MB";
     }
-    string cmd = "";
+    // string cmd = "";
     int absry = abs(ry);
     float pre = (absry/global_max) * 100;
-    cmd = direction+" "+to_string((int)pre);
+    // cmd = direction+" "+to_string((int)pre);
     // printf("go:%s,ry:%d,global_max:%f,absry:%d,pre:%f,intpre:%d,cmd:%s \r\n",direction.c_str(),ry,global_max,absry,pre,(int)pre,cmd.c_str());    
-    printf("cmd:%s \r\n",cmd.c_str());    
-    send_cmd(cmd.c_str());
+    // printf("cmd:%s \r\n",cmd.c_str());    
+    // send_cmd(cmd.c_str());
+    char params[128] = "";
+    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",direction ,(int)pre);
+    exec_shell(params,ret);
+    // cout<<params<<ret<<endl;
 }
 
 
@@ -355,15 +360,8 @@ int main(void)
         if(map.rb==1){
             char* ret;
             char params[128] = "";
-
-            // string cmd = "echo 1";
-            // char cmd[] = "--type 1 --cmd 1";
-            // exec_shell(cmd,val);
             sprintf(params,"--type 2 --dict {\\\"%s\\\":%s}","begin_work","1");
-            // cout <<10000<< params << endl;
-
             exec_shell(params,ret);
-            // printf("shell--value:%s",val);
         }
 
         //停车
