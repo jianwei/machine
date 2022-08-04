@@ -54,8 +54,9 @@ class machine ():
         while (1):
             # key = "allPoints"
             # allPhoto = self.redis.get(key)
-            allPhoto = mock
-            print("time:",time.time())
+            # allPhoto = mock
+            flag = self.redis.get("begin_work")
+            print("time:",time.time(),flag)
             
             time.sleep(1)
 
@@ -69,4 +70,8 @@ class machine ():
 if __name__ == "__main__":
     m = machine()
     # m.scan()
-    m.loop()
+    try:
+        m.loop()
+    except KeyboardInterrupt:
+        print("ctrl+c stop")
+        m.send_cmd("STOP 0")
