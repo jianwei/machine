@@ -10,21 +10,42 @@
 
 using namespace std;
 
-void exec_shell(char* cmd, char* &ret){
-    char buf[80];
-    char* cmd_all;   
-    getcwd(buf,sizeof(buf));
-    cout << buf << endl;
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",buf,cmd);
-    cout << cmd_all << endl;
-    // FILE *fp;
-    char buffer[80]; 
+// void exec_shell(char* cmd, char* &ret){
+//     char buf[80];
+//     char* cmd_all;   
+//     getcwd(buf,sizeof(buf));
+//     cout << buf << endl;
+//     sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",buf,cmd);
+//     cout << cmd_all << endl;
+//     // FILE *fp;
+//     char buffer[80]; 
     
-    FILE *fp; 
+//     FILE *fp; 
+//     fp = popen(cmd_all,"r");
+//     fgets(buffer,sizeof(buffer),fp);
+//     pclose(fp);
+//     ret = buffer;
+// }
+char* global_pwd;
+
+void exec_shell(char params[], char* &ret){
+    char* cmd_all;
+    if(strlen(global_pwd)==0){
+        char buf[80];
+        getcwd(buf,sizeof(buf));
+        sprintf(global_pwd, "%s",buf);
+    }
+    cout<<123<<endl;
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
+    cout<<cmd_all<<endl;
+
+    FILE *fp;
+    char buffer[80]; 
     fp = popen(cmd_all,"r");
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
     ret = buffer;
+    cout << "script:"<<cmd_all << ",vaule:"<<buffer <<endl;
 }
 
 

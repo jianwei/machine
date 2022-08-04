@@ -76,6 +76,7 @@ typedef struct xbox_map
 } xbox_map_t;
 
 double global_max = 32767;
+char global_pwd[80] = "";
 // char writeMsg(string msg);
 
 int xbox_open(const char *file_name)
@@ -228,10 +229,16 @@ int send_cmd(const char *cmd){
 }
 
 
-void exec_shell(string cmd, char* &ret){
-    char buf[80];
-    getcwd(buf,sizeof(buf));
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",buf,cmd);
+void exec_shell(char params[], char* &ret){
+    char* cmd_all;
+    if(strlen(global_pwd)==0){
+        char buf[80];
+        getcwd(buf,sizeof(buf));
+        sprintf(global_pwd, "%s",buf);
+    }
+    cout<<123<<endl;
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
+    cout<<cmd_all<<endl;
 
     FILE *fp;
     char buffer[80]; 
@@ -239,6 +246,7 @@ void exec_shell(string cmd, char* &ret){
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
     ret = buffer;
+    cout << "script:"<<cmd_all << ",vaule:"<<buffer <<endl;
 }
 
 
@@ -310,6 +318,7 @@ void up_down(int y){
 
 
 
+
 int main(void)
 {
     int xbox_fd;
@@ -335,18 +344,23 @@ int main(void)
             usleep(10 * 1000);
             continue;
         }
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
-                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        // printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+        //         map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
         // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
         //开始工作、停止工作
         if(map.rb==1){
-            char* val;
+            char* ret;
+            // char params[128];
             // string cmd = "echo 1";
-            string cmd = "--type 1 --cmd 1";
-            exec_shell(cmd,val);
-            printf("shell:%s",val);
+            char cmd[] = "--type 1 --cmd 1";
+            // exec_shell(cmd,val);
+            // sprintf(params,"{\"%s\":%d}","begin_work",1);
+            // cout << params << endl;
+
+            exec_shell(cmd,ret);
+            // printf("shell--value:%s",val);
         }
 
         //停车
