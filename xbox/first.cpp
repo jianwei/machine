@@ -222,21 +222,17 @@ void xbox_close(int xbox_fd)
 
 
 
-void exec_shell(char params[], char* &ret){
+void exec_shell(char* params, char* &ret){
     cout<<"exec_shell:"<< params <<endl;
-    char* cmd_all;
+    char cmd_all[128];
     if(strlen(global_pwd)==0){
         char buf[80];
         getcwd(buf,sizeof(buf));
         sprintf(global_pwd, "%s",buf);
     }
-    cout<<123<<endl;
     sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
-    cout<< "cmd_all:"<<cmd_all<<endl;
-    
     FILE *fp;
     char buffer[80]; 
-    return ;
     fp = popen(cmd_all,"r");
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
@@ -247,8 +243,8 @@ void exec_shell(char params[], char* &ret){
 
 
 char* send_cmd(const char* cmd){
-    char params[64] = "--type 1 --cmd ";
-    sprintf(params,"%s",cmd);
+    char params[64] = "";
+    sprintf(params,"--type 1 --cmd %s",cmd);
     char* ret;
     exec_shell(params,ret);
     return ret;
