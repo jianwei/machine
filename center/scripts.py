@@ -34,7 +34,9 @@ def set_redis(redisDict):
                     if(int(begin_work)!=1):
                         cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
                         pid = os.popen(cmd).read()
+                        print (pid)
                         if not pid:
+                            print ("open camera")
                             cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
                             os.system(cmd)
                     else:
