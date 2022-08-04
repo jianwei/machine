@@ -59,9 +59,7 @@ class machine ():
                 if (allPhoto):
                     allPhoto= json.loads(allPhoto)
                     for item in allPhoto:
-                        print("item :",item)
-
-            
+                        print("item :",item)            
             print("time:",time.time(),flag)
             
             time.sleep(1)

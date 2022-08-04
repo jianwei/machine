@@ -32,8 +32,11 @@ def set_redis(redisDict):
             if(begin_work!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work)!=1):
-                        cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-                        os.system(cmd)
+                        cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
+                        pid = os.popen(cmd).read()
+                        if not pid:
+                            cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+                            os.system(cmd)
                     else:
                         val=0 
         redis.set(key,val)
