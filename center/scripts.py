@@ -29,7 +29,7 @@ def set_redis(redisDict):
         val = dict[key]
         if(key=="begin_work"):
             begin_work = redis.get("begin_work")
-            if (int(begin_work)==1):
+            if (begin_work!="" and int(begin_work)==1):
                 val = 0
             
         redis.set(key,val)
