@@ -242,13 +242,6 @@ void exec_shell(char* params, char* &ret){
 
 
 
-// char* send_cmd(const char* cmd){
-//     char* ret;
-//     char params[64] = "";
-//     // sprintf(params,"--type 1 --cmd %s",cmd);
-//     exec_shell(params,ret);
-//     return ret;
-// }
 
 
 
@@ -265,13 +258,8 @@ void go(int ry){
     if(ry>0){
         direction = "MB";
     }
-    // string cmd = "";
     int absry = abs(ry);
     float pre = (absry/global_max) * 100;
-    // cmd = direction+" "+to_string((int)pre);
-    // printf("go:%s,ry:%d,global_max:%f,absry:%d,pre:%f,intpre:%d,cmd:%s \r\n",direction.c_str(),ry,global_max,absry,pre,(int)pre,cmd.c_str());    
-    // printf("cmd:%s \r\n",cmd.c_str());    
-    // send_cmd(cmd.c_str());
     char params[128] = "";
     sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",direction ,(int)pre);
     exec_shell(params,ret);
