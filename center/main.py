@@ -52,12 +52,15 @@ class machine ():
         ]
         print(mock)
         while (1):
-            key = "allPoints"
-            allPhoto = self.redis.get(key)
+            allPhoto = self.redis.get("allPoints")
             # allPhoto = mock
             flag = self.redis.get("begin_work")
             if(flag):
-                pass
+                if (allPhoto):
+                    allPhoto= json.loads(allPhoto)
+                    for item in allPhoto:
+                        print("item :",item)
+
             
             print("time:",time.time(),flag)
             
