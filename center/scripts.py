@@ -24,6 +24,7 @@ def exec_cmd(cmd):
 
 def set_redis(redisDict):
     dict = json.loads(redisDict)
+    print("dict",dict,type(dict))
     for key in dict:
         val = dict[key]
         if(key=="begin_work"):
