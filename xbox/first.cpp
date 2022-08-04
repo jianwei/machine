@@ -220,16 +220,10 @@ void xbox_close(int xbox_fd)
 
 
 
-int send_cmd(const char *cmd){
-    printf("send_cmd:%s \r\n",cmd);
-    string msg =  cmd;
-    printf("send_cmd,msg:%s \r\n",msg.c_str());
-    // writeMsg(msg.c_str());  
-    return 0;
-}
 
 
 void exec_shell(char params[], char* &ret){
+    cout<<"exec_shell:"<< params <<endl;
     char* cmd_all;
     if(strlen(global_pwd)==0){
         char buf[80];
@@ -238,16 +232,28 @@ void exec_shell(char params[], char* &ret){
     }
     cout<<123<<endl;
     sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
-    cout<<cmd_all<<endl;
-
+    cout<< "cmd_all:"<<cmd_all<<endl;
+    
     FILE *fp;
     char buffer[80]; 
+    return ;
     fp = popen(cmd_all,"r");
     fgets(buffer,sizeof(buffer),fp);
     pclose(fp);
     ret = buffer;
     cout << "script:"<<cmd_all << ",vaule:"<<buffer <<endl;
 }
+
+
+
+int send_cmd(const char *cmd){
+    printf("send_cmd:%s \r\n",cmd);
+    string msg =  cmd;
+    printf("send_cmd,msg:%s \r\n",msg.c_str());
+    // writeMsg(msg.c_str());  
+    return 0;
+}
+
 
 
 void stop (int type){
@@ -352,14 +358,15 @@ int main(void)
         //开始工作、停止工作
         if(map.rb==1){
             char* ret;
-            // char params[128];
-            // string cmd = "echo 1";
-            char cmd[] = "--type 1 --cmd 1";
-            // exec_shell(cmd,val);
-            // sprintf(params,"{\"%s\":%d}","begin_work",1);
-            // cout << params << endl;
+            char params[128] = "";
 
-            exec_shell(cmd,ret);
+            // string cmd = "echo 1";
+            // char cmd[] = "--type 1 --cmd 1";
+            // exec_shell(cmd,val);
+            sprintf(params,"--type 2 --dict {\\\"%s\\\":%s}","begin_work","1");
+            // cout <<10000<< params << endl;
+
+            exec_shell(params,ret);
             // printf("shell--value:%s",val);
         }
 

@@ -29,14 +29,15 @@ using namespace std;
 char* global_pwd;
 
 void exec_shell(char params[], char* &ret){
+    cout<<2<<endl;
     char* cmd_all;
     if(strlen(global_pwd)==0){
         char buf[80];
         getcwd(buf,sizeof(buf));
         sprintf(global_pwd, "%s",buf);
     }
-    cout<<123<<endl;
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
+    cout<<123<<global_pwd<<params<<endl;
+    snprintf(cmd_all,128, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
     cout<<cmd_all<<endl;
 
     FILE *fp;
@@ -51,7 +52,7 @@ void exec_shell(char params[], char* &ret){
 
 int main () {
     char* val;
-    char cmd[] = "--type 1 --cmd 1";
+    char cmd[] = "--type 2 --dict {\"begin_work\":1}";
     exec_shell(cmd,val);
 
    return(0);

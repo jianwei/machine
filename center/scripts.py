@@ -1,7 +1,9 @@
 import argparse
-import serial
+import serial,json,sys
+sys.path.append("..")
+from redisConn.index import redisDB
 
-
+redis = redisDB()
 
 
 def exec_cmd(cmd):
@@ -16,7 +18,9 @@ def exec_cmd(cmd):
     #     print("serial_control,expression:",cmd,expression)
 
 def set_redis(redisDict):
-    pass
+    dict = json.loads(redisDict)
+    for key in dict:
+        redis.set(key,dict[key])
 
 def parse_opt():
     parser = argparse.ArgumentParser()
@@ -24,14 +28,12 @@ def parse_opt():
     parser.add_argument('--cmd', type=str, default="", help='串口指令.')
     parser.add_argument('--dict', type=str, default="", help='redis key,value json格式.')
     opt = parser.parse_args()
-    print("type:",opt.type)
-    print("cmd:",opt.cmd)
     print("dict:",opt.dict)
+    
     if (opt.type==1):
         exec_cmd(opt.cmd)
     elif (opt.type==2) :
         set_redis(opt.dict)
-
     return opt
 
 
