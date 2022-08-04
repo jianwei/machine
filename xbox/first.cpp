@@ -242,19 +242,21 @@ void exec_shell(char* params, char* &ret){
 
 
 
-char* send_cmd(const char* cmd){
-    char* ret;
-    char params[64] = "";
-    sprintf(params,"--type 1 --cmd %s",cmd);
-    exec_shell(params,ret);
-    return ret;
-}
+// char* send_cmd(const char* cmd){
+//     char* ret;
+//     char params[64] = "";
+//     // sprintf(params,"--type 1 --cmd %s",cmd);
+//     exec_shell(params,ret);
+//     return ret;
+// }
 
 
 
 void stop (int type){
-    string cmd = "stop "+to_string(type);
-    send_cmd(cmd.c_str());
+    char params[128] = "";
+    char* ret = "";
+    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}","STOP" ,type);
+    exec_shell(params,ret);
 }
 
 void go(int ry){
@@ -280,9 +282,8 @@ void go(int ry){
 
 void turn(int x,int y){
     double angle = 0;
-    string cmd = "";
     //下面2象限 复原 
-    if( (x>0 && y>0) || (x<0 && y>0) ){
+    if( (x>0 && y>0) || (x<0 && y>0)  ){
         angle = 0;
     }else if (x!=0 && y==0){
         angle = 90;
@@ -294,32 +295,42 @@ void turn(int x,int y){
             angle = atan(z) * 180.0/3.1415926;
         }
     }
-    cmd = "TA "+to_string((int)angle);
-    send_cmd(cmd.c_str());
+    // cout << (int)angle <<endl;
+    char* ret;
+    char params[128] = "";
+    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}","TA" ,(int)angle);
+    exec_shell(params,ret);
+
 }
 
 
 void left_right(int x){
     if(x!=0){
-        string cmd = "";
+        char* cmd = "";
         if (x>0){
-            cmd = "ML 10";
+            cmd = "ML";
         }else{
-            cmd = "MR 10";
+            cmd = "MR";
         }
-        send_cmd(cmd.c_str());
+        char params[128] = "";
+        char* ret = "";
+        sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",cmd ,10);
+        exec_shell(params,ret);
     }
 }
 
 void up_down(int y){
     if(y!=0){
-        string cmd = "";
+        char* cmd = "";
         if (y>0){
-            cmd = "MU 10";
+            cmd = "MU";
         }else{
-            cmd = "MD 10";
+            cmd = "MD";
         }
-        send_cmd(cmd.c_str());
+        char params[128] = "";
+        char* ret = "";
+        sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",cmd ,10);
+        exec_shell(params,ret);
     }
 }
 

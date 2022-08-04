@@ -69,7 +69,6 @@ class machine ():
 
 if __name__ == "__main__":
     m = machine()
-    # m.scan()
     try:
         m.loop()
     except KeyboardInterrupt:
