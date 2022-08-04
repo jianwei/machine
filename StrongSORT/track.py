@@ -147,14 +147,16 @@ def run(
 
     # tt=1
     # print("line:149")
+    tt = 0
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
-        
-        begin_work = redis.get("begin_work")
-        if(begin_work and int(begin_work)==0):
+        tt+=1
+        print("time:",int(time.time()),tt)
+        if(tt>100):
             break
-        print("time:",int(time.time()),begin_work)
-
-
+        # begin_work = redis.get("begin_work")
+        # if(begin_work and int(begin_work)==0):
+        #     break
+        
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if half else im.float()  # uint8 to fp16/32
