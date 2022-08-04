@@ -56,6 +56,9 @@ class machine ():
             # allPhoto = self.redis.get(key)
             # allPhoto = mock
             flag = self.redis.get("begin_work")
+            if(flag):
+                pass
+            
             print("time:",time.time(),flag)
             
             time.sleep(1)

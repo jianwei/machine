@@ -149,14 +149,9 @@ def run(
     # print("line:149")
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
         print("time:",int(time.time()))
-        # print("line:151")
-        # tt +=1
-        # print("tt---break:",tt)
-        # if (tt>50):
-            # break
-        # open_camera = redis.get("open_camera")
-        # if(open_camera and int(open_camera)==0):
-        #     break
+        begin_work = redis.get("begin_work")
+        if(begin_work and int(begin_work)==0):
+            break
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
