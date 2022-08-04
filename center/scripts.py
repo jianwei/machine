@@ -32,13 +32,6 @@ def set_redis(redisDict):
             if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work_cache)!=1):
-                        # cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
-                        # pid = os.popen(cmd).read()
-                        # print (pid)
-                        # if not pid:
-                        #     print ("open camera")
-                        #     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-                        #     os.system(cmd)
                         open_camera()
                     else:
                         val=0
@@ -62,7 +55,6 @@ def parse_opt():
     parser.add_argument('--type', type=int, default=0, help='类型:1,串口指令.2 set redis')
     parser.add_argument('--dict', type=str, default="", help='串口指令 以及 redis key,value json格式.')
     opt = parser.parse_args()
-    # print("dict:",opt.dict)
     
     if (opt.type==1):
         exec_cmd(opt.dict)
@@ -74,5 +66,3 @@ def parse_opt():
 
 if __name__ == "__main__":
     m = parse_opt()
-    # m.scan()
-    # m.loop()
