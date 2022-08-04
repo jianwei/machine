@@ -52,8 +52,8 @@ class machine ():
         ]
         print(mock)
         while (1):
-            # key = "allPoints"
-            # allPhoto = self.redis.get(key)
+            key = "allPoints"
+            allPhoto = self.redis.get(key)
             # allPhoto = mock
             flag = self.redis.get("begin_work")
             if(flag):

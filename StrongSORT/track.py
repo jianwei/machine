@@ -148,7 +148,7 @@ def run(
 
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
         begin_work = redis.get("begin_work")
-        print("time:",int(time.time()),begin_work)
+        # print("time:",int(time.time()),begin_work)
         if(begin_work and int(begin_work)==0):
             break
         
