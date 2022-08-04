@@ -30,10 +30,11 @@ def set_redis(redisDict):
             val=1
             begin_work = redis.get("begin_work")
             if(begin_work!=""):
-                if (int(dict["begin_work"])==1):
-                    cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
-                    os.system(cmd)
-                    if(begin_work==1):
+                if (int(dict["begin_work"])==1 ):
+                    if(int(begin_work)!=1):
+                        cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
+                        os.system(cmd)
+                    else:
                         val=0 
         redis.set(key,val)
         
