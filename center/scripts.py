@@ -32,7 +32,7 @@ def set_redis(redisDict):
             begin_work = redis.get("begin_work")
             if(begin_work!=""):
                 print("2",begin_work)
-                if (dict["begin_work"]==1):
+                if (int(dict["begin_work"])==1):
                     print("3")
                     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
                     os.system(cmd)
