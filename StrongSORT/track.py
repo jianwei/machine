@@ -145,17 +145,14 @@ def run(
     dt, seen = [0.0, 0.0, 0.0, 0.0], 0
     curr_frames, prev_frames = [None] * nr_sources, [None] * nr_sources
 
-    # tt=1
-    # print("line:149")
-    # tt = 0
+
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
-        # tt+=1
-        # if(tt>100):
-        #     break
         begin_work = redis.get("begin_work")
         if(begin_work and int(begin_work)==0):
+            print("time:",int(time.time()),begin_work)
             break
-        print("time:",int(time.time()),begin_work)
+        else:
+            print("time:",int(time.time()),begin_work)
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
