@@ -8,6 +8,8 @@ redis = redisDB()
 global_angle = redis.get("global_angle")
 if global_angle:
     global_angle = int(global_angle)
+else :
+    global_angle = 0
 
 
 def exec_cmd(cmd):
