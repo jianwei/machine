@@ -5,13 +5,19 @@ sys.path.append("..")
 from redisConn.index import redisDB
 
 redis = redisDB()
+global_angle = 0
+
 
 def exec_cmd(cmd):
     cmd = json.loads(cmd)
     str_cmd = ""
     response = -1
     for key in cmd:
-        str_cmd+=key+ " " + str(cmd[key])
+        str_cmd = key+ " " + str(cmd[key])
+        if(key=="TA"):  #转向处理
+            flag = turn(cmd[key])
+            str_cmd = flag+ " " + str(cmd[key])
+
     # ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
     # ser.write(str_cmd)
     # try:    
@@ -32,12 +38,19 @@ def set_redis(redisDict):
             if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work_cache)!=1):
+                        dict = {"TA":90}
+                        exec_cmd(dict)
                         open_camera()
                     else:
                         val=0
             else:
                 open_camera()
         redis.set(key,val)
+
+def turn(angle):
+    flag = "TR" if (global_angle - angle)<0 else "TL" 
+    return flag
+
         
 def open_camera():
     # print ("open camera fun")
