@@ -45,7 +45,7 @@ def set_redis(redisDict):
             if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work_cache)!=1):
-                        global_angle = 0
+                        # global_angle = 0
                         dict = json.dumps({"TA":90})
                         exec_cmd(dict)
                         open_camera()

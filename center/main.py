@@ -55,13 +55,14 @@ class machine ():
         print(mock)
         while (1):
             allPhoto = self.redis.get("allPoints")
+            print(allPhoto)
             flag = self.redis.get("begin_work")
             if(flag and int(flag)==1):
                 if (allPhoto):
                     allPhoto= json.loads(allPhoto)
                     for item in allPhoto:
                         print("item :",item)
-                    speed = self.speed.calculate(allPhoto)
+                    # speed = self.speed.calculate(allPhoto)
             else:
                 self.redis.set("allPoints",json.dumps([]))
             print("time:",time.time(),flag)
