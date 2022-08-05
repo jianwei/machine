@@ -396,19 +396,19 @@ int main(void)
             sprintf(params, "--type 2 --dict {\\\"%s\\\":%s}", "begin_work", "1");
             exec_shell(params, ret);
 
-            if (global_is_running)
-            {
-                //正在运行，关机
-                reset();
-                global_is_running = false;
-            }
-            else
-            {
-                //开机
-                global_angle = 90;
-                global_is_running = true;
-                turnAngle("TR", 90);
-            }
+            // if (global_is_running)
+            // {
+            //     //正在运行，关机
+            //     reset();
+            //     global_is_running = false;
+            // }
+            // else
+            // {
+            //     //开机
+            //     global_angle = 90;
+            //     global_is_running = true;
+            //     turnAngle("TR", 90);
+            // }
             // global_is_running = !global_is_running;
         }
 
