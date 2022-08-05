@@ -280,11 +280,11 @@ void turn(int x, int y)
     //下面2象限 复原
     if ((x > 0 && y > 0) || (x < 0 && y > 0))
     {
-        angle = 0;
+        angle = 90;
     }
     else if (x != 0 && y == 0)
     {
-        angle = 90;
+        angle = 0;
     }
     else
     {
