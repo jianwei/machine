@@ -270,27 +270,12 @@ void go(int ry){
 
 void turn(int x,int y){
     double angle = 0;
-<<<<<<< HEAD
-    char* direction = "TR";
-    //下面2象限 复原
-    if ((x > 0 && y > 0) || (x < 0 && y > 0))
-    {
-        angle = 90;
-    }
-    else if (x != 0 && y == 0)
-    {
-        angle = 0;
-    }
-    else
-    {
-=======
     //下面2象限 复原 
     if( (x>0 && y>0) || (x<0 && y>0)  ){
         angle = 0;
     }else if (x!=0 && y==0){
         angle = 90;
     }else{
->>>>>>> parent of 3463d6f (1)
         double xx = abs(x);
         double yy = abs(y);
         if (yy!=0){
@@ -351,7 +336,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js1");
+    xbox_fd = xbox_open("/dev/input/js0");
     if (xbox_fd < 0)
     {
         return -1;
@@ -374,34 +359,8 @@ int main(void)
         if(map.rb==1){
             char* ret;
             char params[128] = "";
-<<<<<<< HEAD
-            sprintf(params, "--type 2 --dict {\\\"%s\\\":%s}", "begin_work", "1");
-            exec_shell(params, ret);
-
-            // if (global_is_running)
-            // {
-            //     //正在运行，关机
-            //     reset();
-            //     global_is_running = false;
-            // }
-            // else
-            // {
-            //     //开机
-            //     global_angle = 90;
-            //     global_is_running = true;
-            //     turnAngle("TR", 90);
-            // }
-            // global_is_running = !global_is_running;
-        }
-
-        //操作臂停止
-        if (map.b == 1)
-        {
-            stop(2);
-=======
             sprintf(params,"--type 2 --dict {\\\"%s\\\":%s}","begin_work","1");
             exec_shell(params,ret);
->>>>>>> parent of 3463d6f (1)
         }
 
         //停车
