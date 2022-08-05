@@ -1,6 +1,7 @@
 # from convertPoints import ConvertPoints
 import time,os,sys,serial,json
 # import json
+from utils.speed import speed
 sys.path.append("..")
 from redisConn.index import redisDB
 # chmod -R 777 /dev/ttyAMA0
@@ -10,6 +11,7 @@ class machine ():
     def __init__(self):
         self.redis = redisDB()
         self.default_speed = 10
+        self.speed = speed()
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
 
@@ -53,13 +55,13 @@ class machine ():
         print(mock)
         while (1):
             allPhoto = self.redis.get("allPoints")
-            # allPhoto = mock
             flag = self.redis.get("begin_work")
             if(flag and int(flag)==1):
                 if (allPhoto):
                     allPhoto= json.loads(allPhoto)
                     for item in allPhoto:
                         print("item :",item)
+                    speed = self.speed.calculate(allPhoto)
             else:
                 self.redis.set("allPoints",json.dumps([]))
             print("time:",time.time(),flag)
