@@ -5,7 +5,9 @@ sys.path.append("..")
 from redisConn.index import redisDB
 
 redis = redisDB()
-global_angle = int(redis.get("global_angle"))
+global_angle = redis.get("global_angle")
+if global_angle:
+    global_angle = int(global_angle)
 
 
 def exec_cmd(cmd):
