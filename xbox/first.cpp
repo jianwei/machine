@@ -341,7 +341,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
@@ -365,7 +365,7 @@ int main(void)
         {
             char *ret;
             char params[128] = "";
-            sprintf(params, "--type 2 --dict {\\\"%s\\\":%s}", "begin_work", " 1");
+            sprintf(params, "--type 2 --dict {\\\"%s\\\":%s}", "begin_work", "1");
             exec_shell(params, ret);
         }
 
