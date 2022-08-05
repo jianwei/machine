@@ -5,7 +5,7 @@ sys.path.append("..")
 from redisConn.index import redisDB
 
 redis = redisDB()
-global_angle = 0
+global_angle = int(redis.get("global_angle"))
 
 
 def exec_cmd(cmd):
@@ -20,8 +20,9 @@ def exec_cmd(cmd):
             str_cmd = flag+ " " + turnangle
         if(key=="STOP" and cmd[key]==1):
             dict = json.dumps({"begin_work":0})
+            redis.set("global_angle",0)
             set_redis(dict)
-            pass
+    redis.set("global_angle",cmd[key]) 
     print("str_cmd:",str_cmd)
 
     # ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
@@ -65,12 +66,6 @@ def turn(angle):
 
         
 def open_camera():
-    # print ("open camera fun")
-    # cmd  = "ps aux | grep track | grep -v 'auto'| grep -v '/usr/libexec'  |  awk '{print $2}'"
-    # pid = os.popen(cmd).read()
-    # print (pid)
-    # if not pid:
-    #     print ("open camera")
     cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &" 
     os.system(cmd)
     
