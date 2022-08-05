@@ -10,14 +10,15 @@ class speed ():
         if (len(data)>1):
             first  = data[0]
             second  = data [1]
-            
-            firstTime =  first["time"]
-            firstPoint = first["point"][0][1]
-            secondTime = second["time"]
-            secondPoint = second["point"][0][1]
+            print ("first",first)
+            print ("second",second)
+            # firstTime =  first["time"]
+            # firstPoint = first["point"][0][1]
+            # secondTime = second["time"]
+            # secondPoint = second["point"][0][1]
 
-            speed = (secondPoint - firstPoint) / (secondTime-firstTime)
-            print(speed)
+            # speed = (secondPoint - firstPoint) / (secondTime-firstTime)
+            # print(speed)
             # return round(speed,2)
         else:
             return self.defaultSpeed
