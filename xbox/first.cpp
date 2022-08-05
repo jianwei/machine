@@ -220,22 +220,22 @@ void xbox_close(int xbox_fd)
 
 void exec_shell(char *params, char *&ret)
 {
-    // cout << "exec_shell:" << params << endl;
-    // char cmd_all[128];
-    // if (strlen(global_pwd) == 0)
-    // {
-    //     char buf[80];
-    //     getcwd(buf, sizeof(buf));
-    //     sprintf(global_pwd, "%s", buf);
-    // }
-    // sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s", global_pwd, params);
-    // FILE *fp;
-    // char buffer[80];
-    // fp = popen(cmd_all, "r");
-    // fgets(buffer, sizeof(buffer), fp);
-    // pclose(fp);
-    // ret = buffer;
-    // cout << "script:" << cmd_all << ",vaule:" << buffer << endl;
+    cout << "exec_shell:" << params << endl;
+    char cmd_all[128];
+    if (strlen(global_pwd) == 0)
+    {
+        char buf[80];
+        getcwd(buf, sizeof(buf));
+        sprintf(global_pwd, "%s", buf);
+    }
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s", global_pwd, params);
+    FILE *fp;
+    char buffer[80];
+    fp = popen(cmd_all, "r");
+    fgets(buffer, sizeof(buffer), fp);
+    pclose(fp);
+    ret = buffer;
+    cout << "script:" << cmd_all << ",vaule:" << buffer << endl;
 }
 
 void stop(int type)
