@@ -276,7 +276,7 @@ void go(int ry)
 void turn(int x, int y)
 {
     double angle = 0;
-    char direction[4] = "TR";
+    char* direction = "TR";
     //下面2象限 复原
     if ((x > 0 && y > 0) || (x < 0 && y > 0))
     {
