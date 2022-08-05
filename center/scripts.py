@@ -17,6 +17,7 @@ def exec_cmd(cmd):
         if(key=="TA"):  #转向处理
             flag = turn(cmd[key])
             str_cmd = flag+ " " + str(cmd[key])
+    print("str_cmd:",str_cmd)
 
     # ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
     # ser.write(str_cmd)
@@ -38,6 +39,7 @@ def set_redis(redisDict):
             if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work_cache)!=1):
+                        global_angle = 0
                         dict = json.dumps({"TA":90})
                         exec_cmd(dict)
                         open_camera()
