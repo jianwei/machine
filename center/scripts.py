@@ -16,7 +16,12 @@ def exec_cmd(cmd):
         str_cmd = key+ " " + str(cmd[key])
         if(key=="TA"):  #转向处理
             flag = turn(cmd[key])
-            str_cmd = flag+ " " + str(cmd[key])
+            turnangle = abs(global_angle-cmd[key])
+            str_cmd = flag+ " " + turnangle
+        if(key=="STOP" and cmd[key]==1):
+            dict = json.dumps({"begin_work":0})
+            set_redis(dict)
+            pass
     print("str_cmd:",str_cmd)
 
     # ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
@@ -46,7 +51,12 @@ def set_redis(redisDict):
                     else:
                         val=0
             else:
+                # reset 
+                dict = json.dumps({"RST":1})
+                exec_cmd(dict)
+                # 关闭摄像头
                 open_camera()
+
         redis.set(key,val)
 
 def turn(angle):
