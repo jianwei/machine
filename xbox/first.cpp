@@ -76,7 +76,9 @@ typedef struct xbox_map
 } xbox_map_t;
 
 double global_max = 32767;
+int global_angle = 0;
 char global_pwd[80] = "";
+bool global_is_running = false;
 // char writeMsg(string msg);
 
 int xbox_open(const char *file_name)
@@ -218,112 +220,144 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-
-
-
-
-void exec_shell(char* params, char* &ret){
-    cout<<"exec_shell:"<< params <<endl;
+void exec_shell(char *params, char *&ret)
+{
+    cout << "exec_shell:" << params << endl;
     char cmd_all[128];
-    if(strlen(global_pwd)==0){
+    if (strlen(global_pwd) == 0)
+    {
         char buf[80];
-        getcwd(buf,sizeof(buf));
-        sprintf(global_pwd, "%s",buf);
+        getcwd(buf, sizeof(buf));
+        sprintf(global_pwd, "%s", buf);
     }
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s",global_pwd,params);
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s", global_pwd, params);
     FILE *fp;
-    char buffer[80]; 
-    fp = popen(cmd_all,"r");
-    fgets(buffer,sizeof(buffer),fp);
+    char buffer[80];
+    fp = popen(cmd_all, "r");
+    fgets(buffer, sizeof(buffer), fp);
     pclose(fp);
     ret = buffer;
-    cout << "script:"<<cmd_all << ",vaule:"<<buffer <<endl;
+    cout << "script:" << cmd_all << ",vaule:" << buffer << endl;
 }
 
-
-
-
-
-
-void stop (int type){
+//  flag : true 左转，false : 右转
+void turnAngle(char* direction, int angle)
+{
+    char *ret;
     char params[128] = "";
-    char* ret = "";
-    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}","STOP" ,type);
-    exec_shell(params,ret);
+    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", direction, (int)angle);
+    exec_shell(params, ret);
 }
 
-void go(int ry){
-    char* ret;
-    char* direction =  "MF";
-    if(ry>0){
+void stop(int type)
+{
+    char params[128] = "";
+    char *ret = "";
+    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", "STOP", type);
+    exec_shell(params, ret);
+}
+
+void go(int ry)
+{
+    char *ret;
+    char *direction = "MF";
+    if (ry > 0)
+    {
         direction = "MB";
     }
     int absry = abs(ry);
-    float pre = (absry/global_max) * 100;
+    float pre = (absry / global_max) * 100;
     char params[128] = "";
-    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",direction ,(int)pre);
-    exec_shell(params,ret);
+    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", direction, (int)pre);
+    exec_shell(params, ret);
     // cout<<params<<ret<<endl;
 }
 
-
-
-void turn(int x,int y){
+void turn(int x, int y)
+{
     double angle = 0;
-    //下面2象限 复原 
-    if( (x>0 && y>0) || (x<0 && y>0)  ){
+    char direction[4] = "TR";
+    //下面2象限 复原
+    if ((x > 0 && y > 0) || (x < 0 && y > 0))
+    {
         angle = 0;
-    }else if (x!=0 && y==0){
+    }
+    else if (x != 0 && y == 0)
+    {
         angle = 90;
-    }else{
+    }
+    else
+    {
         double xx = abs(x);
         double yy = abs(y);
-        if (yy!=0){
-            double z = xx/yy;
-            angle = atan(z) * 180.0/3.1415926;
+        if (yy != 0)
+        {
+            double z = xx / yy;
+            angle = (int)(atan(z) * 180.0 / 3.1415926);
+            if (angle - global_angle<0)
+            {
+                direction = "TL";
+            }
+            global_angle = angle;
         }
     }
-    // cout << (int)angle <<endl;
-    char* ret;
-    char params[128] = "";
-    sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}","TA" ,(int)angle);
-    exec_shell(params,ret);
 
+    // cout << (int)angle <<endl;
+    // char* ret;
+    // char params[128] = "";
+    // sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}","TA" ,(int)angle);
+    // exec_shell(params,ret);
+    turnAngle(direction,angle);
 }
 
+void reset()
+{
+    char *ret;
+    char params[128] = "";
+    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", "RST", 1);
+    exec_shell(params, ret);
+    // send_cmd()
+}
 
-void left_right(int x){
-    if(x!=0){
-        char* cmd = "";
-        if (x>0){
+void left_right(int x)
+{
+    if (x != 0)
+    {
+        char *cmd = "";
+        if (x > 0)
+        {
             cmd = "ML";
-        }else{
+        }
+        else
+        {
             cmd = "MR";
         }
         char params[128] = "";
-        char* ret = "";
-        sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",cmd ,10);
-        exec_shell(params,ret);
+        char *ret = "";
+        sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", cmd, 10);
+        exec_shell(params, ret);
     }
 }
 
-void up_down(int y){
-    if(y!=0){
-        char* cmd = "";
-        if (y>0){
+void up_down(int y)
+{
+    if (y != 0)
+    {
+        char *cmd = "";
+        if (y > 0)
+        {
             cmd = "MU";
-        }else{
+        }
+        else
+        {
             cmd = "MD";
         }
         char params[128] = "";
-        char* ret = "";
-        sprintf(params,"--type 1 --dict {\\\"%s\\\":%d}",cmd ,10);
-        exec_shell(params,ret);
+        char *ret = "";
+        sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", cmd, 10);
+        exec_shell(params, ret);
     }
 }
-
-
-
 
 int main(void)
 {
@@ -332,7 +366,6 @@ int main(void)
     int len, type;
     int axis_value, button_value;
     int number_of_axis, number_of_buttons;
-  
 
     memset(&map, 0, sizeof(xbox_map_t));
 
@@ -356,31 +389,58 @@ int main(void)
 
         // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
         //开始工作、停止工作
-        if(map.rb==1){
-            char* ret;
+        if (map.rb == 1)
+        {
+            char *ret;
             char params[128] = "";
-            sprintf(params,"--type 2 --dict {\\\"%s\\\":%s}","begin_work","1");
-            exec_shell(params,ret);
+            sprintf(params, "--type 2 --dict {\\\"%s\\\":%s}", "begin_work", "1");
+            exec_shell(params, ret);
+
+            if (global_is_running)
+            {
+                //正在运行，关机
+                reset();
+                global_is_running = false;
+            }
+            else
+            {
+                //开机
+                global_angle = 90;
+                global_is_running = true;
+                turnAngle("TR", 90);
+            }
+            // global_is_running = !global_is_running;
+        }
+
+        //操作臂停止
+        if (map.b == 1)
+        {
+            stop(2);
         }
 
         //停车
-        if(map.ro==1){
+        if (map.ro == 1)
+        {
             stop(1);
         }
         //前进 后退
-        if(map.ry!=0){
-           go(map.ry);
+        if (map.ry != 0)
+        {
+            go(map.ry);
         }
         //转向
-        if(map.lx!=0 || map.ly!=0){
-            turn(map.lx,map.ly);
+        if (map.lx != 0 || map.ly != 0)
+        {
+            turn(map.lx, map.ly);
         }
         // 上下
-        if( map.yy!=0){
+        if (map.yy != 0)
+        {
             up_down(map.yy);
         }
         // 左右
-        if(map.xx!=0 ){
+        if (map.xx != 0)
+        {
             left_right(map.xx);
         }
 
