@@ -21,7 +21,7 @@ def exec_cmd(cmd):
         if(key=="TA"):  #转向处理
             flag = turn(cmd[key])
             turnangle = abs(global_angle-cmd[key])
-            str_cmd = flag+ " " + turnangle
+            str_cmd = flag+ " " + str(turnangle)
         if(key=="STOP" and cmd[key]==1):
             dict = json.dumps({"begin_work":0})
             redis.set("global_angle",0)
