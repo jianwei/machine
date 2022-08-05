@@ -38,8 +38,10 @@ def set_redis(redisDict):
             if(begin_work_cache!=""):
                 if (int(dict["begin_work"])==1 ):
                     if(int(begin_work_cache)!=1):
+                        # 转向 90
                         dict = json.dumps({"TA":90})
                         exec_cmd(dict)
+                        # 打开摄像头
                         open_camera()
                     else:
                         val=0
