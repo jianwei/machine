@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Aug  5 13:11:02 2022
+# Make data base, printed on Fri Aug  5 13:13:43 2022
 
 # Variables
 
@@ -43,13 +43,11 @@ VSCODE_CWD = /
 # environment
 NO_PROXY = 127.0.0.1
 # environment
-LaunchInstanceID = B2E2941E-261E-4F04-971A-D0085835C919
-# environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.601T49xU8a/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Q4Kz5zln2f/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -148,8 +146,6 @@ PLATFORMIO_CALLER = vscode
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
-# environment
-SECURITYSESSIONID = 186a9
 # automatic
 ^F = $(notdir $^)
 # default
@@ -163,13 +159,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 521
+VSCODE_PID = 695
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=78/1024=8%, Rehash=0, Collisions=4/99=4%
+# Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
 # Pattern-specific Variable Values
 
@@ -251,7 +247,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Aug  5 13:11:02 2022
+# Finished Make data base on Fri Aug  5 13:13:43 2022
 
  
 make: *** No rule to make target `all'.  Stop.
