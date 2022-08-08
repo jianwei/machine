@@ -1,6 +1,8 @@
 import time,sys
 sys.path.append("..")
 from redisConn.index import redisDB
+
+redis = redisDB()
 class work:
     def __init__(self):
         self.redis = redisDB()
@@ -28,6 +30,6 @@ if __name__ == "__main__":
     try:
         w.loop()
     except KeyboardInterrupt:
-        self.redis.set("distance_pointer",json.dumps({}))
+        redis.set("distance_pointer",json.dumps({}))
         print("ctrl+c stop")
         # m.send_cmd("STOP 0")
