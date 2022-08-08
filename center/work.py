@@ -1,4 +1,4 @@
-import time
+import time,sys
 sys.path.append("..")
 from redisConn.index import redisDB
 class work:
