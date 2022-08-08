@@ -1,7 +1,9 @@
 # from convertPoints import ConvertPoints
-import time,os,sys,serial,json
-# import json
+import time,os,sys,json
+# import serial
 from utils.speed import speed
+from utils.point import point
+from utils.work import work
 sys.path.append("..")
 from redisConn.index import redisDB
 # chmod -R 777 /dev/ttyAMA0
@@ -10,8 +12,11 @@ from redisConn.index import redisDB
 class machine ():
     def __init__(self):
         self.redis = redisDB()
-        self.default_speed = 10
-        self.speed = speed()
+        # self.default_speed = 10
+        
+        self.point = point()
+        self.speed = speed(self.point)
+        self.work =  work(self.point)
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
 
@@ -29,9 +34,9 @@ class machine ():
     
     def loop(self):
         mock= [ 
-            [{'point': [[310, 145], [1039, 145], [310, 714], [1039, 714]], 'id': 14, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}],
-            [{'point': [[329, 131], [1067, 131], [329, 715], [1067, 715]], 'id': 14, 'name': 'person', 'time': 1659515712.6249225, 'screenSize': [1080, 720]}],
-            [{'point': [[355, 127], [1074, 127], [355, 712], [1074, 712]], 'id': 14, 'name': 'person', 'time': 1659515712.353984, 'screenSize': [1080, 720]}],
+            [{'point': [[310, 145], [1039, 145], [310, 714], [1039, 714]], 'id': 141, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}],
+            [{'point': [[329, 131], [1067, 131], [329, 715], [1067, 715]], 'id': 142, 'name': 'person', 'time': 1659515712.6249225, 'screenSize': [1080, 720]}],
+            [{'point': [[355, 127], [1074, 127], [355, 712], [1074, 712]], 'id': 144, 'name': 'person', 'time': 1659515712.353984, 'screenSize': [1080, 720]}],
             [{'point': [[354, 120], [1075, 120], [354, 716], [1075, 716]], 'id': 14, 'name': 'person', 'time': 1659515712.081453, 'screenSize': [1080, 720]}],
             [{'point': [[359, 125], [1073, 125], [359, 715], [1073, 715]], 'id': 14, 'name': 'person', 'time': 1659515711.8160756, 'screenSize': [1080, 720]}],
             [{'point': [[364, 129], [1078, 129], [364, 715], [1078, 715]], 'id': 14, 'name': 'person', 'time': 1659515711.5396397, 'screenSize': [1080, 720]}],
@@ -52,21 +57,35 @@ class machine ():
             [{'point': [[210, 510], [578, 510], [210, 716], [578, 716]], 'id': 10, 'name': 'person', 'time': 1659515704.4159667, 'screenSize': [1080, 720]}],
             [{'point': [[208, 504], [588, 504], [208, 718], [588, 718]], 'id': 10, 'name': 'person', 'time': 1659515704.1587694, 'screenSize': [1080, 720]}]
         ]
-        print(mock)
+        # print(mock)
         while (1):
-            allPhoto = self.redis.get("allPoints")
-            print(allPhoto)
+            print("----------------------loop begin ------------------------------")
+            # allPhoto = self.redis.get("allPoints")
+            allPhoto = json.dumps(mock)
+            # print(allPhoto)
             flag = self.redis.get("begin_work")
+            flag = 1
             if(flag and int(flag)==1):
                 if (allPhoto):
-                    allPhoto= json.loads(allPhoto)
-                    for item in allPhoto:
-                        print("item :",item)
-                    # speed = self.speed.calculate(allPhoto)
+                    allPhoto = json.loads(allPhoto)
+                    # for item in allPhoto:
+                        # print("item :",item)
+                    speed = self.speed.getSpeed(allPhoto)
+                    print("speed:",speed) 
+                    # 稳定速度 转速
+                    revolution = self.speed.uniformSpeed(speed)
+                    # 工作
+
+                else:
+                    revolution = self.speed.revolution
+
+                    
+                    
+
             else:
                 self.redis.set("allPoints",json.dumps([]))
-            print("time:",time.time(),flag)
-            
+            print("time:",time.time(),",begin_work:",flag)
+            print("----------------------loop end ------------------------------")
             time.sleep(1)
 
 

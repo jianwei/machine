@@ -40,10 +40,12 @@ from strong_sort.strong_sort import StrongSORT
 path = str(Path(__file__).resolve().parents[1])
 sys.path.append(path)
 from redisConn.index import redisDB
+from center.utils.point import point
 
 # remove duplicated stream handler to avoid duplicated logging
 logging.getLogger().removeHandler(logging.getLogger().handlers[0])
 redis = redisDB()
+point = point()
 
 @torch.no_grad()
 def run(
@@ -265,6 +267,12 @@ def run(
                             box_label["name"] = names[c]
                             box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
+                            box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
+                            distance_pointer = redis.get("distance_pointer")
+                            if(distance_pointer):
+                                distance_pointer = json.loads(distance_pointer)
+                                distance_pointer[id] = box_label["distance"]
+
                             
                             allPoints.append(box_label)
                             if save_crop:
