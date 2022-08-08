@@ -9,7 +9,7 @@ class work:
     def loop(self):
         while(1):
             print("----------------------begin loop ------------------------------")
-            self.redis.get("distance_pointer")
+            distance_pointer = self.redis.get("distance_pointer")
             print (distance_pointer)
             print("time:",time.time())
             print("----------------------end loop ------------------------------")
