@@ -273,7 +273,7 @@ def run(
                             if(distance_pointer):
                                 distance_pointer = json.loads(distance_pointer)
                             else:
-                                distance_pointer = []
+                                distance_pointer = {}
                             distance_pointer[str(id)] = box_label["distance"]
                             redis.set("distance_pointer",json.dumps(distance_pointer))
 
