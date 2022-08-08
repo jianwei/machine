@@ -71,6 +71,7 @@ class machine ():
                     # for item in allPhoto:
                         # print("item :",item)
                     speed = self.speed.getSpeed(allPhoto)
+                    rself.redis.set("speed",speed)
                     print("speed:",speed) 
                     # 稳定速度 转速
                     revolution = self.speed.uniformSpeed(speed)

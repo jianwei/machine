@@ -269,14 +269,13 @@ def run(
                             box_label["screenSize"] = screenSize
                             box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
                             distance_pointer = redis.get("distance_pointer")
-                            print("distance_pointer1",distance_pointer)
+                            # print("distance_pointer1",distance_pointer)
                             if(distance_pointer):
                                 distance_pointer = json.loads(distance_pointer)
                             else:
                                 distance_pointer = {}
-                            distance_pointer[str(id)] = box_label["distance"]
+                            distance_pointer[str(id)] = {"distance":box_label["distance"]}
                             redis.set("distance_pointer",json.dumps(distance_pointer))
-
                             
                             allPoints.append(box_label)
                             if save_crop:

@@ -25,7 +25,7 @@ class point():
         # print("pointx",pointx) 
         return pointx
 
-    def sizey(self,px,angle=90):# angle 默认90 否则45
+    def sizey(self,px,angle=90):    # angle 默认90 否则45
         pointy = round(px*self.unit*self.ratio/1000/10*self.ws,2)
         # print("pointy",pointy)
         if(angle!=90):
