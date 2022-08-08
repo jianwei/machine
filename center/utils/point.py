@@ -34,7 +34,7 @@ class point():
 
     def getDistanceY(self,point,screenSize):
         centery = (point[0][1] + point[3][1])/2 
-        print(point,centery,screenSize,screenSize[0][1])
+        print(point,centery,screenSize)
         diff  = centery-screenSize[0][1] 
         distanceY = self.sizey(abs(diff),45)
         y = distanceY if distanceY>0 else -distanceY
