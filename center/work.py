@@ -5,7 +5,6 @@ from redisConn.index import redisDB
 redis = redisDB()
 class work:
     def __init__(self):
-        self.redis = redisDB()
         pass
 
     def loop(self):
@@ -14,7 +13,7 @@ class work:
             print("----------------------begin loop ------------------------------")
             tmie1 = time.time()
             print("tmie1:",tmie1)
-            distance_pointer = self.redis.get("distance_pointer")
+            distance_pointer = redis.get("distance_pointer")
 
             print (distance_pointer)
             # print("time:",time.time())
