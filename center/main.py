@@ -64,7 +64,7 @@ class machine ():
                     allPhoto = json.loads(allPhoto)
                     latsTime = allPhoto[0][0]["time"]
                     if(latsTime == currentTime):
-                        print("current latsTime:",latsTime,":loop!!")
+                        print("current latsTime:",latsTime,",loop!")
                         time.sleep(0.1)
                         continue
                     currentTime = latsTime
