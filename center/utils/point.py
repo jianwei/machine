@@ -31,6 +31,10 @@ class point():
         if(angle!=90):
             pointy= pointy / math.sin(45)
         return pointy
+        
+    def distanceToPointy(self,distance):
+        defaultPx = round((distance * self.f*1000/self.h)/self.unit,2)
+        return int(defaultPx/self.hs)    
 
     def getDistanceY(self,point,screenSize):
         centery = (point[0][1] + point[3][1])/2 

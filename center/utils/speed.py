@@ -52,7 +52,7 @@ class speed ():
     def getSpeed(self,data):
         point_speed = self.getPointSpeed(data)
         speed = 0
-        if (point_speed>0):
+        if (point_speed and point_speed>0):
             random = data[0][0]
             screenSize = random["screenSize"]
             self.point.setScreenSize(screenSize)

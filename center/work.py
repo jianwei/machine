@@ -4,7 +4,9 @@ from redisConn.index import redisDB
 
 redis = redisDB()
 class work:
-    def __init__(self):
+    def __init__(self,point):
+        self.defaultSpeed = 10  # 默认速度
+        self.point = point
         pass
 
     def loop(self):
@@ -29,6 +31,6 @@ if __name__ == "__main__":
     try:
         w.loop()
     except KeyboardInterrupt:
-        redis.set("distance_pointer",json.dumps({}))
+        # redis.set("distance_pointer",json.dumps({}))
         print("ctrl+c stop")
         # m.send_cmd("STOP 0")

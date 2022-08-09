@@ -3,6 +3,7 @@ import time,os,sys,json
 # import serial
 from utils.speed import speed
 from utils.point import point
+from utils.line import line
 from utils.work import work
 sys.path.append("..")
 from redisConn.index import redisDB
@@ -16,7 +17,9 @@ class machine ():
         
         self.point = point()
         self.speed = speed(self.point)
-        self.work =  work(self.point)
+        self.line = line(self.point)
+        self.work =  work(self.point,self.speed)
+        self.angle_distance =  5  #cm
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
 
@@ -34,63 +37,91 @@ class machine ():
     
     def loop(self):
         mock= [ 
-            [{'point': [[310, 145], [1039, 145], [310, 714], [1039, 714]], 'id': 141, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}],
-            [{'point': [[329, 131], [1067, 131], [329, 715], [1067, 715]], 'id': 142, 'name': 'person', 'time': 1659515712.6249225, 'screenSize': [1080, 720]}],
-            [{'point': [[355, 127], [1074, 127], [355, 712], [1074, 712]], 'id': 144, 'name': 'person', 'time': 1659515712.353984, 'screenSize': [1080, 720]}],
-            [{'point': [[354, 120], [1075, 120], [354, 716], [1075, 716]], 'id': 14, 'name': 'person', 'time': 1659515712.081453, 'screenSize': [1080, 720]}],
-            [{'point': [[359, 125], [1073, 125], [359, 715], [1073, 715]], 'id': 14, 'name': 'person', 'time': 1659515711.8160756, 'screenSize': [1080, 720]}],
-            [{'point': [[364, 129], [1078, 129], [364, 715], [1078, 715]], 'id': 14, 'name': 'person', 'time': 1659515711.5396397, 'screenSize': [1080, 720]}],
-            [{'point': [[354, 269], [760, 269], [354, 714], [760, 714]], 'id': 14, 'name': 'person', 'time': 1659515711.2633321, 'screenSize': [1080, 720]}],
-            [{'point': [[301, 355], [706, 355], [301, 716], [706, 716]], 'id': 14, 'name': 'person', 'time': 1659515711.0012357, 'screenSize': [1080, 720]}],
-            [{'point': [[312, 403], [729, 403], [312, 716], [729, 716]], 'id': 14, 'name': 'person', 'time': 1659515710.7441657, 'screenSize': [1080, 720]}],
-            [{'point': [[186, 443], [610, 443], [186, 718], [610, 718]], 'id': 14, 'name': 'person', 'time': 1659515710.478745, 'screenSize': [1080, 720]}],
-            [{'point': [[203, 411], [617, 411], [203, 715], [617, 715]], 'id': 14, 'name': 'person', 'time': 1659515710.2219586, 'screenSize': [1080, 720]}],
-            [{'point': [[251, 353], [665, 353], [251, 716], [665, 716]], 'id': 14, 'name': 'person', 'time': 1659515709.9528716, 'screenSize': [1080, 720]}],
-            [{'point': [[271, 333], [679, 333], [271, 716], [679, 716]], 'id': 14, 'name': 'person', 'time': 1659515709.6865573, 'screenSize': [1080, 720]}],
-            [{'point': [[286, 321], [684, 321], [286, 715], [684, 715]], 'id': 14, 'name': 'person', 'time': 1659515709.4055076, 'screenSize': [1080, 720]}],
-            [{'point': [[289, 314], [700, 314], [289, 716], [700, 716]], 'id': 14, 'name': 'person', 'time': 1659515709.1500921, 'screenSize': [1080, 720]}],
-            [{'point': [[287, 311], [699, 311], [287, 717], [699, 717]], 'id': 14, 'name': 'person', 'time': 1659515708.8671112, 'screenSize': [1080, 720]}],
-            [{'point': [[293, 334], [697, 334], [293, 716], [697, 716]], 'id': 14, 'name': 'person', 'time': 1659515708.6087961, 'screenSize': [1080, 720]}],
-            [{'point': [[290, 615], [564, 615], [290, 719], [564, 719]], 'id': 10, 'name': 'person', 'time': 1659515705.1807458, 'screenSize': [1080, 720]}],
-            [{'point': [[267, 591], [598, 591], [267, 719], [598, 719]], 'id': 10, 'name': 'person', 'time': 1659515704.9241168, 'screenSize': [1080, 720]}],
-            [{'point': [[210, 523], [568, 523], [210, 716], [568, 716]], 'id': 10, 'name': 'person', 'time': 1659515704.6700547, 'screenSize': [1080, 720]}],
-            [{'point': [[210, 510], [578, 510], [210, 716], [578, 716]], 'id': 10, 'name': 'person', 'time': 1659515704.4159667, 'screenSize': [1080, 720]}],
-            [{'point': [[208, 504], [588, 504], [208, 718], [588, 718]], 'id': 10, 'name': 'person', 'time': 1659515704.1587694, 'screenSize': [1080, 720]}]
+            [
+            #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+            #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+             {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+            ],   
         ]
         # print(mock)
+        currentTime = 0
         while (1):
             print("----------------------loop begin ------------------------------")
             # allPhoto = self.redis.get("allPoints")
+            global_angle = self.redis.get("global_angle")
+            global_angle = int(global_angle) if global_angle else 0
             allPhoto = json.dumps(mock)
-            # print(allPhoto)
             flag = self.redis.get("begin_work")
             flag = 1
             if(flag and int(flag)==1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
-                    # for item in allPhoto:
-                        # print("item :",item)
+                    latsTime = allPhoto[0][0]["time"]
+                    if(latsTime == currentTime):
+                        print("current latsTime:",latsTime,":loop!!")
+                        time.sleep(0.1)
+                        continue
+                    currentTime = latsTime
                     speed = self.speed.getSpeed(allPhoto)
-                    rself.redis.set("speed",speed)
+                    self.redis.set("speed",speed)
                     print("speed:",speed) 
                     # 稳定速度 转速
                     revolution = self.speed.uniformSpeed(speed)
-                    # 工作
+                    # 分行 工作  
+                    line  = self.line.convertLine(allPhoto)
+                    # print(line)
+                    # for item in line:
+                    #     print("item:",item)
 
+                    if(line and line[0]):
+                        length = len(line[0])
+                        y = line[length-1][0]["centery"]
+                        print (123,length,y)
+                        if (y>=650 and y<=720):
+                            # work
+                            workcmd = self.work.work(line)
+                            if(len(workcmd)>0):
+                                self.send_cmd(workcmd)
+                    #左右位置调整
+                    if(line and len(line)>0):
+                        first = line[0]
+                        length = len(first)
+                        cmd = ""
+                        if(length>0):
+                            if(length==1 or length==3):
+                                center =  first[0] if length==1 else first[1]
+                                centerx = center["centerx"]
+                                if(centerx<530):
+                                    flag = "TL"
+                                    global_angle +=10
+                                    cmd = str(flag)+" "+str(10)
+                                    pass
+                                elif(centerx>550):
+                                    flag = "TR"
+                                    global_angle +=10
+                                    cmd = flag+" "+str(10)
+                                    pass
+                                else:
+                                    if (global_angle!=90):
+                                        diffangle = global_angle - 90
+                                        flag = "TR" if a>0 else "TL"
+                                        cmd = flag+" "+str(abs(diffangle))
+                            if (len(cmd)>0):
+                                self.redis.set("global_angle",global_angle)
+                                self.send_cmd(cmd)
                 else:
                     revolution = self.speed.revolution
-
-                    
-                    
-
             else:
                 self.redis.set("allPoints",json.dumps([]))
             print("time:",time.time(),",begin_work:",flag)
             print("----------------------loop end ------------------------------")
             time.sleep(1)
-
-
-
         pass
 
     
