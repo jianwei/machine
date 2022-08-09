@@ -274,7 +274,7 @@ def run(
                                 distance_pointer = json.loads(distance_pointer)
                             else:
                                 distance_pointer = {}
-                            distance_pointer[str(id)] = {"distance":box_label["distance"],"time":box_label["time"]}
+                            distance_pointer[str(id)] = {"distance":box_label["distance"]}
                             redis.set("distance_pointer",json.dumps(distance_pointer))
 
                             allPoints.append(box_label)
