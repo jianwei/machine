@@ -9,12 +9,12 @@ cv2:4.5.4
 
 python :
 sudo apt-get update 
+sudo apt purge python3-pkg-resources
 sudo apt-get install python3-pip
 sudo apt-get install python-setuptools
-pip install traitlets 
+pip3 install traitlets 
 
-conda:
-conda deactivate
+
 
 
 
