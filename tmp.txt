@@ -17,7 +17,7 @@ sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
 
 
-export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
+ export LD_PRELOAD=/lib/aarch64-linux-gnu/libGLdispatch.so.0
 
 torch && torchvision
 pip3 uninstall torch torchvision
