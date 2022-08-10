@@ -13,10 +13,11 @@ sudo apt purge python3-pkg-resources
 sudo apt-get install python3-pip
 sudo apt-get install python-setuptools
 pip3 install traitlets 
+sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
 
 
-
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
 
 torch && torchvision
 pip3 uninstall torch torchvision
