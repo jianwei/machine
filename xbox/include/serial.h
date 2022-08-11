@@ -15,7 +15,6 @@
 #define SERIALNAME_LEN 128
 
 typedef struct  serial_s{
-
         int     fd;             //串口文件描述符
         long     Baudrate;               //波特率
         int     Databits;               //数据位
