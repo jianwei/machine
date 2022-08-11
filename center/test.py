@@ -25,8 +25,9 @@ try:
     w = ser.write('s'.encode());#writ a string to port
     print("isopen,w:",open,w)
     # ser.write(str(chr(10)));#writ a string to port
-    response = ser.readline();#read a string from port
-    print("response:",response.decode('utf-8') )
+    response = ser.readall();#read a string from port
+    print("response:",response)
+    # print("response:",response.decode('utf-8') )
 except Exception as e:
     print("exception:",e)
     ser.close()
