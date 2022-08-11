@@ -41,9 +41,9 @@ try:
 	while True:
 		ser.write(b'MF 10.') #将'1'字符转换为字节发送
 		response = ser.read()
-		print(var(response))
-except:
-	print("连接失败！")
+		print(response)
+except Exception as e:
+	print("连接失败！",e)
 	ser.close()	#关闭端口
 
 
