@@ -22,7 +22,9 @@ print("isopen1:",open)
 #try and exceptstructure are exception handler
 try:
   while 1:
-    w = ser.write('s'.encode());#writ a string to port
+    # w = ser.write('s----'.encode());#writ a string to port
+    str_cmd = "MF 10."
+    w = ser.write(str_cmd.encode());#writ a string to port
     print("isopen,w:",open,w)
     # ser.write(str(chr(10)));#writ a string to port
     response = ser.readall();#read a string from port
