@@ -39,7 +39,7 @@ ser.flushInput() #清空缓冲器
 
 try:
 	while True:
-		ser.write(b'1') #将'1'字符转换为字节发送
+		ser.write(b'MF 10.') #将'1'字符转换为字节发送
 		response = ser.read()
 		print(response)
 except Exception as e:
