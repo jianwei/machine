@@ -46,6 +46,7 @@ def send_cmd(cmd):
             ret = response[1].decode("UTF-8") if len(response)>1 else ""
             print(arr,response,ret)
             if(response):
+                ser.close()
                 break
     except Exception as e:
         print("serial连接或者执行失败,reason:", e)
