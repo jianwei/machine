@@ -25,5 +25,6 @@ try:
     ser.write(str(chr(10)));#writ a string to port
     response = ser.readline();#read a string from port
     print("response:",response.decode('utf-8') )
-except:
-  ser.close()
+except Exception as e:
+    print("exception:",e)
+    ser.close()
