@@ -18,17 +18,14 @@
 import serial    #import serial module
 ser = serial.Serial('/dev/ttyACM0', 9600,timeout=0.5);   #open named port at 9600,1s timeot
 ser.flushInput()
-#try and exceptstructure are exception handler
 try:
   while 1:
-    ser.println()
-    ser.write('s'.encode());#writ a string to port
+    ser.write('s'.encode());
     size = ser.inWaiting()
+    print("size:",size)
     if size != 0:
-        response = ser.read(size);
+        response = ser.read(size)
         print(response)
-    # time.sleep(3)
-    # response = ser.readall();#read a string from port
     print("response:",response.decode('utf-8') )
 except:
   ser.close()
