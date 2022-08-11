@@ -5,8 +5,8 @@ def main():
     ser = serial.Serial('/dev/ttyACM0', 9600,timeout=0.5)
     ser.write(str_cmd)
     try:    
-        response = ser.readall().decode('utf-8');#read a string from port
-        print("response",response);
+        response = ser.readall().decode('utf-8')
+        print("response",response)
     except expression:
         print("serial_control,expression:",cmd,expression)
     pass
