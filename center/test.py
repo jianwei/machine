@@ -39,8 +39,8 @@ ser.flushInput() #清空缓冲器
 
 try:
 	while True:
-		ser.write(b'MF 10.') #将'1'字符转换为字节发送
-		response = ser.read()
+		ser.write(b'MF 50.') #将'1'字符转换为字节发送
+		response = ser.readall()
 		print(response)
 except Exception as e:
 	print("连接失败！",e)
