@@ -23,6 +23,6 @@ try:
   while 1:
     ser.write('s'.encode());#writ a string to port
     response = ser.readall();#read a string from port
-    print(response.decode('utf-8') )
+    print("response:",response.decode('utf-8') )
 except:
   ser.close()
