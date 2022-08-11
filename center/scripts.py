@@ -23,6 +23,7 @@ def exec_cmd(cmd):
             turnangle = abs(global_angle-cmd[key])
             str_cmd = flag+ " " + str(turnangle)
         if(key=="STOP" and cmd[key]==1):
+            # 关闭摄像头
             dict = json.dumps({"begin_work":0})
             redis.set("global_angle",0)
             set_redis(dict)
@@ -73,7 +74,7 @@ def set_redis(redisDict):
                 dict = json.dumps({"RST":1})
                 exec_cmd(dict)
                 # 关闭摄像头
-                open_camera()
+                # open_camera()
 
         redis.set(key,val)
 
