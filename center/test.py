@@ -16,7 +16,7 @@
 #     main()
 
 import serial  # import serial module
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=0.5)
+ser = serial.Serial('/dev/ttyACM0', 230400, timeout=0.5)
 open = ser.isOpen()
 print("isopen1:", open)
 try:
