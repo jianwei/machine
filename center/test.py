@@ -21,7 +21,8 @@ ser = serial.Serial('/dev/ttyACM0', 9600,timeout=0.5);   #open named port at 960
 #try and exceptstructure are exception handler
 try:
   while 1:
-    ser.write('s'.encode());#writ a string to port
+    # ser.write('s'.encode());#writ a string to port
+    ser.write(str(chr(10)));#writ a string to port
     response = ser.readline();#read a string from port
     print("response:",response.decode('utf-8') )
 except:
