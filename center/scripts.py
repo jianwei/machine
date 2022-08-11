@@ -27,17 +27,30 @@ def exec_cmd(cmd):
             redis.set("global_angle",0)
             set_redis(dict)
     redis.set("global_angle",cmd[key]) 
-    print("str_cmd:",str_cmd)
-
-    # ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
-    # ser.write(str_cmd)
-    # try:    
-    #     response = ser.readall().decode('utf-8');#read a string from port
-    #     print(response.decode('utf-8') );
-    # except expression:
-    #     print("serial_control,expression:",cmd,expression)
-    print (response)
+    print("exec_cmd,str_cmd:",str_cmd)
+    response = send_cmd(str_cmd)
+    print ("exec_cmd:",response)
     return response
+
+def send_cmd(cmd):
+    port = "/dev/ttyACM0"
+    ser = serial.Serial(port, 9600, timeout=1)
+    ser.flushInput()  # 清空缓冲器
+    ret = -2
+    try:
+        while True:
+            ser.write(cmd.encode())
+            arr = ser.readall()
+            response = arr.splitlines()
+            ret = response[1].decode("UTF-8") if len(response)>1 else ""
+            print(arr,response,ret)
+            if(response):
+                break
+    except Exception as e:
+        print("serial连接或者执行失败,reason:", e)
+        ser.close()
+    return ret
+
 
 def set_redis(redisDict):
     dict = json.loads(redisDict)
