@@ -1,6 +1,6 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/chenjianwei2/Desktop/machine'
-make: Leaving directory `/Users/chenjianwei2/Desktop/machine'
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/media/psf/Home/Desktop/machine'
+make: Leaving directory '/media/psf/Home/Desktop/machine'
  
 make: *** No targets specified and no makefile found.  Stop.
 
