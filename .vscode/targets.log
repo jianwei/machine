@@ -1,227 +1,175 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
 
-# GNU Make 4.2.1
-# Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2016 Free Software Foundation, Inc.
-# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-# This is free software: you are free to change and redistribute it.
-# There is NO WARRANTY, to the extent permitted by law.
+# This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Fri Aug 12 17:49:06 2022
+
+# Make data base, printed on Sat Aug 13 12:50:23 2022
 
 # Variables
 
-# 'override' directive
-GNUMAKEFLAGS := 
-# automatic
  
+# automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# environment
-DESKTOP_SESSION = ubuntu
-# default
-.SHELLFLAGS := -c
-# environment
-XDG_SESSION_CLASS = user
-# environment
-XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# environment
+PLATFORMIO_IDE = 2.5.2
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
-# environment
-XAUTHORITY = /run/user/1000/gdm/Xauthority
-# environment
-GDMSESSION = ubuntu
- 
-# environment
-XMODIFIERS = @im
+# automatic
+@F = $(notdir $@)
 # makefile
- 
-CURDIR := /media/psf/Home/Desktop/machine
+CURDIR := /Users/carlos/Desktop/machine
 # makefile
 SHELL = /bin/sh
 # environment
-VTE_VERSION = 6003
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/3b889b090b5ad5793f524b5d1d39fda662b96a2a","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# environment
-JOURNAL_STREAM = 8:43876
-# environment
-XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+_ = /usr/bin/make
 # makefile
 MAKEFILE_LIST := 
-# automatic
-@F = $(notdir $@)
 # environment
-IM_CONFIG_PHASE = 1
+__CFBundleIdentifier = com.microsoft.VSCode
 # environment
-USERNAME = parallels
+INFOPATH = /usr/local/share/info:
 # environment
-XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+VSCODE_CWD = /
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path
+NO_PROXY = 127.0.0.1
 # environment
-_ = /usr/bin/printenv
-# environment
-MANAGERPID = 1235
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
-# environment
-VSCODE_CWD = /home/parallels
-# default
-MAKE_HOST := x86_64-pc-linux-gnu
-# environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-# environment
-GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
-# environment
-SESSION_MANAGER = local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/1945,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/1945
-# environment
-XDG_RUNTIME_DIR = /run/user/1000
-# environment
- 
-XDG_MENU_PREFIX = gnome-
- 
-# environment
- 
 ELECTRON_RUN_AS_NODE = 1
-# environment
-INVOCATION_ID = 199c6904d691427aa0827e19bfa4d3eb
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-LS_COLORS = rs
-# environment
-XDG_SESSION_DESKTOP = ubuntu
-# environment
-SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GudYZZ1r0G/Listeners
 # automatic
- 
 %F = $(notdir $%)
 # environment
-DISPLAY = :0
+CONDA_EXE = /Users/carlos/opt/anaconda3/bin/conda
 # environment
-PWD = /home/parallels/Desktop/Parallels Shared Folders/Home/Desktop/machine
-# default
-.LOADED := 
+PWD = /Users/carlos/Desktop/machine
 # environment
-SSH_AGENT_PID = 1909
+HOMEBREW_CELLAR = /usr/local/Cellar
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-GTK_MODULES = gail:atk-bridge
+MANPATH = /usr/local/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /home/parallels
+HOME = /Users/carlos
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
- 
-LESSCLOSE = /usr/bin/lesspipe %s %s
- 
+VSCODE_CODE_CACHE_PATH = /Users/carlos/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
-VSCODE_CLI = 1
-# environment
-VSCODE_CODE_CACHE_PATH = /home/parallels/.config/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
-# environment
-LOGNAME = parallels
+LOGNAME = carlos
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
+CONDA_PROMPT_MODIFIER = (base) 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# environment
-GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
-MAKELEVEL := 0
+CONDA_DEFAULT_ENV = base
 # environment
-COLORTERM = truecolor
+PLATFORMIO_PATH = /Users/carlos/.platformio/penv/bin:/Users/carlos/.platformio/penv:/Users/carlos/.platformio/python3/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-QT_IM_MODULE = ibus
+PATH = /Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # environment
-SHLVL = 2
+SHLVL = 1
 # environment
-GNOME_SHELL_SESSION_MODE = ubuntu
+XPC_FLAGS = 0x0
 # default
-MAKE_VERSION := 4.2.1
+MAKE_VERSION := 3.81
 # environment
-USER = parallels
+USER = carlos
 # makefile
 .DEFAULT_GOAL := 
 # environment
-XDG_CURRENT_DESKTOP = Unity
+HOMEBREW_BOTTLE_DOMAIN = https://mirrors.aliyun.com/homebrew/homebrew-bottles
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# default
-MAKE_COMMAND := make
 # environment
-TERM_PROGRAM = vscode
+CONDA_SHLVL = 1
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # default
 .VARIABLES := 
+# environment
+TMPDIR = /var/folders/jz/wrw92px54ts4k5lhhp0wzcb80000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-ee9caf69-1.70.0-main.sock
-# makefile
-MAKEFLAGS = pqrR
+VSCODE_IPC_HOOK = /Users/carlos/Library/Application Support/Code/1.69.2-main.sock
 # environment
-MFLAGS = -pqrR
+MallocNanoZone = 0
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
- 
-TERM_PROGRAM_VERSION = 1.70.0
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.8614130.8614136
+# environment
+HOMEBREW_PREFIX = /usr/local
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
-# environment
-GDK_BACKEND = x11
 # automatic
 +F = $(notdir $+)
 # environment
-QT_ACCESSIBILITY = 1
+HOMEBREW_REPOSITORY = /usr/local/Homebrew
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
+PLATFORMIO_CALLER = vscode
+# environment
 LC_ALL = C
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
-# environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/9e443569_ceac_4eed_889a_880c7261222f
+CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
+ 
 # automatic
 ^F = $(notdir $^)
-# environment
-GNOME_TERMINAL_SERVICE = :1.84
 # default
 SUFFIXES := 
 # environment
-CHROME_DESKTOP = code-url-handler.desktop
-# environment
-WINDOWPATH = 2
+_CE_M = 
 # default
-.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+.INCLUDE_DIRS = /usr/local/include
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# default
-.RECIPEPREFIX := 
+MAKELEVEL := 0
+# environment
+CONDA_PREFIX = /Users/carlos/opt/anaconda3
+# environment
+VSCODE_PID = 2154
+# environment
+_CE_CONDA = 
 # environment
 LANG = C
-# environment
-TERM = xterm-256color
-# environment
-VSCODE_PID = 19615
 # variable set hash-table stats:
-# Load=99/1024=10%, Rehash=0, Collisions=13/121=11%
+# Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
 # Pattern-specific Variable Values
 
@@ -229,9 +177,8 @@ VSCODE_PID = 19615
 
 # Directories
 
-# . (device 53, inode 9574790): 27 files, no impossibilities.
+# . (device 16777220, inode 9574790): 27 files, no impossibilities.
 
- 
 # 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
@@ -242,24 +189,38 @@ VSCODE_PID = 19615
 
 # Not a target:
 all:
-#  Command line target.
+#  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 Makefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 makefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .DEFAULT:
@@ -269,25 +230,27 @@ makefile:
 
 # Not a target:
 GNUmakefile:
+#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# Load=6/1024=1%, Rehash=0, Collisions=0/17=0%
 # VPATH Search Paths
 
-# No 'vpath' search paths.
+# No `vpath' search paths.
 
-# No general ('VPATH' variable) search path.
+# No general (`VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 300 B / avg = 8 B
-# current buf: size = 8162 B / used = 300 B / count = 35 / avg = 8 B
+# # of strings in strcache: 0
+# # of strcache buffers: 0
+# strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
+# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# strcache performance: lookups = 38 / hit rate = 7%
-# hash-table stats:
-# Load=35/8192=0%, Rehash=0, Collisions=1/38=3%
-# Finished Make data base on Fri Aug 12 17:49:06 2022
+# Finished Make data base on Sat Aug 13 12:50:23 2022
 
  

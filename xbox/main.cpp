@@ -1,29 +1,42 @@
-#include "./include/serial.h"
 #include <stdio.h>
-#include <string.h>
-// #include <iostream>
-
-// using namespace std;
+#include <stdlib.h>
+#include <assert.h>
+#include <hiredis/hiredis.h>
 
 int main()
 {
+	redisContext * rc = redisConnect("127.0.0.1",6379);
+	assert(rc != NULL);
+	
+	char* com = "hmset user name jack age 18 sex male height 180";
+	redisReply* res =(redisReply*)redisCommand(rc,com);
 
-    serial_t serial;
-    char conf;
-    char *sbuf;
-    char *rbuf;
-    int sbuf_len = 8;
-    int rbuf_len = 8;
-    int timeout = 3600;
-    serial_open(&serial, "/dev/ttyAMA0", 9600, &conf);
-    // serial_send(&serial, &sbuf, sbuf_len);
-
-    // serial_recv(serial.fd, &rbuf, rbuf_len, timeout);
-    // serial_close(&serial);
-    // cout << "iiii" << endl;
-    // printf("a%d", 1);
-    // int a = 111111;
-    // printf("%d", a);
-
-    return 0;
+	if(res->type == REDIS_REPLY_STATUS)
+	{
+		printf("Success %s\n",res->str);
+	}
+	else 
+		printf("fail\n");
+	
+	com = "hgetall user";
+	res = (redisReply*)redisCommand(rc,com);
+	if(res->type == REDIS_REPLY_ARRAY)
+	{
+		for(int i = 0; i < res->elements; i++)
+		{
+			if(i%2 != 0)
+				printf("%s\n",res->element[i]->str);
+			else
+				printf("%s",res->element[i]->str);
+		}
+	}
+	else if(res->type == REDIS_REPLY_STRING)
+	{
+		printf("%s",res->str);
+	}
+	
+	freeReplyObject(res);
+	redisFree(rc);
+	return 1;
 }
+

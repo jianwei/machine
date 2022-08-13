@@ -75,9 +75,7 @@ typedef struct xbox_map
 
 } xbox_map_t;
 
-double global_max = 32767;
-char global_pwd[80] = "";
-// char writeMsg(string msg);
+
 
 int xbox_open(const char *file_name)
 {
@@ -218,117 +216,24 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-void exec_shell(char *params, char *&ret)
+char global_pwd[80] = "";
+void exec_shell(char *params)
 {
     cout << "exec_shell:" << params << endl;
-    char cmd_all[128];
+    char cmd_all[512];
     if (strlen(global_pwd) == 0)
     {
         char buf[80];
         getcwd(buf, sizeof(buf));
         sprintf(global_pwd, "%s", buf);
     }
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 scripts.py %s", global_pwd, params);
+    sprintf(cmd_all, "cd %s/../center/ &&  python3 xbox.py %s", global_pwd, params);
+    cout << "cmd_all:" << cmd_all << endl;
     FILE *fp;
     char buffer[80];
     fp = popen(cmd_all, "r");
     fgets(buffer, sizeof(buffer), fp);
     pclose(fp);
-    ret = buffer;
-    cout << "script:" << cmd_all << ",vaule:" << buffer << endl;
-}
-
-void stop(int type)
-{
-    char params[128] = "";
-    char *ret = "";
-    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", "STOP", type);
-    exec_shell(params, ret);
-}
-
-void go(int ry)
-{
-    char *ret;
-    char *direction = "MF";
-    if (ry > 0)
-    {
-        direction = "MB";
-    }
-    int absry = abs(ry);
-    float pre = (absry / global_max) * 100;
-    char params[128] = "";
-    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", direction, (int)pre);
-    exec_shell(params, ret);
-    // cout<<params<<ret<<endl;
-}
-
-void turn(int x, int y)
-{
-    double angle = 0;
-    //下面2象限 复原
-    if ((x > 0 && y > 0) || (x < 0 && y > 0))
-    {
-        angle = 0;
-    }
-    else if (x != 0 && y == 0)
-    {
-        angle = 90;
-    }
-    else
-    {
-        double xx = abs(x);
-        double yy = abs(y);
-        if (yy != 0)
-        {
-            double z = xx / yy;
-            angle = atan(z) * 180.0 / 3.1415926;
-        }
-    }
-    // cout << (int)angle <<endl;
-    char *ret;
-    char params[128] = "";
-    sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", "TA", (int)angle);
-    exec_shell(params, ret);
-}
-
-void left_right(int x)
-{
-    if (x != 0)
-    {
-        char *cmd = "";
-        if (x > 0)
-        {
-            cmd = "ML";
-        }
-        else
-        {
-            cmd = "MR";
-        }
-        char params[128] = "";
-        char *ret = "";
-        sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", cmd, 10);
-        exec_shell(params, ret);
-    }
-}
-
-void up_down(int y)
-{
-    if (y != 0)
-    {
-        char *cmd = "";
-        if (y > 0)
-        {
-            cmd = "MU";
-        }
-        else
-        {
-            cmd = "MD";
-        }
-        char params[128] = "";
-        char *ret = "";
-        sprintf(params, "--type 1 --dict {\\\"%s\\\":%d}", cmd, 10);
-        exec_shell(params, ret);
-    }
 }
 
 int main(void)
@@ -341,26 +246,40 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
     }
 
+    char *keyBoark = (char *) malloc(256);
     while (1)
     {
+        // keyBoark = "";
         len = xbox_map_read(xbox_fd, &map);
         if (len < 0)
         {
             usleep(10 * 1000);
             continue;
         }
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d",
+
+        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d  \r",
                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        // printf("\rTime:%8d  LO:%d RO:%d  LX:%d LY:%d RX:%d RY:%d \r\n", map.time, map.lo, map.ro,map.lx, map.ly, map.rx, map.ry);
+        sprintf(keyBoark,"--xbox \'{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}\'",
+               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        
+        // sprintf(keyBoark,"--xbox {\\\"Time\\\":%d,\\\"A\\\":%d,\\\"B\\\":%d,\\\"X\\\":%d,\\\"Y\\\":%d,\\\"LB\\\":%d,\\\"RB\\\":%d,\\\"start\\\":%d,\\\"back\\\":%d,\\\"home\\\":%d,\\\"LO\\\":%d,\\\"RO\\\":%d,\\\"XX\\\":%d,\\\"YY\\\":%d,\\\"LX\\\":%d,\\\"LY\\\":%d,\\\"RX\\\":%d,\\\"RY\\\":%d,\\\"LT\\\":%d,\\\"RT\\\":%d}",
+        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        
+
+        exec_shell(keyBoark);
+
         //开始工作、停止工作
+        // printf("keyBoark:%s",keyBoark);
 
         fflush(stdout);
     }

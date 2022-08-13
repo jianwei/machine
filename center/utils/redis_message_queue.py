@@ -33,6 +33,6 @@ class RMQ(object):
                 continue
             data = {'queue': queue_name, 'message': message,"time":time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
             print(data)
-            if(that):
-                that.send_cmd(message)
+            # if(that):
+            #     that.send_cmd(message)
             

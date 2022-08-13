@@ -11,7 +11,8 @@ class arduino():
         self.ret_rmq = RMQ(url='redis://127.0.0.1:6379/15', name='arduino_ret')
         # port = "/dev/ttyACM0"  # Arduino端口
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
-        port = "/dev/tty.usbmodem14201"  # Arduino端口
+        # port = "/dev/tty.usbmodem14201"  # Arduino端口
+        port = "/dev/ttyACM0"  # Arduino端口
         self.ser = serial.Serial(
             port, 9600, timeout=1, dsrdtr=False)  # 设置端口，每秒回复一个信息
 
