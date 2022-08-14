@@ -217,7 +217,7 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-void exec_shell(char *params)
+void set_redis(char *params)
 {
     redisContext *rc;
     redisReply *reply;
@@ -266,7 +266,7 @@ int main(void)
                 map.time, map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                 map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        exec_shell(keyBoark);
+        set_redis(keyBoark);
 
         //开始工作、停止工作
         // printf("keyBoark:%s",keyBoark);
