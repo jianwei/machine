@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # from asyncio.log import logger
-from distutils.log import error
+# from distutils.log import error
 import json,sys,serial,time
 from utils.redis_message_queue import RMQ
 from utils.log import log
