@@ -3,11 +3,13 @@
 
 from asyncio.log import logger
 from distutils.log import error
-import json
+import json,sys
 import serial
 from utils.redis_message_queue import RMQ
 from utils.log import log
-
+sys.path.append("..")
+from redisConn.index import redisDB
+redis = redisDB()
 
 class arduino():
     def __init__(self):
@@ -55,5 +57,6 @@ class arduino():
 
 
 if __name__ == '__main__':
+    redis.set("global_angle",0)
     a = arduino()
     a.run_subscribe()

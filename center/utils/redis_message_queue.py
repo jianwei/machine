@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+
 from redis import Redis, ConnectionPool
-import time,os,json,numpy,sys
+import time
+import os
+import json
+import numpy
+import sys
 sys.path.append("..")
 from redisConn.index import redisDB
 
@@ -15,8 +20,8 @@ class RMQ(object):
         self.client = Redis(connection_pool=pool)
         self.queue_name = name
         self.redis = redisDB()
+        # global_angle = self.redis.
 
-        
         # l = log()
         # self.logger = l.getLogger()
 
@@ -42,7 +47,7 @@ class RMQ(object):
                 continue
             data = {'queue': queue_name, 'message': message,
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
-            that.logger.info("run_subscribe--data:%s",data)
+            # that.logger.info("run_subscribe--data:%s",data)
             # print(data)
             if (that):
                 if ("xbox" in json.loads(message).keys()):
@@ -52,6 +57,45 @@ class RMQ(object):
                         message = json.loads(message)
                         message["cmd"] = cmd+"."
                         # that.send_cmd(message)
+
+    def turn(self, angle, type):
+        angle = int(angle)
+        global_angle = int(self.redis.get("global_angle"))
+        # print("global_angle110---", global_angle)
+        # global_angle = global_angle if global_angle > 0 else (90-angle)
+        if (global_angle == 0):
+            if (type == 1):
+                global_angle = 90-angle
+            elif (type == 2):
+                global_angle = 90+angle
+            self.redis.set("global_angle", global_angle)
+        cmd = ""
+        print("global_angle,angle,type", global_angle, angle, type)
+        if ( int(angle)== 0 ) :
+            cmd = "TR "+ str(90+angle)
+            self.redis.set("global_angle",90)
+        else :
+            if (type ==1):  # y<0 x>0
+                self.redis.set("global_angle",90-angle)
+                if(global_angle>90):
+                    turn_angle = global_angle-90+angle
+                    cmd = "TR "+ str(turn_angle)
+                else:
+                    if((90-global_angle)>angle):
+                        cmd = "TR "+ str((90-global_angle)-angle)
+                    if((90-global_angle)<angle):
+                        cmd = "TL "+ str(abs((90-global_angle)-angle))
+            elif (type==2) : #y<0 x<0
+                self.redis.set("global_angle",90+angle)
+                if(global_angle<90):
+                    cmd = "TR "+ str(abs(global_angle-(90-angle)))
+                else:
+                    if(global_angle>angle):
+                        cmd = "TL "+ str(abs(global_angle-angle-90))
+                    if(global_angle<angle):
+                        cmd = "TR "+ str(abs(global_angle-angle-90))
+                
+        return cmd
 
     def xbox(self, message):
         message = json.loads(message)
@@ -76,7 +120,9 @@ class RMQ(object):
             # print("z:----", x, y)
             # print("angle----", angle)
             # print("-------------------------------------------------------")
-            cmd = "TL " + str(angle)
+            # cmd = "TL " + str(angle)
+            # if(global_angle>angle)
+            cmd = self.turn(angle, 2)
 
         # 右转
         elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) > 0:
@@ -87,7 +133,8 @@ class RMQ(object):
             # print("z:----", x, y)
             # print("angle----", angle)
             # print("-------------------------------------------------------")
-            cmd = "TR " + str(angle)
+            # cmd = "TR " + str(angle)
+            cmd = self.turn(angle, 1)
 
         # 上下
         elif int(msgObj["XX"]) < 0:
@@ -96,31 +143,36 @@ class RMQ(object):
         # 左右
         elif int(msgObj["XX"]) > 0:
             cmd = "MR 10"
-        
+
         # 2操作臂停止
         elif int(msgObj["B"]) > 0:
             cmd = "STOP 2"
 
-        # 2操作臂停止
+        # 复位
         elif int(msgObj["A"]) > 0:
             cmd = "RST"
-        
+            self.redis.set("global_angle", 0)
+
         # 2开始或者关闭工作
         elif int(msgObj["RB"]) > 0:
             cache_status = self.redis.get("begin_work")
-            print("cache_status:",cache_status)
-            if (cache_status and int(cache_status)==0):
-                self.redis.set("begin_work",1)
+            print("cache_status:", cache_status)
+            if (cache_status and int(cache_status) == 0):
+                self.redis.set("begin_work", 1)
                 self.open_camera()
             else:
-                self.redis.set("begin_work",0)
+                self.redis.set("begin_work", 0)
 
         # 开机准备走路
         elif int(msgObj["X"]) > 0:
             cmd = "TL 90"
+
+        # 复位
+        # elif (msgObj["LB"]>0):
+
         return cmd
 
     def open_camera(self):
-        # cmd = "cd ../../StrongSORT/ && python3 track.py --source 0  &" 
+        # cmd = "cd ../../StrongSORT/ && python3 track.py --source 0  &"
         # os.system(cmd)
         pass
