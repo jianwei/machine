@@ -61,8 +61,6 @@ class RMQ(object):
     def turn(self, angle, type):
         angle = int(angle)
         global_angle = int(self.redis.get("global_angle"))
-        # print("global_angle110---", global_angle)
-        # global_angle = global_angle if global_angle > 0 else (90-angle)
         if (global_angle == 0):
             if (type == 1):
                 global_angle = 90-angle
@@ -70,30 +68,30 @@ class RMQ(object):
                 global_angle = 90+angle
             self.redis.set("global_angle", global_angle)
         cmd = ""
-        print("global_angle,angle,type", global_angle, angle, type)
-        if ( int(angle)== 0 ) :
-            cmd = "TR "+ str(90+angle)
-            self.redis.set("global_angle",90)
-        else :
-            if (type ==1):  # y<0 x>0
-                self.redis.set("global_angle",90-angle)
-                if(global_angle>90):
-                    turn_angle = global_angle-90+angle
-                    cmd = "TR "+ str(turn_angle)
+        # print("global_angle,angle,type", global_angle, angle, type)
+        # if ( int(angle)== 0 ) :
+        #     cmd = "TR "+ str(90+angle)
+        #     self.redis.set("global_angle",90)
+
+        if (type ==1):  # y<0 x>0
+            self.redis.set("global_angle",90-angle)
+            if(global_angle>90):
+                turn_angle = global_angle-90+angle
+                cmd = "TL "+ str(turn_angle)
+            else:
+                if((90-global_angle)>angle):
+                    cmd = "TL "+ str((90-global_angle)-angle)
                 else:
-                    if((90-global_angle)>angle):
-                        cmd = "TR "+ str((90-global_angle)-angle)
-                    if((90-global_angle)<angle):
-                        cmd = "TL "+ str(abs((90-global_angle)-angle))
-            elif (type==2) : #y<0 x<0
-                self.redis.set("global_angle",90+angle)
-                if(global_angle<90):
-                    cmd = "TR "+ str(abs(global_angle-(90-angle)))
+                    cmd = "TR "+ str(abs((90-global_angle)-angle))
+        elif (type==2) : #y<0 x<0
+            self.redis.set("global_angle",90+angle)
+            if(global_angle<90):
+                cmd = "TR "+ str(abs(angle+(90-global_angle)))
+            else:
+                if(global_angle>(90+angle)):
+                    cmd = "TR "+ str(abs(global_angle-angle-90))
                 else:
-                    if(global_angle>angle):
-                        cmd = "TL "+ str(abs(global_angle-angle-90))
-                    if(global_angle<angle):
-                        cmd = "TR "+ str(abs(global_angle-angle-90))
+                    cmd = "TL "+ str(abs(global_angle-angle-90))
                 
         return cmd
 
