@@ -52,11 +52,11 @@ class RMQ(object):
             if (that):
                 if ("xbox" in json.loads(message).keys()):
                     cmd = self.xbox(message)
-                    print("cmd:", cmd)
+                    # print("cmd:", cmd)
                     if (cmd):
                         message = json.loads(message)
                         message["cmd"] = cmd+"."
-                        # that.send_cmd(message)
+                        that.send_cmd(message)
 
     def turn(self, angle, type):
         angle = int(angle)
@@ -154,7 +154,7 @@ class RMQ(object):
         # 2开始或者关闭工作
         elif int(msgObj["RB"]) > 0:
             cache_status = self.redis.get("begin_work")
-            print("cache_status:", cache_status)
+            # print("cache_status:", cache_status)
             if (cache_status and int(cache_status) == 0):
                 self.redis.set("begin_work", 1)
                 self.open_camera()
@@ -166,6 +166,7 @@ class RMQ(object):
             cmd = "TL 90"
 
         # 复位
+        
         # elif (msgObj["LB"]>0):
 
         return cmd

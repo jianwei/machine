@@ -4,6 +4,7 @@
 from asyncio.log import logger
 from distutils.log import error
 import json,sys
+import time
 import serial
 from utils.redis_message_queue import RMQ
 from utils.log import log
@@ -18,7 +19,7 @@ class arduino():
         # port = "/dev/ttyACM0"  # Arduino端口
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
-        port = "/dev/ttyACM0"  # Arduino端口
+        port = "/dev/ttyACM1"  # Arduino端口
         self.l = log()
         self.logger = self.l.getLogger()
         self.ser = serial.Serial(
@@ -34,14 +35,18 @@ class arduino():
         else:
             self.logger.info("Lost message:%s",message)
         uuid = message["uuid"]
+        # self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s",uuid,cmd,ret)
         try:
             while True:
+                time1 = float(time.time())
                 self.ser.write(cmd.encode())
                 response = self.ser.readall()
+                time2 = float(time.time())
+                diff = time2-time1
                 if (response):
                     response_arr = response.splitlines()
                     ret = response_arr[len(response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
-                    self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s",uuid,cmd,ret)
+                    self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s",uuid,cmd,ret,diff)
                     self.send_ret(ret)
                     return ret
         except Exception as e:
