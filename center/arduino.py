@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-from asyncio.log import logger
+# from asyncio.log import logger
 from distutils.log import error
-import json,sys
-import time
-import serial
+import json,sys,serial,time
 from utils.redis_message_queue import RMQ
 from utils.log import log
 sys.path.append("..")
 from redisConn.index import redisDB
-redis = redisDB()
+
 
 class arduino():
     def __init__(self):
@@ -19,7 +17,7 @@ class arduino():
         # port = "/dev/ttyACM0"  # Arduino端口
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
-        port = "/dev/ttyACM1"  # Arduino端口
+        port = "/dev/ttyACM0"  # Arduino端口
         self.l = log()
         self.logger = self.l.getLogger()
         self.ser = serial.Serial(
@@ -62,6 +60,7 @@ class arduino():
 
 
 if __name__ == '__main__':
+    redis = redisDB()
     redis.set("global_angle",0)
     a = arduino()
     a.run_subscribe()
