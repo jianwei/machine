@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+from asyncio.log import logger
+from distutils.log import error
+import json
 import serial
 from utils.redis_message_queue import RMQ
+from utils.log import log
 
 
 class arduino():
@@ -13,11 +17,21 @@ class arduino():
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
         port = "/dev/ttyACM0"  # Arduino端口
+        self.l = log()
+        self.logger = self.l.getLogger()
         self.ser = serial.Serial(
             port, 9600, timeout=1, dsrdtr=False)  # 设置端口，每秒回复一个信息
+        
 
-    def send_cmd(self,cmd):
+    # {'queue': 'arduino', 'message': '{"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}', 'time': '2022-08-14 08:28:44'}
+    def send_cmd(self,message):
         ret = -2
+        # message = json.loads(msg)
+        if("cmd" in message.keys()):
+            cmd = message["cmd"]
+        else:
+            self.logger.info("Lost message:%s",message)
+        uuid = message["uuid"]
         try:
             while True:
                 self.ser.write(cmd.encode())
@@ -25,14 +39,13 @@ class arduino():
                 if (response):
                     response_arr = response.splitlines()
                     ret = response_arr[len(response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
-                    break
+                    self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s",uuid,cmd,ret)
+                    self.send_ret(ret)
+                    return ret
         except Exception as e:
-            print("serial连接或者执行失败,reason:", e)
-            self.ser.close()
-        print(response, ret)
-        self.send_ret(ret)
-        return ret
-    
+            self.l.logError("serial连接或者执行失败,reason:")
+
+   
     def send_ret(self,ret):
         self.ret_rmq.publish(ret)
         pass
@@ -44,5 +57,3 @@ class arduino():
 if __name__ == '__main__':
     a = arduino()
     a.run_subscribe()
-
-    

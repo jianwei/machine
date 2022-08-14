@@ -10,11 +10,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Aug 13 12:50:23 2022
+# Make data base, printed on Sun Aug 14 08:15:05 2022
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -50,7 +49,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GudYZZ1r0G/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LvLsu81Epw/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -149,7 +148,6 @@ PLATFORMIO_CALLER = vscode
 LC_ALL = C
 # environment
 CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
- 
 # automatic
 ^F = $(notdir $^)
 # default
@@ -163,8 +161,9 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 2154
+VSCODE_PID = 873
 # environment
+ 
 _CE_CONDA = 
 # environment
 LANG = C
@@ -177,9 +176,9 @@ LANG = C
 
 # Directories
 
-# . (device 16777220, inode 9574790): 27 files, no impossibilities.
+# . (device 16777220, inode 9574790): 28 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 28 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -251,6 +250,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Aug 13 12:50:23 2022
+# Finished Make data base on Sun Aug 14 08:15:05 2022
 
  
