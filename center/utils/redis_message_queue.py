@@ -47,7 +47,7 @@ class RMQ(object):
                 continue
             data = {'queue': queue_name, 'message': message,
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
-            # that.logger.info("run_subscribe--data:%s",data)
+            that.logger.info("run_subscribe--data:%s",data)
             # print(data)
             if (that):
                 if ("xbox" in json.loads(message).keys()):
@@ -97,7 +97,8 @@ class RMQ(object):
 
     def xbox(self, message):
         message = json.loads(message)
-        msgObj = json.loads(message["xbox"])
+        msgObj = message["xbox"]
+        # print("msgObj",msgObj)
         cmd = ""
         # 前进
         if int(msgObj["RY"]) > 0:

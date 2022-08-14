@@ -11,7 +11,6 @@ class work:
 
     def loop(self):
         while(1):
-            
             print("----------------------begin loop ------------------------------")
             tmie1 = time.time()
             print("tmie1:",tmie1)

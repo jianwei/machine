@@ -71,7 +71,8 @@
         "typeinfo": "cpp",
         "filesystem": "cpp",
         "__functional_base_03": "cpp",
-        "serial.h": "c"
+        "serial.h": "c",
+        "regex": "cpp"
     },
     "MicroPython.executeButton": [
         {

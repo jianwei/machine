@@ -9,6 +9,9 @@
 #include <linux/joystick.h>
 #include <iostream>
 #include <math.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <hiredis/hiredis.h>
 // #include "./seria.cpp"
 
 #define XBOX_TYPE_BUTTON 0x01
@@ -74,8 +77,6 @@ typedef struct xbox_map
     int yy;
 
 } xbox_map_t;
-
-
 
 int xbox_open(const char *file_name)
 {
@@ -216,24 +217,15 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-char global_pwd[80] = "";
 void exec_shell(char *params)
 {
-    cout << "exec_shell:" << params << endl;
-    char cmd_all[512];
-    if (strlen(global_pwd) == 0)
-    {
-        char buf[80];
-        getcwd(buf, sizeof(buf));
-        sprintf(global_pwd, "%s", buf);
-    }
-    sprintf(cmd_all, "cd %s/../center/ &&  python3 xbox.py %s", global_pwd, params);
-    cout << "cmd_all:" << cmd_all << endl;
-    FILE *fp;
-    char buffer[80];
-    fp = popen(cmd_all, "r");
-    fgets(buffer, sizeof(buffer), fp);
-    pclose(fp);
+    redisContext *rc;
+    redisReply *reply;
+    struct timeval timeout = {1, 500000}; // 1.5 seconds
+    rc = redisConnectWithTimeout("127.0.0.1", 6379, timeout);
+
+    reply = (redisReply *)redisCommand(rc, "PUBLISH %s %s", "arduino", params);
+    freeReplyObject(reply);
 }
 
 int main(void)
@@ -252,7 +244,7 @@ int main(void)
         return -1;
     }
 
-    char *keyBoark = (char *) malloc(256);
+    char *keyBoark = (char *)malloc(256);
     while (1)
     {
         // keyBoark = "";
@@ -267,14 +259,12 @@ int main(void)
                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        sprintf(keyBoark,"--xbox \'{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}\'",
-               map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-               map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
-        
-        // sprintf(keyBoark,"--xbox {\\\"Time\\\":%d,\\\"A\\\":%d,\\\"B\\\":%d,\\\"X\\\":%d,\\\"Y\\\":%d,\\\"LB\\\":%d,\\\"RB\\\":%d,\\\"start\\\":%d,\\\"back\\\":%d,\\\"home\\\":%d,\\\"LO\\\":%d,\\\"RO\\\":%d,\\\"XX\\\":%d,\\\"YY\\\":%d,\\\"LX\\\":%d,\\\"LY\\\":%d,\\\"RX\\\":%d,\\\"RY\\\":%d,\\\"LT\\\":%d,\\\"RT\\\":%d}",
-        //        map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-        //        map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
-        
+        // sprintf(keyBoark, "--xbox \'{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}\'",
+        //         map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        sprintf(keyBoark, "{\"uuid\":%d,\"xbox\":{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}}",
+                map.time, map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
         exec_shell(keyBoark);
 

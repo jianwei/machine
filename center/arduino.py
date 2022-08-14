@@ -12,8 +12,8 @@ from redisConn.index import redisDB
 
 class arduino():
     def __init__(self):
-        self.pub_rmq = RMQ(url='redis://127.0.0.1:6379/15', name='arduino')
-        self.ret_rmq = RMQ(url='redis://127.0.0.1:6379/15', name='arduino_ret')
+        self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
+        self.ret_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino_ret')
         # port = "/dev/ttyACM0"  # Arduino端口
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
