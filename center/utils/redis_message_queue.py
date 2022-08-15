@@ -168,6 +168,10 @@ class RMQ(object):
         # 开机准备走路
         elif int(msgObj["X"]) > 0:
             cmd = "TL 90"
+        
+        # 开机准备走路
+        elif int(msgObj["Y"]) > 0:
+            cmd = "STOP 0."
 
         # 复位
         
