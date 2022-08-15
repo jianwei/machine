@@ -239,7 +239,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js1");
+    xbox_fd = xbox_open("/dev/input/js0");
     if (xbox_fd < 0)
     {
         return -1;
