@@ -40,6 +40,7 @@ class arduino():
         else:
             self.logger.info("Lost message:%s", message)
         uuid = message["uuid"]
+
         self.ser.write(cmd.encode())
         try:
             cnt=1
@@ -52,9 +53,10 @@ class arduino():
                 if (response):
                     response_arr = response.splitlines()
                     ret = response_arr[len(response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
-                    self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s",cnt, uuid, cmd, ret, diff)
-                    self.send_ret(ret)
-                    return ret
+                    if(str(ret)=="0"):
+                        self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,response)
+                        self.send_ret(ret)
+                        return ret
         except Exception as e:
             self.l.logError("serial连接或者执行失败,reason:")
 
