@@ -44,6 +44,7 @@ class arduino():
         self.ser.write(cmd.encode())
         try:
             cnt=1
+            ret_all = ""
             while True:
                 cnt+=1
                 time1 = float(time.time())
@@ -51,10 +52,12 @@ class arduino():
                 time2 = float(time.time())
                 diff = time2-time1
                 if (response):
-                    response_arr = response.splitlines()
-                    ret = response_arr[len(response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
+                    ret_all += str(response,"UTF-8")
+                    response_arr = ret_all.splitlines()
+                    ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
+
                     if(str(ret)=="0"):
-                        self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,response)
+                        self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
                         self.send_ret(ret)
                         return ret
         except Exception as e:
