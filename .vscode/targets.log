@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sun Aug 14 08:15:05 2022
+# Make data base, printed on Mon Aug 15 09:31:34 2022
 
 # Variables
 
@@ -21,6 +21,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
+ 
 PLATFORMIO_IDE = 2.5.2
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -49,7 +50,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LvLsu81Epw/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.MFPbM5GAUT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -161,9 +162,8 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 873
+VSCODE_PID = 1148
 # environment
- 
 _CE_CONDA = 
 # environment
 LANG = C
@@ -183,6 +183,7 @@ LANG = C
 # Implicit Rules
 
 # No implicit rules.
+ 
 
 # Files
 
@@ -250,6 +251,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Aug 14 08:15:05 2022
+# Finished Make data base on Mon Aug 15 09:31:34 2022
 
  
