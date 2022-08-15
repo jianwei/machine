@@ -65,7 +65,7 @@ class RMQ(object):
         global_angle = int(self.redis.get("global_angle"))
         ret = (90-angle) if type == 1 else (90+angle)
         print("global_angle,ret,angle, type:",global_angle,ret,angle, type)
-        
+
         if (global_angle == 0):
             if (type == 1):
                 global_angle = 90-angle
@@ -135,9 +135,13 @@ class RMQ(object):
             if (cmd and str(cmd.split()[1])=="0"):
                 cmd = ""
 
-        # 上下
-        elif int(msgObj["XX"]) < 0:
-            cmd = "ML 10"
+         #上
+        elif int(msgObj["YY"]) < 0:
+            cmd = "MU"
+        
+         #下
+        elif int(msgObj["YY"]) > 0:
+            cmd = "MD"
 
         # 左右
         elif int(msgObj["XX"]) > 0:
