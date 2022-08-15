@@ -32,51 +32,27 @@ class arduino():
         self.ser.write("default.".encode())  
         time.sleep(1)
 
-    # {'queue': 'arduino', 'message': '{"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}', 'time': '2022-08-14 08:28:44'}
+    # {"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}'
     def send_cmd(self, message):
         ret = -2
-        # message = json.loads(msg)
         if ("cmd" in message.keys()):
             cmd = message["cmd"]
         else:
             self.logger.info("Lost message:%s", message)
         uuid = message["uuid"]
-        # self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s",uuid,cmd,ret)
         self.ser.write(cmd.encode())
-        cnt = 0
         try:
+            cnt=1
             while True:
-                time.sleep(0.1)
-                # long_cmd_arr = ["TL","TR"]
-                # if(cmd.split()[0] in long_cmd_arr):
-                #     self.ser.timeout = 0.5
-                # else:
-                #     self.ser.timeout=self.timeout
-                
-                cnt += 1
-                print("---------------------read,cmd:",cmd, "--------------------", cnt,cmd.split())
+                cnt+=1
                 time1 = float(time.time())
-                # self.ser.write(cmd.encode())
                 response = self.ser.readall()
-                # response = self.ser.read(10)
-
-
-                # tdata = self.ser.read() 
-                # data_left = self.ser.inWaiting()  
-                # print("data_left,tdata",data_left,tdata)
-
-
-
-                print("---------------------response:",
-                    response, "-----------------------")
                 time2 = float(time.time())
                 diff = time2-time1
                 if (response):
                     response_arr = response.splitlines()
-                    ret = response_arr[len(
-                        response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
-                    self.logger.info(
-                        "send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s", uuid, cmd, ret, diff)
+                    ret = response_arr[len(response_arr)-1].decode("UTF-8") if len(response_arr) > 0 else ""
+                    self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s",cnt, uuid, cmd, ret, diff)
                     self.send_ret(ret)
                     return ret
         except Exception as e:
