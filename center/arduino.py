@@ -17,6 +17,7 @@ class arduino():
         # port = "/dev/ttyACM0"  # Arduino端口
         # port = "/dev/tty.usbmodem14101"  # Arduino端口
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
+        
         port = "/dev/ttyACM0"  # Arduino端口
         self.l = log()
         self.logger = self.l.getLogger()
