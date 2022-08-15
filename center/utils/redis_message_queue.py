@@ -49,6 +49,7 @@ class RMQ(object):
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
             # that.logger.info("run_subscribe--data:%s",data)
             # print(data)
+            # continue
             if (that):
                 if ("xbox" in json.loads(message).keys()):
                     cmd = self.xbox(message)
@@ -105,12 +106,16 @@ class RMQ(object):
         # 后退
         if int(msgObj["RY"]) > 0:
             val = int(int(abs(msgObj["RY"]))/32767 * 255)
+            val = val if val>=40 else 40
+            val = val if val<=150 else 150
             cmd = "MB "+str(val)
 
         
         # 前进
         elif int(msgObj["RY"]) < 0:
             val = int(int(abs(msgObj["RY"]))/32767 * 255)
+            val = val if val>=40 else 40
+            val = val if val<=150 else 150
             cmd = "MF "+str(val)
 
         # 左转
@@ -171,7 +176,7 @@ class RMQ(object):
         
         # 开机准备走路
         elif int(msgObj["Y"]) > 0:
-            cmd = "STOP 0."
+            cmd = "STOP 0"
 
         # 复位
         
