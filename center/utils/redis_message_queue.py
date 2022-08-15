@@ -68,6 +68,7 @@ class RMQ(object):
                 global_angle = 90+angle
             self.redis.set("global_angle", global_angle)
         cmd = ""
+
         # print("global_angle,angle,type", global_angle, angle, type)
         # if ( int(angle)== 0 ) :
         #     cmd = "TR "+ str(90+angle)
@@ -100,15 +101,17 @@ class RMQ(object):
         msgObj = message["xbox"]
         # print("msgObj",msgObj)
         cmd = ""
-        # 前进
+        
+        # 后退
         if int(msgObj["RY"]) > 0:
             val = int(int(abs(msgObj["RY"]))/32767 * 255)
-            cmd = "MF "+str(val)
+            cmd = "MB "+str(val)
 
-        # 后退
+        
+        # 前进
         elif int(msgObj["RY"]) < 0:
             val = int(int(abs(msgObj["RY"]))/32767 * 255)
-            cmd = "MB "+str(val)
+            cmd = "MF "+str(val)
 
         # 左转
         elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) < 0:
