@@ -73,6 +73,6 @@ class arduino():
 
 if __name__ == '__main__':
     redis = redisDB()
-    redis.set("global_angle", 0)
+    redis.set("global_angle", 90)
     a = arduino()
     a.run_subscribe()
