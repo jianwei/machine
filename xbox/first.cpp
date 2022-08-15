@@ -11,6 +11,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <time.h>
 #include <hiredis/hiredis.h>
 // #include "./seria.cpp"
 
@@ -217,13 +218,13 @@ void xbox_close(int xbox_fd)
     return;
 }
 
-void set_redis(char *params)
+void set_redis(char *params, redisContext *rc)
 {
-    redisContext *rc;
-    redisReply *reply;
-    struct timeval timeout = {1, 500000}; // 1.5 seconds
-    rc = redisConnectWithTimeout("127.0.0.1", 6379, timeout);
+    // redisContext *rc;
+    // struct timeval timeout = {1, 500000}; // 1.5 seconds
+    // rc = redisConnectWithTimeout("127.0.0.1", 6379, timeout);
 
+    redisReply *reply;
     reply = (redisReply *)redisCommand(rc, "PUBLISH %s %s", "arduino", params);
     freeReplyObject(reply);
 }
@@ -238,13 +239,20 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
     }
 
     char *keyBoark = (char *)malloc(256);
+    redisContext *rc;
+    struct timeval timeout = {1, 500000}; // 1.5 seconds
+    rc = redisConnectWithTimeout("127.0.0.1", 6379, timeout);
+
+    time_t last_time;
+    last_time = time(NULL);
+    // printf("--------------:%d\n", last_time);
     while (1)
     {
         // keyBoark = "";
@@ -259,14 +267,26 @@ int main(void)
                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        // sprintf(keyBoark, "--xbox \'{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}\'",
-        //         map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
         sprintf(keyBoark, "{\"uuid\":%d,\"xbox\":{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}}",
                 map.time, map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                 map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        set_redis(keyBoark);
+        if (map.lx != 0 || map.ly != 0)
+        {
+            time_t current_time;
+            current_time = time(NULL);
+            if (current_time - last_time >= 1)
+            {
+                int diff = current_time - last_time;
+                // printf("+++++lx++++:current_time:%d,last_time:%d,diff:%d-----\n", current_time, last_time, diff);
+                last_time = current_time;
+                set_redis(keyBoark, rc);
+            }
+
+            continue;
+        }
+        // printf("----------------------------------------------");
+        set_redis(keyBoark, rc);
 
         //开始工作、停止工作
         // printf("keyBoark:%s",keyBoark);
