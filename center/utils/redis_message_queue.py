@@ -65,6 +65,7 @@ class RMQ(object):
         global_angle = int(self.redis.get("global_angle"))
         ret = (90-angle) if type == 1 else (90+angle)
         print("global_angle,ret,angle, type:",global_angle,ret,angle, type)
+        
         if (global_angle == 0):
             if (type == 1):
                 global_angle = 90-angle
