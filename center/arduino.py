@@ -20,8 +20,7 @@ class arduino():
         port = "/dev/ttyACM0"  # Arduino端口
         self.l = log()
         self.logger = self.l.getLogger()
-        self.ser = serial.Serial(
-            port, 9600, timeout=1, dsrdtr=False)  # 设置端口，每秒回复一个信息
+        self.ser = serial.Serial(port, 9600, timeout=0.00001, dsrdtr=False)
         
 
     # {'queue': 'arduino', 'message': '{"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}', 'time': '2022-08-14 08:28:44'}
@@ -33,6 +32,7 @@ class arduino():
         else:
             self.logger.info("Lost message:%s",message)
         uuid = message["uuid"]
+        self.ser.write("default.".encode())
         # self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s",uuid,cmd,ret)
         try:
             while True:
