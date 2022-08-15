@@ -47,13 +47,14 @@ class RMQ(object):
                 continue
             data = {'queue': queue_name, 'message': message,
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
-            # that.logger.info("run_subscribe--data:%s",data)
+            print("------------------------------------------------------------------------------------")
+            that.logger.info("run_subscribe--data:%s",data)
             # print(data)
             # continue
             if (that):
                 if ("xbox" in json.loads(message).keys()):
                     cmd = self.xbox(message)
-                    # print("cmd:", cmd)
+                    print("cmd2:", cmd)
                     if (cmd):
                         message = json.loads(message)
                         message["cmd"] = cmd+"."
@@ -62,6 +63,8 @@ class RMQ(object):
     def turn(self, angle, type):
         angle = int(angle)
         global_angle = int(self.redis.get("global_angle"))
+        ret = (90-angle) if type == 1 else (90+angle)
+        print("global_angle,ret,angle, type:",global_angle,ret,angle, type)
         if (global_angle == 0):
             if (type == 1):
                 global_angle = 90-angle
@@ -69,17 +72,11 @@ class RMQ(object):
                 global_angle = 90+angle
             self.redis.set("global_angle", global_angle)
         cmd = ""
-
-        # print("global_angle,angle,type", global_angle, angle, type)
-        # if ( int(angle)== 0 ) :
-        #     cmd = "TR "+ str(90+angle)
-        #     self.redis.set("global_angle",90)
-
         if (type ==1):  # y<0 x>0
             self.redis.set("global_angle",90-angle)
             if(global_angle>90):
                 turn_angle = global_angle-90+angle
-                cmd = "TL "+ str(turn_angle)
+                cmd = "TR "+ str(turn_angle)
             else:
                 if((90-global_angle)>angle):
                     cmd = "TL "+ str((90-global_angle)-angle)
@@ -88,13 +85,12 @@ class RMQ(object):
         elif (type==2) : #y<0 x<0
             self.redis.set("global_angle",90+angle)
             if(global_angle<90):
-                cmd = "TR "+ str(abs(angle+(90-global_angle)))
+                cmd = "TL "+ str(abs(angle+(90-global_angle)))
             else:
                 if(global_angle>(90+angle)):
                     cmd = "TR "+ str(abs(global_angle-angle-90))
                 else:
                     cmd = "TL "+ str(abs(global_angle-angle-90))
-                
         return cmd
 
     def xbox(self, message):
@@ -118,30 +114,25 @@ class RMQ(object):
             val = val if val<=150 else 150
             cmd = "MF "+str(val)
 
-        # 左转
-        elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) < 0:
-            x = abs(int(msgObj["LX"]))
-            y = abs(int(msgObj["LY"]))
-            angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
-            # print("-------------------------------------------------------")
-            # print("z:----", x, y)
-            # print("angle----", angle)
-            # print("-------------------------------------------------------")
-            # cmd = "TL " + str(angle)
-            # if(global_angle>angle)
-            cmd = self.turn(angle, 2)
+        
+        elif (int(abs(msgObj["LY"]))==32767 or int(abs(msgObj["LX"]))==32767 ):
+            # 左转
+            if (int(msgObj["LY"]) < 0 and int(msgObj["LX"]) < 0):
+                x = abs(int(msgObj["LX"]))
+                y = abs(int(msgObj["LY"]))
+                angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
+                cmd = self.turn(angle, 2)
 
-        # 右转
-        elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) > 0:
-            x = abs(int(msgObj["LX"]))
-            y = abs(int(msgObj["LY"]))
-            angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
-            # print("-------------------------------------------------------")
-            # print("z:----", x, y)
-            # print("angle----", angle)
-            # print("-------------------------------------------------------")
-            # cmd = "TR " + str(angle)
-            cmd = self.turn(angle, 1)
+            # 右转
+            elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) > 0:
+                x = abs(int(msgObj["LX"]))
+                y = abs(int(msgObj["LY"]))
+                angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
+                cmd = self.turn(angle, 1)
+            
+            print("cmd1:",cmd)
+            if (cmd and str(cmd.split()[1])=="0"):
+                cmd = ""
 
         # 上下
         elif int(msgObj["XX"]) < 0:
