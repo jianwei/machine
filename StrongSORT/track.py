@@ -327,7 +327,7 @@ def run(
 def addPhoto(photo):
     if len(photo)>0:
         key = "allPoints"
-        photoLength = 60*60*10 #存储10分钟的数据，默认fps=10
+        photoLength = 60*60*10 #存储1分钟的数据，默认fps=10
         # photoLength = 10 #存储10分钟的数据，每秒钟1张
         allPhoto = redis.get(key)
         if not allPhoto :
