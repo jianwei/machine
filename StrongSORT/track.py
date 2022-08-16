@@ -153,9 +153,7 @@ def run(
         # print("time:",int(time.time()),begin_work)
         # if(begin_work and int(begin_work)==0):
         #     break
-        if vid_cap:
-            fps_show = vid_cap.get(cv2.CAP_PROP_FPS)
-            print("fps:",fps_show)
+
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
@@ -270,7 +268,7 @@ def run(
                             box_label["name"] = names[c]
                             box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
-                            box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
+                            # box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
                             # distance_pointer = redis.get("distance_pointer")
                             # # print("distance_pointer1",distance_pointer)
                             # if(distance_pointer):
