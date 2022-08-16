@@ -33,7 +33,8 @@ class machine ():
         cmd +="."
         cmd_dict = {
             "uuid": uuid.uuid1(),
-            "cmd": cmd
+            "cmd": cmd,
+            "from":"weeding"
         }
         print("cmd:",cmd_dict)
         self.pub_rmq.publish(json.dumps(cmd_dict))
@@ -114,8 +115,8 @@ class machine ():
                                 else:
                                     if (global_angle != 90):
                                         diffangle = global_angle - 90
-                                        flag = "TR" if a > 0 else "TL"
-                                        cmd = flag+" "+str(abs(diffangle))
+                                        flag = "TR" if diffangle > 0 else "TL"
+                                        cmd = flag+" "+str(abs(diffangle))+"."
                             if (len(cmd) > 0):
                                 self.redis.set("global_angle", global_angle)
                                 self.send_cmd(cmd)
