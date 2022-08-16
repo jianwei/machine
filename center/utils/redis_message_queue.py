@@ -99,63 +99,73 @@ class RMQ(object):
         msgObj = message["xbox"]
         # print("msgObj",msgObj)
         cmd = ""
+        cache_status = self.redis.get("begin_work")
+        print("cache_status:",cache_status)
+        if (str(cache_status)=="0" or cache_status==None):
+            # 后退
+            if int(msgObj["RY"]) > 0:
+                val = int(int(abs(msgObj["RY"]))/32767 * 255)
+                val = val if val>=40 else 40
+                val = val if val<=150 else 150
+                cmd = "MB "+str(val)
 
-        # 后退
-        if int(msgObj["RY"]) > 0:
-            val = int(int(abs(msgObj["RY"]))/32767 * 255)
-            val = val if val>=40 else 40
-            val = val if val<=150 else 150
-            cmd = "MB "+str(val)
-
-        
-        # 前进
-        elif int(msgObj["RY"]) < 0:
-            val = int(int(abs(msgObj["RY"]))/32767 * 255)
-            val = val if val>=40 else 40
-            val = val if val<=150 else 150
-            cmd = "MF "+str(val)
-
-        
-        elif (int(abs(msgObj["LY"]))==32767 or int(abs(msgObj["LX"]))==32767 ):
-            # 左转
-            if (int(msgObj["LY"]) < 0 and int(msgObj["LX"]) < 0):
-                x = abs(int(msgObj["LX"]))
-                y = abs(int(msgObj["LY"]))
-                angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
-                cmd = self.turn(angle, 2)
-
-            # 右转
-            elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) > 0:
-                x = abs(int(msgObj["LX"]))
-                y = abs(int(msgObj["LY"]))
-                angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
-                cmd = self.turn(angle, 1)
             
-            print("cmd1:",cmd)
-            if (cmd and str(cmd.split()[1])=="0"):
-                cmd = ""
+            # 前进
+            elif int(msgObj["RY"]) < 0:
+                val = int(int(abs(msgObj["RY"]))/32767 * 255)
+                val = val if val>=40 else 40
+                val = val if val<=150 else 150
+                cmd = "MF "+str(val)
 
-         #上
-        elif int(msgObj["YY"]) < 0:
-            cmd = "MU"
-        
-         #下
-        elif int(msgObj["YY"]) > 0:
-            cmd = "MD"
+            
+            elif (int(abs(msgObj["LY"]))==32767 or int(abs(msgObj["LX"]))==32767 ):
+                # 左转
+                if (int(msgObj["LY"]) < 0 and int(msgObj["LX"]) < 0):
+                    x = abs(int(msgObj["LX"]))
+                    y = abs(int(msgObj["LY"]))
+                    angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
+                    cmd = self.turn(angle, 2)
 
-        # 左右
-        elif int(msgObj["XX"]) > 0:
-            cmd = "MR 10"
+                # 右转
+                elif int(msgObj["LY"]) < 0 and int(msgObj["LX"]) > 0:
+                    x = abs(int(msgObj["LX"]))
+                    y = abs(int(msgObj["LY"]))
+                    angle = int(numpy.arctan(x/y) * 180.0 / 3.1415926)
+                    cmd = self.turn(angle, 1)
+                
+                print("cmd1:",cmd)
+                if (cmd and str(cmd.split()[1])=="0"):
+                    cmd = ""
+
+            #上
+            elif int(msgObj["YY"]) < 0:
+                cmd = "MU"
+            
+            #下
+            elif int(msgObj["YY"]) > 0:
+                cmd = "MD"
+
+            # 左右
+            elif int(msgObj["XX"]) > 0:
+                cmd = "MR 10"
+            
+            # 复位
+            elif int(msgObj["A"]) > 0:
+                cmd = "RST"
+                self.redis.set("global_angle", 0)
+
+            # 开机准备走路
+            elif int(msgObj["X"]) > 0:
+                cmd = "TL 90"
 
         # 2操作臂停止
-        elif int(msgObj["B"]) > 0:
+        if int(msgObj["B"]) > 0:
             cmd = "STOP 2"
 
-        # 复位
-        elif int(msgObj["A"]) > 0:
-            cmd = "RST"
-            self.redis.set("global_angle", 0)
-
+        # 机器停止
+        elif int(msgObj["Y"]) > 0:
+            cmd = "STOP 0"
+        
         # 2开始或者关闭工作
         elif int(msgObj["RB"]) > 0:
             cache_status = self.redis.get("begin_work")
@@ -165,14 +175,6 @@ class RMQ(object):
                 self.open_camera()
             else:
                 self.redis.set("begin_work", 0)
-
-        # 开机准备走路
-        elif int(msgObj["X"]) > 0:
-            cmd = "TL 90"
-        
-        # 开机准备走路
-        elif int(msgObj["Y"]) > 0:
-            cmd = "STOP 0"
 
         # 复位
         
