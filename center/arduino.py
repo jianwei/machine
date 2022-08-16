@@ -59,13 +59,18 @@ class arduino():
 
                     if(str(ret)=="0"):
                         self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
-                        self.send_ret(ret)
+                        ret_dict = {
+                            "uuid":uuid,
+                            "retsult":ret
+                        }
+                        # self.send_ret(ret)
+                        self.send_ret(json.dumps(ret_dict))
                         return ret
         except Exception as e:
             self.l.logError("serial连接或者执行失败,reason:")
 
-    def send_ret(self, ret):
-        self.ret_rmq.publish(ret)
+    def send_ret(self, ret_dict):
+        self.ret_rmq.publish(ret_dict)
         pass
 
     def run_subscribe(self):

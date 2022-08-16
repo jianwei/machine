@@ -153,6 +153,9 @@ def run(
         # print("time:",int(time.time()),begin_work)
         # if(begin_work and int(begin_work)==0):
         #     break
+        if vid_cap:
+            fps_show = vid_cap.get(cv2.CAP_PROP_FPS)
+            print("fps:",fps_show)
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
@@ -268,14 +271,14 @@ def run(
                             box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
                             box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
-                            distance_pointer = redis.get("distance_pointer")
-                            # print("distance_pointer1",distance_pointer)
-                            if(distance_pointer):
-                                distance_pointer = json.loads(distance_pointer)
-                            else:
-                                distance_pointer = {}
-                            distance_pointer[str(id)] = {"distance":box_label["distance"]}
-                            redis.set("distance_pointer",json.dumps(distance_pointer))
+                            # distance_pointer = redis.get("distance_pointer")
+                            # # print("distance_pointer1",distance_pointer)
+                            # if(distance_pointer):
+                            #     distance_pointer = json.loads(distance_pointer)
+                            # else:
+                            #     distance_pointer = {}
+                            # distance_pointer[str(id)] = {"distance":box_label["distance"]}
+                            # redis.set("distance_pointer",json.dumps(distance_pointer))
 
                             allPoints.append(box_label)
                             if save_crop:
@@ -310,7 +313,6 @@ def run(
                     save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
                     vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                 vid_writer[i].write(im0)
-
             prev_frames[i] = curr_frames[i]
 
     # Print results
