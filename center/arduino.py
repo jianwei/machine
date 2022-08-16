@@ -9,6 +9,7 @@ import sys
 # from tkinter.messagebox import NO
 import serial
 import time
+import os
 from utils.redis_message_queue import RMQ
 from utils.log import log
 sys.path.append("..")
@@ -69,10 +70,17 @@ class arduino():
 
     def run_subscribe(self):
         self.pub_rmq.run_subscribe(self)
+    
+    def open_camera(self):
+        print ("---------------------------------------open camera--------------------------------------")
+        cmd = "cd ../StrongSORT/ && python3 track.py --source 0  &"
+        os.system(cmd)
+        pass
 
 
 if __name__ == '__main__':
     redis = redisDB()
     redis.set("global_angle", 90)
     a = arduino()
+    a.open_camera()
     a.run_subscribe()

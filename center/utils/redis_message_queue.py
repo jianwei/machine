@@ -172,7 +172,7 @@ class RMQ(object):
             # print("cache_status:", cache_status)
             if (cache_status and int(cache_status) == 0):
                 self.redis.set("begin_work", 1)
-                self.open_camera()
+                # self.open_camera()
             else:
                 self.redis.set("begin_work", 0)
 
@@ -182,7 +182,4 @@ class RMQ(object):
 
         return cmd
 
-    def open_camera(self):
-        # cmd = "cd ../../StrongSORT/ && python3 track.py --source 0  &"
-        # os.system(cmd)
-        pass
+
