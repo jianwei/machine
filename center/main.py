@@ -11,6 +11,7 @@ from utils.speed import speed
 from utils.point import point
 from utils.line import line
 from utils.work import work
+from utils.log import log
 sys.path.append("..")
 from redisConn.index import redisDB
 # chmod -R 777 /dev/ttyAMA0
@@ -27,18 +28,23 @@ class machine ():
         self.line = line(self.point)
         self.work = work(self.point, self.speed)
         self.angle_distance = 5  # cm
+        self.l = log()
+        self.logger = self.l.getLogger()
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
 
     def send_cmd(self, cmd):
-        cmd += "."
-        cmd_dict = {
-            "uuid": str(uuid.uuid1()),
-            "cmd": cmd,
-            "from": "weeding"
-        }
-        print("cmd:", cmd_dict)
-        self.pub_rmq.publish(json.dumps(cmd_dict))
+        if(cmd!=""):
+            cmd += "."
+            cmd_dict = {
+                "uuid": str(uuid.uuid1()),
+                "cmd": cmd,
+                "from": "camera"
+            }
+            self.logger.info("send_cmd-cmd:%s", cmd_dict)
+            self.pub_rmq.publish(json.dumps(cmd_dict))
+        else:
+            self.logger.info("cmd null:%s",cmd)
         # response = self.ser.readall() #read a string from port
 
     def loop(self):
@@ -58,7 +64,7 @@ class machine ():
         # print(mock)
         currentTime = 0
         while (1):
-            print("----------------------loop begin ------------------------------")
+            self.logger.info("----------------------loop begin ------------------------------")
             allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
@@ -75,13 +81,13 @@ class machine ():
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
-                            print("current latsTime:", latsTime, ",loop!")
+                            self.logger.info("current latsTime:", latsTime, ",loop!")
                             time.sleep(0.1)
                             continue
                         currentTime = latsTime
                         speed = self.speed.getSpeed(allPhoto)
                         self.redis.set("speed", speed)
-                        print("speed:", speed)
+                        self.logger.info("speed:", speed)
                         # 稳定速度 转速
                         revolution = self.speed.uniformSpeed(speed)
                         self.go(revolution)
@@ -101,7 +107,7 @@ class machine ():
                         #         if (len(workcmd) > 0):
                         #             self.send_cmd(workcmd)
                         # 左右位置调整
-                        print("line", line)
+                        self.logger.info("line", line)
                         if (line and len(line) > 0):
                             center_point = screenSize[0]/2
                             diff_point = 20  # 误差
@@ -113,9 +119,9 @@ class machine ():
                                 if (length == 1 or length == 3):
                                     center = first[0] if length == 1 else first[1]
                                     centerx = center["centerx"]
-                                    print("centerx------------+++++++++0", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
+                                    self.logger.info("centerx------------+++++++++0", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
                                     if (centerx < (center_point-diff_point)):
-                                        print("centerx------------+++++++++1", global_angle,center_point-diff_point, centerx, center_point)
+                                        self.logger.info("centerx------------+++++++++1", global_angle,center_point-diff_point, centerx, center_point)
                                         flag = "TL"
                                         global_angle -= diff_angle
                                         if global_angle<=0:
@@ -123,7 +129,7 @@ class machine ():
                                         else:
                                             cmd = str(flag)+" "+str(10)
                                     elif (centerx > (center_point+diff_point)):
-                                        print("centerx------------+++++++++2", global_angle,center_point+diff_point, centerx, center_point)
+                                        self.logger.info("centerx------------+++++++++2", global_angle,center_point+diff_point, centerx, center_point)
                                         flag = "TR"
                                         global_angle += diff_angle
                                         if global_angle>=180:
@@ -131,14 +137,14 @@ class machine ():
                                         else:
                                             cmd = flag+" "+str(10)
                                     else:
-                                        print("centerx------------++++--+++++3", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
+                                        self.logger.info("centerx------------++++--+++++3", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
                                         if (global_angle != 90):
                                             diffangle = global_angle - 90
                                             global_angle = 90
                                             if diffangle != 0:
                                                 flag = "TR" if diffangle > 0 else "TL"
                                                 cmd = flag+" " + str(abs(diffangle))
-                                    print("global_angle----------:",global_angle)
+                                    self.logger.info("global_angle----------:",global_angle)
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                     else:
@@ -147,8 +153,8 @@ class machine ():
                     self.go(self.speed.revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
-            print("time:", time.time(), ",begin_work:", work_flag)
-            print("----------------------loop end ------------------------------")
+            self.logger.info("time:", time.time(), ",begin_work:", work_flag)
+            self.logger.info("----------------------loop end ------------------------------")
             time.sleep(1)
 
     def go(self,revolution):
