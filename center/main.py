@@ -58,7 +58,7 @@ class machine ():
         currentTime = 0
         while (1):
             print("----------------------loop begin ------------------------------")
-            # allPhoto = self.redis.get("allPoints")
+            allPhoto = self.redis.get("allPoints")
             # global_angle = self.redis.get("global_angle")
             # global_angle = int(global_angle) if global_angle else 0
             global_angle = 90
