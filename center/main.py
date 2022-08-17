@@ -69,61 +69,62 @@ class machine ():
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
                     print("allPhoto",allPhoto)
-                    latsTime = allPhoto[0][0]["time"]
-                    screenSize = allPhoto[0][0]["screenSize"]
-                    if (latsTime == currentTime):
-                        print("current latsTime:", latsTime, ",loop!")
-                        time.sleep(0.1)
-                        continue
-                    currentTime = latsTime
-                    speed = self.speed.getSpeed(allPhoto)
-                    self.redis.set("speed", speed)
-                    print("speed:", speed)
-                    # 稳定速度 转速
-                    # revolution = self.speed.uniformSpeed(speed)
-                    # 分行 工作
-                    line = self.line.convertLine(allPhoto)
-                    # print(line)
-                    # for item in line:
-                    #     print("item:",item)
+                    if(len(allPhoto)>0):
+                        latsTime = allPhoto[0][0]["time"]
+                        screenSize = allPhoto[0][0]["screenSize"]
+                        if (latsTime == currentTime):
+                            print("current latsTime:", latsTime, ",loop!")
+                            time.sleep(0.1)
+                            continue
+                        currentTime = latsTime
+                        speed = self.speed.getSpeed(allPhoto)
+                        self.redis.set("speed", speed)
+                        print("speed:", speed)
+                        # 稳定速度 转速
+                        # revolution = self.speed.uniformSpeed(speed)
+                        # 分行 工作
+                        line = self.line.convertLine(allPhoto)
+                        # print(line)
+                        # for item in line:
+                        #     print("item:",item)
 
-                    # if (line and line[0]):
-                    #     length = len(line[0])
-                    #     y = line[length-1][0]["centery"]
-                    #     print(123, length, y)
-                    #     if (y >= 650 and y <= 720):
-                    #         # work
-                    #         workcmd = self.work.work(line)
-                    #         if (len(workcmd) > 0):
-                    #             self.send_cmd(workcmd)
-                    # 左右位置调整
-                    if (line and len(line) > 0):
-                        center_point = screenSize[0]/2
-                        diff_point = 20   #误差
-                        diff_angle = 10   #每次的旋转角度
-                        first = line[0]
-                        length = len(first)
-                        cmd = ""
-                        if (length > 0):
-                            if (length == 1 or length == 3):
-                                center = first[0] if length == 1 else first[1]
-                                centerx = center["centerx"]
-                                if (centerx < (center_point-diff_point)):
-                                    flag = "TL"
-                                    global_angle += diff_angle
-                                    cmd = str(flag)+" "+str(10)
-                                elif (centerx > (center_point+diff_point)):
-                                    flag = "TR"
-                                    global_angle += diff_angle
-                                    cmd = flag+" "+str(10)
-                                else:
-                                    if (global_angle != 90):
-                                        diffangle = global_angle - 90
-                                        flag = "TR" if diffangle > 0 else "TL"
-                                        cmd = flag+" "+str(abs(diffangle))+"."
-                            if (len(cmd) > 0):
-                                self.redis.set("global_angle", global_angle)
-                                self.send_cmd(cmd)
+                        # if (line and line[0]):
+                        #     length = len(line[0])
+                        #     y = line[length-1][0]["centery"]
+                        #     print(123, length, y)
+                        #     if (y >= 650 and y <= 720):
+                        #         # work
+                        #         workcmd = self.work.work(line)
+                        #         if (len(workcmd) > 0):
+                        #             self.send_cmd(workcmd)
+                        # 左右位置调整
+                        if (line and len(line) > 0):
+                            center_point = screenSize[0]/2
+                            diff_point = 20   #误差
+                            diff_angle = 10   #每次的旋转角度
+                            first = line[0]
+                            length = len(first)
+                            cmd = ""
+                            if (length > 0):
+                                if (length == 1 or length == 3):
+                                    center = first[0] if length == 1 else first[1]
+                                    centerx = center["centerx"]
+                                    if (centerx < (center_point-diff_point)):
+                                        flag = "TL"
+                                        global_angle += diff_angle
+                                        cmd = str(flag)+" "+str(10)
+                                    elif (centerx > (center_point+diff_point)):
+                                        flag = "TR"
+                                        global_angle += diff_angle
+                                        cmd = flag+" "+str(10)
+                                    else:
+                                        if (global_angle != 90):
+                                            diffangle = global_angle - 90
+                                            flag = "TR" if diffangle > 0 else "TL"
+                                            cmd = flag+" "+str(abs(diffangle))+"."
+                                if (len(cmd) > 0):
+                                    self.redis.set("global_angle", global_angle)
+                                    self.send_cmd(cmd)
                 else:
                     revolution = self.speed.revolution
 
