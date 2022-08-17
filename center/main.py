@@ -141,7 +141,7 @@ class machine ():
                                             diffangle = global_angle - 90
                                             global_angle = 90
                                             if diffangle != 0:
-                                                flag = "TR" if diffangle > 0 else "TL"
+                                                flag = "TL" if diffangle > 0 else "TR"
                                                 cmd = flag+" " + str(abs(diffangle))
                                     self.logger.info("end,global_angle----------:%s",global_angle)
                                     self.redis.set("global_angle", global_angle)
