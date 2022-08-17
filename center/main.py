@@ -143,4 +143,6 @@ if __name__ == "__main__":
         m.loop()
     except KeyboardInterrupt:
         print("ctrl+c stop")
+        redis = redisDB()
+        redis.set("allPoints", json.dumps([]))
         m.send_cmd("STOP 0")
