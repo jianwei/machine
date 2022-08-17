@@ -110,20 +110,24 @@ class machine ():
                                 if (length == 1 or length == 3):
                                     center = first[0] if length == 1 else first[1]
                                     centerx = center["centerx"]
-                                    print("centerx------------+++++++++",centerx,center_point)
+                                    print("centerx------------+++++++++0",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
                                     if (centerx < (center_point-diff_point)):
+                                        print("centerx------------+++++++++1",global_angle,center_point-diff_point,centerx,center_point)
                                         flag = "TL"
                                         global_angle += diff_angle
                                         cmd = str(flag)+" "+str(10)
                                     elif (centerx > (center_point+diff_point)):
+                                        print("centerx------------+++++++++2",global_angle,center_point+diff_point,centerx,center_point)
                                         flag = "TR"
                                         global_angle += diff_angle
                                         cmd = flag+" "+str(10)
                                     else:
+                                        print("centerx------------+++++++++3",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
                                         if (global_angle != 90):
                                             diffangle = global_angle - 90
                                             flag = "TR" if diffangle > 0 else "TL"
                                             cmd = flag+" "+str(abs(diffangle))+"."
+                                        print("cmd----3:",cmd)
                                 if (len(cmd) > 0):
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
