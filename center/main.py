@@ -32,7 +32,7 @@ class machine ():
     def send_cmd(self, cmd):
         cmd +="."
         cmd_dict = {
-            "uuid": uuid.uuid1(),
+            "uuid": str(uuid.uuid1()),
             "cmd": cmd,
             "from":"weeding"
         }
