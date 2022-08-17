@@ -28,7 +28,7 @@ class machine ():
         self.line = line(self.point)
         self.work = work(self.point, self.speed)
         self.angle_distance = 5  # cm
-        self.l = log()
+        self.l = log("main.log")
         self.logger = self.l.getLogger()
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()

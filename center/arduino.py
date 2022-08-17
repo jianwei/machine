@@ -25,7 +25,7 @@ class arduino():
         # port = "/dev/tty.usbmodem14201"  # Arduino端口
 
         port = "/dev/ttyACM0"  # Arduino端口
-        self.l = log()
+        self.l = log("./arduino.log")
         self.logger = self.l.getLogger()
         self.timeout = 0.005
         self.ser = serial.Serial(port=port,timeout=0, baudrate=9600)
