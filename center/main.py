@@ -134,6 +134,11 @@ class machine ():
                                     print("global_angle----------:",global_angle)
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
+                    else:
+                        print(13)
+                        revolution = self.speed.revolution
+                        cmd = "MF "+revolution
+                        self.send_cmd(cmd)
                 else:
                     print(22)
                     revolution = self.speed.revolution
