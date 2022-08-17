@@ -1,4 +1,5 @@
 # from convertPoints import ConvertPoints
+
 from utils.redis_message_queue import RMQ
 import time
 import os
@@ -30,13 +31,13 @@ class machine ():
         # self.convertPoints = ConvertPoints()
 
     def send_cmd(self, cmd):
-        cmd +="."
+        cmd += "."
         cmd_dict = {
             "uuid": str(uuid.uuid1()),
             "cmd": cmd,
-            "from":"weeding"
+            "from": "weeding"
         }
-        print("cmd:",cmd_dict)
+        print("cmd:", cmd_dict)
         self.pub_rmq.publish(json.dumps(cmd_dict))
         # response = self.ser.readall() #read a string from port
 
@@ -59,9 +60,9 @@ class machine ():
         while (1):
             print("----------------------loop begin ------------------------------")
             allPhoto = self.redis.get("allPoints")
-            # global_angle = self.redis.get("global_angle")
-            # global_angle = int(global_angle) if global_angle else 0
-            global_angle = 90
+            global_angle = self.redis.get("global_angle")
+            global_angle = int(global_angle) if global_angle else 90
+            # global_angle = 90
             # allPhoto = json.dumps(mock)
             # flag = self.redis.get("begin_work")
             work_flag = 1
@@ -69,7 +70,7 @@ class machine ():
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
-                    if(len(allPhoto)>0):
+                    if (len(allPhoto) > 0):
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
@@ -98,11 +99,11 @@ class machine ():
                         #         if (len(workcmd) > 0):
                         #             self.send_cmd(workcmd)
                         # 左右位置调整
-                        print("line",line)
+                        print("line", line)
                         if (line and len(line) > 0):
                             center_point = screenSize[0]/2
-                            diff_point = 20   #误差
-                            diff_angle = 10   #每次的旋转角度
+                            diff_point = 20  # 误差
+                            diff_angle = 10  # 每次的旋转角度
                             first = line[0]
                             length = len(first)
                             cmd = ""
@@ -110,25 +111,25 @@ class machine ():
                                 if (length == 1 or length == 3):
                                     center = first[0] if length == 1 else first[1]
                                     centerx = center["centerx"]
-                                    print("centerx------------+++++++++0",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
+                                    print("centerx------------+++++++++0", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
                                     if (centerx < (center_point-diff_point)):
-                                        print("centerx------------+++++++++1",global_angle,center_point-diff_point,centerx,center_point)
+                                        print("centerx------------+++++++++1", global_angle,center_point-diff_point, centerx, center_point)
                                         flag = "TL"
-                                        global_angle += diff_angle
+                                        global_angle -= diff_angle
                                         cmd = str(flag)+" "+str(10)
                                     elif (centerx > (center_point+diff_point)):
-                                        print("centerx------------+++++++++2",global_angle,center_point+diff_point,centerx,center_point)
+                                        print("centerx------------+++++++++2", global_angle,center_point+diff_point, centerx, center_point)
                                         flag = "TR"
                                         global_angle += diff_angle
                                         cmd = flag+" "+str(10)
                                     else:
-                                        print("centerx------------++++--+++++3",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
+                                        print("centerx------------++++--+++++3", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
                                         if (global_angle != 90):
                                             diffangle = global_angle - 90
+                                            global_angle = 90
                                             flag = "TR" if diffangle > 0 else "TL"
-                                            cmd = flag+" "+str(abs(diffangle))+"."
-                                        print("cmd----3:",cmd)
-                                if (len(cmd) > 0):
+                                            cmd = flag+" " + str(abs(diffangle))+"."
+                                    print("global_angle----------:",global_angle)
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                 else:
