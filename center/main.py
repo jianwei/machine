@@ -135,21 +135,20 @@ class machine ():
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                     else:
-                        print(13)
-                        revolution = self.speed.revolution
-                        cmd = "MF "+revolution
-                        self.send_cmd(cmd)
+                        self.go(revolution)
                 else:
-                    print(22)
-                    revolution = self.speed.revolution
-                    cmd = "MF "+revolution
-                    self.send_cmd(cmd)
+                    self.go(revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
             print("time:", time.time(), ",begin_work:", work_flag)
             print("----------------------loop end ------------------------------")
             time.sleep(1)
-        pass
+
+    def go(self,revolution):
+        revolution = self.speed.revolution
+        cmd = "MF "+str(revolution)
+        self.send_cmd(cmd)
+
 
 
 if __name__ == "__main__":
