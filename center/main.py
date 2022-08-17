@@ -81,7 +81,7 @@ class machine ():
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
-                            self.logger.info("current latsTime:", latsTime, ",loop!")
+                            self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
                             continue
                         currentTime = latsTime
