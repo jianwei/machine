@@ -69,7 +69,6 @@ class machine ():
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
-                    print(12)
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
                     if (len(allPhoto) > 0):

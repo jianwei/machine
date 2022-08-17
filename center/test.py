@@ -11,7 +11,7 @@ if __name__ == '__main__':
     logger = l.getLogger()
     msg = {
         "uuid": str(uuid.uuid1()),
-        "cmd": "TL 10."
+        "cmd": "TL 80."
     }
     message = json.dumps(msg)
     logger.info("sendMsg:%s", message)
