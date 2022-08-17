@@ -68,7 +68,7 @@ class machine ():
             if (flag and int(flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
-                    print("allPhoto",allPhoto)
+                    # print("allPhoto",allPhoto)
                     if(len(allPhoto)>0):
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
@@ -98,6 +98,7 @@ class machine ():
                         #         if (len(workcmd) > 0):
                         #             self.send_cmd(workcmd)
                         # 左右位置调整
+                        print("line",line)
                         if (line and len(line) > 0):
                             center_point = screenSize[0]/2
                             diff_point = 20   #误差
