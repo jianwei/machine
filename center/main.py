@@ -118,19 +118,26 @@ class machine ():
                                         print("centerx------------+++++++++1", global_angle,center_point-diff_point, centerx, center_point)
                                         flag = "TL"
                                         global_angle -= diff_angle
-                                        cmd = str(flag)+" "+str(10)
+                                        if global_angle<=0:
+                                            global_angle =  0
+                                        else:
+                                            cmd = str(flag)+" "+str(10)
                                     elif (centerx > (center_point+diff_point)):
                                         print("centerx------------+++++++++2", global_angle,center_point+diff_point, centerx, center_point)
                                         flag = "TR"
                                         global_angle += diff_angle
-                                        cmd = flag+" "+str(10)
+                                        if global_angle>=180:
+                                            global_angle =  180
+                                        else:
+                                            cmd = flag+" "+str(10)
                                     else:
                                         print("centerx------------++++--+++++3", global_angle, center_point - diff_point, center_point+diff_point, centerx, center_point)
                                         if (global_angle != 90):
                                             diffangle = global_angle - 90
                                             global_angle = 90
-                                            flag = "TR" if diffangle > 0 else "TL"
-                                            cmd = flag+" " + str(abs(diffangle))+"."
+                                            if diffangle != 0:
+                                                flag = "TR" if diffangle > 0 else "TL"
+                                                cmd = flag+" " + str(abs(diffangle))
                                     print("global_angle----------:",global_angle)
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
