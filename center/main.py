@@ -146,7 +146,7 @@ class machine ():
                                             cmd_prefix = "TL"
 
                                     if(target_angle!=global_angle):
-                                        cmd = cmd_prefix + str(abs(target_angle-global_angle))
+                                        cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
                                         global_angle = target_angle
                                         print ("send-cmd:",cmd)
 
