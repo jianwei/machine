@@ -37,37 +37,39 @@ class machine ():
             "from":"weeding"
         }
         print("cmd:",cmd_dict)
-        self.pub_rmq.publish(json.dumps(cmd_dict))
+        # self.pub_rmq.publish(json.dumps(cmd_dict))
         # response = self.ser.readall() #read a string from port
 
     def loop(self):
-        mock = [
-            [
-                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-            ],
-        ]
+        # mock = [
+        #     [
+        #         #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+        #         {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+        #     ],
+        # ]
         # print(mock)
         currentTime = 0
         while (1):
             print("----------------------loop begin ------------------------------")
             # allPhoto = self.redis.get("allPoints")
-            global_angle = self.redis.get("global_angle")
-            global_angle = int(global_angle) if global_angle else 0
-            allPhoto = json.dumps(mock)
-            flag = self.redis.get("begin_work")
+            # global_angle = self.redis.get("global_angle")
+            # global_angle = int(global_angle) if global_angle else 0
+            global_angle = 90
+            # allPhoto = json.dumps(mock)
+            # flag = self.redis.get("begin_work")
             flag = 1
             if (flag and int(flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
                     latsTime = allPhoto[0][0]["time"]
+                    screenSize = allPhoto[0][0]["screenSize"]
                     if (latsTime == currentTime):
                         print("current latsTime:", latsTime, ",loop!")
                         time.sleep(0.1)
@@ -77,24 +79,27 @@ class machine ():
                     self.redis.set("speed", speed)
                     print("speed:", speed)
                     # 稳定速度 转速
-                    revolution = self.speed.uniformSpeed(speed)
+                    # revolution = self.speed.uniformSpeed(speed)
                     # 分行 工作
                     line = self.line.convertLine(allPhoto)
                     # print(line)
                     # for item in line:
                     #     print("item:",item)
 
-                    if (line and line[0]):
-                        length = len(line[0])
-                        y = line[length-1][0]["centery"]
-                        print(123, length, y)
-                        if (y >= 650 and y <= 720):
-                            # work
-                            workcmd = self.work.work(line)
-                            if (len(workcmd) > 0):
-                                self.send_cmd(workcmd)
+                    # if (line and line[0]):
+                    #     length = len(line[0])
+                    #     y = line[length-1][0]["centery"]
+                    #     print(123, length, y)
+                    #     if (y >= 650 and y <= 720):
+                    #         # work
+                    #         workcmd = self.work.work(line)
+                    #         if (len(workcmd) > 0):
+                    #             self.send_cmd(workcmd)
                     # 左右位置调整
                     if (line and len(line) > 0):
+                        center_point = screenSize[0]/2
+                        diff_point = 20   #误差
+                        diff_angle = 10   #每次的旋转角度
                         first = line[0]
                         length = len(first)
                         cmd = ""
@@ -102,16 +107,14 @@ class machine ():
                             if (length == 1 or length == 3):
                                 center = first[0] if length == 1 else first[1]
                                 centerx = center["centerx"]
-                                if (centerx < 530):
+                                if (centerx < (center_point-diff_point)):
                                     flag = "TL"
-                                    global_angle += 10
+                                    global_angle += diff_angle
                                     cmd = str(flag)+" "+str(10)
-                                    pass
-                                elif (centerx > 550):
+                                elif (centerx > (center_point+diff_point)):
                                     flag = "TR"
-                                    global_angle += 10
+                                    global_angle += diff_angle
                                     cmd = flag+" "+str(10)
-                                    pass
                                 else:
                                     if (global_angle != 90):
                                         diffangle = global_angle - 90

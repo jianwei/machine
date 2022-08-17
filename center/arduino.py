@@ -87,5 +87,5 @@ if __name__ == '__main__':
     redis = redisDB()
     redis.set("global_angle", 90)
     a = arduino()
-    a.open_camera()
+    # a.open_camera()
     a.run_subscribe()
