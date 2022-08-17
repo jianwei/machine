@@ -220,9 +220,6 @@ void xbox_close(int xbox_fd)
 
 void set_redis(char *params, redisContext *rc)
 {
-    // redisContext *rc;
-    // struct timeval timeout = {1, 500000}; // 1.5 seconds
-    // rc = redisConnectWithTimeout("127.0.0.1", 6379, timeout);
 
     redisReply *reply;
     reply = (redisReply *)redisCommand(rc, "PUBLISH %s %s", "arduino", params);
@@ -278,19 +275,13 @@ int main(void)
             if (current_time - last_time >= 1)
             {
                 int diff = current_time - last_time;
-                // printf("+++++lx++++:current_time:%d,last_time:%d,diff:%d-----\n", current_time, last_time, diff);
                 last_time = current_time;
                 set_redis(keyBoark, rc);
             }
 
             continue;
         }
-        // printf("----------------------------------------------");
         set_redis(keyBoark, rc);
-
-        //开始工作、停止工作
-        // printf("keyBoark:%s",keyBoark);
-
         fflush(stdout);
     }
 
