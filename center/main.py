@@ -64,8 +64,8 @@ class machine ():
             global_angle = 90
             # allPhoto = json.dumps(mock)
             # flag = self.redis.get("begin_work")
-            flag = 1
-            if (flag and int(flag) == 1):
+            work_flag = 1
+            if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
@@ -128,10 +128,9 @@ class machine ():
                                     self.send_cmd(cmd)
                 else:
                     revolution = self.speed.revolution
-
             else:
                 self.redis.set("allPoints", json.dumps([]))
-            print("time:", time.time(), ",begin_work:", flag)
+            print("time:", time.time(), ",begin_work:", work_flag)
             print("----------------------loop end ------------------------------")
             time.sleep(1)
         pass
