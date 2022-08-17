@@ -110,6 +110,7 @@ class machine ():
                                 if (length == 1 or length == 3):
                                     center = first[0] if length == 1 else first[1]
                                     centerx = center["centerx"]
+                                    print("centerx------------+++++++++",centerx,center_point)
                                     if (centerx < (center_point-diff_point)):
                                         flag = "TL"
                                         global_angle += diff_angle
