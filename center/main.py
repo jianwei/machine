@@ -59,17 +59,16 @@ class machine ():
                 #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+                {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
             ],
         ]
         # print(mock)
         currentTime = 0
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
-            allPhoto = self.redis.get("allPoints")
+            # allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
-            # global_angle = 90
             # allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
@@ -77,7 +76,6 @@ class machine ():
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
-                    # print("allPhoto",allPhoto)
                     if (len(allPhoto) > 0):
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
@@ -128,6 +126,7 @@ class machine ():
 
                                     cmd_prefix = ""
                                     target_angle = 90
+                                    # print("target_angle,global_angle0",target_angle,global_angle,centerx,center_point)
                                     if(global_angle<=90):
                                         if (centerx<=center_point) :
                                             target_angle = 90-angle
@@ -137,17 +136,19 @@ class machine ():
                                             cmd_prefix = "TR"
                                     else:
                                         if (centerx<=center_point) :
-                                            target_angle = 90+angle
+                                            target_angle = 90-angle
                                             cmd_prefix = "TR" if global_angle<target_angle else "TL"
                                         else:
-                                            target_angle = 90-angle
+                                            target_angle = 90+angle
                                             cmd_prefix = "TL"
-
+                                    # print("target_angle,global_angle1",target_angle,global_angle)
                                     if(target_angle!=global_angle):
                                         cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
                                         global_angle = target_angle
                                         print ("send-cmd:",cmd)
-
+                                    else:
+                                        print ("send-cmd:none")
+                                    # print("target_angle,global_angle2",target_angle,global_angle)
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                     else:
@@ -175,4 +176,5 @@ if __name__ == "__main__":
         print("ctrl+c stop")
         redis = redisDB()
         redis.set("allPoints", json.dumps([]))
+        redis.set("global_angle", 90)
         m.send_cmd("STOP 0")
