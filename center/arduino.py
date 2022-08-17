@@ -51,17 +51,17 @@ class arduino():
                 cnt+=1
                 time1 = float(time.time())
                 response = self.ser.readall()
-                print("response:",response)
+                # print("response:",response)
                 time2 = float(time.time())
                 diff = time2-time1
                 if (response):
                     ret_all += str(response,"UTF-8")
                     response_arr = ret_all.splitlines()
                     ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
-                    self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
+                    # self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
 
                     if(str(ret)=="0"):
-                        self.logger.info("2--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
+                        self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
                         ret_dict = {
                             "uuid":uuid,
                             "retsult":ret
