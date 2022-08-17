@@ -66,18 +66,16 @@ class machine ():
         currentTime = 0
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
-            # allPhoto = self.redis.get("allPoints")
+            allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             # global_angle = 90
-            allPhoto = json.dumps(mock)
+            # allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
-            self.logger.info(allPhoto)
+            # self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
-                print(123)
                 if (allPhoto):
-                    print(23123)
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
                     if (len(allPhoto) > 0):
