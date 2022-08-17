@@ -6,6 +6,7 @@ import os
 import sys
 import json
 import uuid
+import numpy
 # import serial
 from utils.speed import speed
 from utils.point import point
@@ -48,33 +49,35 @@ class machine ():
         # response = self.ser.readall() #read a string from port
 
     def loop(self):
-        # mock = [
-        #     [
-        #         #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-        #         {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-        #     ],
-        # ]
+        mock = [
+            [
+                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                {'point': [[800, 645], [930, 645], [800, 715], [930, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+            ],
+        ]
         # print(mock)
         currentTime = 0
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
-            allPhoto = self.redis.get("allPoints")
+            # allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             # global_angle = 90
-            # allPhoto = json.dumps(mock)
+            allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
-
+            self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
+                print(123)
                 if (allPhoto):
+                    print(23123)
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
                     if (len(allPhoto) > 0):
@@ -119,31 +122,34 @@ class machine ():
                                 if (length == 1 or length == 3):
                                     center = first[0] if length == 1 else first[1]
                                     centerx = center["centerx"]
-                                    if (centerx < (center_point-diff_point)):
-                                        self.logger.info("centerx------------+++++++++1:%s,%s,%s", global_angle, centerx, center_point)
-                                        flag = "TL"
-                                        global_angle -= diff_angle
-                                        if global_angle<=0:
-                                            global_angle =  0
+                                    diff_point_x = centerx-center_point
+
+                                    x= self.point.sizexm(abs(diff_point_x))
+                                    tan = x/(1000*self.point.f)
+                                    angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
+
+                                    cmd_prefix = ""
+                                    target_angle = 90
+                                    if(global_angle<=90):
+                                        if (centerx<=center_point) :
+                                            target_angle = 90-angle
+                                            cmd_prefix = "TR" if global_angle<target_angle else "TL"
                                         else:
-                                            cmd = str(flag)+" "+str(10)
-                                    elif (centerx > (center_point+diff_point)):
-                                        self.logger.info("centerx------------+++++++++2:%s,%s,%s", global_angle, centerx, center_point)
-                                        flag = "TR"
-                                        global_angle += diff_angle
-                                        if global_angle>=180:
-                                            global_angle =  180
-                                        else:
-                                            cmd = flag+" "+str(10)
+                                            target_angle = 90+angle
+                                            cmd_prefix = "TR"
                                     else:
-                                        self.logger.info("centerx------------+++++++++3:%s,%s,%s", global_angle, centerx, center_point)
-                                        if (global_angle != 90):
-                                            diffangle = global_angle - 90
-                                            global_angle = 90
-                                            if diffangle != 0:
-                                                flag = "TL" if diffangle > 0 else "TR"
-                                                cmd = flag+" " + str(abs(diffangle))
-                                    self.logger.info("end,global_angle----------:%s",global_angle)
+                                        if (centerx<=center_point) :
+                                            target_angle = 90+angle
+                                            cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                        else:
+                                            target_angle = 90-angle
+                                            cmd_prefix = "TL"
+
+                                    if(target_angle!=global_angle):
+                                        cmd = cmd_prefix + str(abs(target_angle-global_angle))
+                                        global_angle = target_angle
+                                        print ("send-cmd:",cmd)
+
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                     else:
