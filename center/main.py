@@ -68,6 +68,7 @@ class machine ():
             if (flag and int(flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
+                    print("allPhoto",allPhoto)
                     latsTime = allPhoto[0][0]["time"]
                     screenSize = allPhoto[0][0]["screenSize"]
                     if (latsTime == currentTime):
