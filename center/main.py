@@ -37,7 +37,7 @@ class machine ():
             "from":"weeding"
         }
         print("cmd:",cmd_dict)
-        # self.pub_rmq.publish(json.dumps(cmd_dict))
+        self.pub_rmq.publish(json.dumps(cmd_dict))
         # response = self.ser.readall() #read a string from port
 
     def loop(self):
