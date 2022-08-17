@@ -65,6 +65,7 @@ class machine ():
             # global_angle = 90
             # allPhoto = json.dumps(mock)
             # flag = self.redis.get("begin_work")
+
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
@@ -82,7 +83,7 @@ class machine ():
                         self.redis.set("speed", speed)
                         print("speed:", speed)
                         # 稳定速度 转速
-                        # revolution = self.speed.uniformSpeed(speed)
+                        revolution = self.speed.uniformSpeed(speed)
                         # 分行 工作
                         line = self.line.convertLine(allPhoto)
                         # print(line)
@@ -134,6 +135,8 @@ class machine ():
                                     self.send_cmd(cmd)
                 else:
                     revolution = self.speed.revolution
+                    cmd = "MF "+revolution
+                    self.send_cmd(cmd)
             else:
                 self.redis.set("allPoints", json.dumps([]))
             print("time:", time.time(), ",begin_work:", work_flag)
