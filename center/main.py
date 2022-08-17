@@ -64,11 +64,12 @@ class machine ():
             global_angle = int(global_angle) if global_angle else 90
             # global_angle = 90
             # allPhoto = json.dumps(mock)
-            # flag = self.redis.get("begin_work")
+            # work_flag = self.redis.get("begin_work")
 
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
+                    print(12)
                     allPhoto = json.loads(allPhoto)
                     # print("allPhoto",allPhoto)
                     if (len(allPhoto) > 0):
@@ -134,6 +135,7 @@ class machine ():
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                 else:
+                    print(22)
                     revolution = self.speed.revolution
                     cmd = "MF "+revolution
                     self.send_cmd(cmd)
