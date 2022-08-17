@@ -85,6 +85,7 @@ class machine ():
                         print("speed:", speed)
                         # 稳定速度 转速
                         revolution = self.speed.uniformSpeed(speed)
+                        self.go(revolution)
                         # 分行 工作
                         line = self.line.convertLine(allPhoto)
                         # print(line)
@@ -135,9 +136,9 @@ class machine ():
                                     self.redis.set("global_angle", global_angle)
                                     self.send_cmd(cmd)
                     else:
-                        self.go(revolution)
+                        self.go(self.speed.revolution)
                 else:
-                    self.go(revolution)
+                    self.go(self.speed.revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
             print("time:", time.time(), ",begin_work:", work_flag)
@@ -145,7 +146,7 @@ class machine ():
             time.sleep(1)
 
     def go(self,revolution):
-        revolution = self.speed.revolution
+        # revolution = self.speed.revolution
         cmd = "MF "+str(revolution)
         self.send_cmd(cmd)
 
