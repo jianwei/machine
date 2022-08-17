@@ -41,8 +41,9 @@ class arduino():
         else:
             self.logger.info("Lost message:%s", message)
         uuid = message["uuid"]
-
+        print("cmd:",cmd)
         self.ser.write(cmd.encode())
+
         try:
             cnt=1
             ret_all = ""
@@ -50,6 +51,7 @@ class arduino():
                 cnt+=1
                 time1 = float(time.time())
                 response = self.ser.readall()
+                print("response:",response)
                 time2 = float(time.time())
                 diff = time2-time1
                 if (response):
