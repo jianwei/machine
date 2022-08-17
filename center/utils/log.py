@@ -14,7 +14,7 @@ class log():
         # WARNING（默认）：一个迹象表明,一些意想不到的事情发生了,或表明一些问题在不久的将来(例如。磁盘空间低”)。这个软件还能按预期工作。
         # ERROR：更严重的问题,软件没能执行一些功能
         # CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行   
-    def __init__(self,logflie="./log.txt"):
+    def __init__(self,logfile="./log.txt"):
         # 创建一个logger
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)  # Log等级总开关  此时是INFO
