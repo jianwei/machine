@@ -122,7 +122,7 @@ class machine ():
                                         global_angle += diff_angle
                                         cmd = flag+" "+str(10)
                                     else:
-                                        print("centerx------------+++++++++3",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
+                                        print("centerx------------++++--+++++3",global_angle,center_point-diff_point,center_point+diff_point,centerx,center_point)
                                         if (global_angle != 90):
                                             diffangle = global_angle - 90
                                             flag = "TR" if diffangle > 0 else "TL"
