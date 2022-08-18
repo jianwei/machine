@@ -86,7 +86,7 @@ class machine ():
                         if (latsTime == currentTime):
                             self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
-                            # continue
+                            continue
                         currentTime = latsTime
                         speed = self.speed.getSpeed(allPhoto)
                         # self.redis.set("speed", speed)

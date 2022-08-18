@@ -3,7 +3,7 @@ import json
 # from point import pointd 
 class speed ():
     def __init__(self,point):
-        self.defaultSpeed = 10  # 默认速度
+        self.defaultSpeed = 1  # 默认速度
         self.revolution = 20    #默认转速 ，对应默认速度
         self.diffSpeed = 1     # 允许的速度差
         self.point = point
@@ -56,7 +56,7 @@ class speed ():
             random = data[0][0]
             screenSize = random["screenSize"]
             self.point.setScreenSize(screenSize)
-            speed = self.point.sizey(point_speed)
+            speed = self.point.sizey(point_speed,45)
             # print("screenSize,speed",screenSize,speed)
         return speed
     
