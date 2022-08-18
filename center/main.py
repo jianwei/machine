@@ -101,6 +101,7 @@ class machine ():
                         # for item in line:
                         #     print("item:",item)
 
+
                         # if (line and line[0]):
                         #     length = len(line[0])
                         #     y = line[length-1][0]["centery"]
@@ -114,8 +115,6 @@ class machine ():
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
                             center_point = screenSize[0]/2
-                            diff_point = 20  # 误差
-                            diff_angle = 10  # 每次的旋转角度
                             first = line[0]
                             length = len(first)
                             cmd = ""
