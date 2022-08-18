@@ -60,6 +60,9 @@ class machine ():
                 #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786073.6786768, "screenSize": [1080, 720], "center": [847.5, 274.0], "centerx": 847.5, "centery": 274.0}
+            ],
+            [
                 {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786075.6786768, "screenSize": [1080, 720], "center": [847.5, 274.0], "centerx": 847.5, "centery": 274.0}
             ],
         ]
@@ -83,13 +86,14 @@ class machine ():
                         if (latsTime == currentTime):
                             self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
-                            continue
+                            # continue
                         currentTime = latsTime
                         speed = self.speed.getSpeed(allPhoto)
-                        self.redis.set("speed", speed)
+                        # self.redis.set("speed", speed)
                         self.logger.info("speed:%s", speed)
                         # 稳定速度 转速
                         revolution = self.speed.uniformSpeed(speed)
+                        self.logger.info("revolution:%s", revolution)
                         self.go(revolution)
                         # 分行 工作
                         line = self.line.convertLine(allPhoto)
@@ -126,32 +130,25 @@ class machine ():
                                     tan = x/(1000*self.point.f)
                                     angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
 
-                                    print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
+                                    # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
 
                                     cmd_prefix = ""
                                     target_angle = 90
-                                    print("target_angle,global_angle0",target_angle,global_angle,centerx,center_point)
                                     if(global_angle<=90):
                                         if (centerx<=center_point) :
-                                            print("target_angle,global_angle1",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90-angle
                                             cmd_prefix = "TR" if global_angle<target_angle else "TL"
                                         else:
-                                            print("target_angle,global_angle2",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90+angle
                                             cmd_prefix = "TR"
                                     else:
                                         if (centerx<=center_point) :
-                                            print("target_angle,global_angle3",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90-angle
-                                            # cmd_prefix = "TR" if global_angle<target_angle else "TL"
                                             cmd_prefix = "TL"
                                         else:
-                                            print("target_angle,global_angle4",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90+angle
                                             cmd_prefix = "TR" if global_angle<target_angle else "TL"
-                                            # cmd_prefix = "TR"
-                                    print("target_angle,global_angle5",target_angle,global_angle)
+                                    # print("target_angle,global_angle5",target_angle,global_angle)
                                     if(target_angle!=global_angle):
                                         cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
                                         global_angle = target_angle

@@ -4,9 +4,8 @@ import json
 class speed ():
     def __init__(self,point):
         self.defaultSpeed = 10  # 默认速度
-        self.revolution = 0    #默认转速 ，对应默认速度
-        # self.revolution = 40    #默认转速 ，对应默认速度
-        self.diffSpeed = 10     # 允许的速度差
+        self.revolution = 40    #默认转速 ，对应默认速度
+        self.diffSpeed = 1     # 允许的速度差
         self.point = point
         self.increment= 10        # 速度增量
         pass
@@ -34,20 +33,18 @@ class speed ():
                 if (flag):
                     index_list[0]=i
                     break     
-            speed = self.getspeed(data,index_list)
+            speed = self.getrealspeed(data,index_list)
             return speed
-        # else:
-        #     return self.defaultSpeed
+        else:
+            return self.defaultSpeed
 
     #确保匀速行驶 转速　
     def uniformSpeed(self,speed):
         # revolution = self.revolution
-        if(speed-self.defaultSpeed > self.diffSpeed) :  #加速
+        if(speed-self.defaultSpeed < self.diffSpeed) :  #加速
             self.revolution += self.increment
-        elif (speed-self.defaultSpeed < self.diffSpeed): #减速
+        elif (speed-self.defaultSpeed > self.diffSpeed): #减速
             self.revolution -= self.increment
-        # self.revolution = 0 if self.revolution<=0 else self.revolution 
-        # self.revolution = 255 if self.revolution>=255 else self.revolution
         self.revolution=40 if self.revolution <=40 else self.revolution
         self.revolution=150 if self.revolution >=150 else self.revolution
         return self.revolution
@@ -62,17 +59,8 @@ class speed ():
             speed = self.point.sizey(point_speed)
             # print("screenSize,speed",screenSize,speed)
         return speed
-            
-
-    def getCenter(self,point):
-        point = point["point"]
-        centerx = (point[0][0] + point[1][0])/2 
-        centery = (point[0][1] + point[3][1])/2 
-        return [centerx,centery]
-
     
-
-    def getspeed(self,data,index_list):
+    def getrealspeed(self,data,index_list):
         index = index_list[0]
         point1 = data[index][index_list[1]]
         point2 = data[index+1][index_list[2]]
@@ -86,3 +74,14 @@ class speed ():
             return -1
         speed = diffY / diffTime
         return speed
+            
+
+    def getCenter(self,point):
+        point = point["point"]
+        centerx = (point[0][0] + point[1][0])/2 
+        centery = (point[0][1] + point[3][1])/2 
+        return [centerx,centery]
+
+    
+
+    
