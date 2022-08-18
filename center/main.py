@@ -144,11 +144,13 @@ class machine ():
                                         if (centerx<=center_point) :
                                             print("target_angle,global_angle3",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90-angle
-                                            cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                            # cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                            cmd_prefix = "TL"
                                         else:
                                             print("target_angle,global_angle4",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90+angle
-                                            cmd_prefix = "TR"
+                                            cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                            # cmd_prefix = "TR"
                                     print("target_angle,global_angle5",target_angle,global_angle)
                                     if(target_angle!=global_angle):
                                         cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
