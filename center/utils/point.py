@@ -26,7 +26,7 @@ class point():
         return pointx
 
     def sizexm(self, px):    #单位微米
-        pointx = round(px*self.unit, 2)
+        pointx = round(px*self.unit*self.ws, 2)
         return pointx
 
     def sizey(self, px, angle=90):    # angle 默认90 否则45
