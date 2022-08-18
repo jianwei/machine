@@ -261,8 +261,8 @@ def run(
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             
-                            if names[c] !="person":
-                                continue 
+                            # if names[c] !="person":
+                            #     continue 
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             box_label["id"] = id
                             box_label["name"] = names[c]
