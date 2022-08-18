@@ -148,7 +148,7 @@ class machine ():
                                         else:
                                             print("target_angle,global_angle4",target_angle,global_angle,centerx,center_point)
                                             target_angle = 90+angle
-                                            cmd_prefix = "TL"
+                                            cmd_prefix = "TR"
                                     print("target_angle,global_angle5",target_angle,global_angle)
                                     if(target_angle!=global_angle):
                                         cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))

@@ -4,8 +4,8 @@ import json
 class speed ():
     def __init__(self,point):
         self.defaultSpeed = 10  # 默认速度
+        self.revolution = 0    #默认转速 ，对应默认速度
         # self.revolution = 40    #默认转速 ，对应默认速度
-        self.revolution = 0    #默认转速 ，对应默认速度  0测试
         self.diffSpeed = 10     # 允许的速度差
         self.point = point
         self.increment= 10        # 速度增量
