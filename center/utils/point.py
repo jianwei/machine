@@ -13,6 +13,7 @@ class point():
         self.defaultHeight = 2464
         self.ws = 1
         self.hs = 1
+        self.angle_scope = 62/2
 
     def setScreenSize(self, screenSize):
         self.showWidth = screenSize[0]
@@ -34,7 +35,11 @@ class point():
         # print("pointy",pointy)
         if (angle != 90):
             pointy = pointy / math.sin(45)
-        return pointy
+        realy =  pointy / 0.914742357805  #0.914742357805 = cos31 = cos(self.angle_scope)
+        return realy
+    
+    # def sizey2():
+    #     pass
 
     def distanceToPointy(self, distance):
         defaultPx = round((distance * self.f*1000/self.h)/self.unit, 2)
