@@ -27,6 +27,9 @@ class CSICamera(Camera):
         #         'Could not initialize camera.  Please see error trace.')
 
         atexit.register(self.cap.release)
+
+    def set_drvice(self,capture_device=0):
+        self.capture_device = capture_device
                 
     def _gst_str(self):
         # return 'nvarguscamerasrc sensor-id=%d ! video/x-raw(memory:NVMM), width=%d, height=%d, format=(string)NV12, framerate=(fraction)%d/1 ! nvvidconv ! video/x-raw, width=(int)%d, height=(int)%d, format=(string)BGRx ! videoconvert ! appsink' % (
