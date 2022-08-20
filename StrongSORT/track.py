@@ -153,7 +153,8 @@ def run(
         # print("time:",int(time.time()),begin_work)
         # if(begin_work and int(begin_work)==0):
         #     break
-
+        total_predictions =0
+        total_time = 0
         
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
@@ -312,6 +313,12 @@ def run(
                     vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                 vid_writer[i].write(im0)
             prev_frames[i] = curr_frames[i]
+        
+        if webcam:
+            frame_time = time_sync() - t1
+            total_time += frame_time
+            total_predictions += 1
+            print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
 
     # Print results
     print("seen:",seen)
