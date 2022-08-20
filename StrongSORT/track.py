@@ -282,8 +282,15 @@ def run(
                             allPoints.append(box_label)
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
-                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)   
-                LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
+                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
+                if webcam:
+                    frame_time = time_sync() - t1
+                    total_time += frame_time
+                    total_predictions += 1
+                    # print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))   
+                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time}\nAvg FPS: {total_predictions/total_time}')
+                else:
+                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 addPhoto(allPoints)
                 # print("track.py--allPoints--:",allPoints)
             else:
@@ -314,11 +321,7 @@ def run(
                 vid_writer[i].write(im0)
             prev_frames[i] = curr_frames[i]
         
-        if webcam:
-            frame_time = time_sync() - t1
-            total_time += frame_time
-            total_predictions += 1
-            print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
+        
 
     # Print results
     print("seen:",seen)
