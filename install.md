@@ -34,9 +34,17 @@
 	18.python3 /home/tuniu520/machine/env.py
 
 
+	sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+
     sudo apt install redis 
     pip3  install redis
+
+	pip3 uninstall opencv-python
     
+
+
+	sudo -H pip install jetson-stats
+	sudo jtop
     
 
 
