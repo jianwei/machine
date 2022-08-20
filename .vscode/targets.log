@@ -7,14 +7,15 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `all'.  Stop.
+make: *** No rule to make target `all'
+.  Stop.
 
 
-# Make data base, printed on Wed Aug 17 09:42:00 2022
+# Make data base, printed on Sat Aug 20 20:17:32 2022
 
- 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -32,7 +33,7 @@ CURDIR := /Users/carlos/Desktop/machine
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/1d735750dbb1b9066c7513078396ba0f.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_translationsConfigFile":"/Users/carlos/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/tcf.json","_cacheRoot":"/Users/carlos/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn","_resolvedLanguagePackCoreLocation":"/Users/carlos/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/Users/carlos/Library/Application Support/Code/clp/cc0490d1397af23dc5bf44a96fe15dbb.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -50,7 +51,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.eSJMB5g2nP/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.j9QUBlZnvT/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -84,7 +85,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
 CONDA_DEFAULT_ENV = base
 # environment
-PLATFORMIO_PATH = /Users/carlos/.platformio/python3/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
+PLATFORMIO_PATH = /Users/carlos/.platformio/penv/bin:/Users/carlos/.platformio/penv:/Users/carlos/.platformio/python3/bin:/Users/carlos/opt/anaconda3/bin:/Users/carlos/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -147,7 +148,6 @@ MAKEFILES :=
 PLATFORMIO_CALLER = vscode
 # environment
 LC_ALL = C
- 
 # environment
 CONDA_PYTHON_EXE = /Users/carlos/opt/anaconda3/bin/python
 # automatic
@@ -163,7 +163,7 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/carlos/opt/anaconda3
 # environment
-VSCODE_PID = 2498
+VSCODE_PID = 1461
 # environment
 _CE_CONDA = 
 # environment
@@ -171,15 +171,16 @@ LANG = C
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
+ 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 16777220, inode 12297327): 27 files, no impossibilities.
+# . (device 16777220, inode 12297327): 29 files, no impossibilities.
 
-# 27 files, no impossibilities in 1 directories.
+# 29 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -251,6 +252,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Aug 17 09:42:00 2022
+# Finished Make data base on Sat Aug 20 20:17:32 2022
 
  
