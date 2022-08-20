@@ -111,6 +111,9 @@ def run(
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], [0.0, 0.0, 0.0]
     for path, im, im0s, vid_cap, s in dataset:
+        fps = vid_cap.get(cv2.CAP_PROP_FPS)
+        print("---------------------fps-----------------------:",fps)
+
         t1 = time_sync()
         im = torch.from_numpy(im).to(device)
         im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
