@@ -99,7 +99,7 @@ def run(
         # view_img = True
 
         cudnn.benchmark = True  # set True to speed up constant image size inference
-        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,capture_device=1)
+        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,capture_device=0)
         bs = len(dataset)  # batch_size
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
