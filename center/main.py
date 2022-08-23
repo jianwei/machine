@@ -41,8 +41,22 @@ def send(cmd):
     else:
         main_logger.info("cmd null")
 
+
+def send_wheel_cmd(cmd):
+    send(cmd)
+    send("MF 40")
+
 def setTimeout(cbname,delay,*argments):
     threading.Timer(delay,cbname,argments).start()
+
+
+def wheel():
+    send("STOP 1")
+    send("ROT 255")
+    min_time = 1.225  # 1秒 1.225圈
+    unit = 1/min_time  # 1圈  unit 秒
+    setTimeout(send_wheel_cmd,unit,"STOP 3")
+    
 
 class machine ():
     def __init__(self):
@@ -86,6 +100,7 @@ class machine ():
         ]
         # print(mock)
         currentTime = 0
+
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
             allPhoto = self.redis.get("allPoints")
@@ -122,11 +137,12 @@ class machine ():
                             if (y >= 650 and y <= 720):
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
-                                    self.send_cmd("STOP 1")
-                                    self.send_cmd(workcmd)
-                                    min_time = 1.225  # 1秒 1.225圈
-                                    unit = 1/min_time  # 1圈  unit 秒
-                                    setTimeout(send,unit,"STOP 3")
+                                    wheel()
+                                    # self.send_cmd("STOP 1")
+                                    # self.send_cmd(workcmd)
+                                    # min_time = 1.225  # 1秒 1.225圈
+                                    # unit = 1/min_time  # 1圈  unit 秒
+                                    # setTimeout(send,unit,"STOP 3")
                         # 左右位置调整
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
