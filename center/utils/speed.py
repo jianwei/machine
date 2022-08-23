@@ -32,7 +32,8 @@ class speed ():
                         break   
                 if (flag):
                     index_list[0]=i
-                    break     
+                    break
+            print("index_list",index_list)    
             speed = self.getrealspeed(data,index_list)
             return speed
         else:
@@ -66,7 +67,7 @@ class speed ():
         point2 = data[index+1][index_list[2]]
         center1 = self.getCenter(point1)
         center2 = self.getCenter(point2)
-        diffY = center2[1]-center1[1]
+        diffY = abs(center2[1]-center1[1])
         if (diffY<=0):
             return 0 
         diffTime = point1["time"] - point2["time"]
@@ -81,7 +82,3 @@ class speed ():
         centerx = (point[0][0] + point[1][0])/2 
         centery = (point[0][1] + point[3][1])/2 
         return [centerx,centery]
-
-    
-
-    

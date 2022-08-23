@@ -1,59 +1,62 @@
-import json,sys
-import functools 
+import json
+import sys
+import functools
 
-def cmpx(a,b): 
+
+def cmpx(a, b):
     return a.get("centerx") - b.get("centerx")
 
-def cmpy(a,b): 
-    return a[0].get("centery") - b[0].get("centery")
+
+def cmpy(a, b):
+    return a[0].get("centery")-b[0].get("centery")
+
 
 class line ():
-    def __init__(self,point):
-        self.diff = 10 #cm 
+    def __init__(self, point):
+        self.diff = 10  # cm
         self.point = point
-       
 
-    def sortGreen(self,green):
+    def sortGreen(self, green):
         green = self.getCenter(green)
         green.sort(key=functools.cmp_to_key(cmpx))
         self.green = green
         return green
 
-
-    def convertLine(self,data):
-        self.green = data[0]
+    def convertLine(self, data, index):
+        self.green = data[index]
         self.sortGreen(self.green)
         diff = self.diff
         green = self.getCenter(self.green)
+
+        # print("self.green:",self.green)
         diffPx = self.point.distanceToPointy(diff)
         lineList = []
         for item in green:
             isAdded = False
-            if(len(lineList)<1):
+            if (len(lineList) < 1):
                 lineList.append([item])
                 isAdded = True
             else:
                 centerY = item.get("center")[1]
                 for itemLine in lineList:
                     lineY = itemLine[0].get("centery")
-                    if(float(lineY-diffPx)<=float(centerY)<=float(lineY+diffPx)):
+                    if (float(lineY-diffPx) <= float(centerY) <= float(lineY+diffPx)):
                         itemLine.append(item)
-                        isAdded = True                       
+                        isAdded = True
             if (not isAdded):
                 lineList.append([item])
         lineList.sort(key=functools.cmp_to_key(cmpy))
         self.lineList = lineList
         return lineList
 
-
-    def getCenter(self,green):
-        if (isinstance(green,str)):
+    def getCenter(self, green):
+        if (isinstance(green, str)):
             green = json.loads(green)
         for item in green:
             point = item.get("point")
-            centerx = round((point[0][0]+point[1][0]) /2,2)
-            centery = round((point[1][1]+point[3][1]) /2,2)
-            item["center"] = [centerx,centery]
+            centerx = round((point[0][0]+point[1][0]) / 2, 2)
+            centery = round((point[1][1]+point[3][1]) / 2, 2)
+            item["center"] = [centerx, centery]
             item["centerx"] = centerx
             item["centery"] = centery
         return green

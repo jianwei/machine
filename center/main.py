@@ -27,9 +27,10 @@ class machine ():
         self.point = point()
         self.speed = speed(self.point)
         self.line = line(self.point)
-        self.work = work(self.point, self.speed)
-        self.angle_distance = 5  # cm
         self.l = log("main.log")
+        self.work = work(self.point, self.speed,self.l)
+        self.angle_distance = 5  # cm
+        
         self.logger = self.l.getLogger()
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
@@ -60,10 +61,12 @@ class machine ():
                 #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786073.6786768, "screenSize": [1080, 720], "center": [847.5, 274.0], "centerx": 847.5, "centery": 274.0}
+                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
+                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": 182, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
             ],
             [
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786075.6786768, "screenSize": [1080, 720], "center": [847.5, 274.0], "centerx": 847.5, "centery": 274.0}
+                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": 182, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
+                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": 182, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
             ],
         ]
         # print(mock)
@@ -73,7 +76,7 @@ class machine ():
             allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
-            # allPhoto = json.dumps(mock)
+            allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -86,31 +89,33 @@ class machine ():
                         if (latsTime == currentTime):
                             self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
-                            continue
+                            # continue
                         currentTime = latsTime
-                        speed = self.speed.getSpeed(allPhoto)
+                        machine_speed = self.speed.getSpeed(allPhoto)
                         # self.redis.set("speed", speed)
-                        self.logger.info("speed:%s", speed)
+                        self.logger.info("machine_speed:%s", machine_speed)
                         # 稳定速度 转速
-                        revolution = self.speed.uniformSpeed(speed)
+                        revolution = self.speed.uniformSpeed(machine_speed)
                         self.logger.info("revolution:%s", revolution)
                         self.go(revolution)
                         # 分行 工作
-                        line = self.line.convertLine(allPhoto)
+                        # self.logger.info("----------------allPhoto--------------:%s", allPhoto)
+                        line = self.line.convertLine(allPhoto,0)
+                        # line1 = self.line.convertLine(allPhoto,1)
                         # print(line)
                         # for item in line:
                         #     print("item:",item)
-
-
-                        # if (line and line[0]):
-                        #     length = len(line[0])
-                        #     y = line[length-1][0]["centery"]
-                        #     print(123, length, y)
-                        #     if (y >= 650 and y <= 720):
-                        #         # work
-                        #         workcmd = self.work.work(line)
-                        #         if (len(workcmd) > 0):
-                        #             self.send_cmd(workcmd)
+                        # self.logger.info("----------------convertLine0--------------:%s", line)
+                        # self.logger.info("----------------convertLine1--------------:%s", line1)
+                        # break
+                        
+                        if (line and line[0]):
+                            lastLine  =  len (line)
+                            y = line[lastLine-1][0]["centery"]
+                            if (y >= 650 and y <= 720):
+                                workcmd = self.work.work(line,machine_speed)
+                                if (len(workcmd) > 0):
+                                    self.send_cmd(workcmd)
                         # 左右位置调整
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
