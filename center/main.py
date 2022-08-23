@@ -7,6 +7,8 @@ import sys
 import json
 import uuid
 import numpy
+from threading import Timer
+import threading
 # import serial
 from utils.speed import speed
 from utils.point import point
@@ -19,35 +21,48 @@ from redisConn.index import redisDB
 # import serial,sys,os,redis,time
 
 
+
+
+mainlog = log("main.log")
+main_logger = mainlog.getLogger()
+main_pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
+
+
+def send(cmd):
+    if(cmd!=""):
+        cmd += "."
+        cmd_dict = {
+            "uuid": str(uuid.uuid1()),
+            "cmd": cmd,
+            "from": "camera"
+        }
+        main_logger.info("end_cmd-cmd:%s", cmd_dict)
+        main_pub_rmq.publish(json.dumps(cmd_dict))
+    else:
+        main_logger.info("cmd null")
+
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
+
 class machine ():
     def __init__(self):
         self.redis = redisDB()
         # self.default_speed = 10
-        self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
+        # self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
+        self.pub_rmq = main_pub_rmq
         self.point = point()
         self.speed = speed(self.point)
         self.line = line(self.point)
-        self.l = log("main.log")
-        self.work = work(self.point, self.speed,self.l)
+        # self.l = log("main.log")
+        self.work = work(self.point, self.speed,main_logger)
         self.angle_distance = 5  # cm
         
-        self.logger = self.l.getLogger()
+        self.logger = main_logger
         # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
         # self.convertPoints = ConvertPoints()
 
     def send_cmd(self, cmd):
-        if(cmd!=""):
-            cmd += "."
-            cmd_dict = {
-                "uuid": str(uuid.uuid1()),
-                "cmd": cmd,
-                "from": "camera"
-            }
-            self.logger.info("send_cmd-cmd:%s", cmd_dict)
-            self.pub_rmq.publish(json.dumps(cmd_dict))
-        else:
-            self.logger.info("cmd null")
-        # response = self.ser.readall() #read a string from port
+        send(cmd)
 
     def loop(self):
         mock = [
@@ -92,22 +107,14 @@ class machine ():
                             # continue
                         currentTime = latsTime
                         machine_speed = self.speed.getSpeed(allPhoto)
-                        # self.redis.set("speed", speed)
                         self.logger.info("machine_speed:%s", machine_speed)
                         # 稳定速度 转速
                         revolution = self.speed.uniformSpeed(machine_speed)
                         self.logger.info("revolution:%s", revolution)
                         self.go(revolution)
                         # 分行 工作
-                        # self.logger.info("----------------allPhoto--------------:%s", allPhoto)
                         line = self.line.convertLine(allPhoto,0)
-                        # line1 = self.line.convertLine(allPhoto,1)
-                        # print(line)
-                        # for item in line:
-                        #     print("item:",item)
-                        # self.logger.info("----------------convertLine0--------------:%s", line)
-                        # self.logger.info("----------------convertLine1--------------:%s", line1)
-                        # break
+
                         
                         if (line and line[0]):
                             lastLine  =  len (line)
@@ -115,7 +122,11 @@ class machine ():
                             if (y >= 650 and y <= 720):
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
+                                    self.send_cmd("STOP 1")
                                     self.send_cmd(workcmd)
+                                    min_time = 1.225  # 1秒 1.225圈
+                                    unit = 1/min_time  # 1圈  unit 秒
+                                    setTimeout(send,unit,"STOP 3")
                         # 左右位置调整
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
