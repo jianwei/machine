@@ -7,7 +7,7 @@ import sys
 import json
 import uuid
 import numpy
-from threading import Timer
+# from threading import Timer
 import threading
 # import serial
 from utils.speed import speed
