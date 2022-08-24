@@ -9,8 +9,8 @@ class redisDB ():
         db= 0
         self.redis_conn = redis.Redis(host=host, port= port, password=password, db= db)
     
-    def set(self,key,value):
-        self.redis_conn.set(key,value)
+    def set(self,key,value,ex=3600):
+        self.redis_conn.set(key,value,ex)
 
     def get (self,key):
         value = self.redis_conn.get(key)
