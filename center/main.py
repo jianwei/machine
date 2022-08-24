@@ -58,7 +58,10 @@ def wheel():
     send("RROT 100")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
-    setTimeout(send_wheel_cmd,1.5,"STOP 2")
+    time.sleep(1.5)
+    send_wheel_cmd("STOP 2")
+
+    # setTimeout(send_wheel_cmd,1.5,"STOP 2")
     
 
 class machine ():
@@ -132,6 +135,7 @@ class machine ():
                          # 分行 工作
                         line = self.line.convertLine(allPhoto,0)
                         if (line and line[0]):
+
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
                             uuid_id = line[lastLine-1][0]["id"]
