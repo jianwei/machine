@@ -142,10 +142,10 @@ class machine ():
                             else:
                                 self.redis.set(uuid_id,1,1*60)
                                 # if (y >= 650 and y <= 720):
-                                if (y >= 170 and y <= 180):
-                                    workcmd = self.work.work(line,machine_speed)
-                                    if (len(workcmd) > 0):
-                                        wheel()
+                                # if (y >= 170 and y <= 180):
+                                workcmd = self.work.work(line,machine_speed)
+                                if (len(workcmd) > 0):
+                                    wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         # 左右位置调整
