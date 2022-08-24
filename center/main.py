@@ -126,6 +126,9 @@ class machine ():
                             time.sleep(0.1)
                             # continue
                         currentTime = latsTime
+                        
+                        machine_speed = self.speed.getSpeed(allPhoto)
+                        self.logger.info("machine_speed:%s", machine_speed)
                          # 分行 工作
                         line = self.line.convertLine(allPhoto,0)
                         if (line and line[0]):
@@ -144,9 +147,8 @@ class machine ():
                                     wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                        if not is_working:
-                            machine_speed = self.speed.getSpeed(allPhoto)
-                            self.logger.info("machine_speed:%s", machine_speed)
+                        if  is_working:
+                            
                             # 稳定速度 转速
                             revolution = self.speed.uniformSpeed(machine_speed)
                             self.logger.info("revolution:%s", revolution)
