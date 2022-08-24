@@ -145,11 +145,8 @@ class machine ():
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
                                     wheel()
-                                    # self.send_cmd("STOP 1")
-                                    # self.send_cmd(workcmd)
-                                    # min_time = 1.225  # 1秒 1.225圈
-                                    # unit = 1/min_time  # 1圈  unit 秒
-                                    # setTimeout(send,unit,"STOP 3")
+                            else:
+                                self.logger.info("------uuid,centery:%s", uuid,y)
                         # 左右位置调整
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
