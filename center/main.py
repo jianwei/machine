@@ -53,7 +53,7 @@ def setTimeout(cbname,delay,*argments):
 
 def wheel():
     send("STOP 1")
-    send("RROT 255")
+    send("RROT 200")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
     setTimeout(send_wheel_cmd,unit,"STOP 3")
