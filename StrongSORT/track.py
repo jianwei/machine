@@ -14,7 +14,7 @@ import numpy as np
 from pathlib import Path
 import torch,time
 import torch.backends.cudnn as cudnn
-import uuid
+# import uuid
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # yolov5 strongsort root directory
@@ -271,7 +271,7 @@ def run(
                             box_label["name"] = names[c]
                             box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
-                            box_label["uuid"] = str(uuid.uuid1())
+                            # box_label["uuid"] = str(uuid.uuid1())
                             box_label["centerx"] = (point[0][0] + point[1][0])/2
                             box_label["centery"] = (point[0][1] + point[2][1])/2
                             box_label["center"] = [box_label["centerx"],box_label["centery"]]
