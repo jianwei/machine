@@ -154,9 +154,9 @@ class machine ():
                         if (is_working==False):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
-                            revolution = self.speed.uniformSpeed(machine_speed)
-                            self.logger.info("revolution:%s", revolution)
-                            self.go(revolution)
+                            # revolution = self.speed.uniformSpeed(machine_speed)
+                            # self.logger.info("revolution:%s", revolution)
+                            # self.go(revolution)
                         
                             # 左右位置调整
                             self.logger.info("line:%s", json.dumps(line))
