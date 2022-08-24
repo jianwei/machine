@@ -136,10 +136,10 @@ class machine ():
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
                             uuid_id = line[lastLine-1][0]["id"]
-                            if redis.get(uuid_id) :
+                            if self.redis.get(uuid_id) :
                                 self.logger.info("id 存在:%s", uuid_id)
                                 continue
-                            redis.set(uuid_id,1,5*60)
+                            self.redis.set(uuid_id,1,5*60)
                             # if (y >= 650 and y <= 720):
                             if (y >= 540 and y <= 550):
                                 workcmd = self.work.work(line,machine_speed)
