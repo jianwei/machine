@@ -44,6 +44,7 @@ def send(cmd):
 
 def send_wheel_cmd(cmd):
     send(cmd)
+    
     send("MF 40")
 
 def setTimeout(cbname,delay,*argments):
