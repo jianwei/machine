@@ -20,11 +20,11 @@ if __name__ == '__main__':
     logger = l.getLogger()
     msg = {
         "uuid": str(uuid.uuid1()),
-        "cmd": "ROT 100."
+        "cmd": "RROT 100."
         # "cmd": "STOP 0."
     }
     message = json.dumps(msg)
     logger.info("sendMsg:%s", message)
     print(rmq.publish(message))
-    print(rmq.publish('RST.'))
-    rmq.run_subscribe()
+    # print(rmq.publish('RST.'))
+    # rmq.run_subscribe()
