@@ -63,7 +63,7 @@ class arduino():
                     # time.sleep(0.1)
 
                     if(str(ret)=="0"): 
-                        self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
+                        self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s", uuid, cmd, ret, diff,ret_all)
                         ret_dict = {
                             "uuid":uuid,
                             "retsult":ret
