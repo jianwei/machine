@@ -44,6 +44,7 @@ def send(cmd):
 
 
 def send_wheel_cmd(cmd):
+    global is_working
     send(cmd)
     is_working=False
     send("MF 40")
@@ -103,7 +104,7 @@ class machine ():
         ]
         # print(mock)
         currentTime = 0
-        
+        global is_working
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
             allPhoto = self.redis.get("allPoints")
