@@ -142,7 +142,7 @@ class machine ():
                             else:
                                 self.redis.set(uuid_id,1,1*60)
                                 # if (y >= 650 and y <= 720):
-                                if (y >= 500 and y <= 720):
+                                if (y >= 320 and y <= 330):
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
                                         wheel()
