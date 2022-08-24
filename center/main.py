@@ -81,6 +81,7 @@ class machine ():
     def loop(self):
         mock = [
             [
+                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": 2, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
                 #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
@@ -106,7 +107,7 @@ class machine ():
             allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
-            allPhoto = json.dumps(mock)
+            # allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -134,7 +135,13 @@ class machine ():
                         if (line and line[0]):
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
-                            if (y >= 650 and y <= 720):
+                            uuid = line[lastLine-1][0]["uuid"]
+                            if redis.get("uuid") :
+                                self.logger.info("UUID 存在:%s", uuid)
+                                continue
+                            redis.set(uuid,1,5*60)
+                            # if (y >= 650 and y <= 720):
+                            if (y >= 540 and y <= 550):
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
                                     wheel()
