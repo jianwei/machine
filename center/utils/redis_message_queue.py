@@ -53,13 +53,13 @@ class RMQ(object):
             # continue
             if (that):
                 obj_msg  = json.loads(message)
-                # if ("xbox" in obj_msg.keys()):
-                #     cmd = self.xbox(obj_msg)
-                #     print("cmd2:", cmd)
-                #     if (cmd):
-                #         # message = json.loads(message)
-                #         obj_msg["cmd"] = cmd+"."
-                # that.send_cmd(obj_msg)
+                if ("xbox" in obj_msg.keys()):
+                    cmd = self.xbox(obj_msg)
+                    print("cmd2:", cmd)
+                    if (cmd):
+                        # message = json.loads(message)
+                        obj_msg["cmd"] = cmd+"."
+                that.send_cmd(obj_msg)
 
     def turn(self, angle, type):
         angle = int(angle)
