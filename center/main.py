@@ -126,7 +126,7 @@ class machine ():
                             time.sleep(0.1)
                             # continue
                         currentTime = latsTime
-                        
+
                         machine_speed = self.speed.getSpeed(allPhoto)
                         self.logger.info("machine_speed:%s", machine_speed)
                          # 分行 工作
@@ -148,7 +148,7 @@ class machine ():
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if  is_working:
-                            
+                            self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
                             revolution = self.speed.uniformSpeed(machine_speed)
                             self.logger.info("revolution:%s", revolution)
