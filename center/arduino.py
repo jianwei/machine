@@ -47,6 +47,7 @@ class arduino():
         try:
             cnt=1
             ret_all = ""
+            time0 = time.time()
             while True:
                 cnt+=1
                 time1 = float(time.time())
@@ -54,7 +55,6 @@ class arduino():
                 # print("response:",response)
                 time2 = float(time.time())
                 diff = time2-time1
-                count = 1
                 if (response):
                     ret_all += str(response,"UTF-8")
                     response_arr = ret_all.splitlines()
@@ -71,8 +71,8 @@ class arduino():
                         # self.send_ret(ret)
                         self.send_ret(json.dumps(ret_dict))
                         return ret
-                    count+=1
-                    if(count>=10000):
+                    time3 = time.time()
+                    if(time3-time0>=1):
                         break
         except Exception as e:
             self.l.logError("serial连接或者执行失败,reason:")
