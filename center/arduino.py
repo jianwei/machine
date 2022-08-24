@@ -54,12 +54,13 @@ class arduino():
                 # print("response:",response)
                 time2 = float(time.time())
                 diff = time2-time1
+                count = 1
                 if (response):
                     ret_all += str(response,"UTF-8")
                     response_arr = ret_all.splitlines()
                     ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
-                    self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
-                    time.sleep(0.1)
+                    # self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
+                    # time.sleep(0.1)
 
                     if(str(ret)=="0"): 
                         self.logger.info("cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
@@ -70,6 +71,9 @@ class arduino():
                         # self.send_ret(ret)
                         self.send_ret(json.dumps(ret_dict))
                         return ret
+                    count+=1
+                    if(count>=10000):
+                        break
         except Exception as e:
             self.l.logError("serial连接或者执行失败,reason:")
 
