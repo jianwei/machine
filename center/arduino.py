@@ -45,11 +45,11 @@ class arduino():
         self.ser.write(cmd.encode())
 
         try:
-            cnt=1
+            # cnt=1
             ret_all = ""
             time0 = time.time()
             while True:
-                cnt+=1
+                # cnt+=1
                 time1 = float(time.time())
                 response = self.ser.readall()
                 # print("response:",response)
