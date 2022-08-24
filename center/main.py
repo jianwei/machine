@@ -137,7 +137,7 @@ class machine ():
                             y = line[lastLine-1][0]["centery"]
                             uuid_id = line[lastLine-1][0]["id"]
                             if self.redis.get(uuid_id) :
-                                self.logger.info("id 存在:%s", uuid_id)
+                                self.logger.info("id 存在,5分钟内不重复处理:%s", uuid_id)
                                 continue
                             self.redis.set(uuid_id,1,5*60)
                             # if (y >= 650 and y <= 720):
