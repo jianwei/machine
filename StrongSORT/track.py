@@ -262,13 +262,17 @@ def run(
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             
-                            # if names[c] !="person":
-                            #     continue 
+                            if names[c] !="cup":
+                                continue 
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
+                            point = box_label["point"]
                             box_label["id"] = id
                             box_label["name"] = names[c]
                             box_label["time"] = time.time()
                             box_label["screenSize"] = screenSize
+                            box_label["centerx"] = (point[0][0] + point[1][0])/2
+                            box_label["centery"] = (point[0][1] + point[2][1])/2
+                            box_label["center"] = [box_label["centerx"],box_label["centery"]]
                             # box_label["distance"] = point.getDistanceY(box_label["point"],screenSize)
                             # distance_pointer = redis.get("distance_pointer")
                             # # print("distance_pointer1",distance_pointer)
