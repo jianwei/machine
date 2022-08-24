@@ -135,18 +135,18 @@ class machine ():
                         if (line and line[0]):
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
-                            uuid = line[lastLine-1][0]["uuid"]
-                            if redis.get("uuid") :
-                                self.logger.info("UUID 存在:%s", uuid)
+                            uuid_id = line[lastLine-1][0]["id"]
+                            if redis.get(uuid_id) :
+                                self.logger.info("id 存在:%s", uuid_id)
                                 continue
-                            redis.set(uuid,1,5*60)
+                            redis.set(uuid_id,1,5*60)
                             # if (y >= 650 and y <= 720):
                             if (y >= 540 and y <= 550):
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
                                     wheel()
                             else:
-                                self.logger.info("------uuid,centery:%s", uuid,y)
+                                self.logger.info("------id,centery:%s", uuid_id,y)
                         # 左右位置调整
                         self.logger.info("line:%s", json.dumps(line))
                         if (line and len(line) > 0):
