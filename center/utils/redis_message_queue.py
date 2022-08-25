@@ -72,11 +72,11 @@ class RMQ(object):
                         
                         if (sleep>0):
                             time.sleep(sleep)
-                            msg ={
-                                "uuid": obj_msg["uuid"],
-                                "cmd": cmd,
-                                "from": "camera->next",
-                            } 
+                        msg ={
+                            "uuid": obj_msg["uuid"],
+                            "cmd": cmd,
+                            "from": "camera->next",
+                        } 
                         that.send_cmd(msg)   
 
 
