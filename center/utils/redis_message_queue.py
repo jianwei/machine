@@ -64,10 +64,20 @@ class RMQ(object):
                     next_cmd = obj_msg["next_cmd"]
                     # print ("next_cmd-----------------:",next_cmd)
                     for item in next_cmd:
-                        print ("item-----------------:",item)
+                        # print ("item-----------------:",item)
+                        # parent_cmd = obj_msg[""]
                         cmd = item["cmd"] +"."
                         sleep = int(item["sleep"])
                         print ("cmd,sleep-----------------:",cmd,sleep)
+                        
+                        if (sleep>0):
+                            time.sleep(sleep)
+                            msg ={
+                                "uuid": obj_msg["uuid"],
+                                "cmd": cmd,
+                                "from": "camera->next",
+                            } 
+                        that.send_cmd(msg)   
 
 
 
