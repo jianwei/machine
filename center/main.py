@@ -158,19 +158,14 @@ class machine ():
                         if (line and line[0]):
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
-                            uuid_id = line[lastLine-1][0]["id"]
+                            uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
                             if (self.redis.get(uuid_id)==str(1)) :
                                 self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
                                 self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
-                                # is_working = True
-                                # is_working = True
                                 self.redis.set("is_working",1)
-                                self.redis.set(uuid_id,1,10)
-                                # "center": [269.0, 310.5]
-                                # if (y >= 650 and y <= 720):
-
                                 if (y >= 510 and y <= 520):
+                                    self.redis.set(uuid_id,1,10)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
                                         wheel()
