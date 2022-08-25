@@ -58,7 +58,7 @@ def wheel():
     send("RROT 100")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
-    time.sleep(2.5)
+    time.sleep(5)
     send_wheel_cmd("STOP 2")
 
     # setTimeout(send_wheel_cmd,1.5,"STOP 2")
