@@ -28,7 +28,7 @@ mainlog = log("main.log")
 main_logger = mainlog.getLogger()
 main_pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
 redis = redisDB()
-redis.set("is_working",False)
+redis.set("is_working",0)
 # is_working = False
 
 def send(cmd,next=[]):
@@ -50,7 +50,7 @@ def send_wheel_cmd(cmd):
     # global is_working
     send(cmd)
     # is_working=False
-    redis.set("is_working",False)
+    redis.set("is_working",0)
     send("MF 40")
 
 def setTimeout(cbname,delay,*argments):
@@ -165,7 +165,7 @@ class machine ():
                             else:
                                 # is_working = True
                                 # is_working = True
-                                self.redis.set("is_working",True)
+                                self.redis.set("is_working",1)
                                 self.redis.set(uuid_id,1,10)
                                 # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
@@ -176,7 +176,7 @@ class machine ():
                                         wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                        if (is_working==False or is_working=="False"):
+                        if (is_working==0 or is_working=="0"):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
                             # revolution = self.speed.uniformSpeed(machine_speed)
