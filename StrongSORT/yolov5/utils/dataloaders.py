@@ -18,6 +18,7 @@ from threading import Thread
 from urllib.parse import urlparse
 from zipfile import ZipFile
 from utils.jetcam.csi_camera import CSICamera
+from utils.jetcam.usb_camera import USBCamera
 
 import numpy as np
 import torch
@@ -84,7 +85,7 @@ def exif_transpose(image):
             5: Image.TRANSPOSE,
             6: Image.ROTATE_270,
             7: Image.TRANSVERSE,
-            8: Image.ROTATE_90,}.get(orientation)
+            8: Image.ROTATE_90, }.get(orientation)
         if method is not None:
             image = image.transpose(method)
             del exif[0x0112]
@@ -317,8 +318,10 @@ class LoadStreams:
         self.imgs, self.fps, self.frames, self.threads = [None] * n, [0] * n, [0] * n, [None] * n
         self.sources = [clean_str(x) for x in sources]  # clean source names for later
         self.auto = auto
-        camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
-        # if(capture_device and capture_device!=0) : 
+        camera = USBCamera(capture_device=0)
+        # camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
+        # camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
+        # if(capture_device and capture_device!=0) :
         #     camera.set_drvice(capture_device)
         for i, s in enumerate(sources):  # index, source
             # Start thread to read frames from video stream
@@ -336,7 +339,7 @@ class LoadStreams:
             assert cap.isOpened(), f'{st}Failed to open {s}'
             w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
             h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            self.screen = [w,h]
+            self.screen = [w, h]
             fps = cap.get(cv2.CAP_PROP_FPS)  # warning: may return 0 or nan
             self.frames[i] = max(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), 0) or float('inf')  # infinite stream fallback
             self.fps[i] = max((fps if math.isfinite(fps) else 0) % 100, 0) or 30  # 30 FPS fallback
@@ -353,7 +356,7 @@ class LoadStreams:
         if not self.rect:
             LOGGER.warning('WARNING: Stream shapes differ. For optimal performance supply similarly-shaped streams.')
 
-    def getScreen (self):
+    def getScreen(self):
         return self.screen
 
     def update(self, i, cap, stream):
