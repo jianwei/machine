@@ -60,7 +60,7 @@ def setTimeout(cbname,delay,*argments):
 def wheel():
     send("STOP 0")
     min_time = 1.225  # 1秒 1.225圈
-    unit = 1/min_time  # 1圈  unit 秒
+    unit = 1/min_time-0.02  # 1圈  unit 秒
     # main_logger.info("send RROT 100:%s", time.time())
     next_cmd = [
         {
