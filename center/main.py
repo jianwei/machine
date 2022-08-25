@@ -27,15 +27,18 @@ from redisConn.index import redisDB
 mainlog = log("main.log")
 main_logger = mainlog.getLogger()
 main_pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
-is_working = False
+redis = redisDB()
+redis.set("is_working",False)
+# is_working = False
 
-def send(cmd):
+def send(cmd,next=[]):
     if(cmd!=""):
         cmd += "."
         cmd_dict = {
             "uuid": str(uuid.uuid1()),
             "cmd": cmd,
-            "from": "camera"
+            "from": "camera",
+            "next_cmd":next
         }
         main_logger.info("end_cmd-cmd:%s", cmd_dict)
         main_pub_rmq.publish(json.dumps(cmd_dict))
@@ -44,9 +47,10 @@ def send(cmd):
 
 
 def send_wheel_cmd(cmd):
-    global is_working
+    # global is_working
     send(cmd)
-    is_working=False
+    # is_working=False
+    redis.set("is_working",False)
     send("MF 40")
 
 def setTimeout(cbname,delay,*argments):
@@ -55,16 +59,27 @@ def setTimeout(cbname,delay,*argments):
 
 def wheel():
     send("STOP 0")
-    main_logger.info("send RROT 100:%s", time.time())
-    send("RROT 100")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
-    main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
-    time.sleep(5)
-    main_logger.info("end_cmd-cmd -- sleep2:%s", time.time())
-    main_logger.info("send STOP 2:%s", time.time())
-    send_wheel_cmd("STOP 2")
-    main_logger.info("send STOP 2---end:%s", time.time())
+    # main_logger.info("send RROT 100:%s", time.time())
+    next = [
+        {
+            "cmd":"STOP 2",
+            "sleep":5
+        },
+        {
+            "cmd":"MF 40",
+            "sleep":0
+        }
+    ]
+    send("RROT 100",next)
+   
+    # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
+    # time.sleep(5)
+    # main_logger.info("end_cmd-cmd -- sleep2:%s", time.time())
+    # main_logger.info("send STOP 2:%s", time.time())
+    # send_wheel_cmd("STOP 2")
+    # main_logger.info("send STOP 2---end:%s", time.time())
     # setTimeout(send_wheel_cmd,1.5,"STOP 2")
     
 
@@ -112,7 +127,8 @@ class machine ():
         # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
         # print(mock)
         currentTime = 0
-        global is_working
+        # global is_working
+        is_working = self.redis.get("is_working")
         while (1):
             self.logger.info("----------------------loop begin ------------------------------")
             allPhoto = self.redis.get("allPoints")
@@ -147,7 +163,9 @@ class machine ():
                                 self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
                                 self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
-                                is_working = True
+                                # is_working = True
+                                # is_working = True
+                                self.redis.set("is_working",True)
                                 self.redis.set(uuid_id,1,10)
                                 # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
@@ -158,7 +176,7 @@ class machine ():
                                         wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                        if (is_working==False):
+                        if (is_working==False or is_working==str(False)):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
                             # revolution = self.speed.uniformSpeed(machine_speed)
