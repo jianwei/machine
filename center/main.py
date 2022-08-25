@@ -176,7 +176,7 @@ class machine ():
                                         wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                        if (is_working==False or is_working==str(False)):
+                        if (is_working==False or is_working=="False"):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
                             # revolution = self.speed.uniformSpeed(machine_speed)
