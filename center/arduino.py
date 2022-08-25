@@ -34,6 +34,8 @@ class arduino():
         time.sleep(1)
 
     # {"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}'
+    # begin_time:1661395309.6998177
+    # 1661395409.5343091  
     def send_cmd(self, message):
         ret = -2
         if ("cmd" in message.keys()):
@@ -71,6 +73,7 @@ class arduino():
                         }
                         # self.send_ret(ret)
                         self.send_ret(json.dumps(ret_dict))
+                        self.logger.info("end_time:%s",time.time())
                         return ret
                     time3 = time.time()
                     if(time3-time0>=1):
