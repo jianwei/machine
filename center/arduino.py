@@ -44,7 +44,7 @@ class arduino():
             self.logger.info("Lost message:%s", message)
         uuid = message["uuid"]
         # print("cmd:",cmd)
-        self.logger.info("begin_time:%s",time.time())
+        self.logger.info("cmd:%s,begin_time:%s",cmd,time.time())
         self.ser.write(cmd.encode())
 
         try:
@@ -73,7 +73,7 @@ class arduino():
                         }
                         # self.send_ret(ret)
                         self.send_ret(json.dumps(ret_dict))
-                        self.logger.info("end_time:%s",time.time())
+                        self.logger.info("cmd:%s,end_time:%s",cmd,time.time())
                         return ret
                     time3 = time.time()
                     if(time3-time0>=1):
