@@ -67,7 +67,7 @@ class RMQ(object):
                         # print ("item-----------------:",item)
                         # parent_cmd = obj_msg[""]
                         cmd = item["cmd"] +"."
-                        sleep = int(item["sleep"])
+                        sleep = float(item["sleep"])
                         print ("cmd,sleep-----------------:",cmd,sleep)
                         
                         if (sleep>0):
