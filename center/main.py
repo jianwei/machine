@@ -65,7 +65,7 @@ def wheel():
     next_cmd = [
         {
             "cmd":"STOP 2",
-            "sleep":5
+            "sleep":unit
         },
         {
             "cmd":"MF 40",
