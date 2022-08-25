@@ -105,6 +105,7 @@ class machine ():
                 {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": 182, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
             ],
         ]
+        # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
         # print(mock)
         currentTime = 0
         global is_working
@@ -135,7 +136,6 @@ class machine ():
                          # 分行 工作
                         line = self.line.convertLine(allPhoto,0)
                         if (line and line[0]):
-
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
                             uuid_id = line[lastLine-1][0]["id"]
@@ -146,12 +146,13 @@ class machine ():
                                 self.redis.set(uuid_id,1,1*60)
                                 # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
+
                                 if (y >= 280 and y <= 320):
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
                                         wheel()
-                                    else:
-                                        self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                else:
+                                    self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==False):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
