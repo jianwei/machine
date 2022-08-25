@@ -64,7 +64,7 @@ def wheel():
     main_logger.info("end_cmd-cmd -- sleep2:%s", time.time())
     main_logger.info("send STOP 2:%s", time.time())
     send_wheel_cmd("STOP 2")
-
+    main_logger.info("send STOP 2---end:%s", time.time())
     # setTimeout(send_wheel_cmd,1.5,"STOP 2")
     
 
