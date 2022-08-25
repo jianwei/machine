@@ -62,8 +62,12 @@ class RMQ(object):
                 that.send_cmd(obj_msg)
                 if("next_cmd" in obj_msg.keys()):
                     next_cmd = obj_msg["next_cmd"]
-                    print ("next_cmd-----------------:",next_cmd)
-                    
+                    # print ("next_cmd-----------------:",next_cmd)
+                    for item in next_cmd:
+                        print ("item-----------------:",item)
+                        cmd = item["cmd"] +"."
+                        sleep = int(item["sleep"])
+                        print ("cmd,sleep-----------------:",cmd,sleep)
 
 
 
