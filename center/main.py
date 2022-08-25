@@ -164,7 +164,7 @@ class machine ():
                                 self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 self.redis.set("is_working",1)
-                                if (y >= 510 and y <= 520):
+                                if (y >= 320 and y <= 330):
                                     self.redis.set(uuid_id,1,10)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
