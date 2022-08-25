@@ -170,7 +170,7 @@ class machine ():
                                 # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
 
-                                if (y >= 280 and y <= 320):
+                                if (y >= 510 and y <= 520):
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
                                         wheel()
