@@ -143,7 +143,8 @@ class machine ():
                                 self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
                             else:
                                 is_working = True
-                                self.redis.set(uuid_id,1,1*60)
+                                self.redis.set(uuid_id,1,10)
+                                # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
                                 # if (y >= 170 and y <= 180):
                                 workcmd = self.work.work(line,machine_speed)
