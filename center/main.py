@@ -62,7 +62,7 @@ def wheel():
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
     # main_logger.info("send RROT 100:%s", time.time())
-    next = [
+    next_cmd = [
         {
             "cmd":"STOP 2",
             "sleep":5
@@ -72,7 +72,7 @@ def wheel():
             "sleep":0
         }
     ]
-    send("RROT 100",next)
+    send("RROT 100",next_cmd)
    
     # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
     # time.sleep(5)
