@@ -58,7 +58,9 @@ def wheel():
     send("RROT 100")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
+    main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
     time.sleep(5)
+    main_logger.info("end_cmd-cmd -- sleep2:%s", time.time())
     send_wheel_cmd("STOP 2")
 
     # setTimeout(send_wheel_cmd,1.5,"STOP 2")

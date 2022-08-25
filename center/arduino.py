@@ -41,15 +41,16 @@ class arduino():
         else:
             self.logger.info("Lost message:%s", message)
         uuid = message["uuid"]
-        print("cmd:",cmd)
+        # print("cmd:",cmd)
+        self.logger.info("begin_time:%s",time.time())
         self.ser.write(cmd.encode())
 
         try:
-            # cnt=1
+            cnt=1
             ret_all = ""
             time0 = time.time()
             while True:
-                # cnt+=1
+                cnt+=1
                 time1 = float(time.time())
                 response = self.ser.readall()
                 # print("response:",response)
@@ -59,7 +60,7 @@ class arduino():
                     ret_all += str(response,"UTF-8")
                     response_arr = ret_all.splitlines()
                     ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
-                    # self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
+                    self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
                     # time.sleep(0.1)
 
                     if(str(ret)=="0"): 
