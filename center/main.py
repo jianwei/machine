@@ -58,7 +58,7 @@ def wheel():
     send("RROT 100")
     min_time = 1.225  # 1秒 1.225圈
     unit = 1/min_time  # 1圈  unit 秒
-    time.sleep(1.225)
+    time.sleep(2.5)
     send_wheel_cmd("STOP 2")
 
     # setTimeout(send_wheel_cmd,1.5,"STOP 2")
@@ -144,7 +144,7 @@ class machine ():
                                 self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 is_working = True
-                                self.redis.set(uuid_id,1,1*60)
+                                self.redis.set(uuid_id,1,10)
                                 # "center": [269.0, 310.5]
                                 # if (y >= 650 and y <= 720):
 
