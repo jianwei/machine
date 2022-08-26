@@ -74,7 +74,7 @@ def wheel():
             "sleep":0
         },
         {
-            "cmd":"RROT 50",
+            "cmd":"RROT 100",
             "sleep":unit
         },
         {
