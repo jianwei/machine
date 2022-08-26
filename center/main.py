@@ -59,7 +59,7 @@ def setTimeout(cbname,delay,*argments):
 
 def wheel():
     send("STOP 0")
-    min_time = 1.225  # 1秒 1.225圈
+    min_time = 1.25  # 1秒 1.225圈
     unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     # main_logger.info("send RROT 100:%s", time.time())
     next_cmd = [
@@ -72,7 +72,7 @@ def wheel():
             "sleep":0
         }
     ]
-    send("RROT 100",next_cmd)
+    send("RROT 20",next_cmd)
    
     # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
     # time.sleep(5)
