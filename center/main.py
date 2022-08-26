@@ -212,7 +212,7 @@ class machine ():
                             # self.go(revolution)
                         
                             # 左右位置调整
-                            self.logger.info("line:%s", json.dumps(line))
+                            # self.logger.info("line:%s", json.dumps(line))
                             if (line and len(line) > 0):
                                 center_point = screenSize[0]/2
                                 first = line[0]
