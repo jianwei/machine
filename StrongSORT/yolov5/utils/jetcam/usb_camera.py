@@ -9,10 +9,8 @@ import traitlets
 class USBCamera(Camera):
     
     capture_fps = traitlets.Integer(default_value=30)
-    # capture_width = traitlets.Integer(default_value=640)
-    capture_width = traitlets.Integer(default_value=1280)
-    capture_height = traitlets.Integer(default_value=960)   
-    # capture_height = traitlets.Integer(default_value=480)   
+    capture_width = traitlets.Integer(default_value=640)
+    capture_height = traitlets.Integer(default_value=480)   
     capture_device = traitlets.Integer(default_value=0)
     
     def __init__(self, *args, **kwargs):
