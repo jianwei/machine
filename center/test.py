@@ -12,7 +12,7 @@ if __name__ == '__main__':
     msg = {
         "uuid": str(uuid.uuid1()),
         # "cmd": "STOP 0."
-        "cmd": "MD."
+        "cmd": "MU."
     }
     message = json.dumps(msg)
     logger.info("sendMsg:%s", message)
