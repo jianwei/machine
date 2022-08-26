@@ -168,12 +168,9 @@ class machine ():
             # self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
-                # print(1)
                 if (allPhoto):
-                    # print(2)
                     allPhoto = json.loads(allPhoto)
                     if (len(allPhoto) > 0):
-                        # print(3)
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
