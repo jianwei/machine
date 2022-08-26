@@ -198,7 +198,7 @@ class machine ():
                                 self.redis.set("is_working",1)
                                 self.logger.info("id,centery:%s,%s", uuid_id,y)
                                 # if (y >= 225 and y <= 245):
-                                self.redis.set(uuid_id,1,10)
+                                self.redis.set(uuid_id,1,3*60)
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
                                     wheel()
