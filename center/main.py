@@ -58,21 +58,49 @@ def setTimeout(cbname,delay,*argments):
 
 
 def wheel():
-    send("STOP 0")
-    min_time = 1.25  # 1秒 1.225圈
-    unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
+    # send("STOP 0")
+    # min_time = 0.25  # 1秒 1.225圈
+    # unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     # main_logger.info("send RROT 100:%s", time.time())
+    min_time = 0.25  # 1秒 1.225圈
+    unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     next_cmd = [
         {
+            "cmd":"MD",
+            "sleep":2
+        },
+        {
             "cmd":"STOP 2",
+            "sleep":0
+        },
+        {
+            "cmd":"RROT 50",
             "sleep":unit
+        },
+        {
+            "cmd":"STOP 2",
+            "sleep":0
+        },
+        {
+            "cmd":"MU",
+            "sleep":2
+        },
+        {
+            "cmd":"STOP 2",
+            "sleep":0
         },
         {
             "cmd":"MF 40",
             "sleep":0
         }
     ]
-    send("RROT 100",next_cmd)
+   
+    send("STOP 0",next_cmd)
+   
+    # main_logger.info("send RROT 100:%s", time.time())
+
+
+    # send("MD",next_cmd)
    
     # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
     # time.sleep(5)
