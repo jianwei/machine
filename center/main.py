@@ -193,11 +193,11 @@ class machine ():
                             else:
                                 self.redis.set("is_working",1)
                                 # "center": [203.5, 232.5]}
-                                if (y >= 225 and y <= 245):
-                                    self.redis.set(uuid_id,1,10)
-                                    workcmd = self.work.work(line,machine_speed)
-                                    if (len(workcmd) > 0):
-                                        wheel()
+                                # if (y >= 225 and y <= 245):
+                                self.redis.set(uuid_id,1,10)
+                                workcmd = self.work.work(line,machine_speed)
+                                if (len(workcmd) > 0):
+                                    wheel()
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):
