@@ -196,7 +196,6 @@ class machine ():
                                 # self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 self.redis.set("is_working",1)
-                                # "center": [203.5, 232.5]}
                                 self.logger.info("id,centery:%s,%s", uuid_id,y)
                                 # if (y >= 225 and y <= 245):
                                 self.redis.set(uuid_id,1,10)

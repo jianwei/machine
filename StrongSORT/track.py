@@ -263,8 +263,8 @@ def run(
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             
-                            # if names[c] !="cup":
-                            #     continue 
+                            if names[c] !="cup":
+                                continue 
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             point = box_label["point"]
                             box_label["id"] = id
@@ -294,7 +294,7 @@ def run(
                     total_time += frame_time
                     total_predictions += 1
                     # print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))   
-                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time}\nAvg FPS: {total_predictions/total_time}')
+                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time},Avg FPS: {total_predictions/total_time}')
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 addPhoto(allPoints)
