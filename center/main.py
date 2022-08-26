@@ -94,7 +94,7 @@ def wheel():
             "sleep":0
         }
     ]
-   
+    
     send("STOP 0",next_cmd)
    
     # main_logger.info("send RROT 100:%s", time.time())
@@ -168,7 +168,9 @@ class machine ():
             # self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
+                print(1)
                 if (allPhoto):
+                    print(2)
                     allPhoto = json.loads(allPhoto)
                     if (len(allPhoto) > 0):
                         latsTime = allPhoto[0][0]["time"]
