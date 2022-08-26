@@ -318,8 +318,7 @@ class LoadStreams:
         self.imgs, self.fps, self.frames, self.threads = [None] * n, [0] * n, [0] * n, [None] * n
         self.sources = [clean_str(x) for x in sources]  # clean source names for later
         self.auto = auto
-        camera = USBCamera()
-        # camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
+        camera = USBCamera(capture_device=1)
         # camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
         # if(capture_device and capture_device!=0) :
         #     camera.set_drvice(capture_device)
