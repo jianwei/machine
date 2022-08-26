@@ -71,6 +71,7 @@ class RMQ(object):
                         print ("cmd,sleep-----------------:",cmd,sleep)
                         
                         if (sleep>0):
+                            print ("sleeping..............................................",sleep)
                             time.sleep(sleep)
                         msg ={
                             "uuid": obj_msg["uuid"],
