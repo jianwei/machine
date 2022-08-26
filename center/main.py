@@ -73,26 +73,26 @@ def wheel():
             "cmd":"STOP 2",
             "sleep":0
         },
-        {
-            "cmd":"RROT 50",
-            "sleep":unit
-        },
-        {
-            "cmd":"STOP 2",
-            "sleep":0
-        },
-        {
-            "cmd":"MU",
-            "sleep":2
-        },
-        {
-            "cmd":"STOP 2",
-            "sleep":0
-        },
-        {
-            "cmd":"MF 40",
-            "sleep":0
-        }
+        # {
+        #     "cmd":"RROT 50",
+        #     "sleep":unit
+        # },
+        # {
+        #     "cmd":"STOP 2",
+        #     "sleep":0
+        # },
+        # {
+        #     "cmd":"MU",
+        #     "sleep":2
+        # },
+        # {
+        #     "cmd":"STOP 2",
+        #     "sleep":0
+        # },
+        # {
+        #     "cmd":"MF 40",
+        #     "sleep":0
+        # }
     ]
     
     send("STOP 0",next_cmd)
