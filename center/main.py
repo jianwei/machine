@@ -60,7 +60,7 @@ def setTimeout(cbname,delay,*argments):
 def wheel():
     send("STOP 0")
     min_time = 1.225  # 1秒 1.225圈
-    unit = 1/min_time-0.02  # 1圈  unit 秒
+    unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     # main_logger.info("send RROT 100:%s", time.time())
     next_cmd = [
         {
@@ -164,7 +164,8 @@ class machine ():
                                 self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 self.redis.set("is_working",1)
-                                if (y >= 320 and y <= 330):
+                                # "center": [203.5, 232.5]}
+                                if (y >= 225 and y <= 245):
                                     self.redis.set(uuid_id,1,10)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
