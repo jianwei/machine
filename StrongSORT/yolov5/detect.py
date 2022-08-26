@@ -27,6 +27,7 @@ Usage - formats:
 import argparse
 import os
 import sys
+import json
 from pathlib import Path
 
 import torch
@@ -44,6 +45,11 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
                            increment_path, non_max_suppression, print_args, scale_coords, strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
+
+path = str(Path(__file__).resolve().parents[2])
+sys.path.append(path)
+from redisConn.index import redisDB
+redis = redisDB()
 
 
 @torch.no_grad()
@@ -137,6 +143,7 @@ def run(
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
 
         # Process predictions
+        allPoints = []
         for i, det in enumerate(pred):  # per image
             seen += 1
             if webcam:  # batch_size >= 1
@@ -174,10 +181,13 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
-                        box_label = annotator.set_redis_data(box_label,id,name,screenSize)
+                        box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                        # print("box_label:",box_label)
+                        allPoints.append(box_label)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-
+            # key,photo,redis
+            annotator.addPhoto("navigationPoints",allPoints,redis)
             # Stream results
             im0 = annotator.result()
             if view_img:
@@ -207,14 +217,18 @@ def run(
                         vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                     vid_writer[i].write(im0)
 
+        web_cam_fps = 0
+        web_cam_avg_fps = 0
         if webcam:
             frame_time = time_sync() - t1
             total_time += frame_time
             total_predictions += 1
-            print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
+            web_cam_fps = 1/frame_time
+            web_cam_avg_fps = total_predictions/total_time
+            # print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
 
         # Print time (inference-only)
-        LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
+        LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps},average fps:{web_cam_avg_fps}')
 
     # Print results
     t = tuple(x / seen * 1E3 for x in dt)  # speeds per image
@@ -224,6 +238,36 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
+
+
+# def addPhoto(photo):
+#     if len(photo)>0:
+#         key = "navigationPoints"
+#         photoLength = 60*60*10 #存储1分钟的数据，默认fps=10
+#         # photoLength = 10 #存储10分钟的数据，每秒钟1张
+#         allPhoto = redis.get(key)
+#         if not allPhoto :
+#             allPhoto = []
+#         else:
+#             allPhoto = json.loads(allPhoto)
+#         if(len(allPhoto)>photoLength) : 
+#             allPhoto = allPhoto[:photoLength:1]
+#         if(len(allPhoto)>1):
+#             first = allPhoto[0]
+#             # print("allPhoto,first",allPhoto,first)
+#             if first.__contains__("time"):
+#                 firstTime =  first[0]['time']
+#             else:
+#                 firstTime = ""
+#             now =  photo[0]['time']
+#             if(firstTime!=now):  
+#                 allPhoto.insert(0,photo)
+#         else:
+#             allPhoto.append(photo)
+#         # for item in allPhoto:
+#         #     print("item",item)
+#         redis.set(key,json.dumps(allPhoto))
+        # print("navigationPoints",key,allPhoto)
 
 
 def parse_opt():

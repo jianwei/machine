@@ -5,6 +5,7 @@ Plotting utils
 
 import math
 import os
+import json
 from copy import copy
 from pathlib import Path
 from urllib.error import URLError
@@ -118,7 +119,7 @@ class Annotator:
         # return points
         return {"point":points}
     
-    def set_redis_data(self,box_label,id,name,screenSize):
+    def set_redis_data(self,box_label,name,screenSize,id=0):
         point = box_label["point"]
         box_label["id"] = id
         box_label["name"] = name
@@ -128,6 +129,30 @@ class Annotator:
         box_label["centery"] = (point[0][1] + point[2][1])/2
         box_label["center"] = [box_label["centerx"],box_label["centery"]]
         return box_label
+    
+    def addPhoto(self,key,photo,redis):
+        if len(photo)>0:
+            key = "navigationPoints"
+            photoLength = 60*60*10 #存储1分钟的数据，默认fps=10
+            allPhoto = redis.get(key)
+            if not allPhoto :
+                allPhoto = []
+            else:
+                allPhoto = json.loads(allPhoto)
+            if(len(allPhoto)>photoLength) : 
+                allPhoto = allPhoto[:photoLength:1]
+            if(len(allPhoto)>1):
+                first = allPhoto[0]
+                if first.__contains__("time"):
+                    firstTime =  first[0]['time']
+                else:
+                    firstTime = ""
+                now =  photo[0]['time']
+                if(firstTime!=now):  
+                    allPhoto.insert(0,photo)
+            else:
+                allPhoto.append(photo)
+            redis.set(key,json.dumps(allPhoto))
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)
