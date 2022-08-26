@@ -62,6 +62,8 @@ def wheel():
     # main_logger.info("send RROT 100:%s", time.time())
     min_time = 2.0  # 1秒 1.225圈
     unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
+    rot_speed = 200
+
     next_cmd = [
         {
             "cmd":"MD",
@@ -72,7 +74,7 @@ def wheel():
             "sleep":0
         },
         {
-            "cmd":"RROT 100",
+            "cmd":"RROT "+str(rot_speed),
             "sleep":unit
         },
         {
