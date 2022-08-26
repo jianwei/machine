@@ -69,16 +69,15 @@ class RMQ(object):
                         cmd = item["cmd"] +"."
                         sleep = float(item["sleep"])
                         print ("cmd,sleep-----------------:",cmd,sleep)
-                        
-                        if (sleep>0):
-                            print ("sleeping..............................................",sleep)
-                            time.sleep(sleep)
                         msg ={
                             "uuid": obj_msg["uuid"],
                             "cmd": cmd,
                             "from": "camera->next",
                         } 
-                        that.send_cmd(msg)   
+                        that.send_cmd(msg)
+                        if (sleep>0):
+                            print ("sleeping..............................................",sleep)
+                            time.sleep(sleep)   
 
 
 
