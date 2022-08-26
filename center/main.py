@@ -47,9 +47,7 @@ def send(cmd,next=[]):
 
 
 def send_wheel_cmd(cmd):
-    # global is_working
     send(cmd)
-    # is_working=False
     redis.set("is_working",0)
     send("MF 40")
 
@@ -62,7 +60,7 @@ def wheel():
     # min_time = 0.25  # 1秒 1.225圈
     # unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     # main_logger.info("send RROT 100:%s", time.time())
-    min_time = 0.25  # 1秒 1.225圈
+    min_time = 2.5  # 1秒 1.225圈
     unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     next_cmd = [
         {
