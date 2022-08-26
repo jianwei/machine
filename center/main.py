@@ -173,6 +173,7 @@ class machine ():
                     print(2)
                     allPhoto = json.loads(allPhoto)
                     if (len(allPhoto) > 0):
+                        print(3)
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
@@ -186,6 +187,7 @@ class machine ():
                          # 分行 工作
                         line = self.line.convertLine(allPhoto,0)
                         if (line and line[0]):
+                            print(4)
                             lastLine  =  len (line)
                             y = line[lastLine-1][0]["centery"]
                             uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
