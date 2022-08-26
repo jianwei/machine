@@ -193,10 +193,11 @@ class machine ():
                             uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
                             if (self.redis.get(uuid_id)==str(1)) :
                                 self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
-                                self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                # self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 self.redis.set("is_working",1)
                                 # "center": [203.5, 232.5]}
+                                self.logger.info("id,centery:%s,%s", uuid_id,y)
                                 # if (y >= 225 and y <= 245):
                                 self.redis.set(uuid_id,1,10)
                                 workcmd = self.work.work(line,machine_speed)
