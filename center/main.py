@@ -72,7 +72,7 @@ def wheel():
             "sleep":0
         }
     ]
-    send("RROT 20",next_cmd)
+    send("RROT 40",next_cmd)
    
     # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
     # time.sleep(5)
