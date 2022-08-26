@@ -9,6 +9,7 @@ from copy import copy
 from pathlib import Path
 from urllib.error import URLError
 
+import time
 import cv2
 import matplotlib
 import matplotlib.pyplot as plt
@@ -116,6 +117,17 @@ class Annotator:
                 name  = label
         # return points
         return {"point":points}
+    
+    def set_redis_data(self,box_label,id,name,screenSize):
+        point = box_label["point"]
+        box_label["id"] = id
+        box_label["name"] = name
+        box_label["time"] = time.time()
+        box_label["screenSize"] = screenSize
+        box_label["centerx"] = (point[0][0] + point[1][0])/2
+        box_label["centery"] = (point[0][1] + point[2][1])/2
+        box_label["center"] = [box_label["centerx"],box_label["centery"]]
+        return box_label
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)

@@ -94,14 +94,15 @@ def run(
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
     # Dataloader
+    screenSize = [640,480]
     if webcam:
         view_img = check_imshow()
         # view_img = True
-
         cudnn.benchmark = True  # set True to speed up constant image size inference
         # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,capture_device=0)
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,isUSBCamera = False)
         bs = len(dataset)  # batch_size
+        screenSize = dataset.getScreen()
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
@@ -162,7 +163,7 @@ def run(
 
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
-                    print('-----------------------detect.py-----------------------------------------')
+                    # print('-----------------------detect.py-----------------------------------------')
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
@@ -172,7 +173,8 @@ def run(
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
-                        annotator.box_label(xyxy, label, color=colors(c, True))
+                        box_label = annotator.box_label(xyxy, label, color=colors(c, True))
+                        box_label = annotator.set_redis_data(box_label,id,name,screenSize)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 

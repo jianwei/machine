@@ -359,7 +359,7 @@ class LoadStreams:
 
     def getScreen(self):
         return self.screen
-
+    
     def update(self, i, cap, stream):
         # Read stream `i` frames in daemon thread
         n, f, read = 0, self.frames[i], 1  # frame number, frame array, inference every 'read' frame
