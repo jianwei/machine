@@ -195,14 +195,15 @@ class machine ():
                                 self.redis.set("is_working",1)
                                 self.logger.info("id,centery:%s,%s", uuid_id,y)
                                 # "center": [217.5, 366.0]
-                                ponit_y = 366  #中心点
-                                if (y >= (ponit_y-15)):
-                                    self.redis.set(uuid_id,1,3*60)
-                                    workcmd = self.work.work(line,machine_speed)
-                                    if (len(workcmd) > 0):
-                                        wheel()
-                                    else:
-                                        self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                # "center": [197.0, 259.5]
+                                # ponit_y = 366  #中心点
+                                # if (y >= (ponit_y-15)):
+                                self.redis.set(uuid_id,1,3*60)
+                                workcmd = self.work.work(line,machine_speed)
+                                if (len(workcmd) > 0):
+                                    wheel()
+                                else:
+                                    self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             # 稳定速度 转速
