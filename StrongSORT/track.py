@@ -228,7 +228,7 @@ def run(
                 dt[3] += t5 - t4
 
                 allPoints = []
-                scan_arr = ["cup","bottle","clock"]
+                scan_arr = ["cup","bottle","clock","mouse"]
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
