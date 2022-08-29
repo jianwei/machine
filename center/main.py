@@ -190,7 +190,7 @@ class machine ():
                             uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
                             if (self.redis.get(uuid_id)==str(1)) :
                                 self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
-                                # self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                self.logger.info("------id,centery:%s,%s", uuid_id,y)
                             else:
                                 self.redis.set("is_working",1)
                                 self.logger.info("id,centery:%s,%s", uuid_id,y)
