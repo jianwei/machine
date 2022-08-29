@@ -227,7 +227,7 @@ def run(
                 dt[3] += t5 - t4
 
                 allPoints = []
-                sclan_arr = ["cup","bottle","clock"]
+                scan_arr = ["cup","bottle","clock"]
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
@@ -258,7 +258,7 @@ def run(
                              
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             
-                            if  names[c]  in sclan_arr:
+                            if  names[c]  in scan_arr:
                                 box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                                 allPoints.append(box_label)
 
@@ -273,8 +273,7 @@ def run(
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 
-                if  names[c]  in sclan_arr:
-                    annotator.addPhoto("allPoints",allPoints,redis)
+                annotator.addPhoto("allPoints",allPoints,redis)
             else:
                 strongsort_list[i].increment_ages()
                 LOGGER.info('No detections')
