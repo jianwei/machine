@@ -79,6 +79,7 @@ def run(
         hide_class=False,  # hide IDs
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
+        capture_device=0,  # use OpenCV DNN for ONNX inference
 ):
     redis.set("allPoints",json.dumps([]))
     source = str(source)
@@ -112,7 +113,7 @@ def run(
         show_vid = check_imshow()
         # show_vid = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
-        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
+        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, capture_device = capture_device)
         nr_sources = len(dataset)
         screenSize = dataset.getScreen()
     else:
@@ -349,6 +350,7 @@ def parse_opt():
     parser.add_argument('--hide-class', default=False, action='store_true', help='hide IDs')
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
     parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
+    parser.add_argument('--capture_device',default=0, action='store_true', help='USB capture_device')
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     print_args(vars(opt))

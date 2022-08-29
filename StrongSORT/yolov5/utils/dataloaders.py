@@ -303,7 +303,7 @@ class LoadWebcam:  # for inference
 class LoadStreams:
     # YOLOv5 streamloader, i.e. `python detect.py --source 'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP streams`
     # def __init__(self, sources='streams.txt', img_size=640, stride=32, auto=True,capture_device=0):
-    def __init__(self, sources='streams.txt', img_size=640, stride=32, auto=True, isUSBCamera = True):
+    def __init__(self, sources='streams.txt', img_size=640, stride=32, auto=True, isUSBCamera = True,capture_device=0):
         self.mode = 'stream'
         self.img_size = img_size
         self.stride = stride
@@ -319,7 +319,7 @@ class LoadStreams:
         self.sources = [clean_str(x) for x in sources]  # clean source names for later
         self.auto = auto
         if(isUSBCamera):
-            camera = USBCamera(capture_device=2)
+            camera = USBCamera(capture_device=capture_device)
         else:
             camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
         # if(capture_device and capture_device!=0) :
