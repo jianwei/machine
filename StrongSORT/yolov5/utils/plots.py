@@ -132,7 +132,7 @@ class Annotator:
     
     def addPhoto(self,key,photo,redis):
         if len(photo)>0:
-            key = "navigationPoints"
+            # key = "navigation_points"
             photoLength = 60*60*10 #存储1分钟的数据，默认fps=10
             allPhoto = redis.get(key)
             if not allPhoto :
