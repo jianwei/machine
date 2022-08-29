@@ -252,8 +252,10 @@ def run(
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             
-                            # if names[c] !="cup":
-                            #     continue 
+                            # if names[c] !="cup" or names[c] !="bottle":
+                                # continue 
+                            if  names[c] not in ["cup","bottle","clock"]:
+                                continue   
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                             
