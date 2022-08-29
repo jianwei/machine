@@ -28,7 +28,13 @@ class arduino():
         self.l = log("./arduino.log")
         self.logger = self.l.getLogger()
         self.timeout = 0.005
-        self.ser = serial.Serial(port=port,timeout=0, baudrate=9600)
+        # self.ser = serial.Serial(port=port,timeout=0, baudrate=9600)
+
+        self.ser = serial.Serial()
+        self.ser.baudrate = 9600
+        self.ser.port = port
+        self.ser.open()
+
         #触发复位
         self.ser.write("default.".encode())  
         time.sleep(1)
@@ -54,7 +60,8 @@ class arduino():
             while True:
                 cnt+=1
                 time1 = float(time.time())
-                response = self.ser.readall()
+                # response = self.ser.readall()
+                response = self.ser.read()
                 # print("response:",response)
                 time2 = float(time.time())
                 diff = time2-time1
