@@ -319,7 +319,7 @@ class LoadStreams:
         self.sources = [clean_str(x) for x in sources]  # clean source names for later
         self.auto = auto
         if(isUSBCamera):
-            camera = USBCamera(capture_device=1)
+            camera = USBCamera(capture_device=0)
         else:
             camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
         # if(capture_device and capture_device!=0) :
