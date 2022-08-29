@@ -227,6 +227,7 @@ def run(
                 dt[3] += t5 - t4
 
                 allPoints = []
+                sclan_arr = ["cup","bottle","clock"]
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
@@ -254,12 +255,13 @@ def run(
                             
                             # if names[c] !="cup" or names[c] !="bottle":
                                 # continue 
-                            if  names[c] not in ["cup","bottle","clock"]:
-                                continue   
+                             
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
-                            box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                             
-                            allPoints.append(box_label)
+                            if  names[c]  in sclan_arr:
+                                box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                                allPoints.append(box_label)
+
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
                                 save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
@@ -270,7 +272,9 @@ def run(
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time},Avg FPS: {total_predictions/total_time}')
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
-                annotator.addPhoto("allPoints",allPoints,redis)
+                
+                if  names[c]  in sclan_arr:
+                    annotator.addPhoto("allPoints",allPoints,redis)
             else:
                 strongsort_list[i].increment_ages()
                 LOGGER.info('No detections')
