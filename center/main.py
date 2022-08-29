@@ -1,6 +1,6 @@
 # from convertPoints import ConvertPoints
 
-from math import fabs
+# from math import fabs
 from utils.redis_message_queue import RMQ
 import time
 import os
@@ -210,6 +210,8 @@ class machine ():
                             
                             revolution = self.speed.uniformSpeed(machine_speed)
                             self.logger.info("revolution:%s", revolution)
+                            # if(revolution>=40)
+                            revolution = 40 if revolution>=40 else revolution
                             self.go(revolution)
                         
                             # 左右位置调整
