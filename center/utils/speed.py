@@ -3,11 +3,11 @@ import json
 # from point import pointd 
 class speed ():
     def __init__(self,point):
-        self.defaultSpeed = 10  # 默认速度
-        self.revolution = 40    #默认转速 ，对应默认速度
+        self.defaultSpeed = 1  # 默认速度
+        self.revolution = 1    #默认转速 ，对应默认速度
         self.diffSpeed = 1     # 允许的速度差
         self.point = point
-        self.increment= 10        # 速度增量
+        self.increment= 1        # 速度增量
         pass
     
     def getPointSpeed(self,data):

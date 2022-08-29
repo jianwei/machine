@@ -206,10 +206,11 @@ class machine ():
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):
                             self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
-                            # 稳定速度 转速
-                            # revolution = self.speed.uniformSpeed(machine_speed)
-                            # self.logger.info("revolution:%s", revolution)
-                            # self.go(revolution)
+                            #  稳定速度 转速
+                            
+                            revolution = self.speed.uniformSpeed(machine_speed)
+                            self.logger.info("revolution:%s", revolution)
+                            self.go(revolution)
                         
                             # 左右位置调整
                             # self.logger.info("line:%s", json.dumps(line))
