@@ -153,7 +153,7 @@ class Annotator:
             else:
                 allPhoto.append(photo)
             redis.set(key,json.dumps(allPhoto))
-            print("addPhoto",allPhoto)
+            # print("addPhoto",allPhoto)
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)
