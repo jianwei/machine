@@ -1,5 +1,6 @@
 import logging
 import traceback
+import logging.handlers
 
 
 class log():
@@ -16,23 +17,27 @@ class log():
         # CRITICAL：一个严重的错误,这表明程序本身可能无法继续运行   
     def __init__(self,logfile="./log.txt"):
         # 创建一个logger
-        logger = logging.getLogger()
-        logger.setLevel(logging.INFO)  # Log等级总开关  此时是INFO
-        #创建一个handler，用于写入日志文件
-        # logfile = './log.txt'
-        fh = logging.FileHandler(logfile, mode='a')  # open的打开模式这里可以进行参考
-        fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关
-        #再创建一个handler，用于输出到控制台
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.DEBUG)   # 输出到console的log等级的开关
-        #定义handler的输出格式（时间，文件，行数，错误级别，错误提示）
-        formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
-        fh.setFormatter(formatter)
-        ch.setFormatter(formatter)
-        #将logger添加到handler里面
-        logger.addHandler(fh)
-        logger.addHandler(ch)
-        self.logger = logger
+        self.logger = logging.getLogger()
+        self.logger.setLevel(logging.INFO)  # Log等级总开关  此时是INFO
+        # self.logger = logger
+        if not self.logger.handlers:
+            #创建一个handler，用于写入日志文件
+            # logfile = './log.txt'
+            fh = logging.FileHandler(logfile, mode='a')  # open的打开模式这里可以进行参考
+            fh.setLevel(logging.DEBUG)  # 输出到file的log等级的开关
+            #再创建一个handler，用于输出到控制台
+            ch = logging.StreamHandler()
+            ch.setLevel(logging.DEBUG)   # 输出到console的log等级的开关
+            #定义handler的输出格式（时间，文件，行数，错误级别，错误提示）
+            formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
+            fh.setFormatter(formatter)
+            ch.setFormatter(formatter)
+            #将logger添加到handler里面
+            self.logger.addHandler(fh)
+            self.logger.addHandler(ch)
+
+            # self.logger.addHandler(fh)
+        
 
 
     def getLogger(self):
