@@ -34,14 +34,13 @@ redis.set("is_working",0)
 ser =  serial_control()
 # is_working = False
 
-def send(cmd,next=[]):
+def send(cmd):
     if(cmd!=""):
         cmd += "."
         cmd_dict = {
             "uuid": str(uuid.uuid1()),
             "cmd": cmd,
             "from": "camera",
-            "next_cmd":next
         }
         ser.send_cmd(cmd_dict)
     else:
