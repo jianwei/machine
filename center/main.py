@@ -49,20 +49,17 @@ def send(cmd):
 
 
 def wheel(speed):
-    min_time = 2.0  # 1秒 1.225圈
-    unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
-    rot_speed = 40
-    unit = 1
+    rot_speed = 60
+    unit_sleep = 1/(rot_speed*50/2/1000)
+    print("unit_sleep",unit_sleep)
 
     send("STOP 0")
-
     send("MD")
     time.sleep(2)
-
     send("STOP 2")
 
     send("RROT "+str(rot_speed))
-    time.sleep(unit)
+    time.sleep(unit_sleep)
 
     send("STOP 2")
 
