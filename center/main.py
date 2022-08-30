@@ -145,11 +145,13 @@ class machine ():
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
+
+
             allPhoto = json.dumps(mock)
             navigation_points = json.dumps(navigation_points_mock)
             work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
-            # work_flag = 1
+            work_flag = 1
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
@@ -251,7 +253,7 @@ class machine ():
                     self.go(self.speed.revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
-                self.pub_rmq.run_subscribe(self)
+                # self.pub_rmq.run_subscribe(self)
 
             self.logger.info("time:%s,begin_work:%s", time.time(), work_flag)
             self.logger.info("----------------------loop end ------------------------------")
