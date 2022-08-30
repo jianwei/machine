@@ -223,7 +223,7 @@ class machine ():
                                 # "center": [197.0, 259.5]
                                 # ponit_y = 366  #中心点
                                 # if (y >= (ponit_y-15)):
-                                self.redis.set(uuid_id,1,3*60)
+                                self.redis.set(uuid_id,1,10)
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
                                     wheel()
