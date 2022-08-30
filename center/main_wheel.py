@@ -115,11 +115,11 @@ class machine ():
         while (1):
             a+=1
             self.logger.info("----------------------loop begin ------------------------------%s",a)
-            allPhoto = self.redis.get("allPoints")
+            allPhoto = self.redis.get("navigation_points")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
-            # allPhoto = json.dumps(mock)
+            allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -137,32 +137,8 @@ class machine ():
 
                         machine_speed = self.speed.getSpeed(allPhoto)
                         self.logger.info("machine_speed:%s", machine_speed)
-                         # 分行 工作
-                        line = self.line.convertLine(allPhoto,0)
-                        if (line and line[0]):
-                            # print(4)
-                            lastLine  =  len (line)
-                            y = line[lastLine-1][0]["centery"]
-                            uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
-                            if (self.redis.get(uuid_id)==str(1)) :
-                                self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
-                                self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                            else:
-                                self.redis.set("is_working",1)
-                                self.logger.info("id,centery:%s,%s", uuid_id,y)
-                                # "center": [217.5, 366.0]
-                                # "center": [197.0, 259.5]
-                                # ponit_y = 366  #中心点
-                                # if (y >= (ponit_y-15)):
-                                self.redis.set(uuid_id,1,10)
-                                workcmd = self.work.work(line,machine_speed)
-                                if (len(workcmd) > 0):
-                                    wheel(self.speed.revolution)
-                                else:
-                                    self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                        # 分行 工作
                         if (is_working==0 or is_working=="0"):
-                            # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
-                            #  稳定速度 转速
                             
                             revolution = self.speed.uniformSpeed(machine_speed)
                             self.logger.info("revolution:%s", revolution)
