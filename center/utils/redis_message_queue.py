@@ -40,47 +40,35 @@ class RMQ(object):
     def run_subscribe(self, that):
         """ 启动订阅 """
         pub = self.subscribe()
-        # while True:
-        _, queue_name, message = pub.parse_response()
-        if _ == 'subscribe':
-            print('... 队列启动，开始接受消息 ...')
+        while True:
+            
+            _, queue_name, message = pub.parse_response()
+            if _ == 'subscribe':
+                print('... 队列启动，开始接受消息 ...')
+                continue
+                # return
+            data = {'queue': queue_name, 'message': message,
+                    "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
+            print("------------------------------------------------------------------------------------")
+            that.logger.info("run_subscribe--data:%s",data)
+            
+            time.sleep(0.1)
+            cache_status = self.redis.get("begin_work")
+            print("run_subscribe--begin_work--cache_status:",cache_status)
+
+
+
+            # print(data)
             # continue
-            return
-        data = {'queue': queue_name, 'message': message,
-                "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
-        print("------------------------------------------------------------------------------------")
-        that.logger.info("run_subscribe--data:%s",data)
-        # print(data)
-        # continue
-        if (that):
-            obj_msg  = json.loads(message)
-            if ("xbox" in obj_msg.keys()):
-                cmd = self.xbox(obj_msg)
-                print("cmd2:", cmd)
-                if (cmd):
-                    # message = json.loads(message)
-                    obj_msg["cmd"] = cmd+"."
-            that.send_cmd(obj_msg)
-            # if("next_cmd" in obj_msg.keys()):
-            #     next_cmd = obj_msg["next_cmd"]
-            #     # print ("next_cmd-----------------:",next_cmd)
-            #     for item in next_cmd:
-            #         # print ("item-----------------:",item)
-            #         # parent_cmd = obj_msg[""]
-            #         cmd = item["cmd"] +"."
-            #         sleep = float(item["sleep"])
-            #         print ("cmd,sleep-----------------:",cmd,sleep)
-            #         msg ={
-            #             "uuid": obj_msg["uuid"],
-            #             "cmd": cmd,
-            #             "from": "camera->next",
-            #         } 
-            #         that.send_cmd(msg)
-            #         if (sleep>0):
-            #             print ("sleeping..............................................",sleep)
-            #             time.sleep(sleep)   
-
-
+            if (that):
+                obj_msg  = json.loads(message)
+                if ("xbox" in obj_msg.keys()):
+                    cmd = self.xbox(obj_msg)
+                    print("cmd2:", cmd)
+                    if (cmd):
+                        # message = json.loads(message)
+                        obj_msg["cmd"] = cmd+"."
+                that.send_cmd(obj_msg)
 
 
 
@@ -124,7 +112,7 @@ class RMQ(object):
         # print("msgObj",msgObj)
         cmd = ""
         cache_status = self.redis.get("begin_work")
-        print("cache_status:",cache_status)
+        print("begin_work--cache_status:",cache_status)
         if (str(cache_status)=="0" or cache_status==None):
             # 后退
             if int(msgObj["RY"]) > 0:

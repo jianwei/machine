@@ -7,6 +7,7 @@ from utils.redis_message_queue import RMQ
 from utils.log import log
 from utils.serial_control import serial_control
 from pathlib import Path
+
 path = str(Path(__file__).resolve().parents[1])
 sys.path.append(path)
 from redisConn.index import redisDB
@@ -19,12 +20,14 @@ class arduino():
         self.l = log("./arduino.log")
         self.logger = self.l.getLogger()
 
-    # {"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}'
-    # begin_time:1661395309.6998177
-    # 1661395409.5343091
+
 
     def send_cmd(self, message):
-        self.ser.send_cmd(message)
+        # self.ser.send_cmd(message)
+        ser = serial_control()
+        ser.send_cmd(message)
+        ser.close()
+
 
     def get_ret(self):
         ret = self.ser.get_ret()

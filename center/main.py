@@ -24,15 +24,12 @@ sys.path.append(path)
 from redisConn.index import redisDB
 
 
-
-
-
 mainlog = log("main.log")
 main_logger = mainlog.getLogger()
 main_pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
 redis = redisDB()
 redis.set("is_working",0)
-ser =  serial_control()
+
 # is_working = False
 
 def send(cmd):
@@ -43,7 +40,9 @@ def send(cmd):
             "cmd": cmd,
             "from": "camera",
         }
+        ser =  serial_control()
         ser.send_cmd(cmd_dict)
+        ser.close()
     else:
         main_logger.info("cmd null")
 
@@ -146,8 +145,8 @@ class machine ():
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
-            # allPhoto = json.dumps(mock)
-            # navigation_points = json.dumps(navigation_points_mock)
+            allPhoto = json.dumps(mock)
+            navigation_points = json.dumps(navigation_points_mock)
             work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             # work_flag = 1
@@ -263,12 +262,17 @@ class machine ():
         cmd = "MF "+str(revolution)
         self.send_cmd(cmd)
 
+    def run_subscribe(self):
+        self.pub_rmq.run_subscribe(self)
+
 
 
 if __name__ == "__main__":
     m = machine()
     try:
         m.loop()
+        # m.run_subscribe()
+        
     except KeyboardInterrupt:
         print("ctrl+c stop")
         redis = redisDB()
