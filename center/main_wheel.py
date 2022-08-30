@@ -87,25 +87,9 @@ class machine ():
     def loop(self):
         randId = random.random()
         mock = [
-            [
-                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": randId, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
-                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
-                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
-            ],
-            [
-                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
-                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
-            ],
-        ]
+                [{"point":[[1,140],[129,140],[1,440],[129,440]],"id":0,"name":"person","time":1661850838.4855962,"screenSize":[640,480],"centerx":65.0,"centery":290.0,"center":[65.0,290.0]}],
+                [{"point":[[1,35],[187,35],[1,449],[187,449]],"id":0,"name":"person","time":1661850838.4098039,"screenSize":[640,480],"centerx":94.0,"centery":242.0,"center":[94.0,242.0]}]
+               ]
         # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
         # print(mock)
         currentTime = 0
@@ -137,7 +121,7 @@ class machine ():
 
                         machine_speed = self.speed.getSpeed(allPhoto)
                         self.logger.info("machine_speed:%s", machine_speed)
-                        # 分行 工作
+                       
                         if (is_working==0 or is_working=="0"):
                             
                             revolution = self.speed.uniformSpeed(machine_speed)
@@ -147,51 +131,51 @@ class machine ():
                             self.go(revolution)
                         
                             # 左右位置调整
-                            # self.logger.info("line:%s", json.dumps(line))
-                            # if (line and len(line) > 0):
-                            #     center_point = screenSize[0]/2
-                            #     first = line[0]
-                            #     length = len(first)
-                            #     cmd = ""
-                            #     if (length > 0):
-                            #         if (length == 1 or length == 3):
-                            #             center = first[0] if length == 1 else first[1]
-                            #             centerx = center["centerx"]
-                            #             diff_point_x = centerx-center_point
+                            self.logger.info("line:%s", json.dumps(line))
+                            if (line and len(line) > 0):
+                                center_point = screenSize[0]/2
+                                first = line[0]
+                                length = len(first)
+                                cmd = ""
+                                if (length > 0):
+                                    if (length == 1 or length == 3):
+                                        center = first[0] if length == 1 else first[1]
+                                        centerx = center["centerx"]
+                                        diff_point_x = centerx-center_point
 
-                            #             self.point.setScreenSize(screenSize)
-                            #             x= self.point.sizexm(abs(diff_point_x))
-                            #             tan = x/(1000*self.point.f)
-                            #             angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
+                                        self.point.setScreenSize(screenSize)
+                                        x= self.point.sizexm(abs(diff_point_x))
+                                        tan = x/(1000*self.point.f)
+                                        angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
 
-                            #             # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
+                                        # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
 
-                            #             cmd_prefix = ""
-                            #             target_angle = 90
-                            #             if(global_angle<=90):
-                            #                 if (centerx<=center_point) :
-                            #                     target_angle = 90-angle
-                            #                     cmd_prefix = "TR" if global_angle<target_angle else "TL"
-                            #                 else:
-                            #                     target_angle = 90+angle
-                            #                     cmd_prefix = "TR"
-                            #             else:
-                            #                 if (centerx<=center_point) :
-                            #                     target_angle = 90-angle
-                            #                     cmd_prefix = "TL"
-                            #                 else:
-                            #                     target_angle = 90+angle
-                            #                     cmd_prefix = "TR" if global_angle<target_angle else "TL"
-                            #             # print("target_angle,global_angle5",target_angle,global_angle)
-                            #             if(target_angle!=global_angle):
-                            #                 cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
-                            #                 global_angle = target_angle
-                            #                 print ("send-cmd:",cmd)
-                            #             else:
-                            #                 print ("send-cmd:none")
-                            #             # print("target_angle,global_angle2",target_angle,global_angle)
-                            #             self.redis.set("global_angle", global_angle)
-                            #             self.send_cmd(cmd)
+                                        cmd_prefix = ""
+                                        target_angle = 90
+                                        if(global_angle<=90):
+                                            if (centerx<=center_point) :
+                                                target_angle = 90-angle
+                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                            else:
+                                                target_angle = 90+angle
+                                                cmd_prefix = "TR"
+                                        else:
+                                            if (centerx<=center_point) :
+                                                target_angle = 90-angle
+                                                cmd_prefix = "TL"
+                                            else:
+                                                target_angle = 90+angle
+                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                        # print("target_angle,global_angle5",target_angle,global_angle)
+                                        if(target_angle!=global_angle):
+                                            cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
+                                            global_angle = target_angle
+                                            print ("send-cmd:",cmd)
+                                        else:
+                                            print ("send-cmd:none")
+                                        # print("target_angle,global_angle2",target_angle,global_angle)
+                                        self.redis.set("global_angle", global_angle)
+                                        self.send_cmd(cmd)
                     else:
                         self.go(self.speed.revolution)
                 else:
