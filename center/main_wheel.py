@@ -103,7 +103,7 @@ class machine ():
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
-            allPhoto = json.dumps(mock)
+            # allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
