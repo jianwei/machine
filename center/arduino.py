@@ -3,93 +3,34 @@
 
 # from asyncio.log import logger
 # from distutils.log import error
-
-import json
 import sys
-# from tkinter.messagebox import NO
-import serial
-import time
 import os
 from utils.redis_message_queue import RMQ
 from utils.log import log
+from utils.arduino import arduino
 sys.path.append("..")
 from redisConn.index import redisDB
 
 
-class arduino():
+class arduinoScript():
     def __init__(self):
         self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
         self.ret_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino_ret')
-        # port = "/dev/ttyACM0"  # Arduino端口
-        # port = "/dev/tty.usbmodem14101"  # Arduino端口
-        # port = "/dev/tty.usbmodem14201"  # Arduino端口
-
-        port = "/dev/ttyACM0"  # Arduino端口
+        self.ser = arduino()
         self.l = log("./arduino.log")
         self.logger = self.l.getLogger()
-        self.timeout = 0.005
-        # self.ser = serial.Serial(port=port,timeout=0, baudrate=9600)
-
-        self.ser = serial.Serial()
-        self.ser.baudrate = 9600
-        self.ser.port = port
-        self.ser.open()
-
-        #触发复位
-        self.ser.write("default.".encode())  
-        time.sleep(1)
+       
 
     # {"uuid": "0ddbb5f8-1b68-11ed-af17-57a903635f20", "cmd": "RST ."}'
     # begin_time:1661395309.6998177
     # 1661395409.5343091  
     def send_cmd(self, message):
-        ret = -2
-        if ("cmd" in message.keys()):
-            cmd = message["cmd"]
-        else:
-            self.logger.info("Lost message:%s", message)
-        uuid = message["uuid"]
-        # print("cmd:",cmd)
-        self.logger.info("cmd:%s,begin_time:%s",cmd,time.time())
-        self.ser.write(cmd.encode())
+        self.ser.send_cmd(message)
+        
 
-        try:
-            cnt=1
-            ret_all = ""
-            time0 = time.time()
-            while True:
-                cnt+=1
-                time1 = float(time.time())
-                # response = self.ser.readall()
-                response = self.ser.read()
-                # print("response:",response)
-                time2 = float(time.time())
-                diff = time2-time1
-                if (response):
-                    ret_all += str(response,"UTF-8")
-                    response_arr = ret_all.splitlines()
-                    ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
-                    self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
-                    # time.sleep(0.1)
-
-                    if(str(ret)=="0"): 
-                        self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s", uuid, cmd, ret, diff,ret_all)
-                        ret_dict = {
-                            "uuid":uuid,
-                            "retsult":ret
-                        }
-                        # self.send_ret(ret)
-                        self.send_ret(json.dumps(ret_dict))
-                        self.logger.info("cmd:%s,end_time:%s",cmd,time.time())
-                        return ret
-                    time3 = time.time()
-                    if(time3-time0>=1):
-                        break
-        except Exception as e:
-            self.l.logError("serial连接或者执行失败,reason:")
-
-    def send_ret(self, ret_dict):
-        self.ret_rmq.publish(ret_dict)
+    def get_ret(self):
+        ret = self.ser.get_ret()
+        print(ret)
         pass
 
     def run_subscribe(self):
@@ -105,6 +46,6 @@ class arduino():
 if __name__ == '__main__':
     redis = redisDB()
     redis.set("global_angle", 90)
-    a = arduino()
+    a = arduinoScript()
     # a.open_camera()
     a.run_subscribe()
