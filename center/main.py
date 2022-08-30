@@ -152,6 +152,7 @@ class machine ():
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
+                    navigation_points = json.loads(navigation_points)
                     if (len(allPhoto) > 0):
                         latsTime = allPhoto[0][0]["time"]
                         screenSize = allPhoto[0][0]["screenSize"]
