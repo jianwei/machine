@@ -8,4 +8,4 @@ nomachine:
 
 >>sudo usermod -aG dialout tuniu 
 
->>python3 track.py  --nosave --img 320  --yolo-weights yolov5x.pt
+>>python3 track.py --capture_device 0 --nosave --img 320  --yolo-weights yolov5x.pt
