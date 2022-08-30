@@ -50,15 +50,7 @@ class RMQ(object):
             data = {'queue': queue_name, 'message': message,
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
             print("------------------------------------------------------------------------------------")
-            that.logger.info("run_subscribe--data:%s",data)
-            
-            time.sleep(0.1)
-            cache_status = self.redis.get("begin_work")
-            print("run_subscribe--begin_work--cache_status:",cache_status)
-
-
-
-            # print(data)
+            print(data)
             # continue
             if (that):
                 obj_msg  = json.loads(message)
@@ -117,16 +109,20 @@ class RMQ(object):
             # 后退
             if int(msgObj["RY"]) > 0:
                 val = int(int(abs(msgObj["RY"]))/32767 * 255)
-                val = val if val>=40 else 40
-                val = val if val<=150 else 150
+                val = 20 if val>=20 else val
+                # val = val if val<=10 else 150
+                # val = val if val>=40 else 40
+                # val = val if val<=150 else 150
                 cmd = "MB "+str(val)
 
             
             # 前进
             elif int(msgObj["RY"]) < 0:
                 val = int(int(abs(msgObj["RY"]))/32767 * 255)
-                val = val if val>=40 else 40
-                val = val if val<=150 else 150
+                val = 20 if val>=20 else val
+                # val = val if val<=150 else 150
+                # val = val if val>=40 else 40
+                # val = val if val<=150 else 150
                 cmd = "MF "+str(val)
 
             
