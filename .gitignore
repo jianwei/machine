@@ -2,9 +2,7 @@
 *.pt
 hiredis/
 center/log.txt
-center/utils/__pycache__/redis_message_queue.cpython-38.pyc
 *.txt
 *.log
-*.pyc
 *.pyc
 *.log

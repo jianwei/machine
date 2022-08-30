@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/delta_lidar_node_client.dir/src/client.cpp.o  -o delta_lidar_node_client 

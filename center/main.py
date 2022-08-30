@@ -9,9 +9,6 @@ import json
 import uuid
 import numpy
 import random
-# from threading import Timer
-import threading
-# import serial
 from utils.speed import speed
 from utils.point import point
 from utils.line import line
@@ -20,10 +17,11 @@ from utils.log import log
 from utils.serial_control import serial_control
 
 
-sys.path.append("..")
+from pathlib import Path
+path = str(Path(__file__).resolve().parents[1])
+sys.path.append(path)
 from redisConn.index import redisDB
-# chmod -R 777 /dev/ttyAMA0
-# import serial,sys,os,redis,time
+
 
 
 
@@ -46,64 +44,21 @@ def send(cmd,next=[]):
             "next_cmd":next
         }
         ser.send_cmd(cmd_dict)
-        # main_logger.info("end_cmd-cmd:%s", cmd_dict)
-        # main_pub_rmq.publish(json.dumps(cmd_dict))
     else:
         main_logger.info("cmd null")
 
 
-def send_wheel_cmd(cmd):
-    send(cmd)
-    redis.set("is_working",0)
-    send("MF 40")
 
-def setTimeout(cbname,delay,*argments):
-    threading.Timer(delay,cbname,argments).start()
-
-
-def wheel():
-    # send("STOP 0")
-    # min_time = 0.25  # 1秒 1.225圈
-    # unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
-    # main_logger.info("send RROT 100:%s", time.time())
+def wheel(speed):
     min_time = 2.0  # 1秒 1.225圈
     unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
-    rot_speed = 100
-
-    # next_cmd = [
-    #     {
-    #         "cmd":"MD",
-    #         "sleep":2
-    #     },
-    #     {
-    #         "cmd":"STOP 2",
-    #         "sleep":0
-    #     },
-    #     {
-    #         "cmd":"RROT "+str(rot_speed),
-    #         "sleep":unit
-    #     },
-    #     {
-    #         "cmd":"STOP 2",
-    #         "sleep":0
-    #     },
-    #     {
-    #         "cmd":"MU",
-    #         "sleep":2
-    #     },
-    #     {
-    #         "cmd":"STOP 2",
-    #         "sleep":0
-    #     },
-    #     {
-    #         "cmd":"MF 40",
-    #         "sleep":0
-    #     }
-    # ]
-    
+    rot_speed = 50
+        
     send("STOP 0")
+
     send("MD")
     time.sleep(2)
+
     send("STOP 2")
 
     send("RROT "+str(rot_speed))
@@ -115,40 +70,24 @@ def wheel():
     time.sleep(2)
 
     send("STOP 2")
+    
     redis.set("is_working",0)
-    send("MF 40")
+    
+    send("MF "+str(speed))
 
-
-    # main_logger.info("send RROT 100:%s", time.time())
-
-
-    # send("MD",next_cmd)
-   
-    # main_logger.info("end_cmd-cmd -- sleep1:%s", time.time())
-    # time.sleep(5)
-    # main_logger.info("end_cmd-cmd -- sleep2:%s", time.time())
-    # main_logger.info("send STOP 2:%s", time.time())
-    # send_wheel_cmd("STOP 2")
-    # main_logger.info("send STOP 2---end:%s", time.time())
-    # setTimeout(send_wheel_cmd,1.5,"STOP 2")
     
 
 class machine ():
     def __init__(self):
         self.redis = redisDB()
-        # self.default_speed = 10
-        # self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
         self.pub_rmq = main_pub_rmq
         self.point = point()
         self.speed = speed(self.point)
         self.line = line(self.point)
-        # self.l = log("main.log")
         self.work = work(self.point, self.speed,main_logger)
         self.angle_distance = 5  # cm
-        
         self.logger = main_logger
-        # self.ser = serial.Serial('/dev/ttyAMA0', 9600,timeout=0.5)
-        # self.convertPoints = ConvertPoints()
+
 
     def send_cmd(self, cmd):
         send(cmd)
@@ -226,7 +165,7 @@ class machine ():
                                 self.redis.set(uuid_id,1,10)
                                 workcmd = self.work.work(line,machine_speed)
                                 if (len(workcmd) > 0):
-                                    wheel()
+                                    wheel(self.speed.revolution)
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):

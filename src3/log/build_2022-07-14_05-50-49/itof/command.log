@@ -1,2 +1,0 @@
-Invoking command in '/home/machine/src/build/itof': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/machine/src/build/itof -- -j2 -l2
-Invoked command in '/home/machine/src/build/itof' returned '2': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/machine/src/build/itof -- -j2 -l2
