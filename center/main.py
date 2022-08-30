@@ -106,6 +106,30 @@ class machine ():
                 {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
             ],
         ]
+
+
+        navigation_points_mock = [
+            [
+                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": randId, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
+                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
+                # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
+                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
+                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
+            ],
+            [
+                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
+                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
+            ],
+        ]
+
+        # navigation_points
         # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
         # print(mock)
         currentTime = 0
@@ -116,8 +140,12 @@ class machine ():
             a+=1
             self.logger.info("----------------------loop begin ------------------------------%s",a)
             allPhoto = self.redis.get("allPoints")
+            navigation_points = self.redis.get("navigation_points")
+            global_angle = self.redis.get("global_angle")
+            global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
             # allPhoto = json.dumps(mock)
+            # navigation_points = json.dumps(navigation_points_mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -126,7 +154,7 @@ class machine ():
                     allPhoto = json.loads(allPhoto)
                     if (len(allPhoto) > 0):
                         latsTime = allPhoto[0][0]["time"]
-                        # screenSize = allPhoto[0][0]["screenSize"]
+                        screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
                             self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
@@ -153,11 +181,72 @@ class machine ():
                                 # ponit_y = 366  #中心点
                                 # if (y >= (ponit_y-15)):
                                 self.redis.set(uuid_id,1,10)
-                                # workcmd = self.work.work(line,machine_speed)
-                                # if (len(workcmd) > 0):
-                                wheel(self.speed.revolution)
-                                # else:
-                                #     self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                workcmd = self.work.work(line,machine_speed)
+                                if (len(workcmd) > 0):
+                                    wheel(self.speed.revolution)
+                                else:
+                                    self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                        if (is_working==0 or is_working=="0"):
+                            # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
+                            #  稳定速度 转速
+                            
+                            revolution = self.speed.uniformSpeed(machine_speed)
+                            self.logger.info("revolution:%s", revolution)
+                            # if(revolution>=40)
+                            revolution = 40 if revolution>=40 else revolution
+                            self.go(revolution)
+                        
+                            # 左右位置调整
+                            line = self.line.convertLine(navigation_points,0)
+                            self.logger.info("line:%s", json.dumps(line))
+                            if (line and len(line) > 0):
+                                center_point = screenSize[0]/2
+                                first = line[0]
+                                length = len(first)
+                                cmd = ""
+                                if (length > 0):
+                                    if (length == 1 or length == 3):
+                                        center = first[0] if length == 1 else first[1]
+                                        centerx = center["centerx"]
+                                        diff_point_x = centerx-center_point
+
+                                        self.point.setScreenSize(screenSize)
+                                        x= self.point.sizexm(abs(diff_point_x))
+                                        tan = x/(1000*self.point.f)
+                                        angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
+
+                                        # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
+
+                                        cmd_prefix = ""
+                                        target_angle = 90
+                                        if(global_angle<=90):
+                                            if (centerx<=center_point) :
+                                                target_angle = 90-angle
+                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                            else:
+                                                target_angle = 90+angle
+                                                cmd_prefix = "TR"
+                                        else:
+                                            if (centerx<=center_point) :
+                                                target_angle = 90-angle
+                                                cmd_prefix = "TL"
+                                            else:
+                                                target_angle = 90+angle
+                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                                        # print("target_angle,global_angle5",target_angle,global_angle)
+                                        if(target_angle!=global_angle):
+                                            cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
+                                            global_angle = target_angle
+                                            print ("send-cmd:",cmd)
+                                        else:
+                                            print ("send-cmd:none")
+                                        # print("target_angle,global_angle2",target_angle,global_angle)
+                                        self.redis.set("global_angle", global_angle)
+                                        self.send_cmd(cmd)
+                    else:
+                        self.go(self.speed.revolution)
+                else:
+                    self.go(self.speed.revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
             self.logger.info("time:%s,begin_work:%s", time.time(), work_flag)
