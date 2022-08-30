@@ -17,6 +17,7 @@ from utils.log import log
 from utils.serial_control import serial_control
 
 
+
 from pathlib import Path
 path = str(Path(__file__).resolve().parents[1])
 sys.path.append(path)
@@ -79,6 +80,7 @@ class machine ():
         self.work = work(self.point, self.speed,main_logger)
         self.angle_distance = 5  # cm
         self.logger = main_logger
+        self.pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
 
 
     def send_cmd(self, cmd):
@@ -146,9 +148,9 @@ class machine ():
             self.logger.info("is_working:%s", is_working)
             # allPhoto = json.dumps(mock)
             # navigation_points = json.dumps(navigation_points_mock)
-            # work_flag = self.redis.get("begin_work")
+            work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
-            work_flag = 1
+            # work_flag = 1
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto):
                     allPhoto = json.loads(allPhoto)
@@ -250,6 +252,8 @@ class machine ():
                     self.go(self.speed.revolution)
             else:
                 self.redis.set("allPoints", json.dumps([]))
+                self.pub_rmq.run_subscribe(self)
+
             self.logger.info("time:%s,begin_work:%s", time.time(), work_flag)
             self.logger.info("----------------------loop end ------------------------------")
             time.sleep(1)
