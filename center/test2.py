@@ -6,7 +6,7 @@ ser =  serial_control()
 
 def main():
     cmd = "MF 10."
-    ser.write(cmd.encode())
+    ser.send_cmd(cmd.encode())
     print(ser.get_ret())
 
 
