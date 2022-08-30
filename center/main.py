@@ -16,6 +16,9 @@ from utils.point import point
 from utils.line import line
 from utils.work import work
 from utils.log import log
+from utils.serial_control import serial_control
+
+
 sys.path.append("..")
 from redisConn.index import redisDB
 # chmod -R 777 /dev/ttyAMA0
@@ -29,6 +32,7 @@ main_logger = mainlog.getLogger()
 main_pub_rmq = RMQ(url='redis://127.0.0.1:6379', name='arduino')
 redis = redisDB()
 redis.set("is_working",0)
+ser =  serial_control()
 # is_working = False
 
 def send(cmd,next=[]):
@@ -40,8 +44,9 @@ def send(cmd,next=[]):
             "from": "camera",
             "next_cmd":next
         }
-        main_logger.info("end_cmd-cmd:%s", cmd_dict)
-        main_pub_rmq.publish(json.dumps(cmd_dict))
+        ser.send_cmd(cmd_dict)
+        # main_logger.info("end_cmd-cmd:%s", cmd_dict)
+        # main_pub_rmq.publish(json.dumps(cmd_dict))
     else:
         main_logger.info("cmd null")
 
@@ -64,39 +69,55 @@ def wheel():
     unit = 1/min_time-0.02  # 1圈unit秒 , 0.02误差时间,可调整
     rot_speed = 100
 
-    next_cmd = [
-        {
-            "cmd":"MD",
-            "sleep":2
-        },
-        {
-            "cmd":"STOP 2",
-            "sleep":0
-        },
-        {
-            "cmd":"RROT "+str(rot_speed),
-            "sleep":unit
-        },
-        {
-            "cmd":"STOP 2",
-            "sleep":0
-        },
-        {
-            "cmd":"MU",
-            "sleep":2
-        },
-        {
-            "cmd":"STOP 2",
-            "sleep":0
-        },
-        {
-            "cmd":"MF 40",
-            "sleep":0
-        }
-    ]
+    # next_cmd = [
+    #     {
+    #         "cmd":"MD",
+    #         "sleep":2
+    #     },
+    #     {
+    #         "cmd":"STOP 2",
+    #         "sleep":0
+    #     },
+    #     {
+    #         "cmd":"RROT "+str(rot_speed),
+    #         "sleep":unit
+    #     },
+    #     {
+    #         "cmd":"STOP 2",
+    #         "sleep":0
+    #     },
+    #     {
+    #         "cmd":"MU",
+    #         "sleep":2
+    #     },
+    #     {
+    #         "cmd":"STOP 2",
+    #         "sleep":0
+    #     },
+    #     {
+    #         "cmd":"MF 40",
+    #         "sleep":0
+    #     }
+    # ]
     
-    send("STOP 0",next_cmd)
-   
+    send("STOP 0")
+    send("MD")
+    time.sleep(2)
+    send("STOP 2")
+
+    send("RROT "+rot_speed)
+    time.sleep(unit)
+
+    send("STOP 2")
+
+    send("MU")
+    time.sleep(2)
+
+    send("STOP 2")
+    redis.set("is_working",0)
+    send("MF 40")
+
+
     # main_logger.info("send RROT 100:%s", time.time())
 
 
