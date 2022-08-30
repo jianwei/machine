@@ -131,6 +131,7 @@ class machine ():
                             self.go(revolution)
                         
                             # 左右位置调整
+                            line = self.line.convertLine(allPhoto,0)
                             self.logger.info("line:%s", json.dumps(line))
                             if (line and len(line) > 0):
                                 center_point = screenSize[0]/2
