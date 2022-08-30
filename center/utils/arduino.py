@@ -47,6 +47,7 @@ class arduino():
             time0 = time.time()
             while True:
                 cnt+=1
+                print("cnt:",cnt)
                 time1 = float(time.time())
                 response = self.ser.read()
                 time2 = float(time.time())

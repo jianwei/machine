@@ -8,6 +8,7 @@ import sys
 import json
 import uuid
 import numpy
+import random
 # from threading import Timer
 import threading
 # import serial
@@ -105,7 +106,7 @@ def wheel():
     time.sleep(2)
     send("STOP 2")
 
-    send("RROT "+rot_speed)
+    send("RROT "+str(rot_speed))
     time.sleep(unit)
 
     send("STOP 2")
@@ -153,9 +154,10 @@ class machine ():
         send(cmd)
 
     def loop(self):
+        randId = random.random()
         mock = [
             [
-                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": 2, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
+                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": randId, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
                 #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
@@ -165,12 +167,12 @@ class machine ():
                 #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
                 # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": 182, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
-                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": 182, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
+                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
+                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
             ],
             [
-                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": 182, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
-                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": 182, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
+                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
+                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
             ],
         ]
         # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
@@ -178,13 +180,15 @@ class machine ():
         currentTime = 0
         # global is_working
         is_working = self.redis.get("is_working")
+        a=0
         while (1):
-            self.logger.info("----------------------loop begin ------------------------------")
+            a+=1
+            self.logger.info("----------------------loop begin ------------------------------%s",a)
             allPhoto = self.redis.get("allPoints")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
-            # allPhoto = json.dumps(mock)
+            allPhoto = json.dumps(mock)
             # work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -226,7 +230,7 @@ class machine ():
                                 else:
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):
-                            self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
+                            # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             #  稳定速度 转速
                             
                             revolution = self.speed.uniformSpeed(machine_speed)
