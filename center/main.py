@@ -50,26 +50,20 @@ def send(cmd):
 
 def wheel(speed):
     rot_speed = 60
-    unit_sleep = 1/(rot_speed*50/2/1000)
-    print("unit_sleep",unit_sleep)
+    unit_sleep = 1/(rot_speed*50/2/1000)   #转1圈所需要的时间
+    # print("unit_sleep",unit_sleep)
 
     send("STOP 0")
     send("MD")
     time.sleep(2)
     send("STOP 2")
-
     send("RROT "+str(rot_speed))
     time.sleep(unit_sleep)
-
     send("STOP 2")
-
     send("MU")
     time.sleep(2)
-
     send("STOP 2")
-    
     redis.set("is_working",0)
-    
     send("MF "+str(speed))
 
     
