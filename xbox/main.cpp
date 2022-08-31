@@ -105,7 +105,7 @@ void split(char *src, const char *separator, char **dest, int *num)
 	*num = count;
 }
 
-int main(int argc, char **argv)
+int send_cmd()
 {
 	int i;
 	int nRet = 0;
@@ -122,7 +122,6 @@ int main(int argc, char **argv)
 	char ret[1024] = "";
 	while (1)
 	{
-		// sleep(1);
 		/* serial port receiving part*/
 		nRet = read(nFd, buf, CSIZE);
 		if (-1 == nRet)
@@ -134,30 +133,24 @@ int main(int argc, char **argv)
 		{
 			buf[nRet] = 0;
 			sprintf(ret, "%s%s", ret, buf);
-
-			// char **data_;
-			// int data_len;
-			// split_line(ret, &data_, &data_len);
-			// char str[100] = "find\nthe\nway";
 			char *p[8] = {0};
 			int num = 0, i;
-			// gets(str);
-			// attention!!!!! 这里的分隔符已定要写为字符串的形式。
-
-			cout << "------------------------------------begin---------------------------------------" << endl;
-			printf("Recv Data: %s\n", ret);
 			split(ret, "\n", p, &num);
-			// cout << "ret:" << ret << endl;
-			cout << "\n\ndata_len--0:" << p[num - 1] << endl;
-			if (*p[num - 1] ==  '0')
+			// cout << "\n\ndata_len--0:" << p[num - 1] << endl;
+			if (*p[num - 1] == '0')
 			{
-				cout << "\n\ndata_len--4:" << p[num - 1] << endl;
+				// cout << "\n\ndata_len--4:" << p[num - 1] << endl;
 				break;
 			}
-			
+
 			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
 	close(nFd);
+}
+
+int main(int argc, char **argv)
+{
+	send_cmd()
 	return 0;
 }
