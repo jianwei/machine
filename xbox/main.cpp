@@ -63,35 +63,46 @@ int SerialInit()
 	return nFd;
 }
 
-int split_line(const char *str, char ***str_lines, int *len)
+void split(char *src, const char *separator, char **dest, int *num)
 {
-	char *s = "\n";
-	char *b_str = (char *)malloc(strlen(str));
-	memcpy(b_str, str, strlen(str));
+	char *pNext;
+	//记录分隔符数量
+	int count = 0;
+	//原字符串为空
+	if (src == NULL || strlen(src) == 0)
+		return;
+	//未输入分隔符
+	if (separator == NULL || strlen(separator) == 0)
+		return;
+	/*
+		c语言string库中函数，
+		声明：
+		char *strtok(char *str, const char *delim)
+		参数：
+		str -- 要被分解成一组小字符串的字符串。
+		delim -- 包含分隔符的 C 字符串。
+		返回值：
+		该函数返回被分解的第一个子字符串，如果没有可检索的字符串，则返回一个空指针。
 
-	char *b_str_tmp = b_str;
-	int cnt = 0;
-	char *buf = strstr(b_str, s);
-	while (buf != NULL)
+	*/
+	char *strtok(char *str, const char *delim);
+	//获得第一个由分隔符分割的字符串
+	pNext = strtok(src, separator);
+	while (pNext != NULL)
 	{
-		cnt++;
-		b_str = buf + strlen(s);
-		buf = strstr(b_str, s);
+		//存入到目的字符串数组中
+		*dest++ = pNext;
+		++count;
+		/*
+			strtok()用来将字符串分割成一个个片段。参数s指向欲分割的字符串，参数delim则为分割字符串中包含的所有字符。
+			当strtok()在参数s的字符串中发现参数delim中包涵的分割字符时,则会将该字符改为\0 字符。
+			在第一次调用时，strtok()必需给予参数s字符串，往后的调用则将参数s设置成NULL。
+			每次调用成功则返回指向被分割出片段的指针。
+
+		*/
+		pNext = strtok(NULL, separator);
 	}
-	*str_lines = (char **)malloc(sizeof(char *) * cnt);
-	b_str = b_str_tmp;
-	int i = 0;
-	buf = strstr(b_str, s);
-	while (buf != NULL)
-	{
-		buf[0] = '\0';
-		(*str_lines)[i] = b_str;
-		b_str = buf + strlen(s);
-		buf = strstr(b_str, s);
-		i++;
-	}
-	*len = cnt;
-	return 0;
+	*num = count;
 }
 
 int main(int argc, char **argv)
@@ -124,13 +135,20 @@ int main(int argc, char **argv)
 			buf[nRet] = 0;
 			sprintf(ret, "%s%s", ret, buf);
 
-			char **data_;
-			int data_len;
-			split_line(ret, &data_, &data_len);
+			// char **data_;
+			// int data_len;
+			// split_line(ret, &data_, &data_len);
+			// char str[100] = "find\nthe\nway";
+			char *p[8] = {0};
+			int num = 0, i;
+			// gets(str);
+			// attention!!!!! 这里的分隔符已定要写为字符串的形式。
+			split(ret, "\n", p, &num);
+
 			cout << "------------------------------------begin---------------------------------------" << endl;
 			printf("Recv Data: %s\n", ret);
 			cout << "ret:" << ret << endl;
-			cout << "data_len:" << data_len << endl;
+			cout << "data_len:" << p[num-1] << endl;
 			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
