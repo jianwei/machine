@@ -157,6 +157,10 @@ int main(int argc, char **argv)
 			{
 				cout << "\n\ndata_len--2:" << p[num - 1] << endl;
 			}
+			else if (p[num - 1] ==  '0')
+			{
+				cout << "\n\ndata_len--4:" << p[num - 1] << endl;
+			}
 			else
 			{
 				cout << "\n\ndata_len--3:" << p[num - 1] << endl;
