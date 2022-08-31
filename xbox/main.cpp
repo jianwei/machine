@@ -128,9 +128,11 @@ int main(int argc, char **argv)
 			int data_len;
 			split_line(ret, &data_, &data_len);
 			// printf("Recv Data: %s\n", ret);
+			cout << "------------------------------------begin---------------------------------------" << endl;
+			printf("Recv Data: %s\n", ret);
 			cout << "ret:" << ret << endl;
 			cout << "data_len:" << data_len << endl;
-			printf("Recv Data: %s\n", ret);
+			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
 	close(nFd);
