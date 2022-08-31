@@ -136,11 +136,11 @@ int main(int argc, char **argv)
 		return -1;
 	}
 	bzero(buf, CSIZE);
+	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
+	printf("%s\n", sendmsg);
 	while (1)
 	{
-		sleep(1);
-		write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
-		printf("%s\n", sendmsg);
+		// sleep(1);
 		/* serial port receiving part*/
 		nRet = read(nFd, buf, CSIZE);
 
@@ -153,7 +153,7 @@ int main(int argc, char **argv)
 		if (0 < nRet)
 		{
 			buf[nRet] = 0;
-			printf("Recv Data: %s,%d\n", buf,nRet);
+			printf("Recv Data: %s\n", buf);
 		}
 	}
 	close(nFd);
