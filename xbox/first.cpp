@@ -13,7 +13,8 @@
 #include <assert.h>
 #include <time.h>
 #include <hiredis/hiredis.h>
-// #include "./seria.cpp"
+#include "./seria.cpp"
+#include "./parse.cpp"
 
 #define XBOX_TYPE_BUTTON 0x01
 #define XBOX_TYPE_AXIS 0x02
@@ -53,31 +54,31 @@
 
 using namespace std;
 
-typedef struct xbox_map
-{
-    int time;
-    int a;
-    int b;
-    int x;
-    int y;
-    int lb;
-    int rb;
-    int start;
-    int back;
-    int home;
-    int lo;
-    int ro;
+// typedef struct xbox_map
+// {
+//     int time;
+//     int a;
+//     int b;
+//     int x;
+//     int y;
+//     int lb;
+//     int rb;
+//     int start;
+//     int back;
+//     int home;
+//     int lo;
+//     int ro;
 
-    int lx;
-    int ly;
-    int rx;
-    int ry;
-    int lt;
-    int rt;
-    int xx;
-    int yy;
+//     int lx;
+//     int ly;
+//     int rx;
+//     int ry;
+//     int lt;
+//     int rt;
+//     int xx;
+//     int yy;
 
-} xbox_map_t;
+// } xbox_map_t;
 
 int xbox_open(const char *file_name)
 {
@@ -228,6 +229,9 @@ void set_redis(char *params, redisContext *rc)
 
 int main(void)
 {
+
+    // char *sendmsg = "MF 40.";
+    // send_cmd(sendmsg);
     int xbox_fd;
     xbox_map_t map;
     int len, type;
@@ -236,7 +240,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
@@ -260,28 +264,37 @@ int main(void)
             continue;
         }
 
-        printf("\rTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d  \r",
+        printf("\nTime:%8d A:%d B:%d X:%d Y:%d LB:%d RB:%d start:%d back:%d home:%d LO:%d RO:%d XX:%-6d YY:%-6d LX:%-6d LY:%-6d RX:%-6d RY:%-6d LT:%-6d RT:%-6d  \n",
                map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        sprintf(keyBoark, "{\"uuid\":%d,\"xbox\":{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}}",
-                map.time, map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
-                map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
+        // sprintf(keyBoark, "{\"uuid\":%d,\"xbox\":{\"Time\":%d,\"A\":%d,\"B\":%d,\"X\":%d,\"Y\":%d,\"LB\":%d,\"RB\":%d,\"start\":%d,\"back\":%d,\"home\":%d,\"LO\":%d,\"RO\":%d,\"XX\":%d,\"YY\":%d,\"LX\":%d,\"LY\":%d,\"RX\":%d,\"RY\":%d,\"LT\":%d,\"RT\":%d}}",
+        //         map.time, map.time, map.a, map.b, map.x, map.y, map.lb, map.rb, map.start, map.back, map.home, map.lo, map.ro,
+        //         map.xx, map.yy, map.lx, map.ly, map.rx, map.ry, map.lt, map.rt);
 
-        if (map.lx != 0 || map.ly != 0)
+        // if (map.lx != 0 || map.ly != 0)
+        // {
+        //     time_t current_time;
+        //     current_time = time(NULL);
+        //     if (current_time - last_time >= 1)
+        //     {
+        //         int diff = current_time - last_time;
+        //         last_time = current_time;
+        //         set_redis(keyBoark, rc);
+        //     }
+        //     continue;
+        // }
+        // set_redis(keyBoark, rc);
+
+        char *ret = "";
+        xbox(map, ret, rc);
+
+        cout << "ret:" << ret << endl;
+        if (ret != "")
         {
-            time_t current_time;
-            current_time = time(NULL);
-            if (current_time - last_time >= 1)
-            {
-                int diff = current_time - last_time;
-                last_time = current_time;
-                set_redis(keyBoark, rc);
-            }
-
-            continue;
+            send_cmd(ret);
         }
-        set_redis(keyBoark, rc);
+
         fflush(stdout);
     }
 

@@ -74,7 +74,8 @@
         "serial.h": "c",
         "regex": "cpp",
         "termios.h": "c",
-        "list": "cpp"
+        "list": "cpp",
+        "stdio.h": "c"
     },
     "MicroPython.executeButton": [
         {

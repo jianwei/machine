@@ -138,10 +138,6 @@ int send_cmd(char* sendmsg)
 			{
 				break;
 			}
-			// if (*p[num - 1] == '-1')
-			// {
-			// 	break;
-			// }
 		}
 	}
 	close(nFd);
