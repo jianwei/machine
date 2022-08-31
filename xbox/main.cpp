@@ -7,9 +7,11 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <termios.h>
+#include <iostream>
 #define BAUDRATE B9600		  /// Baud rate : 115200
 #define DEVICE "/dev/ttyACM0" // Set your port number
 
+using namespace std;
 int nFd = 0;
 struct termios stNew;
 struct termios stOld;
@@ -92,42 +94,6 @@ int split_line(const char *str, char ***str_lines, int *len)
 	return 0;
 }
 
-// int send_cmd()
-// {
-// 	int i;
-// 	int nRet = 0;
-// 	char *sendmsg = "MF 40.";
-// 	char buf[5];
-// 	if (SerialInit() == -1)
-// 	{
-// 		perror("SerialInit Error!\n");
-// 		return -1;
-// 	}
-// 	bzero(buf, CSIZE);
-// 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
-// 	printf("%s\n", sendmsg);
-// 	char ret[1024] = "";
-// 	while (1)
-// 	{
-// 		// sleep(1);
-// 		/* serial port receiving part*/
-// 		nRet = read(nFd, buf, CSIZE);
-// 		if (-1 == nRet)
-// 		{
-// 			perror("Read Data Error!\n");
-// 			break;
-// 		}
-// 		if (0 < nRet)
-// 		{
-// 			buf[nRet] = 0;
-// 			sprintf(ret, "%s%s", ret, buf);
-// 			printf("Recv Data: %s\n", ret);
-// 		}
-// 	}
-// 	close(nFd);
-// 	return 0;
-// }
-
 int main(int argc, char **argv)
 {
 	int i;
@@ -161,7 +127,9 @@ int main(int argc, char **argv)
 			char **data_;
 			int data_len;
 			split_line(ret, &data_, &data_len);
-
+			// printf("Recv Data: %s\n", ret);
+			cout << "ret:" << ret << endl;
+			cout << "data_len:" << data_len << endl;
 			printf("Recv Data: %s\n", ret);
 		}
 	}
