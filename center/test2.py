@@ -6,7 +6,7 @@ ser =  serial_control()
 
 
 def main():
-    cmd = "MF 10."
+    cmd = "STOP."
     cmd_dict = {
             "uuid": str(uuid.uuid1()),
             "cmd": cmd,
