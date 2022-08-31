@@ -43,7 +43,7 @@ class serial_control():
     # 1661395409.5343091  
     def send_cmd(self, message):
         ret = -2
-        self.logger.info ("message:%s",message)
+        # self.logger.info ("message:%s",message)
         if ("cmd" in message.keys()):
             cmd = message["cmd"]
         else:
