@@ -126,12 +126,12 @@ int main(int argc, char **argv)
 
 			char **data_;
 			int data_len;
-			split_line(ret, &data_, &data_len);
+			// split_line(ret, &data_, &data_len);
 			// printf("Recv Data: %s\n", ret);
 			cout << "------------------------------------begin---------------------------------------" << endl;
 			printf("Recv Data: %s\n", ret);
-			cout << "ret:" << ret << endl;
-			cout << "data_len:" << data_len << endl;
+			// cout << "ret:" << ret << endl;
+			// cout << "data_len:" << data_len << endl;
 			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
