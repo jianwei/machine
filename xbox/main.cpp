@@ -153,7 +153,7 @@ int main(int argc, char **argv)
 		if (0 < nRet)
 		{
 			buf[nRet] = 0;
-			printf("Recv Data: %s\n", buf);
+			printf("Recv Data: %s,%d\n", buf,nRet);
 		}
 	}
 	close(nFd);
