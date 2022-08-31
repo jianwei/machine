@@ -1,69 +1,161 @@
+
+/*
+
+	Author: CSDN Maizidian
+
+	 Serial communication under ubutnu, data sending and receiving
+
+	*/
+
 #include <stdio.h>
-#include <fcntl.h>
-#include <termios.h>
+
+#include <stdlib.h>
+
 #include <unistd.h>
+
+#include <string.h>
+
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
-int main(void)
+#include <fcntl.h>
+
+#include <termios.h>
+
+#define BAUDRATE B9600 /// Baud rate : 115200
+
+#define DEVICE "/dev/ttyACM0" // Set your port number
+
+int nFd = 0;
+
+struct termios stNew;
+
+struct termios stOld;
+
+// Open Port & Set Port
+
+int SerialInit()
+
 {
-	int fd; /*File Descriptor*/
 
-	printf("\n +----------------------------------+");
-	printf("\n |        Serial Port Write         |");
-	printf("\n +----------------------------------+");
+	nFd = open(DEVICE, O_RDWR | O_NOCTTY | O_NDELAY);
 
-	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
+	if (-1 == nFd)
 
-	if (fd == -1) /* Error Checking */
-		printf("\n  Error! in Opening ttyACM0  ");
-	else
-		printf("\n  ttyACM0 Opened Successfully ");
+	{
 
-	struct termios SerialPortSettings;
+		perror("Open Serial Port Error!\n");
 
-	tcgetattr(fd, &SerialPortSettings);
+		return -1;
+	}
 
-	//设置波特率
-	cfsetispeed(&SerialPortSettings, B9600);
-	cfsetospeed(&SerialPortSettings, B9600);
+	if ((fcntl(nFd, F_SETFL, 0)) < 0)
 
-	//设置没有校验
-	SerialPortSettings.c_cflag &= ~PARENB;
+	{
 
-	//停止位 = 1
-	SerialPortSettings.c_cflag &= ~CSTOPB;
-	SerialPortSettings.c_cflag &= ~CSIZE;
+		perror("Fcntl F_SETFL Error!\n");
 
-	//设置数据位 = 8
-	SerialPortSettings.c_cflag |= CS8;
+		return -1;
+	}
 
-	SerialPortSettings.c_cflag &= ~CRTSCTS;
-	SerialPortSettings.c_cflag |= CREAD | CLOCAL;
+	if (tcgetattr(nFd, &stOld) != 0)
 
-	//关闭软件流动控制
-	SerialPortSettings.c_iflag &= ~(IXON | IXOFF | IXANY);
+	{
 
-	//设置操作模式
-	SerialPortSettings.c_iflag &= ~(ICANON | ECHO | ECHOE | ISIG);
+		perror("tcgetattr error!\n");
 
-	SerialPortSettings.c_oflag &= ~OPOST;
+		return -1;
+	}
 
-	if ((tcsetattr(fd, TCSANOW, &SerialPortSettings)) != 0)
-		printf("\n  ERROR ! in Setting attributes");
-	else
-		printf("\n  BaudRate = 9600 \n  StopBits = 1 \n  Parity   = none");
+	stNew = stOld;
 
-	//定义传输内容
-	char write_buffer[] = "MF 40.";
-	//传输字节数
-	int bytes_written = 0;
+	cfmakeraw(&stNew); // Set the terminal to raw mode, in which all input data is processed in bytes
 
-	//串口写数据
-	bytes_written = write(fd, write_buffer, sizeof(write_buffer));
-	printf("\n  %s written to ttyACM0", write_buffer);
-	printf("\n  %d Bytes written to ttyACM0", bytes_written);
-	printf("\n +----------------------------------+\n\n");
+	// set speed
 
-	close(fd);
+	cfsetispeed(&stNew, BAUDRATE); // 115200
+
+	cfsetospeed(&stNew, BAUDRATE);
+
+	// set databits
+
+	stNew.c_cflag |= (CLOCAL | CREAD);
+
+	stNew.c_cflag &= ~CSIZE;
+
+	stNew.c_cflag |= CS8;
+
+	// set parity
+
+	stNew.c_cflag &= ~PARENB;
+
+	stNew.c_iflag &= ~INPCK;
+
+	// set stopbits
+
+	stNew.c_cflag &= ~CSTOPB;
+
+	stNew.c_cc[VTIME] = 0; // Specify the minimum number of characters to be read
+
+	stNew.c_cc[VMIN] = 1; // Specify the waiting time for reading the first character, the unit of time is n*100ms
+
+	// Assuming VTIME=0 is set, the read() operation is blocked indefinitely when no character is input
+
+	tcflush(nFd, TCIFLUSH); // Clear the terminal's unfinished input/output requests and data.
+
+	if (tcsetattr(nFd, TCSANOW, &stNew) != 0)
+
+	{
+
+		perror("tcsetattr Error!\n");
+
+		return -1;
+	}
+
+	return nFd;
+}
+
+int main(int argc, char **argv)
+
+{
+	int i;
+
+	int nRet = 0;
+
+	char *sendmsg = "MF 40.";
+
+	char buf[5];
+
+	if (SerialInit() == -1)
+
+	{
+
+		perror("SerialInit Error!\n");
+
+		return -1;
+	}
+	bzero(buf, CSIZE);
+	while (1)
+	{
+		sleep(1);
+		write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
+		printf("%s\n", sendmsg);
+		/* serial port receiving part*/
+		nRet = read(nFd, buf, CSIZE);
+
+		if (-1 == nRet)
+		{
+			perror("Read Data Error!\n");
+			break;
+		}
+
+		if (0 < nRet)
+		{
+			buf[nRet] = 0;
+			printf("Recv Data: %s\n", buf);
+		}
+	}
+	close(nFd);
 	return 0;
 }

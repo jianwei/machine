@@ -73,7 +73,8 @@
         "__functional_base_03": "cpp",
         "serial.h": "c",
         "regex": "cpp",
-        "termios.h": "c"
+        "termios.h": "c",
+        "list": "cpp"
     },
     "MicroPython.executeButton": [
         {
