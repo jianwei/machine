@@ -147,10 +147,11 @@ int send_cmd()
 		}
 	}
 	close(nFd);
+	return 0;
 }
 
 int main(int argc, char **argv)
 {
-	send_cmd()
+	send_cmd();
 	return 0;
 }
