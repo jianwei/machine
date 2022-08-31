@@ -61,9 +61,9 @@ def wheel(speed):
     send("STOP 2")
     
     send("RROT "+str(rot_speed))
-    main_logger.info("RROT sleep begin:%s",time.time())
+    main_logger.info("RROT sleep begin:%s,%s,%s",time.time(),unit_sleep,time.time()+rot_speed)
     time.sleep(unit_sleep)
-    main_logger.info("RROT sleep end:%s",time.time())
+    main_logger.info("RROT sleep end:%s,%s",time.time(),unit_sleep)
     
     send("STOP 2")
     
