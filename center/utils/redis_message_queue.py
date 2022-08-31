@@ -50,7 +50,7 @@ class RMQ(object):
             data = {'queue': queue_name, 'message': message,
                     "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
             print("------------------------------------------------------------------------------------")
-            print(data)
+            # print(data)
             # continue
             if (that):
                 obj_msg  = json.loads(message)
