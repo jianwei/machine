@@ -60,6 +60,74 @@ int SerialInit()
 	}
 	return nFd;
 }
+
+int split_line(const char *str, char ***str_lines, int *len)
+{
+	char *s = "\n";
+	char *b_str = (char *)malloc(strlen(str));
+	memcpy(b_str, str, strlen(str));
+
+	char *b_str_tmp = b_str;
+	int cnt = 0;
+	char *buf = strstr(b_str, s);
+	while (buf != NULL)
+	{
+		cnt++;
+		b_str = buf + strlen(s);
+		buf = strstr(b_str, s);
+	}
+	*str_lines = (char **)malloc(sizeof(char *) * cnt);
+	b_str = b_str_tmp;
+	int i = 0;
+	buf = strstr(b_str, s);
+	while (buf != NULL)
+	{
+		buf[0] = '\0';
+		(*str_lines)[i] = b_str;
+		b_str = buf + strlen(s);
+		buf = strstr(b_str, s);
+		i++;
+	}
+	*len = cnt;
+	return 0;
+}
+
+// int send_cmd()
+// {
+// 	int i;
+// 	int nRet = 0;
+// 	char *sendmsg = "MF 40.";
+// 	char buf[5];
+// 	if (SerialInit() == -1)
+// 	{
+// 		perror("SerialInit Error!\n");
+// 		return -1;
+// 	}
+// 	bzero(buf, CSIZE);
+// 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
+// 	printf("%s\n", sendmsg);
+// 	char ret[1024] = "";
+// 	while (1)
+// 	{
+// 		// sleep(1);
+// 		/* serial port receiving part*/
+// 		nRet = read(nFd, buf, CSIZE);
+// 		if (-1 == nRet)
+// 		{
+// 			perror("Read Data Error!\n");
+// 			break;
+// 		}
+// 		if (0 < nRet)
+// 		{
+// 			buf[nRet] = 0;
+// 			sprintf(ret, "%s%s", ret, buf);
+// 			printf("Recv Data: %s\n", ret);
+// 		}
+// 	}
+// 	close(nFd);
+// 	return 0;
+// }
+
 int main(int argc, char **argv)
 {
 	int i;
@@ -74,7 +142,7 @@ int main(int argc, char **argv)
 	bzero(buf, CSIZE);
 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
 	printf("%s\n", sendmsg);
-	char ret[1024] ="";
+	char ret[] = "";
 	while (1)
 	{
 		// sleep(1);
@@ -88,7 +156,12 @@ int main(int argc, char **argv)
 		if (0 < nRet)
 		{
 			buf[nRet] = 0;
-			sprintf(ret,"%s%s",ret,buf);
+			sprintf(ret, "%s%s", ret, buf);
+
+			char **data_;
+			int data_len;
+			split_line(ret, &data_, &data_len);
+
 			printf("Recv Data: %s\n", ret);
 		}
 	}
