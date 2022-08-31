@@ -149,22 +149,12 @@ int main(int argc, char **argv)
 			split(ret, "\n", p, &num);
 			// cout << "ret:" << ret << endl;
 			cout << "\n\ndata_len--0:" << p[num - 1] << endl;
-			if (p[num - 1] == "0")
-			{
-				cout << "\n\ndata_len--1:" << p[num - 1] << endl;
-			}
-			else if (p[num - 1] == 0)
-			{
-				cout << "\n\ndata_len--2:" << p[num - 1] << endl;
-			}
-			else if (*p[num - 1] ==  '0')
+			if (*p[num - 1] ==  '0')
 			{
 				cout << "\n\ndata_len--4:" << p[num - 1] << endl;
+				break;
 			}
-			else
-			{
-				cout << "\n\ndata_len--3:" << p[num - 1] << endl;
-			}
+			
 			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
