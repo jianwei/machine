@@ -57,13 +57,20 @@ def wheel(speed):
     send("STOP 0")
     send("MD")
     time.sleep(2)
+    
     send("STOP 2")
+    
     send("RROT "+str(rot_speed))
+    main_logger.info("RROT sleep begin:%s",time.time())
     time.sleep(unit_sleep)
+    main_logger.info("RROT sleep end:%s",time.time())
+    
     send("STOP 2")
+    
     send("MU")
     time.sleep(2)
     send("STOP 2")
+    
     redis.set("is_working",0)
     send("MF "+str(speed))
 
