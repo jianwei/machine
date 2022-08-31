@@ -88,8 +88,7 @@ int main(int argc, char **argv)
 		if (0 < nRet)
 		{
 			buf[nRet] = 0;
-			// ret = ret + buf
-			strcat(ret,buf);
+			sprintf(ret,"%s%s",ret,buf);
 			printf("Recv Data: %s\n", ret);
 		}
 	}
