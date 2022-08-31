@@ -148,18 +148,18 @@ int main(int argc, char **argv)
 			printf("Recv Data: %s\n", ret);
 			split(ret, "\n", p, &num);
 			// cout << "ret:" << ret << endl;
-			cout << "data_len--0:" << p[num - 1] << endl;
+			cout << "\n\ndata_len--0:" << p[num - 1] << endl;
 			if (p[num - 1] == "0")
 			{
-				cout << "data_len--1:" << p[num - 1] << endl;
+				cout << "\n\ndata_len--1:" << p[num - 1] << endl;
 			}
 			else if (p[num - 1] == 0)
 			{
-				cout << "data_len--2:" << p[num - 1] << endl;
+				cout << "\n\ndata_len--2:" << p[num - 1] << endl;
 			}
 			else
 			{
-				cout << "data_len--3:" << p[num - 1] << endl;
+				cout << "\n\ndata_len--3:" << p[num - 1] << endl;
 			}
 			cout << "------------------------------------end---------------------------------------" << endl;
 		}
