@@ -147,7 +147,7 @@ int main(int argc, char **argv)
 
 			cout << "------------------------------------begin---------------------------------------" << endl;
 			printf("Recv Data: %s\n", ret);
-			split(ret, "\n\r", p, &num);
+			split(ret, "\n", p, &num);
 			cout << "ret:" << ret << endl;
 			cout << "data_len:" << p[num-1] << endl;
 			cout << "------------------------------------end---------------------------------------" << endl;
