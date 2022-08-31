@@ -150,7 +150,7 @@ int main(int argc, char **argv)
 			// cout << "ret:" << ret << endl;
 			cout << "data_len:" << p[num - 1] << (p[num - 1] == 0) << (p[num - 1] == "0") << endl;
 			cout << "------------------------------------end---------------------------------------" << endl;
-			if(p[num - 1] == 0){
+			if(p[num - 1] == "0"){
 				break;
 			}
 
