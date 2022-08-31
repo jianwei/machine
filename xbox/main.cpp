@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 	int i;
 	int nRet = 0;
 	char *sendmsg = "MF 40.";
-	char buf[50];
+	char buf[5];
 	if (SerialInit() == -1)
 	{
 		perror("SerialInit Error!\n");
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 	bzero(buf, CSIZE);
 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
 	printf("%s\n", sendmsg);
-	char* ret ="";
+	char ret[1024] ="";
 	while (1)
 	{
 		// sleep(1);
