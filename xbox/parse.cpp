@@ -71,11 +71,13 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         {
             global_working = 0;
             set_redis((char*)"begin_work", 0, rc);
+            return;
         }
         else
         {
             global_working = 1;
             set_redis((char*)"begin_work", 1, rc);
+            return;
         }
     }
 
@@ -86,6 +88,7 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         if (map.a > 0)
         {
             ret = (char*)"RST.";
+            return;
         }
         //后退
         if (map.ry < 0)
@@ -93,6 +96,7 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
             int val = ((float)abs(map.ry) / max) * 100;
             sprintf(cmd, "MB %d.", val);
             ret = cmd;
+            return;
         }
 
         //前进
@@ -102,18 +106,21 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
             // cout << "MF:" << val << endl;
             sprintf(cmd, "MF %d.", val);
             ret = cmd;
+            return;
         }
 
         //上
         if (map.yy < 0)
         {
             ret = (char*)"MU.";
+            return;
         }
 
         //下
         if (map.yy > 0)
         {
             ret = (char*)"MD.";
+            return;
         }
 
         //转弯

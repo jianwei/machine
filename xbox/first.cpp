@@ -290,6 +290,7 @@ int main(void)
         xbox(map, ret, rc);
 
         cout << "ret:" << ret << endl;
+        // send_cmd(ret);
         // if (ret != "")
         // {
         //     send_cmd(ret);
