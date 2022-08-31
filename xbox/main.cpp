@@ -108,7 +108,7 @@ int main(int argc, char **argv)
 	bzero(buf, CSIZE);
 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
 	printf("%s\n", sendmsg);
-	char ret[] = "";
+	char ret[1024] = "";
 	while (1)
 	{
 		// sleep(1);
