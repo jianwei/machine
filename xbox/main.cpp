@@ -143,10 +143,11 @@ int main(int argc, char **argv)
 			int num = 0, i;
 			// gets(str);
 			// attention!!!!! 这里的分隔符已定要写为字符串的形式。
-			split(ret, "\n", p, &num);
+			
 
 			cout << "------------------------------------begin---------------------------------------" << endl;
 			printf("Recv Data: %s\n", ret);
+			split(ret, "\n", p, &num);
 			cout << "ret:" << ret << endl;
 			cout << "data_len:" << p[num-1] << endl;
 			cout << "------------------------------------end---------------------------------------" << endl;
