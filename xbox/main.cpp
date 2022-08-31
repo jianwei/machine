@@ -105,11 +105,11 @@ void split(char *src, const char *separator, char **dest, int *num)
 	*num = count;
 }
 
-int send_cmd()
+int send_cmd(char* sendmsg)
 {
-	int i;
+	// int i;
 	int nRet = 0;
-	char *sendmsg = "MF 40.";
+	// char *sendmsg = "MF 40.";
 	char buf[5];
 	if (SerialInit() == -1)
 	{
@@ -136,14 +136,10 @@ int send_cmd()
 			char *p[8] = {0};
 			int num = 0, i;
 			split(ret, "\n", p, &num);
-			// cout << "\n\ndata_len--0:" << p[num - 1] << endl;
 			if (*p[num - 1] == '0')
 			{
-				// cout << "\n\ndata_len--4:" << p[num - 1] << endl;
 				break;
 			}
-
-			cout << "------------------------------------end---------------------------------------" << endl;
 		}
 	}
 	close(nFd);
@@ -152,6 +148,7 @@ int send_cmd()
 
 int main(int argc, char **argv)
 {
-	send_cmd();
+	char* sendmsg = "MF 40.";
+	send_cmd(sendmsg);
 	return 0;
 }
