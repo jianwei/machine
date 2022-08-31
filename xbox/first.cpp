@@ -240,7 +240,7 @@ int main(void)
 
     memset(&map, 0, sizeof(xbox_map_t));
 
-    xbox_fd = xbox_open("/dev/input/js0");
+    xbox_fd = xbox_open("/dev/input/js1");
     if (xbox_fd < 0)
     {
         return -1;
@@ -286,14 +286,14 @@ int main(void)
         // }
         // set_redis(keyBoark, rc);
 
-        char *ret = "";
+        char *ret = (char*)"";
         xbox(map, ret, rc);
 
         cout << "ret:" << ret << endl;
-        if (ret != "")
-        {
-            send_cmd(ret);
-        }
+        // if (ret != "")
+        // {
+        //     send_cmd(ret);
+        // }
 
         fflush(stdout);
     }

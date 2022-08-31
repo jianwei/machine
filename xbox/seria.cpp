@@ -108,7 +108,7 @@ void split(char *src, const char *separator, char **dest, int *num)
 int send_cmd(char* sendmsg)
 {
 	int nRet = 0;
-	char buf[5];
+	char buf[64];
 	if (SerialInit() == -1)
 	{
 		perror("SerialInit Error!\n");
@@ -117,7 +117,8 @@ int send_cmd(char* sendmsg)
 	bzero(buf, CSIZE);
 	write(nFd, sendmsg, sizeof(sendmsg)); // Send data to serial port
 	printf("%s\n", sendmsg);
-	char ret[1024] = "";
+	// char ret[1024] = "";
+	char *ret = (char *)malloc(1024);
 	while (1)
 	{
 		/* serial port receiving part*/

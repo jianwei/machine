@@ -54,13 +54,13 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
     //机器停止
     if (map.y > 0)
     {
-        ret = "STOP 0.";
+        ret = (char*)"STOP 0.";
         return;
     }
     //操作臂停止
     if (map.b > 0)
     {
-        ret = "STOP 2.";
+        ret = (char*)"STOP 2.";
         return;
     }
 
@@ -70,12 +70,12 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         if (global_working == 1)
         {
             global_working = 0;
-            set_redis("begin_work", 0, rc);
+            set_redis((char*)"begin_work", 0, rc);
         }
         else
         {
             global_working = 1;
-            set_redis("begin_work", 1, rc);
+            set_redis((char*)"begin_work", 1, rc);
         }
     }
 
@@ -85,7 +85,7 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         //复位
         if (map.a > 0)
         {
-            ret = "RST.";
+            ret = (char*)"RST.";
         }
         //后退
         if (map.ry < 0)
@@ -107,13 +107,13 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         //上
         if (map.yy < 0)
         {
-            ret = "MU.";
+            ret = (char*)"MU.";
         }
 
         //下
         if (map.yy > 0)
         {
-            ret = "MD.";
+            ret = (char*)"MD.";
         }
 
         //转弯
