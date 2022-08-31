@@ -107,9 +107,7 @@ void split(char *src, const char *separator, char **dest, int *num)
 
 int send_cmd(char* sendmsg)
 {
-	// int i;
 	int nRet = 0;
-	// char *sendmsg = "MF 40.";
 	char buf[5];
 	if (SerialInit() == -1)
 	{
@@ -137,6 +135,10 @@ int send_cmd(char* sendmsg)
 			int num = 0, i;
 			split(ret, "\n", p, &num);
 			if (*p[num - 1] == '0')
+			{
+				break;
+			}
+			if (*p[num - 1] == '-1')
 			{
 				break;
 			}
