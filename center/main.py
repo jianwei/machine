@@ -51,8 +51,8 @@ def send(cmd):
 def wheel(speed):
     rot_speed = 60
     unit_sleep = 1/(rot_speed*50/2/1000)   #转1圈所需要的时间
-    unit_sleep -= 0.02    #误差
-    main_logger.info("unit_sleep",unit_sleep)
+    unit_sleep -= 0.04    #误差
+    main_logger.info("unit_sleep:%s",unit_sleep)
     send("STOP 0")
     send("MD")
     time.sleep(2)
