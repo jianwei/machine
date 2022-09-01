@@ -153,23 +153,16 @@ class machine ():
             # self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
-                self.logger.info("current latsTime,loop--1" )
                 if (allPhoto or navigation_points):
-                    self.logger.info("current latsTime,loop--2" )
                     allPhoto = json.loads(allPhoto)
                     navigation_points = json.loads(navigation_points)
                     if (len(allPhoto) > 0 or len(navigation_points) > 0):
-
-                        self.logger.info("current latsTime,loop--3" )
-
                         try :                         
                             latsTime = allPhoto[0][0]["time"]
                             screenSize = allPhoto[0][0]["screenSize"]
                         except Exception as e :
                             latsTime = navigation_points[0][0]["time"]
                             screenSize = navigation_points[0][0]["screenSize"]
-
-                        # screenSize = allPhoto[0][0]["screenSize"]
                         if (latsTime == currentTime):
                             self.logger.info("current latsTime:%s,loop",latsTime )
                             time.sleep(0.1)
