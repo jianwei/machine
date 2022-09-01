@@ -113,8 +113,8 @@ def run(
         show_vid = check_imshow()
         # show_vid = False
         cudnn.benchmark = True  # set True to speed up constant image size inference
-        # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, capture_device = capture_device)
-        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,isUSBCamera = True,capture_device=2)
+        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, capture_device = capture_device)
+        # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,isUSBCamera = True,capture_device=2)
         nr_sources = len(dataset)
         screenSize = dataset.getScreen()
     else:
@@ -275,8 +275,11 @@ def run(
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 
+                
+                key ="allPoints"  if capture_device == 0 else capture_device == 2
+                annotator.addPhoto(key,allPoints,redis)
                 # annotator.addPhoto("allPoints",allPoints,redis)
-                annotator.addPhoto("navigation_points",allPoints,redis)
+                # annotator.addPhoto("navigation_points",allPoints,redis)
             else:
                 strongsort_list[i].increment_ages()
                 LOGGER.info('No detections')

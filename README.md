@@ -10,5 +10,7 @@ nomachine:
 
 
 track：
->>python3 track.py  --nosave   --yolo-weights yolov5s.pt
->>python3 detect.py --source 0 --nosave  --weights yolov5s.pt
+>>除草
+>>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 0
+>>导航：
+>>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 2

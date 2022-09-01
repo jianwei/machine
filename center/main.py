@@ -186,10 +186,9 @@ class machine ():
                                 else:
                                     self.redis.set("is_working",1)
                                     self.logger.info("id,centery:%s,%s", uuid_id,y)
-                                    # "center": [217.5, 366.0]
-                                    # "center": [197.0, 259.5]
+                                    # "center": [122.5, 212.0]
                                     # ponit_y = 366  #中心点
-                                    # if (y >= (ponit_y-15)):
+                                    # if (y >= (212-25)):
                                     self.redis.set(uuid_id,1,10)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
