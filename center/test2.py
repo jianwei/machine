@@ -4,9 +4,7 @@ import uuid
 from utils.serial_control import serial_control
 ser =  serial_control()
 
-
-def main():
-    cmd = "STOP."
+def main(cmd):
     cmd_dict = {
             "uuid": str(uuid.uuid1()),
             "cmd": cmd,
@@ -18,7 +16,8 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        main("MF 30.")
     except KeyboardInterrupt:
         print("ctrl+c stop")
+        main("STOP.")
         ser.close()

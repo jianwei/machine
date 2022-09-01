@@ -13,7 +13,7 @@ nomachine:
 
 track：
 >>除草
->>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 0
+>>python3 track.py  --nosave     --capture_device 0
 >>导航：
 >>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 2
 >>权限
