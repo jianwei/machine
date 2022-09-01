@@ -190,7 +190,8 @@ def run(
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
             # key,photo,redis
-            key ="allPoints"  
+            # key ="allPoints"  
+            key ="allPoints"  if capture_device == 0 else "navigation_points"
             annotator.addPhoto(key,allPoints,redis)
             # annotator.addPhoto("allPoints",allPoints,redis)
             # annotator.addPhoto("navigation_points",allPoints,redis)

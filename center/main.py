@@ -152,6 +152,8 @@ class machine ():
             work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
+            # last_done_time = time.time()
+            
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto or navigation_points):
                     allPhoto = json.loads(allPhoto)
@@ -190,6 +192,10 @@ class machine ():
                                     # "center": [122.5, 212.0]
                                     # ponit_y = 366  #中心点
                                     # if (y >= (212-25)):
+                                    # now_time = 
+                                    # last_done_time = time.time()
+                                    # now_time = time.time()
+                                    # if now_time - last_done_time)
                                     self.redis.set(uuid_id,1,1*60)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
@@ -200,11 +206,11 @@ class machine ():
                             # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             #  稳定速度 转速
                             
-                            revolution = self.speed.uniformSpeed(machine_speed)
-                            self.logger.info("revolution:%s", revolution)
-                            # if(revolution>=40)
-                            revolution = 30 if revolution>=40 else revolution
-                            self.go(revolution)
+                            # revolution = self.speed.uniformSpeed(machine_speed)
+                            # self.logger.info("revolution:%s", revolution)
+                            # # if(revolution>=40)
+                            # revolution = 30 if revolution>=40 else revolution
+                            # self.go(revolution)
                         
                             # # 左右位置调整
                             # line = self.line.convertLine(navigation_points,0)
