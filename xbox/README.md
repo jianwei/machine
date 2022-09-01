@@ -5,3 +5,8 @@ prepare:
 
 build:
 g++  first.cpp -o second -lhiredis   && ./second
+
+
+
+
+sudo apt-get install libhiredis-dev 

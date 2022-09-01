@@ -37,12 +37,27 @@ typedef struct xbox_map
 int global_working = 0;
 
 void set_redis(char *key, int value, redisContext *rc)
-// void set_redis(char *key, char *value)
 {
-    cout << key << value << endl;
+    cout << "set_redis" << key << value << endl;
     redisReply *reply;
     reply = (redisReply *)redisCommand(rc, "SET %s %d", key, value);
     freeReplyObject(reply);
+}
+
+void get_redis(char *key, redisContext *rc)
+{
+
+    char *get_ = (char *)malloc(32);
+    sprintf(get_, "GET %s", key);
+    cout << "get_redis:" << get_ << endl;
+    redisReply *reply = (redisReply *)redisCommand(rc, get_);
+
+    if (reply != NULL && reply->type == REDIS_REPLY_STRING)
+    {
+        // printf("%s\n", reply->str);
+        cout << "get_redis-val:" << reply << reply->str << endl;
+    }
+    // freeReplyObject(reply); //使用reply以后必须要进行释放
 }
 
 void xbox(xbox_map_t map, char *&ret, redisContext *rc)
@@ -54,13 +69,13 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
     //机器停止
     if (map.y > 0)
     {
-        ret = (char*)"STOP 0.";
+        ret = (char *)"STOP 0.";
         return;
     }
     //操作臂停止
     if (map.b > 0)
     {
-        ret = (char*)"STOP 2.";
+        ret = (char *)"STOP 2.";
         return;
     }
 
@@ -70,13 +85,15 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         if (global_working == 1)
         {
             global_working = 0;
-            set_redis((char*)"begin_work", 0, rc);
+            set_redis((char *)"begin_work", 0, rc);
+            get_redis((char *)"begin_work", rc);
             return;
         }
         else
         {
             global_working = 1;
-            set_redis((char*)"begin_work", 1, rc);
+            set_redis((char *)"begin_work", 1, rc);
+            get_redis((char *)"begin_work", rc);
             return;
         }
     }
@@ -87,7 +104,7 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         //复位
         if (map.a > 0)
         {
-            ret = (char*)"RST.";
+            ret = (char *)"RST.";
             return;
         }
         //后退
@@ -112,14 +129,14 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
         //上
         if (map.yy < 0)
         {
-            ret = (char*)"MU.";
+            ret = (char *)"MU.";
             return;
         }
 
         //下
         if (map.yy > 0)
         {
-            ret = (char*)"MD.";
+            ret = (char *)"MD.";
             return;
         }
 
@@ -145,7 +162,7 @@ void xbox(xbox_map_t map, char *&ret, redisContext *rc)
 
 int turn(int global_angle, int angle, int type, char *ret, redisContext *rc)
 {
-
+    global_angle = 90;
     return 0;
 }
 

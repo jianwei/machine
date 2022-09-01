@@ -11,3 +11,4 @@ nomachine:
 
 track：
 >>python3 track.py --capture_device 0 --nosave --img 320  --yolo-weights yolov5s.pt
+>>python3 detect.py --source 0 --nosave  --weights yolov5s.pt

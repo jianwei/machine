@@ -146,10 +146,9 @@ class machine ():
             self.logger.info("is_working:%s", is_working)
 
 
-            allPhoto = json.dumps(mock)
-            navigation_points = json.dumps(navigation_points_mock)
+            # allPhoto = json.dumps(mock)
+            # navigation_points = json.dumps(navigation_points_mock)
 
-            
             work_flag = self.redis.get("begin_work")
             # self.logger.info(allPhoto)
             work_flag = 1
@@ -198,56 +197,56 @@ class machine ():
                             revolution = self.speed.uniformSpeed(machine_speed)
                             self.logger.info("revolution:%s", revolution)
                             # if(revolution>=40)
-                            revolution = 40 if revolution>=40 else revolution
+                            revolution = 30 if revolution>=40 else revolution
                             self.go(revolution)
                         
-                            # 左右位置调整
-                            line = self.line.convertLine(navigation_points,0)
-                            self.logger.info("line:%s", json.dumps(line))
-                            if (line and len(line) > 0):
-                                center_point = screenSize[0]/2
-                                first = line[0]
-                                length = len(first)
-                                cmd = ""
-                                if (length > 0):
-                                    if (length == 1 or length == 3):
-                                        center = first[0] if length == 1 else first[1]
-                                        centerx = center["centerx"]
-                                        diff_point_x = centerx-center_point
+                            # # 左右位置调整
+                            # line = self.line.convertLine(navigation_points,0)
+                            # self.logger.info("line:%s", json.dumps(line))
+                            # if (line and len(line) > 0):
+                            #     center_point = screenSize[0]/2
+                            #     first = line[0]
+                            #     length = len(first)
+                            #     cmd = ""
+                            #     if (length > 0):
+                            #         if (length == 1 or length == 3):
+                            #             center = first[0] if length == 1 else first[1]
+                            #             centerx = center["centerx"]
+                            #             diff_point_x = centerx-center_point
 
-                                        self.point.setScreenSize(screenSize)
-                                        x= self.point.sizexm(abs(diff_point_x))
-                                        tan = x/(1000*self.point.f)
-                                        angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
+                            #             self.point.setScreenSize(screenSize)
+                            #             x= self.point.sizexm(abs(diff_point_x))
+                            #             tan = x/(1000*self.point.f)
+                            #             angle = int(numpy.arctan(tan) * 180.0 / 3.1415926)
 
-                                        # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
+                            #             # print("angle,tan,x,diff_point_x,centerx,center_point:",angle,tan,x,diff_point_x,centerx,center_point)
 
-                                        cmd_prefix = ""
-                                        target_angle = 90
-                                        if(global_angle<=90):
-                                            if (centerx<=center_point) :
-                                                target_angle = 90-angle
-                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
-                                            else:
-                                                target_angle = 90+angle
-                                                cmd_prefix = "TR"
-                                        else:
-                                            if (centerx<=center_point) :
-                                                target_angle = 90-angle
-                                                cmd_prefix = "TL"
-                                            else:
-                                                target_angle = 90+angle
-                                                cmd_prefix = "TR" if global_angle<target_angle else "TL"
-                                        # print("target_angle,global_angle5",target_angle,global_angle)
-                                        if(target_angle!=global_angle):
-                                            cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
-                                            global_angle = target_angle
-                                            print ("send-cmd:",cmd)
-                                        else:
-                                            print ("send-cmd:none")
-                                        # print("target_angle,global_angle2",target_angle,global_angle)
-                                        self.redis.set("global_angle", global_angle)
-                                        self.send_cmd(cmd)
+                            #             cmd_prefix = ""
+                            #             target_angle = 90
+                            #             if(global_angle<=90):
+                            #                 if (centerx<=center_point) :
+                            #                     target_angle = 90-angle
+                            #                     cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                            #                 else:
+                            #                     target_angle = 90+angle
+                            #                     cmd_prefix = "TR"
+                            #             else:
+                            #                 if (centerx<=center_point) :
+                            #                     target_angle = 90-angle
+                            #                     cmd_prefix = "TL"
+                            #                 else:
+                            #                     target_angle = 90+angle
+                            #                     cmd_prefix = "TR" if global_angle<target_angle else "TL"
+                            #             # print("target_angle,global_angle5",target_angle,global_angle)
+                            #             if(target_angle!=global_angle):
+                            #                 cmd = cmd_prefix + " " + str(abs(target_angle-global_angle))
+                            #                 global_angle = target_angle
+                            #                 print ("send-cmd:",cmd)
+                            #             else:
+                            #                 print ("send-cmd:none")
+                            #             # print("target_angle,global_angle2",target_angle,global_angle)
+                            #             self.redis.set("global_angle", global_angle)
+                            #             self.send_cmd(cmd)
                     else:
                         self.go(self.speed.revolution)
                 else:
@@ -262,6 +261,7 @@ class machine ():
 
     def go(self,revolution):
         # revolution = self.speed.revolution
+        revolution = 30 if revolution>=30 else revolution
         cmd = "MF "+str(revolution)
         self.send_cmd(cmd)
 
