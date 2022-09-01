@@ -180,28 +180,29 @@ class machine ():
                         machine_speed = self.speed.getSpeed(navigation_points)
                         self.logger.info("machine_speed:%s", machine_speed)
                          # 分行 工作
-                        line = self.line.convertLine(allPhoto,0)
-                        if (line and line[0]):
-                            # print(4)
-                            lastLine  =  len (line)
-                            y = line[lastLine-1][0]["centery"]
-                            uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
-                            if (self.redis.get(uuid_id)==str(1)) :
-                                self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
-                                self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                            else:
-                                self.redis.set("is_working",1)
-                                self.logger.info("id,centery:%s,%s", uuid_id,y)
-                                # "center": [217.5, 366.0]
-                                # "center": [197.0, 259.5]
-                                # ponit_y = 366  #中心点
-                                # if (y >= (ponit_y-15)):
-                                self.redis.set(uuid_id,1,10)
-                                workcmd = self.work.work(line,machine_speed)
-                                if (len(workcmd) > 0):
-                                    wheel(self.speed.revolution)
-                                else:
+                        if (allPhoto):
+                            line = self.line.convertLine(allPhoto,0)
+                            if (line and line[0]):
+                                # print(4)
+                                lastLine  =  len (line)
+                                y = line[lastLine-1][0]["centery"]
+                                uuid_id = "vegetable-"+str(line[lastLine-1][0]["id"])
+                                if (self.redis.get(uuid_id)==str(1)) :
+                                    self.logger.info("id 存在,1分钟内不重复处理:%s,%s,%s", uuid_id,self.redis.get(uuid_id),self.redis.get(uuid_id)==str(1))
                                     self.logger.info("------id,centery:%s,%s", uuid_id,y)
+                                else:
+                                    self.redis.set("is_working",1)
+                                    self.logger.info("id,centery:%s,%s", uuid_id,y)
+                                    # "center": [217.5, 366.0]
+                                    # "center": [197.0, 259.5]
+                                    # ponit_y = 366  #中心点
+                                    # if (y >= (ponit_y-15)):
+                                    self.redis.set(uuid_id,1,10)
+                                    workcmd = self.work.work(line,machine_speed)
+                                    if (len(workcmd) > 0):
+                                        wheel(self.speed.revolution)
+                                    else:
+                                        self.logger.info("------id,centery:%s,%s", uuid_id,y)
                         if (is_working==0 or is_working=="0"):
                             # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             #  稳定速度 转速
