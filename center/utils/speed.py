@@ -46,8 +46,8 @@ class speed ():
             self.revolution += self.increment
         elif (speed-self.defaultSpeed > self.diffSpeed): #减速
             self.revolution -= self.increment
-        self.revolution=40 if self.revolution <=40 else self.revolution
-        self.revolution=150 if self.revolution >=150 else self.revolution
+        self.revolution=20 if self.revolution <=20 else self.revolution
+        self.revolution=30 if self.revolution >=30 else self.revolution
         return self.revolution
 
     def getSpeed(self,data):
