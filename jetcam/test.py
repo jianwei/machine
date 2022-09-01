@@ -1,9 +1,9 @@
 import cv2
-from jetcam.csi_camera import CSICamera
+# from jetcam.csi_camera import CSICamera
 from jetcam.usb_camera import USBCamera
 
 # camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
-camera = USBCamera(capture_device=2, capture_width=1080, capture_height=720, capture_fps=30)
+camera = USBCamera(capture_device=1, capture_width=1080, capture_height=720, capture_fps=30)
 
 video_capture = camera.cap
 window_title = "CSI Camera"
