@@ -276,7 +276,7 @@ def run(
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 
                 
-                key ="allPoints"  
+                key ="allPoints"  if capture_device == 0 else "navigation_points"
                 print("key:",key)
                 annotator.addPhoto(key,allPoints,redis)
                 # annotator.addPhoto("allPoints",allPoints,redis)
