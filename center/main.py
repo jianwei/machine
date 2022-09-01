@@ -189,7 +189,7 @@ class machine ():
                                     # "center": [122.5, 212.0]
                                     # ponit_y = 366  #中心点
                                     # if (y >= (212-25)):
-                                    self.redis.set(uuid_id,1,10)
+                                    self.redis.set(uuid_id,1,1*60)
                                     workcmd = self.work.work(line,machine_speed)
                                     if (len(workcmd) > 0):
                                         wheel(self.speed.revolution)
