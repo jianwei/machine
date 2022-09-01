@@ -202,7 +202,7 @@ class machine ():
                                         wheel(self.speed.revolution)
                                     else:
                                         self.logger.info("------id,centery:%s,%s", uuid_id,y)
-                        if (is_working==0 or is_working=="0"):
+                        # if (is_working==0 or is_working=="0"):
                             # self.logger.info("false-------------------is_working----------------------------------------:%s", is_working)
                             #  稳定速度 转速
                             
