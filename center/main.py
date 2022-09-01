@@ -172,8 +172,8 @@ class machine ():
                         currentTime = latsTime
 
                         # machine_speed = self.speed.getSpeed(allPhoto)
-                        machine_speed = self.speed.getSpeed(navigation_points)
-                        self.logger.info("machine_speed:%s", machine_speed)
+                        # machine_speed = self.speed.getSpeed(navigation_points)
+                        # self.logger.info("machine_speed:%s", machine_speed)
                         # self.logger.info("allPhoto:%s", allPhoto)
                          # 分行 工作
                         if (allPhoto):
@@ -197,7 +197,8 @@ class machine ():
                                     # now_time = time.time()
                                     # if now_time - last_done_time)
                                     self.redis.set(uuid_id,1,1*60)
-                                    workcmd = self.work.work(line,machine_speed)
+                                    # workcmd = self.work.work(line,machine_speed)
+                                    workcmd = self.work.work(line,10)
                                     if (len(workcmd) > 0):
                                         wheel(self.speed.revolution)
                                     else:
