@@ -153,7 +153,7 @@ class machine ():
             # self.logger.info(allPhoto)
             work_flag = 1
             if (work_flag and int(work_flag) == 1):
-                if (allPhoto):
+                if (allPhoto or navigation_points):
                     allPhoto = json.loads(allPhoto)
                     navigation_points = json.loads(navigation_points)
                     if (len(allPhoto) > 0):
@@ -165,7 +165,8 @@ class machine ():
                             # continue
                         currentTime = latsTime
 
-                        machine_speed = self.speed.getSpeed(allPhoto)
+                        # machine_speed = self.speed.getSpeed(allPhoto)
+                        machine_speed = self.speed.getSpeed(navigation_points)
                         self.logger.info("machine_speed:%s", machine_speed)
                          # 分行 工作
                         line = self.line.convertLine(allPhoto,0)
