@@ -172,6 +172,7 @@ class machine ():
                         # machine_speed = self.speed.getSpeed(allPhoto)
                         machine_speed = self.speed.getSpeed(navigation_points)
                         self.logger.info("machine_speed:%s", machine_speed)
+                        self.logger.info("allPhoto:%s", allPhoto)
                          # 分行 工作
                         if (allPhoto):
                             line = self.line.convertLine(allPhoto,0)
