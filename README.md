@@ -9,8 +9,12 @@ nomachine:
 >>sudo usermod -aG dialout tuniu 
 
 
+
+
 track：
 >>除草
 >>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 0
 >>导航：
 >>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 2
+>>权限
+>> sudo chmod -R 777  /dev/ttyACM0
