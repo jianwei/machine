@@ -157,7 +157,7 @@ class machine ():
             if (work_flag and int(work_flag) == 1):
                 if (allPhoto or navigation_points):
                     allPhoto = json.loads(allPhoto)
-                    navigation_points = json.loads(navigation_points)
+                    # navigation_points = json.loads(navigation_points)
                     if (len(allPhoto) > 0 or len(navigation_points) > 0):
                         try :                         
                             latsTime = allPhoto[0][0]["time"]
