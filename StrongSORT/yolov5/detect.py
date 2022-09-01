@@ -105,8 +105,8 @@ def run(
         view_img = check_imshow()
         # view_img = True
         cudnn.benchmark = True  # set True to speed up constant image size inference
-        # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,capture_device=0)
-        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,isUSBCamera = True,capture_device=2)
+        dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,capture_device=0)
+        # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt,isUSBCamera = True,capture_device=2)
         bs = len(dataset)  # batch_size
         screenSize = dataset.getScreen()
     else:
