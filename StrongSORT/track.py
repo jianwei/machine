@@ -271,7 +271,7 @@ def run(
                     frame_time = time_sync() - t1
                     total_time += frame_time
                     total_predictions += 1
-                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time},Avg FPS: {total_predictions/total_time}')
+                    LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),FPS: {1/frame_time},Avg FPS: {total_predictions/total_time},time:{time.time()}')
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 
