@@ -115,6 +115,7 @@ class machine ():
             # allPhoto = json.dumps(mock)
             # navigation_points = json.dumps(navigation_points_mock)
 
+
             # work_flag = self.redis.get("begin_work")
 
             work_flag = 1
