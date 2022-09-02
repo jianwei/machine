@@ -237,7 +237,7 @@ class machine ():
 
             self.logger.info("time:%s,begin_work:%s", time.time(), work_flag)
             self.logger.info("----------------------loop end ------------------------------")
-            time.sleep(1)
+            # time.sleep(1)
 
     def go(self,revolution):
         # revolution = self.speed.revolution
