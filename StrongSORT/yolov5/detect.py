@@ -31,6 +31,7 @@ import json
 import time
 import uuid
 from pathlib import Path
+import threading
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -192,9 +193,7 @@ def run(
                         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
-                            print("-----------------------------------------work begin-----------------------------------------")
-                            wheel(15)
-                            print("-----------------------------------------work end -----------------------------------------")
+                            
                             is_need_done = True
                             allPoints.append(box_label)
                     if save_crop:
@@ -207,6 +206,11 @@ def run(
             # annotator.addPhoto("allPoints",allPoints,redis)
             # annotator.addPhoto("navigation_points",allPoints,redis)
             # Stream results
+            if(is_need_done):
+                print("-----------------------------------------work begin-----------------------------------------")
+                # wheel(15)
+                setTimeout(wheel,0.01,"15")
+                print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
                 if p not in windows:
@@ -257,7 +261,8 @@ def run(
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
 
-
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
 
 def send(cmd):
     if(cmd!=""):
