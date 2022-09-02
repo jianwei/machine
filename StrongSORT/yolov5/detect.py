@@ -109,6 +109,7 @@ def run(
     # Dataloader
     screenSize = [640,480]
     work_obj = work()
+    last_working_time = time.time()
     if webcam:
         view_img = check_imshow()
         # view_img = True
@@ -192,22 +193,26 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
+                        # print_r()
                         # box_label = annotator.set_redis_data(box_label,names[c],screenSize)
-                        # print("box_label:",box_label)
+                        print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
                             is_need_done = True
                             allPoints.append(box_label)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
-            # key,photo,redis
+            # key,photo,redis   
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
             print ("key,is_need_done:",key,is_need_done)
 
             # Stream results
             if(is_need_done):
+                now_time = time.time()
+                # if (now_time-last_working_time>2):
                 print("-----------------------------------------work begin-----------------------------------------")
                 if (not work_obj.is_lock()) :
+                    last_working_time = time.time()
                     work_obj.mk_lock_file()
                     print("-----------------------------------------time:------------------------------------------",time.time())
                     setTimeout(work_obj.wheel,0.00001,"15")
