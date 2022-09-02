@@ -345,8 +345,16 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    opt = parse_opt()
-    main(opt)
+    try:
+        opt = parse_opt()
+        main(opt)
+    except KeyboardInterrupt:
+        print("ctrl+c stop")
+        work_obj = work()
+        work_obj.rm_lock_file()
+        work_obj.send_cmd("STOP 0")
+
+
     # print("bgein-----mf----")
     # time.sleep(25)
     # print("end-----mf----")
