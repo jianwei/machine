@@ -291,36 +291,8 @@ def wheel(speed):
     time.sleep(2)
     send("STOP 2")
     redis.set("is_working",0)
-    # send("MF "+str(speed))
+    send("MF "+str(speed))
 
-# def addPhoto(photo):
-#     if len(photo)>0:
-#         key = "navigationPoints"
-#         photoLength = 60*60*10 #存储1分钟的数据，默认fps=10
-#         # photoLength = 10 #存储10分钟的数据，每秒钟1张
-#         allPhoto = redis.get(key)
-#         if not allPhoto :
-#             allPhoto = []
-#         else:
-#             allPhoto = json.loads(allPhoto)
-#         if(len(allPhoto)>photoLength) : 
-#             allPhoto = allPhoto[:photoLength:1]
-#         if(len(allPhoto)>1):
-#             first = allPhoto[0]
-#             # print("allPhoto,first",allPhoto,first)
-#             if first.__contains__("time"):
-#                 firstTime =  first[0]['time']
-#             else:
-#                 firstTime = ""
-#             now =  photo[0]['time']
-#             if(firstTime!=now):  
-#                 allPhoto.insert(0,photo)
-#         else:
-#             allPhoto.append(photo)
-#         # for item in allPhoto:
-#         #     print("item",item)
-#         redis.set(key,json.dumps(allPhoto))
-        # print("navigationPoints",key,allPhoto)
 
 
 def parse_opt():
@@ -366,3 +338,7 @@ def main(opt):
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
+    print("bgein-----mf----")
+    time.sleep(25)
+    print("end-----mf----")
+    send("MF 15.")
