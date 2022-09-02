@@ -87,47 +87,14 @@ class machine ():
     def loop(self):
         randId = random.random()
         mock = [
-            [
-                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": randId, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
-                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
-                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
-            ],
-            [
-                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
-                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
-            ],
-        ]
+            [ 
+                {"point": [[450, 311], [517, 311], [450, 393], [517, 393]], "id": 0, "name": "person", "time": 1662082814.425567, "screenSize": [640, 480], "centerx": 483.5, "centery": 352.0, "center": [483.5, 352.0]},
+                {"point": [[450, 310], [522, 310], [450, 393], [522, 393]], "id": 0, "name": "person", "time": 1662082814.305369, "screenSize": [640, 480], "centerx": 486.0, "centery": 351.5, "center": [486.0, 351.5]}, 
+                {"point": [[451, 311], [517, 311], [451, 393], [517, 393]], "id": 0, "name": "person", "time": 1662082814.0092382, "screenSize": [640, 480], "centerx": 484.0, "centery": 352.0, "center": [484.0, 352.0]} 
 
-
-        navigation_points_mock = [
-            [
-                {"point": [[470, 466], [550, 466], [470, 626], [550, 626]], "id": randId, "name": "bottle", "time": 1661318695.8770459, "screenSize": [1080, 720], "uuid": "16c50720-236d-11ed-929a-1cbfc0958bef", "centerx": 510.0, "centery": 546.0, "center": [510.0, 546.0]},
-                #  {'point': [[110, 145], [230, 145], [110, 165], [230, 165]], 'id': 1, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 145], [530, 145], [410, 165], [530, 165]], 'id': 2, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 145], [930, 145], [800, 165], [930, 165]], 'id': 3, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 345], [230, 345], [110, 365], [230, 365]], 'id': 4, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 345], [530, 345], [410, 365], [530, 365]], 'id': 5, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[800, 345], [930, 345], [800, 365], [930, 365]], 'id': 6, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[110, 645], [230, 645], [110, 715], [230, 715]], 'id': 7, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                #  {'point': [[410, 645], [530, 645], [410, 715], [530, 715]], 'id': 8, 'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]},
-                # {'point': [[200, 645], [330, 645], [200, 715], [330, 715]], 'id': 9,'name': 'person', 'time': 1659515712.9082823, 'screenSize': [1080, 720]}
-                {"point": [[736, 0], [959, 0], [736, 548], [959, 548]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,274],"centerx":847.5,"centery":274},
-                {"point": [[736, 650], [959, 650], [736, 710], [959, 710]], "id": randId, "name": "person", "time": 1660786080.6786768, "screenSize": [1080, 720],"center":[847.5,660],"centerx":847.5,"centery":660}
-            ],
-            [
-                {"point": [[736, 10], [959, 10], [736, 558], [959, 558]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,284],"centerx":847.5,"centery":284},
-                {"point": [[736, 660], [959, 660], [736, 720], [959, 720]], "id": randId, "name": "person", "time": 1660786079.6786768, "screenSize": [1080, 720],"center":[847.5,670],"centerx":847.5,"centery":670}
-            ],
+            ]
         ]
+        
 
         # navigation_points
         # {"point": [[302, 221], [434, 221], [302, 378], [434, 378]], "id": 229, "name": "cup", "time": 1661393590.437084, "screenSize": [1080, 720], "centerx": 368.0, "centery": 299.5, "center": [368.0, 299.5]}
@@ -140,7 +107,7 @@ class machine ():
             a+=1
             self.logger.info("----------------------loop begin ------------------------------%s",a)
             allPhoto = self.redis.get("allPoints")
-            navigation_points = self.redis.get("navigation_points")
+            # navigation_points = self.redis.get("navigation_points")
             global_angle = self.redis.get("global_angle")
             global_angle = int(global_angle) if global_angle else 90
             self.logger.info("is_working:%s", is_working)
@@ -149,27 +116,27 @@ class machine ():
             # allPhoto = json.dumps(mock)
             # navigation_points = json.dumps(navigation_points_mock)
 
-            work_flag = self.redis.get("begin_work")
-            # self.logger.info(allPhoto)
+            # work_flag = self.redis.get("begin_work")
+
             work_flag = 1
-            # last_done_time = time.time()
+            
             
             if (work_flag and int(work_flag) == 1):
-                if (allPhoto or navigation_points):
+                if (allPhoto ):
                     allPhoto = json.loads(allPhoto)
                     # navigation_points = json.loads(navigation_points)
-                    if (len(allPhoto) > 0 or len(navigation_points) > 0):
-                        try :                         
-                            latsTime = allPhoto[0][0]["time"]
-                            screenSize = allPhoto[0][0]["screenSize"]
-                        except Exception as e :
-                            latsTime = navigation_points[0][0]["time"]
-                            screenSize = navigation_points[0][0]["screenSize"]
-                        if (latsTime == currentTime):
-                            self.logger.info("current latsTime:%s,loop",latsTime )
-                            time.sleep(0.1)
-                            continue
-                        currentTime = latsTime
+                    if (len(allPhoto) > 0 ):
+                        # try :                         
+                        #     latsTime = allPhoto[0][0]["time"]
+                        #     screenSize = allPhoto[0][0]["screenSize"]
+                        # except Exception as e :
+                        #     latsTime = navigation_points[0][0]["time"]
+                        #     screenSize = navigation_points[0][0]["screenSize"]
+                        # if (latsTime == currentTime):
+                        #     self.logger.info("current latsTime:%s,loop",latsTime )
+                        #     time.sleep(0.1)
+                        #     continue
+                        # currentTime = latsTime
 
                         # machine_speed = self.speed.getSpeed(allPhoto)
                         # machine_speed = self.speed.getSpeed(navigation_points)
