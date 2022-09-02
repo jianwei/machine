@@ -52,9 +52,9 @@ from utils.torch_utils import select_device, time_sync
 from utils.serial_control import serial_control
 
 path = str(Path(__file__).resolve().parents[2])
-sys.path.append(path)
-from redisConn.index import redisDB
-redis = redisDB()
+# sys.path.append(path)
+# from redisConn.index import redisDB
+# redis = redisDB()
 
 
 
@@ -190,7 +190,7 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
-                        box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                        # box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
                             
@@ -202,14 +202,14 @@ def run(
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
             print ("key,is_need_done:",key,is_need_done)
-            annotator.addPhoto(key,allPoints,redis)
+            # annotator.addPhoto(key,allPoints,redis)
             # annotator.addPhoto("allPoints",allPoints,redis)
             # annotator.addPhoto("navigation_points",allPoints,redis)
             # Stream results
             if(is_need_done):
                 print("-----------------------------------------work begin-----------------------------------------")
                 # wheel(15)
-                setTimeout(wheel,0.01,"15")
+                setTimeout(wheel,0.00001,15)
                 print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
@@ -288,6 +288,7 @@ def wheel(speed):
     send("STOP 0")
     send("MD")
     time.sleep(2)
+    print(time.time(),"-----------------------------------------")
     send("STOP 2")
     send("RROT "+str(rot_speed))
     time.sleep(unit_sleep)
@@ -295,7 +296,7 @@ def wheel(speed):
     send("MU")
     time.sleep(2)
     send("STOP 2")
-    redis.set("is_working",0)
+    # redis.set("is_working",0)
     send("MF "+str(speed))
 
 

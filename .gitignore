@@ -6,3 +6,5 @@ center/log.txt
 *.log
 *.pyc
 *.log
+StrongSORT/yolov5/runs/detect/exp11/0.mp4
+*.mp4
