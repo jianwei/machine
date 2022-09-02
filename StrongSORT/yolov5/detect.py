@@ -338,7 +338,7 @@ def main(opt):
 if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
-    print("bgein-----mf----")
-    time.sleep(25)
-    print("end-----mf----")
-    send("MF 15.")
+    # print("bgein-----mf----")
+    # time.sleep(25)
+    # print("end-----mf----")
+    # send("MF 15.")
