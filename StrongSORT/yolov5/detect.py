@@ -28,6 +28,8 @@ import argparse
 import os
 import sys
 import json
+import time
+import uuid
 from pathlib import Path
 
 import torch
@@ -46,10 +48,13 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 
+from utils.serial_control import serial_control
+
 path = str(Path(__file__).resolve().parents[2])
 sys.path.append(path)
 from redisConn.index import redisDB
 redis = redisDB()
+
 
 
 @torch.no_grad()
@@ -187,7 +192,9 @@ def run(
                         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
-                            print("--------------------------------------++++++++++++++++++++++++++++--------------------------------------")
+                            print("-----------------------------------------work begin-----------------------------------------")
+                            wheel(15)
+                            print("-----------------------------------------work end -----------------------------------------")
                             is_need_done = True
                             allPoints.append(box_label)
                     if save_crop:
@@ -250,6 +257,41 @@ def run(
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
 
+
+
+def send(cmd):
+    if(cmd!=""):
+        cmd += "."
+        cmd_dict = {
+            "uuid": str(uuid.uuid1()),
+            "cmd": cmd,
+            "from": "camera",
+        }
+        ser =  serial_control()
+        ser.send_cmd(cmd_dict)
+        ser.close()
+    else:
+        print("cmd null")
+
+
+
+def wheel(speed):
+    rot_speed = 60
+    unit_sleep = 1/(rot_speed*50/2/1000)   #转1圈所需要的时间
+    unit_sleep -= 0.04    #误差
+    print("unit_sleep:%s",unit_sleep)
+    send("STOP 0")
+    send("MD")
+    time.sleep(2)
+    send("STOP 2")
+    send("RROT "+str(rot_speed))
+    time.sleep(unit_sleep)
+    send("STOP 2")
+    send("MU")
+    time.sleep(2)
+    send("STOP 2")
+    redis.set("is_working",0)
+    # send("MF "+str(speed))
 
 # def addPhoto(photo):
 #     if len(photo)>0:
