@@ -15,6 +15,7 @@ from pathlib import Path
 import torch,time
 import torch.backends.cudnn as cudnn
 # import uuid
+import threading
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # yolov5 strongsort root directory
@@ -38,15 +39,16 @@ from yolov5.utils.plots import Annotator, colors, save_one_box
 from strong_sort.utils.parser import get_config
 from strong_sort.strong_sort import StrongSORT
 
-path = str(Path(__file__).resolve().parents[1])
-sys.path.append(path)
-from redisConn.index import redisDB
-from center.utils.point import point
+# path = str(Path(__file__).resolve().parents[1])
+# sys.path.append(path)
+# from redisConn.index import redisDB
+# from center.utils.point import point
+from yolov5.utils.work import work
 
 # remove duplicated stream handler to avoid duplicated logging
 logging.getLogger().removeHandler(logging.getLogger().handlers[0])
-redis = redisDB()
-point = point()
+# redis = redisDB()
+# point = point()
 
 @torch.no_grad()
 def run(
@@ -81,7 +83,7 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
         capture_device=0,  # use OpenCV DNN for ONNX inference
 ):
-    redis.set("allPoints",json.dumps([]))
+    # redis.set("allPoints",json.dumps([]))
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
@@ -150,7 +152,7 @@ def run(
     dt, seen = [0.0, 0.0, 0.0, 0.0], 0
     curr_frames, prev_frames = [None] * nr_sources, [None] * nr_sources
 
-
+    
     for frame_idx, (path, im, im0s, vid_cap, s) in enumerate(dataset):
         # begin_work = redis.get("begin_work")
         # print("time:",int(time.time()),begin_work)
@@ -179,6 +181,7 @@ def run(
         dt[2] += time_sync() - t3
 
         # Process detections
+        is_need_done = False
         for i, det in enumerate(pred):  # detections per image
             seen += 1
             if webcam:  # nr_sources >= 1
@@ -229,7 +232,7 @@ def run(
                 dt[3] += t5 - t4
 
                 allPoints = []
-                scan_arr = ["cup","bottle","clock","mouse"]
+                scan_arr = ["cup","bottle","clock","mouse","person"]
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
@@ -260,9 +263,15 @@ def run(
                              
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             
+                            
                             if  names[c]  in scan_arr:
                                 box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                                 allPoints.append(box_label)
+                                is_need_done = True
+
+                                # if names[c] in ["person","cup"]:
+                                    
+                                    # allPoints.append(box_label)
 
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
@@ -275,10 +284,19 @@ def run(
                 else:
                     LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s)')
                 
-                
+                work_obj = work()
+                if(is_need_done):
+                    print("-----------------------------------------work begin--track-----------------------------------------")
+                    if (not work_obj.is_lock()) :
+                        work_obj.mk_lock_file()
+                        setTimeout(work_obj.wheel,0.00001,"15")
+                    print("-----------------------------------------work end --track-----------------------------------------")
+
+
+
                 key ="allPoints"  if capture_device == 0 else "navigation_points"
                 print("key:",key)
-                annotator.addPhoto(key,allPoints,redis)
+                # annotator.addPhoto(key,allPoints,redis)
                 # annotator.addPhoto("allPoints",allPoints,redis)
                 # annotator.addPhoto("navigation_points",allPoints,redis)
             else:
@@ -323,6 +341,9 @@ def run(
         strip_optimizer(yolo_weights)  # update model (to fix SourceChangeWarning)
 
 
+
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
 
 def parse_opt():
     parser = argparse.ArgumentParser()

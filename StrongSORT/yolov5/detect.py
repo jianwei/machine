@@ -49,13 +49,13 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 
-from utils.serial_control import serial_control
+from utils.work import work
 
-path = str(Path(__file__).resolve().parents[2])
+# path = str(Path(__file__).resolve().parents[2])
 # sys.path.append(path)
 # from redisConn.index import redisDB
 # redis = redisDB()
-
+# is_working= False
 
 
 @torch.no_grad()
@@ -108,6 +108,7 @@ def run(
 
     # Dataloader
     screenSize = [640,480]
+    work_obj = work()
     if webcam:
         view_img = check_imshow()
         # view_img = True
@@ -125,6 +126,7 @@ def run(
     # Run inference
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], [0.0, 0.0, 0.0]
+    
     for path, im, im0s, vid_cap, s in dataset:
         total_predictions =0
         total_time = 0
@@ -193,7 +195,6 @@ def run(
                         # box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
-                            
                             is_need_done = True
                             allPoints.append(box_label)
                     if save_crop:
@@ -202,14 +203,13 @@ def run(
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
             print ("key,is_need_done:",key,is_need_done)
-            # annotator.addPhoto(key,allPoints,redis)
-            # annotator.addPhoto("allPoints",allPoints,redis)
-            # annotator.addPhoto("navigation_points",allPoints,redis)
+
             # Stream results
             if(is_need_done):
                 print("-----------------------------------------work begin-----------------------------------------")
-                # wheel(15)
-                setTimeout(wheel,0.00001,15)
+                if (not work_obj.is_lock()) :
+                    work_obj.mk_lock_file()
+                    setTimeout(work_obj.wheel,0.00001,"15")
                 print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
@@ -264,40 +264,42 @@ def run(
 def setTimeout(cbname,delay,*argments):
     threading.Timer(delay,cbname,argments).start()
 
-def send(cmd):
-    if(cmd!=""):
-        cmd += "."
-        cmd_dict = {
-            "uuid": str(uuid.uuid1()),
-            "cmd": cmd,
-            "from": "camera",
-        }
-        ser =  serial_control()
-        ser.send_cmd(cmd_dict)
-        ser.close()
-    else:
-        print("cmd null")
+# def send(cmd):
+#     if(cmd!=""):
+#         cmd += "."
+#         cmd_dict = {
+#             "uuid": str(uuid.uuid1()),
+#             "cmd": cmd,
+#             "from": "camera",
+#         }
+#         ser =  serial_control()
+#         ser.send_cmd(cmd_dict)
+#         ser.close()
+#     else:
+#         print("cmd null")
 
 
 
-def wheel(speed):
-    rot_speed = 60
-    unit_sleep = 1/(rot_speed*50/2/1000)   #转1圈所需要的时间
-    unit_sleep -= 0.04    #误差
-    print("unit_sleep:%s",unit_sleep)
-    send("STOP 0")
-    send("MD")
-    time.sleep(2)
-    print(time.time(),"-----------------------------------------")
-    send("STOP 2")
-    send("RROT "+str(rot_speed))
-    time.sleep(unit_sleep)
-    send("STOP 2")
-    send("MU")
-    time.sleep(2)
-    send("STOP 2")
-    # redis.set("is_working",0)
-    send("MF "+str(speed))
+# def wheel(speed):
+#     rot_speed = 60
+#     unit_sleep = 1/(rot_speed*50/2/1000)   #转1圈所需要的时间
+#     unit_sleep -= 0.04    #误差
+#     print("unit_sleep:%s",unit_sleep)
+#     send("STOP 0")
+#     send("MD")
+#     time.sleep(2)
+#     print(time.time(),"-----------------------------------------")
+#     send("STOP 2")
+#     send("RROT "+str(rot_speed))
+#     time.sleep(unit_sleep)
+#     send("STOP 2")
+#     send("MU")
+#     time.sleep(2)
+#     send("STOP 2")
+#     # redis.set("is_working",0)
+#     send("MF "+str(speed))
+#     # global is_working
+#     is_working = False
 
 
 

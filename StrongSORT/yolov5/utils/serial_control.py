@@ -14,7 +14,7 @@ from utils.log import log
 class serial_control():
     def __init__(self):
         port = "/dev/ttyACM0"  # Arduino端口
-        self.l = log("./arduino.log")
+        self.l = log("./serial_control.log")
         self.logger = self.l.getLogger()
         self.timeout = 0.005
 
