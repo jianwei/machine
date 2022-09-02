@@ -146,6 +146,7 @@ def run(
 
         # Process predictions
         allPoints = []
+        is_need_done = False
         for i, det in enumerate(pred):  # per image
             seen += 1
             if webcam:  # batch_size >= 1
@@ -187,14 +188,14 @@ def run(
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
                             print("--------------------------------------++++++++++++++++++++++++++++--------------------------------------")
-
+                            is_need_done = True
                             allPoints.append(box_label)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
             # key,photo,redis
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
-            print ("key:",key)
+            print ("key,is_need_done:",key,is_need_done)
             annotator.addPhoto(key,allPoints,redis)
             # annotator.addPhoto("allPoints",allPoints,redis)
             # annotator.addPhoto("navigation_points",allPoints,redis)
