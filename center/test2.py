@@ -16,7 +16,7 @@ def main(cmd):
 
 if __name__ == "__main__":
     try:
-        main("MF 10.")
+        main("MF 15.")
     except KeyboardInterrupt:
         print("ctrl+c stop")
         main("STOP.")

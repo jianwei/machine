@@ -210,7 +210,7 @@ def run(
                 if (not work_obj.is_lock()) :
                     work_obj.mk_lock_file()
                     print("-----------------------------------------time:------------------------------------------",time.time())
-                    setTimeout(work_obj.wheel,0.00001,"10")
+                    setTimeout(work_obj.wheel,0.00001,"15")
                 print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
