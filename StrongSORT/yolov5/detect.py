@@ -186,6 +186,8 @@ def run(
                         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
+                            print("--------------------------------------++++++++++++++++++++++++++++--------------------------------------")
+
                             allPoints.append(box_label)
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
