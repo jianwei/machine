@@ -193,8 +193,7 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
-                        # print_r()
-                        # box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                        box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
                             is_need_done = True
