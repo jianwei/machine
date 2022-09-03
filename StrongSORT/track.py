@@ -232,7 +232,7 @@ def run(
                 dt[3] += t5 - t4
 
                 allPoints = []
-                scan_arr = ["cup","bottle","clock","mouse","person"]
+                # scan_arr = ["cup","bottle","clock","mouse","person"]
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
@@ -264,10 +264,10 @@ def run(
                             box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             
                             
-                            if  names[c]  in scan_arr:
-                                box_label = annotator.set_redis_data(box_label,names[c],screenSize)
-                                allPoints.append(box_label)
-                                is_need_done = True
+                            # if  names[c]  in scan_arr:
+                            #     box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                            #     allPoints.append(box_label)
+                            #     is_need_done = True
 
                                 # if names[c] in ["person","cup"]:
                                     
