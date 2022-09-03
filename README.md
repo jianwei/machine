@@ -19,3 +19,6 @@ python3 track.py  --nosave     --capture_device 0
 >>python3 track.py  --nosave   --yolo-weights yolov5s.pt  --capture_device 2
 >>权限
 >> sudo chmod -R 777  /dev/ttyACM0
+
+>>export engine 
+>>python3 export.py --weights yolov5s.pt --include torchscript onnx engine --device 0 --dynamic
