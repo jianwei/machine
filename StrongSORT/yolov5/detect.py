@@ -106,10 +106,14 @@ def run(
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
+    print("-----------------------------------------------------detect------------------names---------------------------------------------------------------------:",names)
+
+
+
     # Dataloader
     screenSize = [640,480]
     work_obj = work()
-    last_working_time = time.time()
+    last_working_time = 0
     if webcam:
         view_img = check_imshow()
         # view_img = True
@@ -193,6 +197,7 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
+                        # print_r()
                         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
                         print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
@@ -208,14 +213,14 @@ def run(
             # Stream results
             if(is_need_done):
                 now_time = time.time()
-                # if (now_time-last_working_time>2):
-                print("-----------------------------------------work begin-----------------------------------------")
-                if (not work_obj.is_lock()) :
-                    last_working_time = time.time()
-                    work_obj.mk_lock_file()
-                    print("-----------------------------------------time:------------------------------------------",time.time())
-                    setTimeout(work_obj.wheel,0.00001,"15")
-                print("-----------------------------------------work end -----------------------------------------")
+                if (now_time-last_working_time>2):
+                    print("-----------------------------------------work begin-----------------------------------------")
+                    if (not work_obj.is_lock()) :
+                        last_working_time = time.time()
+                        work_obj.mk_lock_file()
+                        print("-----------------------------------------time:------------------------------------------",time.time())
+                        setTimeout(work_obj.wheel,0.00001,"15")
+                    print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
                 if p not in windows:
