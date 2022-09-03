@@ -22,3 +22,4 @@ python3 track.py  --nosave     --capture_device 0
 
 >>export engine 
 >>python3 export.py --weights yolov5s.pt --include torchscript onnx engine --device 0 --dynamic
+>>python3 track.py --yolo-weights ./yolov5/yolov5s.engine 
