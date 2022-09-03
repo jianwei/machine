@@ -273,9 +273,9 @@ def run(
                                     
                                     # allPoints.append(box_label)
 
-                            # if save_crop:
-                            #     txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
-                            #     save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
+                            if save_crop:
+                                txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
+                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
                 if webcam:
                     frame_time = time_sync() - t1
                     total_time += frame_time
