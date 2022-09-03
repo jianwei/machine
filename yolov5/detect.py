@@ -37,9 +37,9 @@ import torch.backends.cudnn as cudnn
 
 
 # from time import time
-path = str(Path(__file__).resolve().parents[1])
-sys.path.append(path)
-from redisConn.index import redisDB
+# path = str(Path(__file__).resolve().parents[1])
+# sys.path.append(path)
+# from redisConn.index import redisDB
 
 
 
@@ -57,7 +57,7 @@ from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 from distance  import imgDistance
 
-redis = redisDB()
+# redis = redisDB()
 
 
 
@@ -212,9 +212,9 @@ def run(
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                 # addPhoto(allPoints)
-                print("detect.py--allPoints--:",allPoints)
-                print("----------------------------------------------------------------------------------------")
-                addPhoto(allPoints)
+                # print("detect.py--allPoints--:",allPoints)
+                # print("----------------------------------------------------------------------------------------")
+                # addPhoto(allPoints)
             # Stream results
             im0 = annotator.result()
             if view_img:
@@ -254,32 +254,32 @@ def run(
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
 
 
-def addPhoto(photo):
-    if len(photo)>0:
-        key = "allPoints"
-        # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
-        photoLength = 10 #存储10分钟的数据，每秒钟1张
-        allPhoto = redis.get(key)
-        if not allPhoto :
-            allPhoto = []
-        else:
-            allPhoto = json.loads(allPhoto)
-        if(len(allPhoto)>photoLength) : 
-            allPhoto = allPhoto[:photoLength:1]
-        if(len(allPhoto)>1):
-            first = allPhoto[0]
-            # print("allPhoto,first",allPhoto,first)
-            if first.__contains__("time"):
-                firstTime =  first[0]['time']
-            else:
-                firstTime = ""
-            now =  photo[0]['time']
-            if(firstTime!=now):  
-                allPhoto.insert(0,photo)
-        else:
-            allPhoto.append(photo)
-        redis.set(key,json.dumps(allPhoto))
-        print("allPhoto",allPhoto)
+# def addPhoto(photo):
+#     if len(photo)>0:
+#         key = "allPoints"
+#         # photoLength = 60*10 #存储10分钟的数据，每秒钟1张
+#         photoLength = 10 #存储10分钟的数据，每秒钟1张
+#         allPhoto = redis.get(key)
+#         if not allPhoto :
+#             allPhoto = []
+#         else:
+#             allPhoto = json.loads(allPhoto)
+#         if(len(allPhoto)>photoLength) : 
+#             allPhoto = allPhoto[:photoLength:1]
+#         if(len(allPhoto)>1):
+#             first = allPhoto[0]
+#             # print("allPhoto,first",allPhoto,first)
+#             if first.__contains__("time"):
+#                 firstTime =  first[0]['time']
+#             else:
+#                 firstTime = ""
+#             now =  photo[0]['time']
+#             if(firstTime!=now):  
+#                 allPhoto.insert(0,photo)
+#         else:
+#             allPhoto.append(photo)
+#         redis.set(key,json.dumps(allPhoto))
+#         print("allPhoto",allPhoto)
 
 
 
