@@ -252,30 +252,30 @@ def run(
                                                                bbox_top, bbox_w, bbox_h, -1, -1, -1, i))
 
                         # if save_vid or save_crop or show_vid:  # Add bbox to image
-                        # if True:  # Add bbox to image
-                        #     c = int(cls)  # integer class
-                        #     id = int(id)  # integer id
-                        #     label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
-                        #         (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
+                        if True:  # Add bbox to image
+                            c = int(cls)  # integer class
+                            id = int(id)  # integer id
+                            label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
+                                (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             
-                        #     # if names[c] !="cup" or names[c] !="bottle":
-                        #         # continue 
+                            # if names[c] !="cup" or names[c] !="bottle":
+                                # continue 
                              
-                        #     box_label = annotator.box_label(bboxes, label, color=colors(c, True))
+                            box_label = annotator.box_label(bboxes, label, color=colors(c, True))
                             
                             
-                        #     if  names[c]  in scan_arr:
-                        #         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
-                        #         allPoints.append(box_label)
-                        #         is_need_done = True
+                            if  names[c]  in scan_arr:
+                                box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                                allPoints.append(box_label)
+                                is_need_done = True
 
                                 # if names[c] in ["person","cup"]:
                                     
                                     # allPoints.append(box_label)
 
-                            if save_crop:
-                                txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
-                                save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
+                            # if save_crop:
+                            #     txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
+                            #     save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
                 if webcam:
                     frame_time = time_sync() - t1
                     total_time += frame_time
