@@ -97,6 +97,8 @@ def run(
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
+    print("-----------------------------------------------------------------------names---------------------------------------------------------------------:",names)
+
     # Dataloader
     if webcam:
         show_vid = check_imshow()
