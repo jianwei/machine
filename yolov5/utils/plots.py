@@ -3,13 +3,14 @@
 Plotting utils
 """
 
+import contextlib
 import math
 import os
 from copy import copy
 from pathlib import Path
 from urllib.error import URLError
 
-import cv2,time
+import cv2
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -18,8 +19,9 @@ import seaborn as sn
 import torch
 from PIL import Image, ImageDraw, ImageFont
 
-from utils.general import (CONFIG_DIR, FONT, LOGGER, Timeout, check_font, check_requirements, clip_coords,
-                           increment_path, is_ascii, threaded, try_except, xywh2xyxy, xyxy2xywh)
+from utils import TryExcept, threaded
+from utils.general import (CONFIG_DIR, FONT, LOGGER, check_font, check_requirements, clip_coords, increment_path,
+                           is_ascii, xywh2xyxy, xyxy2xywh)
 from utils.metrics import fitness
 
 # Settings
@@ -82,7 +84,6 @@ class Annotator:
 
     def box_label(self, box, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
         # Add one xyxy box to image with label
-        points = []
         if self.pil or not is_ascii(label):
             self.draw.rectangle(box, width=self.lw, outline=color)  # box
             if label:
@@ -97,8 +98,6 @@ class Annotator:
                 self.draw.text((box[0], box[1] - h if outside else box[1]), label, fill=txt_color, font=self.font)
         else:  # cv2
             p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
-            # print("左上点的坐标为：(" + str(p1[0]) + "," + str(p1[1]) + ")，右下点的坐标为(" + str(p2[0]) + "," + str(p2[1]) + ")")
-            points = [(p1[0],p1[1]),(p2[0],p1[1]),(p1[0],p2[1]),(p2[0],p2[1])]
             cv2.rectangle(self.im, p1, p2, color, thickness=self.lw, lineType=cv2.LINE_AA)
             if label:
                 tf = max(self.lw - 1, 1)  # font thickness
@@ -113,18 +112,17 @@ class Annotator:
                             txt_color,
                             thickness=tf,
                             lineType=cv2.LINE_AA)
-                name  = label
-        # return points
-        return {"point":points}
 
     def rectangle(self, xy, fill=None, outline=None, width=1):
         # Add rectangle to image (PIL-only)
         self.draw.rectangle(xy, fill, outline, width)
 
-    def text(self, xy, text, txt_color=(255, 255, 255)):
+    def text(self, xy, text, txt_color=(255, 255, 255), anchor='top'):
         # Add text to image (PIL-only)
-        w, h = self.font.getsize(text)  # text width, height
-        self.draw.text((xy[0], xy[1] - h + 1), text, fill=txt_color, font=self.font)
+        if anchor == 'bottom':  # start y from font bottom
+            w, h = self.font.getsize(text)  # text width, height
+            xy[1] += 1 - h
+        self.draw.text(xy, text, fill=txt_color, font=self.font)
 
     def result(self):
         # Return annotated image as array
@@ -154,6 +152,7 @@ def feature_visualization(x, module_type, stage, n=32, save_dir=Path('runs/detec
                 ax[i].axis('off')
 
             LOGGER.info(f'Saving {f}... ({n}/{channels})')
+            plt.title('Features')
             plt.savefig(f, dpi=300, bbox_inches='tight')
             plt.close()
             np.save(str(f.with_suffix('.npy')), x[0].cpu().numpy())  # npy save
@@ -185,8 +184,7 @@ def output_to_target(output):
     # Convert model output to target format [batch_id, class_id, x, y, w, h, conf]
     targets = []
     for i, o in enumerate(output):
-        for *box, conf, cls in o.cpu().numpy():
-            targets.append([i, cls, *list(*xyxy2xywh(np.array(box)[None])), conf])
+        targets.extend([i, cls, *list(*xyxy2xywh(np.array(box)[None])), conf] for *box, conf, cls in o.cpu().numpy())
     return np.array(targets)
 
 
@@ -226,7 +224,7 @@ def plot_images(images, targets, paths=None, fname='images.jpg', names=None, max
         x, y = int(w * (i // ns)), int(h * (i % ns))  # block origin
         annotator.rectangle([x, y, x + w, y + h], None, (255, 255, 255), width=2)  # borders
         if paths:
-            annotator.text((x + 5, y + 5 + h), text=Path(paths[i]).name[:40], txt_color=(220, 220, 220))  # filenames
+            annotator.text((x + 5, y + 5), text=Path(paths[i]).name[:40], txt_color=(220, 220, 220))  # filenames
         if len(targets) > 0:
             ti = targets[targets[:, 0] == i]  # image targets
             boxes = xywh2xyxy(ti[:, 2:6]).T
@@ -340,12 +338,11 @@ def plot_val_study(file='', dir='', x=None):  # from utils.plots import *; plot_
     ax2.set_ylabel('COCO AP val')
     ax2.legend(loc='lower right')
     f = save_dir / 'study.png'
-    # print(f'Saving {f}...')
+    print(f'Saving {f}...')
     plt.savefig(f, dpi=300)
 
 
-@try_except  # known issue https://github.com/ultralytics/yolov5/issues/5395
-@Timeout(30)  # known issue https://github.com/ultralytics/yolov5/issues/5611
+@TryExcept()  # known issue https://github.com/ultralytics/yolov5/issues/5395
 def plot_labels(labels, names=(), save_dir=Path('')):
     # plot dataset labels
     LOGGER.info(f"Plotting labels to {save_dir / 'labels.jpg'}... ")
@@ -362,10 +359,8 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     matplotlib.use('svg')  # faster
     ax = plt.subplots(2, 2, figsize=(8, 8), tight_layout=True)[1].ravel()
     y = ax[0].hist(c, bins=np.linspace(0, nc, nc + 1) - 0.5, rwidth=0.8)
-    try:  # color histogram bars by class
+    with contextlib.suppress(Exception):  # color histogram bars by class
         [y[2].patches[i].set_color([x / 255 for x in colors(i)]) for i in range(nc)]  # known issue #3195
-    except Exception:
-        pass
     ax[0].set_ylabel('instances')
     if 0 < len(names) < 30:
         ax[0].set_xticks(range(len(names)))
@@ -393,6 +388,35 @@ def plot_labels(labels, names=(), save_dir=Path('')):
     plt.close()
 
 
+def imshow_cls(im, labels=None, pred=None, names=None, nmax=25, verbose=False, f=Path('images.jpg')):
+    # Show classification image grid with labels (optional) and predictions (optional)
+    from utils.augmentations import denormalize
+
+    names = names or [f'class{i}' for i in range(1000)]
+    blocks = torch.chunk(denormalize(im.clone()).cpu().float(), len(im),
+                         dim=0)  # select batch index 0, block by channels
+    n = min(len(blocks), nmax)  # number of plots
+    m = min(8, round(n ** 0.5))  # 8 x 8 default
+    fig, ax = plt.subplots(math.ceil(n / m), m)  # 8 rows x n/8 cols
+    ax = ax.ravel() if m > 1 else [ax]
+    # plt.subplots_adjust(wspace=0.05, hspace=0.05)
+    for i in range(n):
+        ax[i].imshow(blocks[i].squeeze().permute((1, 2, 0)).numpy().clip(0.0, 1.0))
+        ax[i].axis('off')
+        if labels is not None:
+            s = names[labels[i]] + (f'—{names[pred[i]]}' if pred is not None else '')
+            ax[i].set_title(s, fontsize=8, verticalalignment='top')
+    plt.savefig(f, dpi=300, bbox_inches='tight')
+    plt.close()
+    if verbose:
+        LOGGER.info(f"Saving {f}")
+        if labels is not None:
+            LOGGER.info('True:     ' + ' '.join(f'{names[i]:3s}' for i in labels[:nmax]))
+        if pred is not None:
+            LOGGER.info('Predicted:' + ' '.join(f'{names[i]:3s}' for i in pred[:nmax]))
+    return f
+
+
 def plot_evolve(evolve_csv='path/to/evolve.csv'):  # from utils.plots import *; plot_evolve()
     # Plot evolve.csv hyp evolution results
     evolve_csv = Path(evolve_csv)
@@ -403,7 +427,7 @@ def plot_evolve(evolve_csv='path/to/evolve.csv'):  # from utils.plots import *; 
     j = np.argmax(f)  # max fitness index
     plt.figure(figsize=(10, 12), tight_layout=True)
     matplotlib.rc('font', **{'size': 8})
-    # print(f'Best results from row {j} of {evolve_csv}:')
+    print(f'Best results from row {j} of {evolve_csv}:')
     for i, k in enumerate(keys[7:]):
         v = x[:, 7 + i]
         mu = v[j]  # best single result
@@ -413,11 +437,11 @@ def plot_evolve(evolve_csv='path/to/evolve.csv'):  # from utils.plots import *; 
         plt.title(f'{k} = {mu:.3g}', fontdict={'size': 9})  # limit to 40 characters
         if i % 5 != 0:
             plt.yticks([])
-        # print(f'{k:>15}: {mu:.3g}')
+        print(f'{k:>15}: {mu:.3g}')
     f = evolve_csv.with_suffix('.png')  # filename
     plt.savefig(f, dpi=200)
     plt.close()
-    # print(f'Saved {f}')
+    print(f'Saved {f}')
 
 
 def plot_results(file='path/to/results.csv', dir=''):
@@ -490,6 +514,6 @@ def save_one_box(xyxy, im, file=Path('im.jpg'), gain=1.02, pad=10, square=False,
     if save:
         file.parent.mkdir(parents=True, exist_ok=True)  # make directory
         f = str(increment_path(file).with_suffix('.jpg'))
-        # cv2.imwrite(f, crop)  # https://github.com/ultralytics/yolov5/issues/7007 chroma subsampling issue
-        Image.fromarray(cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)).save(f, quality=95, subsampling=0)
+        # cv2.imwrite(f, crop)  # save BGR, https://github.com/ultralytics/yolov5/issues/7007 chroma subsampling issue
+        Image.fromarray(crop[..., ::-1]).save(f, quality=95, subsampling=0)  # save RGB
     return crop
