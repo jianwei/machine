@@ -1,19 +1,16 @@
-from utils.redis_message_queue import RMQ
-import uuid
-import json
-from utils.log import log
-
-rmq = RMQ(url='redis://127.0.0.1:6379/15', name='arduino')
+import threading,time
 
 
-if __name__ == '__main__':
-    l = log()
-    logger = l.getLogger()
-    msg = {
-        "uuid": str(uuid.uuid1()),
-        # "cmd": "STOP 0."
-        "cmd": "MU."
-    }
-    message = json.dumps(msg)
-    logger.info("sendMsg:%s", message)
-    print(rmq.publish(message))
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
+
+def callback(a):
+    print("--------------------------------------------2",time.time())
+    pass
+
+
+
+if __name__ == "__main__":
+    print("--------------------------------------------1",time.time())
+    setTimeout(callback,0.00001,"a")
+    pass
