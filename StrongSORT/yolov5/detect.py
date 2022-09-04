@@ -250,17 +250,18 @@ def run(
                     vid_writer[i].write(im0)
 
         web_cam_fps = 0
-        web_cam_avg_fps = 0
-        if webcam:
-            frame_time = time_sync() - t1
-            total_time += frame_time
-            total_predictions += 1
-            web_cam_fps = 1/frame_time
-            web_cam_avg_fps = total_predictions/total_time
+        web_cam_fps = 1/(t3 - t2)
+        # web_cam_avg_fps = 0
+        # if webcam:
+        #     frame_time = time_sync() - t1
+        #     total_time += frame_time
+        #     total_predictions += 1
+        #     web_cam_fps = 1/frame_time
+        #     web_cam_avg_fps = total_predictions/total_time
             # print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
 
         # Print time (inference-only)
-        LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps},average fps:{web_cam_avg_fps}')
+        LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps}')
 
     # Print results
     t = tuple(x / seen * 1E3 for x in dt)  # speeds per image
