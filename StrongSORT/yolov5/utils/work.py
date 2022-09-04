@@ -6,11 +6,10 @@ import threading,time,uuid,os
 class work():
     def __init__(self):
         self.lock_file = "./lock.txt"
-        pass
+        if not self.ser :
+            self.ser = serial_control()
 
-    # def setTimeout(cbname, delay, *argments):
-    #     self.mk_lock_file()
-    #     threading.Timer(delay, cbname, argments).start()
+   
 
     def mk_lock_file(self):
         if (not os.path.exists(self.lock_file)):
@@ -32,9 +31,9 @@ class work():
                 "cmd": cmd,
                 "from": "camera",
             }
-            ser = serial_control()
-            ser.send_cmd(cmd_dict)
-            ser.close()
+            # ser = serial_control()
+            self.ser.send_cmd(cmd_dict)
+            self.ser.close()
         else:
             print("cmd null")
 

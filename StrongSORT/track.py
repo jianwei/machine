@@ -235,7 +235,7 @@ def run(
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
                             box_label =  annotator.box_label(bboxes, label, color=colors(c, True))
                             # box_label = annotator.box_label(xyxy, label, color=colors(c, True))
-                            box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                            box_label = annotator.set_redis_data(box_label,names[c],screenSize,id)
                             print("names[c]:",box_label)
 
                             if save_crop:
