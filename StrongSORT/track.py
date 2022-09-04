@@ -97,14 +97,16 @@ def run(
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
-    print("----------------------------------------------track-------------------------names---------------------------------------------------------------------:",names)
+    # print("----------------------------------------------track-------------------------names---------------------------------------------------------------------:",names)
 
     # Dataloader
+    screenSize = [640,480]
     if webcam:
         show_vid = check_imshow()
         cudnn.benchmark = True  # set True to speed up constant image size inference
         dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = len(dataset)
+        screenSize = dataset.getScreen()
     else:
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         nr_sources = 1
@@ -158,6 +160,7 @@ def run(
         dt[2] += time_sync() - t3
 
         # Process detections
+        allPoints = []
         for i, det in enumerate(pred):  # detections per image
             seen += 1
             if webcam:  # nr_sources >= 1
@@ -230,9 +233,10 @@ def run(
                             id = int(id)  # integer id
                             label = None if hide_labels else (f'{id} {names[c]}' if hide_conf else \
                                 (f'{id} {conf:.2f}' if hide_class else f'{id} {names[c]} {conf:.2f}'))
-                            annotator.box_label(bboxes, label, color=colors(c, True))
-
-                            print("names[c]:",names[c])
+                            box_label =  annotator.box_label(bboxes, label, color=colors(c, True))
+                            # box_label = annotator.box_label(xyxy, label, color=colors(c, True))
+                            box_label = annotator.set_redis_data(box_label,names[c],screenSize)
+                            print("names[c]:",box_label)
 
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
