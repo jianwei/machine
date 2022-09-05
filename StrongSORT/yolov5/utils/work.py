@@ -6,8 +6,8 @@ import threading,time,uuid,os
 class work():
     def __init__(self):
         self.lock_file = "./lock.txt"
-        if not self.ser :
-            self.ser = serial_control()
+        # if not self.ser :
+        self.ser = serial_control()
 
    
 
