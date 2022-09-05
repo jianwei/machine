@@ -34,3 +34,6 @@ sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen
 
 
 git clone -b v6.0 https://github.com/ultralytics/yolov5.git
+
+
+python3 export.py --weights osnet_x0_25_msmt17.pt  --include torchscript onnx engine --device 0 --dynamic
