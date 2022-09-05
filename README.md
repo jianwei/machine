@@ -23,3 +23,14 @@ python3 track.py  --nosave     --capture_device 0
 >>export engine 
 >>python3 export.py --weights yolov5s.pt --include torchscript onnx engine --device 0 --dynamic
 >>python3 track.py --yolo-weights ./yolov5/yolov5s.engine --classes 0 
+
+
+
+sudo apt --fix-broken install -o Dpkg::Options::="--force-overwrite"
+sudo apt-get -y install cuda
+sudo apt-get install libeigen3-dev
+sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eigen
+
+
+
+git clone -b v6.0 https://github.com/ultralytics/yolov5.git
