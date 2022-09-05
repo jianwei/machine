@@ -287,7 +287,7 @@ def run(
 def parse_opt():
     parser = argparse.ArgumentParser()
     # parser.add_argument('--yolo-weights', nargs='+', type=str, default=WEIGHTS / 'yolov5m.pt', help='model.pt path(s)')
-    parser.add_argument('--yolo-weights', nargs='+', type=str, default=WEIGHTS / 'yolov5/yolov5s.engine', help='model.pt path(s)')
+    parser.add_argument('--yolo-weights', nargs='+', type=str, default='./yolov5/yolov5s.engine', help='model.pt path(s)')
     # parser.add_argument('--strong-sort-weights', type=str, default=WEIGHTS / 'osnet_x0_25_msmt17.pt')
     parser.add_argument('--strong-sort-weights', type=str, default=WEIGHTS / 'deepsort.engine')
     parser.add_argument('--config-strongsort', type=str, default='strong_sort/configs/strong_sort.yaml')
