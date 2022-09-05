@@ -24,6 +24,8 @@ python3 track.py  --nosave     --capture_device 0
 >>python3 export.py --weights yolov5s.pt --include torchscript onnx engine --device 0 --dynamic
 >>python3 track.py --yolo-weights ./yolov5/yolov5s.engine --classes 0 
 
+python export.py --weights yolov5s.pt --include engine --imgsz 640 --device 0
+
 
 
 sudo apt --fix-broken install -o Dpkg::Options::="--force-overwrite"
