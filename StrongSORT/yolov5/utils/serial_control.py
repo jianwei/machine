@@ -52,9 +52,9 @@ class serial_control():
         uuid = message["uuid"]
         # print("cmd:",cmd)
         if (cmd):
-            # self.logger.info("cmd:%s,begin_time:%s",cmd,time.time())
+            self.logger.info("cmd:%s,begin_time:%s",cmd,time.time())
             self.ser.write(cmd.encode())
-            # self.logger.info("cmd:end write:%s",time.time())
+            self.logger.info("cmd:end write:%s",time.time())
             try:
                 cnt=1
                 ret_all = ""

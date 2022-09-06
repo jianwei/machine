@@ -43,12 +43,12 @@ class work():
         rot_speed = 60
         unit_sleep = 1 / (rot_speed * 50 / 2 / 1000)  # 转1圈所需要的时间
         unit_sleep -= 0.04  # 误差
-        print("unit_sleep:%s", unit_sleep)
-        print(time.time(), "------------------------------------------------------wheel-----------------------------------------")
+        # print("unit_sleep:%s", unit_sleep)
+        # print(time.time(), "------------------------------------------------------wheel-----------------------------------------")
         self.send("STOP 0")
         self.send("MD")
         time.sleep(2)
-        print(time.time(), "-----------------------------------------")
+        # print(time.time(), "-----------------------------------------")
         self.send("STOP 2")
         self.send("RROT " + str(rot_speed))
         time.sleep(unit_sleep)
