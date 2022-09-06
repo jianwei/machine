@@ -112,7 +112,7 @@ def run(
 
     # Dataloader
     screenSize = [640,480]
-    work_obj = work()
+    # work_obj = work()
     last_working_time = 0
     if webcam:
         view_img = check_imshow()
@@ -211,16 +211,16 @@ def run(
             print ("key,is_need_done:",key,is_need_done)
 
             # Stream results
-            if(is_need_done):
-                now_time = time.time()
-                if (now_time-last_working_time>2):
-                    print("-----------------------------------------work begin-----------------------------------------")
-                    if (not work_obj.is_lock()) :
-                        last_working_time = time.time()
-                        work_obj.mk_lock_file()
-                        print("-----------------------------------------time:------------------------------------------",time.time())
-                        setTimeout(work_obj.wheel,0.00001,"15")
-                    print("-----------------------------------------work end -----------------------------------------")
+            # if(is_need_done):
+            #     now_time = time.time()
+            #     if (now_time-last_working_time>2):
+            #         print("-----------------------------------------work begin-----------------------------------------")
+            #         if (not work_obj.is_lock()) :
+            #             last_working_time = time.time()
+            #             work_obj.mk_lock_file()
+            #             print("-----------------------------------------time:------------------------------------------",time.time())
+            #             setTimeout(work_obj.wheel,0.00001,"15")
+            #         print("-----------------------------------------work end -----------------------------------------")
             im0 = annotator.result()
             if view_img:
                 if p not in windows:
