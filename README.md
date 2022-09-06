@@ -39,3 +39,16 @@ git clone -b v6.0 https://github.com/ultralytics/yolov5.git
 
 
 python3 export.py --weights osnet_x0_25_msmt17.pt  --include torchscript onnx engine --device 0 --dynamic
+
+
+PC:
+1)device   navidat gtx 1050
+sudo apt-get install nvidia-driver-515
+2)cuda
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+sudo apt-get update
+sudo apt-get -y install cuda
+

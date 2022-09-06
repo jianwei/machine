@@ -1,0 +1,11 @@
+2022-08-30 09:34:57,021 - test.py[line:18] - INFO: sendMsg:{"uuid": "f47d3516-2803-11ed-aa22-514ecf936179", "cmd": "MU."}
+2022-08-30 09:35:39,409 - test.py[line:18] - INFO: sendMsg:{"uuid": "0dc1242e-2804-11ed-aa22-514ecf936179", "cmd": "MU."}
+2022-08-30 09:35:51,942 - test.py[line:18] - INFO: sendMsg:{"uuid": "15397eb8-2804-11ed-aa22-514ecf936179", "cmd": "MU."}
+2022-08-30 09:44:30,531 - test.py[line:18] - INFO: sendMsg:{"uuid": "4a53d750-2805-11ed-aa22-514ecf936179", "cmd": "MU."}
+2022-08-30 09:46:02,196 - test.py[line:18] - INFO: sendMsg:{"uuid": "80f6dd34-2805-11ed-aa22-514ecf936179", "cmd": "MU."}
+2022-08-30 18:43:49,303 - test.py[line:18] - INFO: sendMsg:{"uuid": "a1a8a67a-2850-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
+2022-08-30 18:44:04,682 - test.py[line:18] - INFO: sendMsg:{"uuid": "aad3589e-2850-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
+2022-08-30 18:46:06,534 - test.py[line:18] - INFO: sendMsg:{"uuid": "f37466a6-2850-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
+2022-08-30 18:48:57,272 - test.py[line:18] - INFO: sendMsg:{"uuid": "59390bf4-2851-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
+2022-08-30 18:57:18,791 - test.py[line:18] - INFO: sendMsg:{"uuid": "8426b84c-2852-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
+2022-08-30 18:58:15,289 - test.py[line:18] - INFO: sendMsg:{"uuid": "a5d39a32-2852-11ed-9d75-97d5a641c9b8", "cmd": "MU."}
