@@ -58,3 +58,9 @@ sudo apt install nvidia-cuda-toolkit
 pip3 install pyserial 
 pip3 install nvidia-pyindex
 pip3 install nvidia-tensorrt
+
+
+other：
+sudo apt-get install guvcview
+
+guvcview -d /dev/video0
