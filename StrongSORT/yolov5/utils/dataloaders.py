@@ -318,10 +318,10 @@ class LoadStreams:
         self.imgs, self.fps, self.frames, self.threads = [None] * n, [0] * n, [0] * n, [None] * n
         self.sources = [clean_str(x) for x in sources]  # clean source names for later
         self.auto = auto
-        # if (isUSBCamera):
-        #     camera = USBCamera(capture_device=capture_device)
-        # else:
-        #     camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
+        if (isUSBCamera):
+            camera = USBCamera(capture_device=capture_device)
+        else:
+            camera = CSICamera(width=1080, height=720, capture_width=1080, capture_height=720, capture_fps=30)
         # if(capture_device and capture_device!=0) :
         #     camera.set_drvice(capture_device)
         for i, s in enumerate(sources):  # index, source
@@ -335,8 +335,8 @@ class LoadStreams:
             if s == 0:
                 assert not is_colab(), '--source 0 webcam unsupported on Colab. Rerun command in a local environment.'
                 assert not is_kaggle(), '--source 0 webcam unsupported on Kaggle. Rerun command in a local environment.'
-            cap = cv2.VideoCapture(s)
-            # cap = camera.cap
+            # cap = cv2.VideoCapture(s)
+            cap = camera.cap
             assert cap.isOpened(), f'{st}Failed to open {s}'
             w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
             h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
