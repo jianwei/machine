@@ -1,6 +1,8 @@
 import argparse
+from hashlib import new
 
 import os
+from tkinter.messagebox import NO
 # limit the number of cpus used by high performance libraries
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
@@ -36,6 +38,13 @@ from yolov5.utils.plots import Annotator, colors, save_one_box
 from strong_sort.utils.parser import get_config
 from strong_sort.strong_sort import StrongSORT
 
+from yolov5.utils.work import work
+from pathlib import Path
+path = str(Path(__file__).resolve().parents[1])
+sys.path.append(path)
+from redisConn.index import redisDB
+
+redis = redisDB()
 # remove duplicated stream handler to avoid duplicated logging
 logging.getLogger().removeHandler(logging.getLogger().handlers[0])
 
@@ -74,6 +83,7 @@ def run(
 ):
 
     source = str(source)
+    work_obj = work()
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
     is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
@@ -238,10 +248,31 @@ def run(
                             # box_label = annotator.box_label(xyxy, label, color=colors(c, True))
                             box_label = annotator.set_redis_data(box_label,names[c],screenSize,id)
                             print("names[c]:",box_label)
+                            allPoints.append(box_label)
 
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
                                 save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
+                
+
+
+                if(allPoints and len(allPoints)>0):
+                    done = allPoints[0]
+                    # print("done",done,type(done))
+                    done_key = "done_vegetable_"+str(done["id"])
+                    is_done = redis.get(done_key)
+                    # print("done_key:",done_key,"is_done1:",is_done)
+                    if(not is_done or is_done==None or is_done =="" ):
+                        # print("done_key:",done_key,"is_done2:",is_done)
+                        centery = done["centery"]
+                        work_obj.wheel(0)
+                        # if(centery>1 )
+                        redis.set(done_key,1,10)
+                    else:
+                        print("done_key:",done_key,"is done")
+                    
+
+
                 web_cam_time = (t3 - t2)+(t5 - t4)
                 web_cam_fps = 1/web_cam_time
 

@@ -1,6 +1,5 @@
-from select import select
-from utils.serial_control import serial_control
-import threading,time,uuid,os
+from yolov5.utils.serial_control import serial_control
+import time,uuid,os
 
 
 class work():
@@ -8,6 +7,7 @@ class work():
         self.lock_file = "./lock.txt"
         # if not self.ser :
         self.ser = serial_control()
+        print("-------------------------serial_control init-------------------------------------")
 
    
 
@@ -33,7 +33,7 @@ class work():
             }
             # ser = serial_control()
             self.ser.send_cmd(cmd_dict)
-            self.ser.close()
+            # self.ser.close()
         else:
             print("cmd null")
 
@@ -58,4 +58,4 @@ class work():
         self.send("STOP 2")
         # redis.set("is_working",0)
         # self.send("MF " + str(speed))
-        self.rm_lock_file()
+        # self.rm_lock_file()
