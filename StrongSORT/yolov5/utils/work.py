@@ -3,10 +3,11 @@ import time,uuid,os
 
 
 class work():
-    def __init__(self):
+    def __init__(self,redis):
         self.lock_file = "./lock.txt"
         # if not self.ser :
         self.ser = serial_control()
+        self.redis = redis
         print("-------------------------serial_control init-------------------------------------")
 
    
@@ -56,6 +57,6 @@ class work():
         self.send("MU")
         time.sleep(2)
         self.send("STOP 2")
-        # redis.set("is_working",0)
+        self.redis.set("is_working","")
         self.send("MF " + str(speed))
         # self.rm_lock_file()
