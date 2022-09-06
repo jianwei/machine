@@ -58,7 +58,8 @@ sudo apt install nvidia-cuda-toolkit
 pip3 install pyserial 
 pip3 install nvidia-pyindex
 pip3 install nvidia-tensorrt
-
+pip3 install redis
+sudo apt-get install redis
 
 other：
 sudo apt-get install guvcview

@@ -11,6 +11,7 @@ os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
 import sys
+import threading
 import numpy as np
 from pathlib import Path
 import torch
@@ -265,7 +266,8 @@ def run(
                     if(not is_done or is_done==None or is_done =="" ):
                         # print("done_key:",done_key,"is_done2:",is_done)
                         centery = done["centery"]
-                        work_obj.wheel(0)
+                        # work_obj.wheel(0)
+                        setTimeout(work_obj.wheel,0.00001,"15")
                         # if(centery>1 )
                         redis.set(done_key,1,10)
                     else:
@@ -356,6 +358,8 @@ def parse_opt():
     print_args(vars(opt))
     return opt
 
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
 
 def main(opt):
     check_requirements(requirements=ROOT / 'requirements.txt', exclude=('tensorboard', 'thop'))
