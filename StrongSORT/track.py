@@ -270,6 +270,7 @@ def run(
                             # print("done_key:",done_key,"is_done2:",is_done)
                             centery = done["centery"]
                             # if(centery>1 )
+                            print("centery------------------------------------:",centery)
                             redis.set(done_key,1,working_time_out)
                             redis.set("is_working",1,working_time_out)
                             setTimeout(work_obj.wheel,0.00001,"15")
