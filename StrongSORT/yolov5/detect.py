@@ -234,7 +234,7 @@ def run(
                     # print(12)
                     # print("done_key:",done_key,"is_done2:",is_done)
                 now =  time.time()
-                if(is_working and now - float(is_working)>1):
+                if(is_working == "" and now - float(last_working_time)>1):
                     print(13)
                     print("is_working:",is_working,",now:",now,",diff:",now - float(is_working))
                     centery = done["centery"]
@@ -247,7 +247,7 @@ def run(
                     else:
                         print("centery is outer:",centery)
                 else:
-                    print("is_working:",is_working,",now:",now)
+                    print("is_working,last_working_time,now:",is_working,now,last_working_time)
                 # else:
                     # print("done_key:",done_key,"is done,is_working:",is_working)
                 # else:
