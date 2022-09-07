@@ -236,8 +236,8 @@ def run(
                     # print("done_key:",done_key,"is_done2:",is_done)
                 now =  time.time()
                 if(is_working == "" and now - float(last_working_time)>2):
-                    print(13)
-                    print("is_working:",is_working,",now:",now,",diff:",now - float(last_working_time))
+                    # print(13)
+                    # print("is_working:",is_working,",now:",now,",diff:",now - float(last_working_time))
                     centery = done["centery"]
                     if(centery>110 and centery<130):
                         # print("centery------------------------------------:",centery)
