@@ -230,7 +230,7 @@ def run(
                     if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
                         # print("done_key:",done_key,"is_done2:",is_done)
                         now =  time.time()
-                        if(now - float(is_working)>1):
+                        if(is_working and now - float(is_working)>1):
                             print("is_working:",is_working,",now:",now,",diff:",now - float(is_working))
                             centery = done["centery"]
                             if(centery>110 and centery<120):
