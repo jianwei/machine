@@ -45,8 +45,8 @@ class work():
         # if (not os.path.isfile(self.lock_file)):
         rot_speed = 60
         unit_sleep = 1 / (rot_speed * 50 / 2 / 1000)  # 转1圈所需要的时间
-        unit_sleep -= 0.04  # 误差
-        # print("unit_sleep:%s", unit_sleep)
+        # unit_sleep -= 0.04  # 误差
+        print("unit_sleep:%s", unit_sleep)
         # print(time.time(), "------------------------------------------------------wheel-----------------------------------------")
         self.send("STOP 0")
         self.send("MD")
