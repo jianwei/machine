@@ -224,7 +224,7 @@ def run(
                 # is_done = redis.get(done_key)
                 is_working = redis.get("is_working")
                 last_working_time = redis.get("last_working_time")
-                last_working_time = last_working_time if last_working_time!="" else float(time.time())
+                last_working_time = float(last_working_time) if last_working_time!="" else 0
                 # is_working = is_working if is_working !="" else time.time()
                 centery = done["centery"]
                 print("centery------------------------------------:",centery)
