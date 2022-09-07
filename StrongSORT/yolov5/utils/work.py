@@ -59,6 +59,7 @@ class work():
         self.send("MU")
         time.sleep(2)
         self.send("STOP 2")
-        self.redis.set("is_working","")
         self.send("MF " + str(speed))
+        time.sleep(1)
+        self.redis.set("is_working","")
         # self.rm_lock_file()
