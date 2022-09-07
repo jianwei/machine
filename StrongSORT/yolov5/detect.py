@@ -229,12 +229,15 @@ def run(
                 if(not is_done or is_done==None or is_done =="" ):
                     if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
                         # print("done_key:",done_key,"is_done2:",is_done)
-                        centery = done["centery"]
-                        if(centery>110 and centery<120):
-                            # print("centery------------------------------------:",centery)
-                            redis.set(done_key,1,working_time_out)
-                            redis.set("is_working",1,working_time_out)
-                            setTimeout(work_obj.wheel,0.00001,"15")
+                        now =  time.time()
+                        if(now - float(is_working)>1):
+                            print("is_working:",is_working,",now:",now,",diff:",now - float(is_working))
+                            centery = done["centery"]
+                            if(centery>110 and centery<120):
+                                # print("centery------------------------------------:",centery)
+                                redis.set(done_key,time.time(),working_time_out)
+                                redis.set("is_working",1,working_time_out)
+                                setTimeout(work_obj.wheel,0.00001,"15")
                     else:
                         print("done_key:",done_key,"is done,is_working:",is_working)
                 else:
