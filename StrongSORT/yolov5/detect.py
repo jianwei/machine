@@ -239,7 +239,7 @@ def run(
                     # print(13)
                     # print("is_working:",is_working,",now:",now,",diff:",now - float(last_working_time))
                     centery = done["centery"]
-                    if(centery>110 and centery<130):
+                    if(centery>=50 and centery<=80):
                         # print("centery------------------------------------:",centery)
                         # redis.set(done_key,1,working_time_out)
                         redis.set("is_working",time.time(),working_time_out)
