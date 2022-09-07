@@ -233,7 +233,7 @@ def run(
                 
                 if(is_working=="0" or is_working==0 or is_working == "" and diff>=2):
                     centery = done["centery"]
-                    if(centery>=50 and centery<=80):
+                    if(centery>=50 and centery<=150):
                         redis.set("is_working",1,working_time_out)
                         redis.set("last_working_time",time.time(),working_time_out)
                         setTimeout(work_obj.wheel,0.00001,"15")
