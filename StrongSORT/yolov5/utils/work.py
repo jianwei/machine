@@ -9,6 +9,7 @@ class work():
         # if not self.ser :
         self.ser = serial_control()
         self.redis = redis
+        # self.ser.send_cmd("default.")
         print("-------------------------serial_control init-------------------------------------")
 
    

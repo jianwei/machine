@@ -20,7 +20,6 @@ class serial_control():
         self.logger = self.l.getLogger()
         self.timeout = 0.005
 
-
         f = open(port)
         attrs = termios.tcgetattr(f)
         attrs[2] = attrs[2] & ~termios.HUPCL
@@ -30,11 +29,8 @@ class serial_control():
         self.ser = serial.Serial()
         self.ser.baudrate = 9600
         self.ser.port = port
-        self.ser.open()
-
-        #触发复位
-        self.ser.write("default.".encode())  
-        time.sleep(1)
+        self.ser.open()  
+     
 
         
     def close(self):
@@ -45,7 +41,8 @@ class serial_control():
     # 1661395409.5343091  
     def send_cmd(self, message):
         ret = -2
-        # self.logger.info ("message:%s",message)
+        # print("---------------------------------------------------------------------------------------------")
+        # print("message:",message)
         if ("cmd" in message.keys()):
             cmd = message["cmd"]
         else:
@@ -65,6 +62,7 @@ class serial_control():
                     cnt+=1
                     time1 = float(time.time())
                     response = self.ser.read()
+                    # print("response:",response)
                     time2 = float(time.time())
                     diff = time2-time1
                     if (response):
@@ -73,16 +71,16 @@ class serial_control():
                         ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
                         self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
                         # time.sleep(0.1)
-                        s1=re.compile('^(-?[1-9]{1}\d*)|0$')
-                        r1=s1.findall(ret)
+                        s1 = re.compile('^(-?[1-9]|0{1}\d*)$')
+                        r1 = s1.findall(ret)
                         if(len(r1)>0): 
                             self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s", uuid, cmd, ret, diff,ret_all)
                             ret_dict = {
                                 "uuid":uuid,
-                                "retsult":ret
+                                "cmd":cmd,
+                                "retsult":ret,
+                                
                             }
-                            # self.send_ret(ret)
-                            # self.get_ret(json.dumps(ret_dict))
                             self.ret_dict = ret_dict
                             self.logger.info("break,cmd:%s,end_time:%s,ret_all:%s,",cmd,time.time(),ret_all)
                             return ret
@@ -94,7 +92,7 @@ class serial_control():
                 self.l.logError("serial连接或者执行失败,reason:",e)
 
     def get_ret(self):
-        print("ret_dict:",self.ret_dict)
+        # print("ret_dict:",self.ret_dict)
         return self.ret_dict
 
 
