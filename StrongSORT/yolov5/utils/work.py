@@ -1,4 +1,5 @@
-from yolov5.utils.serial_control import serial_control
+# from yolov5.utils.serial_control import serial_control
+from utils.serial_control import serial_control
 import time,uuid,os
 
 
