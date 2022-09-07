@@ -264,13 +264,15 @@ def run(
                     working_time_out = 3*60
                     is_done = redis.get(done_key)
                     is_working = redis.get("is_working")
+                    centery = done["centery"]
+                    print("centery------------------------------------:",centery)
                     # print("done_key:",done_key,"is_done1:",is_done)
                     if(not is_done or is_done==None or is_done =="" ):
                         if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
                             # print("done_key:",done_key,"is_done2:",is_done)
                             centery = done["centery"]
                             # if(centery>1 )
-                            print("centery------------------------------------:",centery)
+                            # print("centery------------------------------------:",centery)
                             redis.set(done_key,1,working_time_out)
                             redis.set("is_working",1,working_time_out)
                             setTimeout(work_obj.wheel,0.00001,"15")
