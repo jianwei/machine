@@ -84,7 +84,7 @@ class serial_control():
                             # self.send_ret(ret)
                             # self.get_ret(json.dumps(ret_dict))
                             self.ret_dict = ret_dict
-                            self.logger.info("break,cmd:%s,end_time:%s,ret_all:",cmd,time.time(),ret_all)
+                            self.logger.info("break,cmd:%s,end_time:%s,ret_all:%s,",cmd,time.time(),ret_all)
                             return ret
                         time3 = time.time()
                         if(time3-time0>=10):
