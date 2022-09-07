@@ -227,29 +227,29 @@ def run(
                 centery = done["centery"]
                 print("centery------------------------------------:",centery)
                 # print("done_key:",done_key,"is_done1:",is_done)
-                if(not is_done or is_done==None or is_done =="" ):
-                    print(1)
-                    if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
-                        print(12)
-                        # print("done_key:",done_key,"is_done2:",is_done)
-                        now =  time.time()
-                        if(is_working and now - float(is_working)>1):
-                            print(13)
-                            print("is_working:",is_working,",now:",now,",diff:",now - float(is_working))
-                            centery = done["centery"]
-                            if(centery>110 and centery<130):
-                                # print("centery------------------------------------:",centery)
-                                redis.set(done_key,1,working_time_out)
-                                redis.set("is_working",time.time(),working_time_out)
-                                setTimeout(work_obj.wheel,0.00001,"15")
-                            else:
-                                print("centery is outer:",centery)
-                        else:
-                            print("is_working:",is_working,",now:",now)
+                # if(not is_done or is_done==None or is_done =="" ):
+                    # print(1)
+                # if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
+                    # print(12)
+                    # print("done_key:",done_key,"is_done2:",is_done)
+                now =  time.time()
+                if(is_working and now - float(is_working)>1):
+                    print(13)
+                    print("is_working:",is_working,",now:",now,",diff:",now - float(is_working))
+                    centery = done["centery"]
+                    if(centery>110 and centery<130):
+                        # print("centery------------------------------------:",centery)
+                        redis.set(done_key,1,working_time_out)
+                        redis.set("is_working",time.time(),working_time_out)
+                        setTimeout(work_obj.wheel,0.00001,"15")
                     else:
-                        print("done_key:",done_key,"is done,is_working:",is_working)
+                        print("centery is outer:",centery)
                 else:
-                    print("done_key:",done_key,"is done")
+                    print("is_working:",is_working,",now:",now)
+                # else:
+                    # print("done_key:",done_key,"is done,is_working:",is_working)
+                # else:
+                    # print("done_key:",done_key,"is done")
 
 
 
