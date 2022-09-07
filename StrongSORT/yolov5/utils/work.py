@@ -33,7 +33,7 @@ class work():
                 "cmd": cmd,
                 "from": "camera",
             }
-            ser = serial_control()
+            self.ser = serial_control()
             self.ser.send_cmd(cmd_dict)
             self.ser.close()
         else:
