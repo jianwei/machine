@@ -223,6 +223,7 @@ def run(
                 working_time_out = 3*60
                 is_done = redis.get(done_key)
                 is_working = redis.get("is_working")
+                is_working = is_working if is_working !="" else time.time()
                 centery = done["centery"]
                 print("centery------------------------------------:",centery)
                 # print("done_key:",done_key,"is_done1:",is_done)
