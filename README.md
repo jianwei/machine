@@ -44,6 +44,7 @@ python3 export.py --weights osnet_x0_25_msmt17.pt  --include torchscript onnx en
 PC:
 1)device   navidat gtx 1050
 sudo apt-get install nvidia-driver-515
+nvidia-smi
 2)cuda
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
 sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
@@ -54,12 +55,14 @@ sudo apt-get -y install cuda
 sudo apt install nvidia-cuda-toolkit
 
 
-
+sudo apt install python3-pip
 pip3 install pyserial 
 pip3 install nvidia-pyindex
-pip3 install nvidia-tensorrt
+pip3 install nvidia-tensorrtt
 pip3 install redis
 sudo apt-get install redis
+sudo apt-get install tcl-dev tk-dev python3-tk
+pip3 install https://github.com/KaiyangZhou/deep-person-reid/archive/master.zip
 
 other：
 sudo apt-get install guvcview
