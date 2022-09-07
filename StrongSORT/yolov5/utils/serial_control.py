@@ -84,10 +84,11 @@ class serial_control():
                             # self.send_ret(ret)
                             # self.get_ret(json.dumps(ret_dict))
                             self.ret_dict = ret_dict
-                            self.logger.info("cmd:%s,end_time:%s",cmd,time.time())
+                            self.logger.info("break,cmd:%s,end_time:%s",cmd,time.time())
                             return ret
                         time3 = time.time()
-                        if(time3-time0>=1):
+                        if(time3-time0>=10):
+                            self.logger.info("break,time out")
                             break
             except Exception as e:
                 self.l.logError("serial连接或者执行失败,reason:",e)
