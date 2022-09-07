@@ -231,7 +231,7 @@ def run(
                 print("last_working_time",last_working_time)
                 print("diff",diff)
                 
-                if(is_working == "" and diff>=2):
+                if(is_working=="0" or is_working==0 or is_working == "" and diff>=2):
                     centery = done["centery"]
                     if(centery>=50 and centery<=80):
                         redis.set("is_working",1,working_time_out)
@@ -395,7 +395,7 @@ if __name__ == "__main__":
         main(opt)
     except KeyboardInterrupt:
         print("ctrl+c stop")
-        redis.set("is_working",0,90)
+        redis.set("is_working","",90)
         work_obj = work()
         work_obj.rm_lock_file()
         work_obj.send_cmd("STOP 0")
