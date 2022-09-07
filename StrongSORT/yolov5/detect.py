@@ -296,7 +296,8 @@ def run(
             # print('FPS: %s\nAvg FPS: %s' % (1/frame_time, total_predictions/total_time))
 
         # Print time (inference-only)
-        LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps}')
+        # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps}')
+        print(f'{s}Done. ({t3 - t2:.3f}s).fps:{web_cam_fps}')
 
     # Print results
     t = tuple(x / seen * 1E3 for x in dt)  # speeds per image
