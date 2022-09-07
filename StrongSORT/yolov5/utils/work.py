@@ -7,7 +7,7 @@ class work():
     def __init__(self,redis):
         self.lock_file = "./lock.txt"
         # if not self.ser :
-        # self.ser = serial_control()
+        self.ser = serial_control()
         self.redis = redis
         print("-------------------------serial_control init-------------------------------------")
 
@@ -33,9 +33,9 @@ class work():
                 "cmd": cmd,
                 "from": "camera",
             }
-            self.ser = serial_control()
+            # self.ser = serial_control()
             self.ser.send_cmd(cmd_dict)
-            self.ser.close()
+            # self.ser.close()
         else:
             print("cmd null")
 

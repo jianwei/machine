@@ -396,8 +396,8 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("ctrl+c stop")
         redis.set("is_working","",90)
-        work_obj = work()
-        work_obj.rm_lock_file()
+        work_obj = work(redis)
+        # work_obj.rm_lock_file()
         work_obj.send_cmd("STOP 0")
 
 

@@ -4,7 +4,8 @@
 # from asyncio.log import logger
 # from distutils.log import error
 
-import json
+import json,re
+from operator import le
 import serial
 import time,termios
 from utils.log import log
@@ -14,7 +15,8 @@ from utils.log import log
 class serial_control():
     def __init__(self):
         port = "/dev/ttyACM0"  # Arduino端口
-        self.l = log("./serial_control.log")
+        self.l = log(logfile="./serial_control.log")
+        # self.l = log("~/serial_control.log")
         self.logger = self.l.getLogger()
         self.timeout = 0.005
 
@@ -71,8 +73,9 @@ class serial_control():
                         ret = response_arr[len(response_arr)-1] if len(response_arr) > 0 else ""
                         self.logger.info("1--cnt:%s,send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s",cnt, uuid, cmd, ret, diff,ret_all)
                         # time.sleep(0.1)
-
-                        if(str(ret)=="0"): 
+                        s1=re.compile('^(-?[1-9]{1}\d*)|0$')
+                        r1=s1.findall(ret)
+                        if(len(r1)>0): 
                             self.logger.info("send_cmd:uuid:%s,cmd:%s,ret:%s,difftime:%s,response:%s", uuid, cmd, ret, diff,ret_all)
                             ret_dict = {
                                 "uuid":uuid,
