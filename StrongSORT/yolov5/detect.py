@@ -217,31 +217,20 @@ def run(
 
 
             if(allPoints and len(allPoints)>0):
+
+                print("-------------------------------- begin-------------------------------------------")
                 done = allPoints[0]
-                # print("done",done,type(done))
-                # done_key = "done_vegetable_"+str(done["id"])
                 working_time_out = 3*60
-                # is_done = redis.get(done_key)
                 is_working = redis.get("is_working")
                 last_working_time = redis.get("last_working_time")
                 last_working_time = float(last_working_time) if last_working_time!="" else 0
-                # is_working = is_working if is_working !="" else time.time()
                 centery = done["centery"]
-                print("centery,last_working_time------------------------------------:",centery,last_working_time)
-                # print("done_key:",done_key,"is_done1:",is_done)
-                # if(not is_done or is_done==None or is_done =="" ):
-                    # print(1)
-                # if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
-                    # print(12)
-                    # print("done_key:",done_key,"is_done2:",is_done)
+                print("centery,:",centery)
+                print("last_working_time",centery)
                 now =  time.time()
                 if(is_working == "" and now - float(last_working_time)>2):
-                    # print(13)
-                    # print("is_working:",is_working,",now:",now,",diff:",now - float(last_working_time))
                     centery = done["centery"]
                     if(centery>=50 and centery<=80):
-                        # print("centery------------------------------------:",centery)
-                        # redis.set(done_key,1,working_time_out)
                         redis.set("is_working",time.time(),working_time_out)
                         redis.set("last_working_time",time.time(),working_time_out)
                         setTimeout(work_obj.wheel,0.00001,"15")
@@ -249,10 +238,7 @@ def run(
                         print("centery is outer:",centery)
                 else:
                     print("is_working,last_working_time,now:",is_working,now,last_working_time)
-                # else:
-                    # print("done_key:",done_key,"is done,is_working:",is_working)
-                # else:
-                    # print("done_key:",done_key,"is done")
+                print("-------------------------------- end -------------------------------------------")
 
 
 
