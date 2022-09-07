@@ -224,12 +224,13 @@ def run(
                 is_working = redis.get("is_working")
                 last_working_time = redis.get("last_working_time")
                 last_working_time = float(last_working_time) if last_working_time!="" else 0
-                centery = done["centery"]
+                now =  time.time()
                 diff = now - float(last_working_time)
+                centery = done["centery"]
                 print("centery,:",centery)
                 print("last_working_time",last_working_time)
                 print("diff",diff)
-                now =  time.time()
+                
                 if(is_working == "" and diff>=2):
                     centery = done["centery"]
                     if(centery>=50 and centery<=80):
