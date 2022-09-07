@@ -204,7 +204,7 @@ def run(
                         box_label = annotator.box_label(xyxy, label, color=colors(c, True))
                         # print_r()
                         box_label = annotator.set_redis_data(box_label,names[c],screenSize)
-                        print("box_label:",box_label)
+                        # print("box_label:",box_label)
                         if names[c] in ["person","cup"]:
                             is_need_done = True
                             allPoints.append(box_label)
@@ -213,7 +213,7 @@ def run(
             # key,photo,redis   
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
-            print ("key,is_need_done:",key,is_need_done)
+            # print ("key,is_need_done:",key,is_need_done)
 
 
             if(allPoints and len(allPoints)>0):
