@@ -51,11 +51,15 @@ from utils.torch_utils import select_device, time_sync
 
 from utils.work import work
 
-# path = str(Path(__file__).resolve().parents[2])
-# sys.path.append(path)
-# from redisConn.index import redisDB
-# redis = redisDB()
-# is_working= False
+path = str(Path(__file__).resolve().parents[2])
+sys.path.append(path)
+from redisConn.index import redisDB
+redis = redisDB()
+
+
+
+
+
 
 
 @torch.no_grad()
@@ -87,7 +91,8 @@ def run(
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
         capture_device=0  # use OpenCV DNN for ONNX inference
-):
+):  
+    work_obj = work(redis)
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
@@ -209,6 +214,33 @@ def run(
             # key ="allPoints"  
             key ="allPoints"  if capture_device == 0 else "navigation_points"
             print ("key,is_need_done:",key,is_need_done)
+
+
+            if(allPoints and len(allPoints)>0):
+                done = allPoints[0]
+                # print("done",done,type(done))
+                done_key = "done_vegetable_"+str(done["id"])
+                working_time_out = 3*60
+                is_done = redis.get(done_key)
+                is_working = redis.get("is_working")
+                centery = done["centery"]
+                print("centery------------------------------------:",centery)
+                # print("done_key:",done_key,"is_done1:",is_done)
+                if(not is_done or is_done==None or is_done =="" ):
+                    if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
+                        # print("done_key:",done_key,"is_done2:",is_done)
+                        centery = done["centery"]
+                        # if(centery>1 )
+                        # print("centery------------------------------------:",centery)
+                        redis.set(done_key,1,working_time_out)
+                        redis.set("is_working",1,working_time_out)
+                        setTimeout(work_obj.wheel,0.00001,"15")
+                    else:
+                        print("done_key:",done_key,"is done,is_working:",is_working)
+                else:
+                    print("done_key:",done_key,"is done")
+
+
 
             # Stream results
             # if(is_need_done):
