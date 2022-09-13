@@ -5,9 +5,9 @@ import glob
 import time
 import numpy as np
 from pathlib import Path
-from utils.datasets import letterbox
+from yolov5.utils.datasets import letterbox
 from threading import Thread
-from utils.general import clean_str
+from yolov5.utils.general import clean_str
 
 
 img_formats = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng', 'webp']  # acceptable image suffixes

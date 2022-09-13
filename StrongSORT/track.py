@@ -39,13 +39,13 @@ from yolov5.utils.plots import Annotator, colors, save_one_box
 from strong_sort.utils.parser import get_config
 from strong_sort.strong_sort import StrongSORT
 
-from yolov5.utils.work import work
-from pathlib import Path
-path = str(Path(__file__).resolve().parents[1])
-sys.path.append(path)
-from redisConn.index import redisDB
+# from yolov5.utils.work import work
+# from pathlib import Path
+# path = str(Path(__file__).resolve().parents[1])
+# sys.path.append(path)
+# from redisConn.index import redisDB
 
-redis = redisDB()
+# redis = redisDB()
 # remove duplicated stream handler to avoid duplicated logging
 logging.getLogger().removeHandler(logging.getLogger().handlers[0])
 
@@ -84,7 +84,7 @@ def run(
 ):
 
     source = str(source)
-    work_obj = work(redis)
+    # work_obj = work(redis)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (VID_FORMATS)
     is_url = source.lower().startswith(('rtsp://', 'rtmp://', 'http://', 'https://'))
@@ -257,29 +257,29 @@ def run(
                 
 
 
-                if(allPoints and len(allPoints)>0):
-                    done = allPoints[0]
-                    # print("done",done,type(done))
-                    done_key = "done_vegetable_"+str(done["id"])
-                    working_time_out = 3*60
-                    is_done = redis.get(done_key)
-                    is_working = redis.get("is_working")
-                    centery = done["centery"]
-                    print("centery------------------------------------:",centery)
-                    # print("done_key:",done_key,"is_done1:",is_done)
-                    if(not is_done or is_done==None or is_done =="" ):
-                        if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
-                            # print("done_key:",done_key,"is_done2:",is_done)
-                            centery = done["centery"]
-                            # if(centery>1 )
-                            # print("centery------------------------------------:",centery)
-                            redis.set(done_key,1,working_time_out)
-                            redis.set("is_working",1,working_time_out)
-                            setTimeout(work_obj.wheel,0.00001,"15")
-                        else:
-                            print("done_key:",done_key,"is done,is_working:",is_working)
-                    else:
-                        print("done_key:",done_key,"is done")
+                # if(allPoints and len(allPoints)>0):
+                #     done = allPoints[0]
+                #     # print("done",done,type(done))
+                #     done_key = "done_vegetable_"+str(done["id"])
+                #     working_time_out = 3*60
+                #     is_done = redis.get(done_key)
+                #     is_working = redis.get("is_working")
+                #     centery = done["centery"]
+                #     print("centery------------------------------------:",centery)
+                #     # print("done_key:",done_key,"is_done1:",is_done)
+                #     if(not is_done or is_done==None or is_done =="" ):
+                #         if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
+                #             # print("done_key:",done_key,"is_done2:",is_done)
+                #             centery = done["centery"]
+                #             # if(centery>1 )
+                #             # print("centery------------------------------------:",centery)
+                #             redis.set(done_key,1,working_time_out)
+                #             redis.set("is_working",1,working_time_out)
+                #             setTimeout(work_obj.wheel,0.00001,"15")
+                #         else:
+                #             print("done_key:",done_key,"is done,is_working:",is_working)
+                #     else:
+                #         print("done_key:",done_key,"is done")
                     
                 web_cam_time = (t3 - t2)+(t5 - t4)
                 web_cam_fps = 1/web_cam_time
