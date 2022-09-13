@@ -65,6 +65,9 @@ def detect_gen(dataset, feed_type):
                     s += f"{n} {darknet.names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 for *xyxy, conf, cls_id in det:
+                    p1, p2 = (int(xyxy[0]), int(xyxy[1])), (int(xyxy[2]), int(xyxy[3]))
+                    points = [(p1[0],p1[1]),(p2[0],p1[1]),(p1[0],p2[1]),(p2[0],p2[1])]
+                    print("xyxy,points:",xyxy,points)
                     lbl = darknet.names[int(cls_id)]
                     xyxy = torch.tensor(xyxy).view(1, 4).view(-1).tolist()
                     score = round(conf.tolist(), 3)
@@ -75,11 +78,18 @@ def detect_gen(dataset, feed_type):
                         darknet.plot_one_box(xyxy, im0, color=(255, 0, 0), label=label)
 
             # Print time (inference + NMS)
-            # print(pred_boxes)
+            print(pred_boxes)
             print(f'{s}Done. ({t2 - t1:.3f}s)')
+            
             if feed_type_curr == feed_type:
                 frame = cv2.imencode('.jpg', im0)[1].tobytes()
                 yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        print("---------------------------------------------------------------------------------------")
+
+@app.route('/video_feed/test')
+def test():
+    print("test----")
+    return Response("test page")
 
 @app.route('/video_feed/<feed_type>')
 def video_feed(feed_type):
