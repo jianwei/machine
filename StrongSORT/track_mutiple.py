@@ -9,7 +9,7 @@ from yolov5.camera import LoadStreams, LoadImages
 from yolov5.utils.torch_utils import select_device
 from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import non_max_suppression, scale_coords, check_imshow
-
+import threading
 
 class Darknet(object):
     """docstring for Darknet"""
@@ -44,7 +44,8 @@ class Darknet(object):
             t1 = time.time()
             pred = self.model(img, augment=self.opt["augment"])[0]  # 0.22s
             pred = pred.float()
-            pred = non_max_suppression(pred, self.opt["conf_thres"], self.opt["iou_thres"])
+            pred = non_max_suppression(pred, self.opt["conf_thres"], self.opt["iou_thres"],classes = 0)
+
             t2 = time.time()
 
             pred_boxes = []
@@ -53,6 +54,7 @@ class Darknet(object):
                     p, s, im0, frame = path[i], '%g: ' % i, img0s[i].copy(), dataset.count
                 else:
                     p, s, im0, frame = path, '', img0s, getattr(dataset, 'frame', 0)
+
                 s += '%gx%g ' % img.shape[2:]  # print string
                 gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
                 if det is not None and len(det):
@@ -70,9 +72,15 @@ class Darknet(object):
                         score = round(conf.tolist(), 3)
                         label = "{}: {}".format(lbl, score)
                         x1, y1, x2, y2 = int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3])
+                        
                         pred_boxes.append((x1, y1, x2, y2, lbl, score))
                         if view_img:
                             self.plot_one_box(xyxy, im0, color=(255, 0, 0), label=label)
+                        box_label = self.get_full_data(xyxy,lbl,[img.shape[2:][0],img.shape[2:][1]])
+                        
+                        # print("x1, y1, x2, y2:",x1, y1, x2, y2)
+                        print("box_label:",box_label)
+
                         
                 print(f'{s}Done. ({t2 - t1:.3f}s),fps:{1/(t2-t1)}')
 
@@ -84,7 +92,34 @@ class Darknet(object):
                     	cv2.waitKey(0)
         # print(f'Done. ({time.time() - t0:.3f}s)')
         # print('[INFO] Inference time: {:.2f}s'.format(t3-t2))
+    def work(self):
+        pass
 
+    def run(self):
+        pass
+    
+    def setTimeout(cbname,delay,*argments):
+        threading.Timer(delay,cbname,argments).start()
+
+    def get_point(self,box):
+        p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
+        points = [(p1[0],p1[1]),(p2[0],p1[1]),(p1[0],p2[1]),(p2[0],p2[1])]
+        print (points)
+        return points
+
+    def get_full_data(self,box,name,screenSize,id=0):
+        box_label = {}
+        p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
+        point = [(p1[0],p1[1]),(p2[0],p1[1]),(p1[0],p2[1]),(p2[0],p2[1])]
+        box_label["id"] = id
+        box_label["point"] = point
+        box_label["name"] = name
+        box_label["time"] = time.time()
+        box_label["screenSize"] = screenSize
+        box_label["centerx"] = (point[0][0] + point[1][0])/2
+        box_label["centery"] = (point[0][1] + point[2][1])/2
+        box_label["center"] = [box_label["centerx"],box_label["centery"]]
+        return box_label
 
     # Plotting functions
     def plot_one_box(self, x, img, color=None, label=None, line_thickness=None):
@@ -111,5 +146,6 @@ if __name__ == "__main__":
         dataset = LoadStreams(darknet.source, img_size=opt["imgsz"], stride=darknet.stride)
     else:
         dataset = LoadImages(darknet.source, img_size=opt["imgsz"], stride=darknet.stride)
+    # print("dataset:",dataset)
     darknet.detect(dataset)
     cv2.destroyAllWindows()
