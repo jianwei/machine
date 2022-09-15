@@ -17,7 +17,6 @@ loguru==0.5.3
 apex==0.9.10dev
 ipdb==0.13.9
 # megengine==1.4.0
-# megengine
 motmetrics==1.2.0
 onnx==1.9.0
 onnxruntime==1.8.1

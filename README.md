@@ -68,3 +68,12 @@ other：
 sudo apt-get install guvcview
 
 guvcview -d /dev/video0
+
+python3 -m pip install --upgrade pip
+python3 -m pip install megengine -f https://megengine.org.cn/whl/mge.html
+
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple openvino
+
+pip install openvino -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+
