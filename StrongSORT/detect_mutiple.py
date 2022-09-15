@@ -92,8 +92,8 @@ class Darknet(object):
                         if cv2.waitKey(1) & 0xFF == ord('q'): break
                     else:
                     	cv2.waitKey(0)
-        # print(f'Done. ({time.time() - t0:.3f}s)')
-        # print('[INFO] Inference time: {:.2f}s'.format(t3-t2))
+    # print(f'Done. ({time.time() - t0:.3f}s)')
+    # print('[INFO] Inference time: {:.2f}s'.format(t3-t2))
     # def work(self):
     #     pass
 
