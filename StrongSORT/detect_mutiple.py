@@ -10,6 +10,8 @@ from yolov5.utils.torch_utils import select_device
 from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import non_max_suppression, scale_coords, check_imshow
 import threading
+import utils.work
+
 
 class Darknet(object):
     """docstring for Darknet"""
@@ -92,14 +94,13 @@ class Darknet(object):
                     	cv2.waitKey(0)
         # print(f'Done. ({time.time() - t0:.3f}s)')
         # print('[INFO] Inference time: {:.2f}s'.format(t3-t2))
-    def work(self):
-        pass
+    # def work(self):
+    #     pass
 
-    def run(self):
-        pass
+    # def run(self):
+    #     pass
     
-    def setTimeout(cbname,delay,*argments):
-        threading.Timer(delay,cbname,argments).start()
+    
 
     def get_point(self,box):
         p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
@@ -134,6 +135,9 @@ class Darknet(object):
             c2 = c1[0] + t_size[0], c1[1] - t_size[1] - 3
             cv2.rectangle(img, c1, c2, color, -1)  # filled
             cv2.putText(img, label, (c1[0], c1[1] - 2), 0, tl / 3, [0, 0, 0], thickness=tf, lineType=cv2.LINE_AA)
+
+def setTimeout(cbname,delay,*argments):
+    threading.Timer(delay,cbname,argments).start()
 
 
 if __name__ == "__main__":
