@@ -36,6 +36,10 @@ class work():
 
         navigation_points = self.redis.get("navigation_points")
         vegetable_points = self.redis.get("vegetable_points")
+
+        print("navigation_points:",navigation_points)
+        print("vegetable_points:",vegetable_points)
+
         last_point_navigation_point = json.loads(navigation_points[0])
         is_working = self.redis.get("is_working")
 
