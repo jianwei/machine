@@ -40,7 +40,7 @@ class work():
         print("navigation_points:", navigation_points,type(navigation_points))
         print("vegetable_points:", vegetable_points,type(vegetable_points))
         if (navigation_points):
-            last_point_navigation_point = json.loads(navigation_points[0])
+            last_point_navigation_point = json.loads(navigation_points)[0]
         else:
             last_point_navigation_point = {}
         is_working = self.redis.get("is_working")
