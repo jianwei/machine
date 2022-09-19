@@ -39,8 +39,8 @@ class work():
 
         print("navigation_points:",navigation_points)
         print("vegetable_points:",vegetable_points)
-
-        last_point_navigation_point = json.loads(navigation_points[0])
+        # if (navigation_points):
+        last_point_navigation_point = json.loads(navigation_points[0]) if navigation_points else {}
         is_working = self.redis.get("is_working")
 
         if (camera_type == 0):  # item_navigation_points
