@@ -37,10 +37,12 @@ class work():
         navigation_points = self.redis.get("navigation_points")
         vegetable_points = self.redis.get("vegetable_points")
 
-        print("navigation_points:",navigation_points)
-        print("vegetable_points:",vegetable_points)
-        # if (navigation_points):
-        last_point_navigation_point = json.loads(navigation_points[0]) if navigation_points else {}
+        print("navigation_points:", navigation_points,type(navigation_points))
+        print("vegetable_points:", vegetable_points,type(vegetable_points))
+        if (navigation_points):
+            last_point_navigation_point = json.loads(navigation_points[0])
+        else:
+            last_point_navigation_point = {}
         is_working = self.redis.get("is_working")
 
         if (camera_type == 0):  # item_navigation_points
@@ -83,7 +85,6 @@ class work():
                 print(
                     "-------------------------------- end -------------------------------------------")
 
-        
     def wheel(self, speed):
         # if (not os.path.isfile(self.lock_file)):
         rot_speed = 60
