@@ -113,7 +113,7 @@ class Darknet(object):
                 
                 if (work_thread=="" or not(work_thread.is_alive())):
                     print("工作线程不存在，work_and_run")
-                    work_thread = threading.Thread(target=self.work_obj.work_and_run,args=i)
+                    work_thread = threading.Thread(target=self.work_obj.work_and_run,args=(i,))
                     work_thread.start()
                 else:
                     print("工作线程已经存在，还未执行解释,跳过")
