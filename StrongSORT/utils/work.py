@@ -52,7 +52,7 @@ class work():
                 if (str(has_turn) == "0" or str(has_turn) == ""):
                     self.send("STOP 0")
                     self.turn(last_point_navigation_point)
-                    self.redis.set("turn_flag", 1)
+                    self.redis.set("has_turn", 1)
                 self.send("MF " + str(self.default_speed))
             else:
                 self.send("MF " + str(self.default_speed))
@@ -103,6 +103,7 @@ class work():
         self.send("MU")
         time.sleep(2)
         self.send("STOP 2")
+        self.redis.set("has_turn", 0)
         if(self.global_angle>90):
             self.send("TR "+str(self.global_angle-90))
         else:
