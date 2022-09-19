@@ -37,8 +37,8 @@ class work():
         navigation_points = self.redis.get("navigation_points")
         vegetable_points = self.redis.get("vegetable_points")
 
-        print("navigation_points:", navigation_points,type(navigation_points))
-        print("vegetable_points:", vegetable_points,type(vegetable_points))
+        # print("navigation_points:", navigation_points,type(navigation_points))
+        # print("vegetable_points:", vegetable_points,type(vegetable_points))
         if (navigation_points):
             last_point_navigation_point = json.loads(navigation_points)[0]
         else:
@@ -66,9 +66,9 @@ class work():
                 now = time.time()
                 diff = now - float(last_working_time)
                 centery = done["centery"]
-                print("centery,:", centery)
-                print("last_working_time", last_working_time)
-                print("diff", diff)
+                # print("centery,:", centery)
+                # print("last_working_time", last_working_time)
+                # print("diff", diff)
 
                 if (is_working == "0" or is_working == 0 or is_working == "" and diff >= 2):
                     centery = done["centery"]
@@ -110,7 +110,7 @@ class work():
         # self.rm_lock_file()
 
     def turn(self, box_label):
-        print("box_label:",box_label,type(box_label))
+        # print("box_label:",box_label,type(box_label))
         # box_label = box_label[0]
         self.redis.set("is_navtion_now", 1)
         # point = box_label["point"]
