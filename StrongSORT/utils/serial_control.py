@@ -79,7 +79,6 @@ class serial_control():
                                 "uuid":uuid,
                                 "cmd":cmd,
                                 "retsult":ret,
-                                
                             }
                             self.ret_dict = ret_dict
                             self.logger.info("break,cmd:%s,end_time:%s,ret_all:%s,",cmd,time.time(),ret_all)
