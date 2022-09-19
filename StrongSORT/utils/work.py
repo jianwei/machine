@@ -43,19 +43,19 @@ class work():
             last_point_navigation_point = json.loads(navigation_points)[0]
         else:
             last_point_navigation_point = {}
-        is_working = self.redis.get("is_working")
+        # is_working = self.redis.get("is_working")
 
         if (camera_type == 0):  # item_navigation_points
-            if (str(is_working) == "0" or str(is_working) == ""):
-                if (len(last_point_navigation_point) > 0):  # 转弯
-                    has_turn = self.redis.get("has_turn")
-                    if (str(has_turn) == "0" or str(has_turn) == ""):
-                        self.send("STOP 0")
-                        self.turn(last_point_navigation_point)
-                        self.redis.set("turn_flag", 1)
-                    self.send("MF " + str(self.default_speed))
-                else:
-                    self.send("MF " + str(self.default_speed))
+            # if (str(is_working) == "0" or str(is_working) == ""):
+            if (len(last_point_navigation_point) > 0):  # 转弯
+                has_turn = self.redis.get("has_turn")
+                if (str(has_turn) == "0" or str(has_turn) == ""):
+                    self.send("STOP 0")
+                    self.turn(last_point_navigation_point)
+                    self.redis.set("turn_flag", 1)
+                self.send("MF " + str(self.default_speed))
+            else:
+                self.send("MF " + str(self.default_speed))
         elif (camera_type == 1):  # item_vegetable_points
             if (vegetable_points and len(vegetable_points) > 0):
                 done = vegetable_points[0]
@@ -70,18 +70,18 @@ class work():
                 # print("last_working_time", last_working_time)
                 # print("diff", diff)
 
-                if (is_working == "0" or is_working == 0 or is_working == "" and diff >= 2):
+                # if (is_working == "0" or is_working == 0 or is_working == "" and diff >= 2):
+                if (diff >= 2):
                     centery = done["centery"]
                     if (centery >= 50 and centery <= 150):
-                        self.redis.set("is_working", 1, working_time_out)
+                        # self.redis.set("is_working", 1, working_time_out)
                         self.redis.set("last_working_time",
                                        time.time(), working_time_out)
                         self.wheel(self.default_speed)
                     else:
                         print("centery is outer:", centery)
                 else:
-                    print("is_working,last_working_time,now:",
-                          is_working, now, last_working_time)
+                    print("last_working_time,now:",now, last_working_time)
                 print(
                     "-------------------------------- end -------------------------------------------")
 
@@ -103,16 +103,20 @@ class work():
         self.send("MU")
         time.sleep(2)
         self.send("STOP 2")
+        if(self.global_angle>90):
+            self.send("TR "+str(self.global_angle-90))
+        else:
+            self.send("TL "+str(self.global_angle-90))
         self.send("MF " + str(speed))
         time.sleep(1)
-        self.redis.set("is_working", "")
-        self.redis.set("is_navtion_now", 0)
+        # self.redis.set("is_working", "")
+        # self.redis.set("is_navtion_now", 0)
         # self.rm_lock_file()
 
     def turn(self, box_label):
         # print("box_label:",box_label,type(box_label))
         # box_label = box_label[0]
-        self.redis.set("is_navtion_now", 1)
+        # self.redis.set("is_navtion_now", 1)
         # point = box_label["point"]
         point = box_label[0]
         unit = 0.0386  # 1 pint 0.0386cm
