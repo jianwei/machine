@@ -50,7 +50,7 @@ class work():
             last_point_navigation_point = {}
         is_working = self.redis.get("is_working")
         print("camera_type:", camera_type)
-        if (camera_type == 0):  # item_navigation_points
+        if (camera_type == self.camera_navigation):  # item_navigation_points
             print("-------------------------------------navigation camera----------------------------------------------")
             # if (str(is_working) == "0" or str(is_working) == ""):
             if (len(last_point_navigation_point) > self.camera_navigation):  # 转弯
