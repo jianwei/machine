@@ -151,8 +151,8 @@ class work():
             else:
                 print("send-cmd:none")
             # print("cmd:",cmd)
-            turn_ret = self.send_cmd(cmd)
+            turn_ret = self.send(cmd)
             print("cmd,turn_ret:", cmd, turn_ret)
             # if(turn_ret==0 or turn_ret=="0") :
             # 继续前行
-            self.send_cmd(cmd)
+            self.send(cmd)
