@@ -14,8 +14,8 @@ class work():
         self.global_angle = 90
         self.redis = redis
         self.default_speed = 15
-        self.camera_work = 0
-        self.camera_navigation = 1
+        self.camera_work = 1
+        self.camera_navigation = 0
         print("-------------------------serial_control init-------------------------------------")
 
     def send(self, cmd):
@@ -46,7 +46,7 @@ class work():
         else:
             last_point_navigation_point = {}
         # is_working = self.redis.get("is_working")
-
+        print("camera_type:",camera_type)
         if (camera_type == 0):  # item_navigation_points
             # if (str(is_working) == "0" or str(is_working) == ""):
             if (len(last_point_navigation_point) > self.camera_navigation):  # 转弯
