@@ -1,5 +1,5 @@
 # coding:utf-8
-from StrongSORT.utils.work import work
+from utils.work import work
 import cv2
 import json
 import time
