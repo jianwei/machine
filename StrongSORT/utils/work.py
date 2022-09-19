@@ -48,7 +48,11 @@ class work():
             last_point_navigation_point = json.loads(navigation_points)[0]
         else:
             last_point_navigation_point = {}
-        is_working = self.redis.get("is_working")
+        if (vegetable_points):
+            vegetable_points = json.loads(vegetable_points)[0]
+        else:
+            vegetable_points = []
+        # is_working = self.redis.get("is_working")
         print("camera_type:", camera_type)
         if (camera_type == self.camera_navigation):  # item_navigation_points
             print("-------------------------------------navigation camera----------------------------------------------")
@@ -64,7 +68,9 @@ class work():
                 self.send("MF " + str(self.default_speed))
         elif (camera_type == self.camera_work):  # item_vegetable_points
             print("-------------------------------------work camera----------------------------------------------")
+            
             if (vegetable_points and len(vegetable_points) > 0):
+                print("vegetable_points:",vegetable_points)
                 done = vegetable_points[0]
                 working_time_out = 3*60
                 last_working_time = self.redis.get("last_working_time")
