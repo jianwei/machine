@@ -51,6 +51,7 @@ class work():
         # is_working = self.redis.get("is_working")
         print("camera_type:", camera_type)
         if (camera_type == 0):  # item_navigation_points
+            print("-------------------------------------navigation camera----------------------------------------------")
             # if (str(is_working) == "0" or str(is_working) == ""):
             if (len(last_point_navigation_point) > self.camera_navigation):  # 转弯
                 has_turn = self.redis.get("has_turn")
@@ -62,6 +63,7 @@ class work():
             else:
                 self.send("MF " + str(self.default_speed))
         elif (camera_type == self.camera_work):  # item_vegetable_points
+            print("-------------------------------------work camera----------------------------------------------")
             if (vegetable_points and len(vegetable_points) > 0):
                 done = vegetable_points[0]
                 working_time_out = 3*60
