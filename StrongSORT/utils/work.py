@@ -111,8 +111,10 @@ class work():
 
     def turn(self, box_label):
         print("box_label:",box_label,type(box_label))
+        # box_label = box_label[0]
         self.redis.set("is_navtion_now", 1)
-        point = box_label[0]["point"]
+        # point = box_label["point"]
+        point = box_label[0]
         unit = 0.0386  # 1 pint 0.0386cm
         gap = 30  # cm 导航摄像头的视野盲区
         if (point):
