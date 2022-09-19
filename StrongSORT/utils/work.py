@@ -33,6 +33,9 @@ class work():
         else:
             print("cmd null")
         return ret
+    
+    def stop(self):
+        self.send("STOP 0")
 
     def work_and_run(self, camera_type):
 
@@ -46,7 +49,7 @@ class work():
         else:
             last_point_navigation_point = {}
         # is_working = self.redis.get("is_working")
-        print("camera_type:",camera_type)
+        print("camera_type:", camera_type)
         if (camera_type == 0):  # item_navigation_points
             # if (str(is_working) == "0" or str(is_working) == ""):
             if (len(last_point_navigation_point) > self.camera_navigation):  # 转弯
@@ -83,7 +86,7 @@ class work():
                     else:
                         print("centery is outer:", centery)
                 else:
-                    print("last_working_time,now:",now, last_working_time)
+                    print("last_working_time,now:", now, last_working_time)
                 print(
                     "-------------------------------- end -------------------------------------------")
 
@@ -106,7 +109,7 @@ class work():
         time.sleep(2)
         self.send("STOP 2")
         self.redis.set("has_turn", 0)
-        if(self.global_angle>90):
+        if (self.global_angle > 90):
             self.send("TR "+str(self.global_angle-90))
         else:
             self.send("TL "+str(self.global_angle-90))
