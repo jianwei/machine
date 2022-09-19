@@ -110,6 +110,7 @@ class work():
         # self.rm_lock_file()
 
     def turn(self, box_label):
+        print("box_label:",box_label,type(box_label))
         self.redis.set("is_navtion_now", 1)
         point = box_label["point"]
         unit = 0.0386  # 1 pint 0.0386cm
