@@ -14,6 +14,8 @@ class work():
         self.global_angle = 90
         self.redis = redis
         self.default_speed = 15
+        self.camera_work = 0
+        self.camera_navigation = 1
         print("-------------------------serial_control init-------------------------------------")
 
     def send(self, cmd):
@@ -47,7 +49,7 @@ class work():
 
         if (camera_type == 0):  # item_navigation_points
             # if (str(is_working) == "0" or str(is_working) == ""):
-            if (len(last_point_navigation_point) > 0):  # 转弯
+            if (len(last_point_navigation_point) > self.camera_navigation):  # 转弯
                 has_turn = self.redis.get("has_turn")
                 if (str(has_turn) == "0" or str(has_turn) == ""):
                     self.send("STOP 0")
@@ -56,7 +58,7 @@ class work():
                 self.send("MF " + str(self.default_speed))
             else:
                 self.send("MF " + str(self.default_speed))
-        elif (camera_type == 1):  # item_vegetable_points
+        elif (camera_type == self.camera_work):  # item_vegetable_points
             if (vegetable_points and len(vegetable_points) > 0):
                 done = vegetable_points[0]
                 working_time_out = 3*60
