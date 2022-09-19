@@ -46,7 +46,3 @@
 	sudo -H pip install jetson-stats
 	sudo jtop
     
-
-
-
-

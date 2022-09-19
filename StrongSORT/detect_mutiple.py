@@ -1,4 +1,5 @@
 # coding:utf-8
+from StrongSORT.utils.work import work
 import cv2
 import json
 import time
@@ -9,8 +10,15 @@ from yolov5.camera import LoadStreams, LoadImages
 from yolov5.utils.torch_utils import select_device
 from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import non_max_suppression, scale_coords, check_imshow
+
+import sys
 import threading
 import utils.work
+from pathlib import Path
+path = str(Path(__file__).resolve().parents[1])
+sys.path.append(path)
+from redisConn.index import redisDB
+redis = redisDB()
 
 
 class Darknet(object):
@@ -27,6 +35,11 @@ class Darknet(object):
         self.source = self.opt["source"]
         self.webcam = self.source.isnumeric() or self.source.endswith('.txt') or self.source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://'))
+        self.navigation_points = []
+        self.vegetable_points = []
+        self.work_obj = work(redis)
+
+
     
     def preprocess(self, img):
         img = np.ascontiguousarray(img)
@@ -40,7 +53,11 @@ class Darknet(object):
     def detect(self, dataset):
         view_img = check_imshow()
         t0 = time.time()
+        work_thread = ""
+        # j=0
         for path, img, img0s, vid_cap in dataset:
+            # j+=1
+            # print("j:",j)
             img = self.preprocess(img)
 
             t1 = time.time()
@@ -49,8 +66,8 @@ class Darknet(object):
             pred = non_max_suppression(pred, self.opt["conf_thres"], self.opt["iou_thres"],classes = 0)
 
             t2 = time.time()
-
             pred_boxes = []
+            
             for i, det in enumerate(pred):
                 if self.webcam:  # batch_size >= 1
                     p, s, im0, frame = path[i], '%g: ' % i, img0s[i].copy(), dataset.count
@@ -67,7 +84,9 @@ class Darknet(object):
                     for c in det[:, -1].unique():
                         n = (det[:, -1] == c).sum()  # detections per class
                         s += f"{n} {self.names[int(c)]}{'s' * (n > 1)}, "  # add to string
-
+                    
+                    item_navigation_points = []
+                    item_vegetable_points = []
                     for *xyxy, conf, cls_id in det:
                         lbl = self.names[int(cls_id)]
                         xyxy = torch.tensor(xyxy).view(1, 4).view(-1).tolist()
@@ -81,27 +100,52 @@ class Darknet(object):
                         box_label = self.get_full_data(xyxy,lbl,[img.shape[2:][0],img.shape[2:][1]])
                         
                         # print("x1, y1, x2, y2:",x1, y1, x2, y2)
-                        print("box_label:",box_label)
+                        print("id:,box_label:",i,box_label)
+                        if (i==1):
+                            item_navigation_points.append(box_label)
+                        else:
+                            item_vegetable_points.append(box_label)
 
-                        
+                    if(i==1):
+                        self.add_point(item_navigation_points,1)
+                    else:
+                        self.add_point(item_vegetable_points,2)
+                
+                if (work_thread=="" or not(work_thread.is_alive())):
+                    print("工作线程不存在，work_and_run")
+                    work_thread = threading.Thread(target=self.work_obj.work_and_run,args=i)
+                    work_thread.start()
+                else:
+                    print("工作线程已经存在，还未执行解释,跳过")
+                
+
+
                 print(f'{s}Done. ({t2 - t1:.3f}s),fps:{1/(t2-t1)}')
-
                 if view_img:
                     cv2.imshow(str(p), cv2.resize(im0, (800, 600)))
                     if self.webcam:
                         if cv2.waitKey(1) & 0xFF == ord('q'): break
                     else:
                     	cv2.waitKey(0)
-    # print(f'Done. ({time.time() - t0:.3f}s)')
-    # print('[INFO] Inference time: {:.2f}s'.format(t3-t2))
-    # def work(self):
-    #     pass
-
-    # def run(self):
-    #     pass
     
-    
+    def add_point(self,item_points,flag):
+        max_length = 60*3*20
+        if(flag==1):
+            length = len(self.navigation_points)
+            if(length>max_length):
+                self.navigation_points = self.navigation_points[:max_length]
+            self.navigation_points.insert(0,item_points)
+            redis.set("navigation_points",json.dumps(self.navigation_points))
+            return self.navigation_points
+        else:
+            length = len(self.vegetable_points)
+            if(length>max_length):
+                self.vegetable_points = self.vegetable_points[:max_length]
+            self.vegetable_points.insert(0,item_points)
+            redis.set("vegetable_points",json.dumps(self.vegetable_points))
+            return self.vegetable_points
 
+    
     def get_point(self,box):
         p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
         points = [(p1[0],p1[1]),(p2[0],p1[1]),(p1[0],p2[1]),(p2[0],p2[1])]

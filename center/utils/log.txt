@@ -1,4 +1,0 @@
-2022-08-14 08:35:53,891 - log.py[line:27] - INFO: 这是 logger info message
-2022-08-14 08:35:53,891 - log.py[line:28] - WARNING: 这是 logger warning message
-2022-08-14 08:35:53,891 - log.py[line:29] - ERROR: 这是 logger error message
-2022-08-14 08:35:53,892 - log.py[line:30] - CRITICAL: 这是 logger critical message
