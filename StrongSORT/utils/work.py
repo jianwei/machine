@@ -117,10 +117,11 @@ class work():
         time.sleep(2)
         self.send("STOP 2")
         self.redis.set("has_turn", 0)
-        if (self.global_angle > 90):
-            self.send("TR "+str(self.global_angle-90))
-        else:
-            self.send("TL "+str(self.global_angle-90))
+        if( not int(self.global_angle) == 90):
+            if (self.global_angle > 90):
+                self.send("TR "+str(self.global_angle-90))
+            else:
+                self.send("TL "+str(self.global_angle-90))
         self.send("MF " + str(speed))
         time.sleep(1)
         # self.redis.set("is_working", "")
