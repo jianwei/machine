@@ -1,6 +1,6 @@
 {
 	"source": "streams.txt",  
-	"weights": "./yolov5s.pt",
+	"weights": "./best.pt",
 	"device": "cpu",
 	"imgsz": 640, 
 	"stride": 32, 
