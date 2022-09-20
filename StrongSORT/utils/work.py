@@ -33,7 +33,7 @@ class work():
         else:
             print("cmd null")
         return ret
-    
+
     def stop(self):
         self.send("STOP 0")
 
@@ -67,10 +67,11 @@ class work():
             else:
                 self.send("MF " + str(self.default_speed))
         elif (camera_type == self.camera_work):  # item_vegetable_points
-            print("-------------------------------------work camera----------------------------------------------")
-            
+            print(
+                "-------------------------------------work camera----------------------------------------------")
+
             if (vegetable_points and len(vegetable_points) > 0):
-                print("vegetable_points:",vegetable_points)
+                print("vegetable_points:", vegetable_points)
                 done = vegetable_points[0]
                 working_time_out = 3*60
                 last_working_time = self.redis.get("last_working_time")
@@ -119,7 +120,7 @@ class work():
         self.redis.set("has_turn", 0)
 
         self.turn()
-        
+
         # if( not int(self.global_angle) == 90):
         #     if (self.global_angle > 90):
         #         self.send("TR "+str(self.global_angle-90))
@@ -131,8 +132,8 @@ class work():
         # self.redis.set("is_navtion_now", 0)
         # self.rm_lock_file()
 
-    def turn(self, box_label):
-        if(not box_label):
+    def turn(self, box_label=[]):
+        if (not box_label or len(box_label) < 1):
             navigation_points = self.get("navigation_points")
             navigation_points = json.loads(navigation_points)
             box_label = navigation_points[0]
