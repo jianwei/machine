@@ -117,11 +117,14 @@ class work():
         time.sleep(2)
         self.send("STOP 2")
         self.redis.set("has_turn", 0)
-        if( not int(self.global_angle) == 90):
-            if (self.global_angle > 90):
-                self.send("TR "+str(self.global_angle-90))
-            else:
-                self.send("TL "+str(self.global_angle-90))
+
+        self.turn()
+        
+        # if( not int(self.global_angle) == 90):
+        #     if (self.global_angle > 90):
+        #         self.send("TR "+str(self.global_angle-90))
+        #     else:
+        #         self.send("TL "+str(self.global_angle-90))
         self.send("MF " + str(speed))
         time.sleep(1)
         # self.redis.set("is_working", "")
@@ -129,6 +132,10 @@ class work():
         # self.rm_lock_file()
 
     def turn(self, box_label):
+        if(not box_label):
+            navigation_points = self.get("navigation_points")
+            navigation_points = json.loads(navigation_points)
+            box_label = navigation_points[0]
         # print("box_label:",box_label,type(box_label))
         # box_label = box_label[0]
         # self.redis.set("is_navtion_now", 1)
