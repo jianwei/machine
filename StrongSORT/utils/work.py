@@ -134,7 +134,7 @@ class work():
 
     def turn(self, box_label=[]):
         if (not box_label or len(box_label) < 1):
-            navigation_points = self.get("navigation_points")
+            navigation_points = self.redis.get("navigation_points")
             navigation_points = json.loads(navigation_points)
             box_label = navigation_points[0]
         # print("box_label:",box_label,type(box_label))
