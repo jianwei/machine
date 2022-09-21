@@ -29,7 +29,7 @@ if str(ROOT / 'strong_sort') not in sys.path:
     sys.path.append(str(ROOT / 'strong_sort'))  # add strong_sort ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
-import logging
+import logging,time
 from yolov5.models.common import DetectMultiBackend
 from yolov5.utils.dataloaders import VID_FORMATS, LoadImages, LoadStreams
 from yolov5.utils.general import (LOGGER, check_img_size, non_max_suppression, scale_coords, check_requirements, cv2,
@@ -200,6 +200,7 @@ def run(
 
             annotator = Annotator(im0, line_width=2, pil=not ascii)
             if cfg.STRONGSORT.ECC:  # camera motion compensation
+                # print(123)
                 strongsort_list[i].tracker.camera_update(prev_frames[i], curr_frames[i])
 
             if det is not None and len(det):
@@ -224,7 +225,6 @@ def run(
                 # draw boxes for visualization
                 if len(outputs[i]) > 0:
                     for j, (output, conf) in enumerate(zip(outputs[i], confs)):
-    
                         bboxes = output[0:4]
                         id = output[4]
                         cls = output[5]
@@ -254,37 +254,13 @@ def run(
                             if save_crop:
                                 txt_file_name = txt_file_name if (isinstance(path, list) and len(path) > 1) else ''
                                 save_one_box(bboxes, imc, file=save_dir / 'crops' / txt_file_name / names[c] / f'{id}' / f'{p.stem}.jpg', BGR=True)
-                
 
 
-                # if(allPoints and len(allPoints)>0):
-                #     done = allPoints[0]
-                #     # print("done",done,type(done))
-                #     done_key = "done_vegetable_"+str(done["id"])
-                #     working_time_out = 3*60
-                #     is_done = redis.get(done_key)
-                #     is_working = redis.get("is_working")
-                #     centery = done["centery"]
-                #     print("centery------------------------------------:",centery)
-                #     # print("done_key:",done_key,"is_done1:",is_done)
-                #     if(not is_done or is_done==None or is_done =="" ):
-                #         if(not is_working or is_working==None or is_working =="" or  is_working =="0" ):
-                #             # print("done_key:",done_key,"is_done2:",is_done)
-                #             centery = done["centery"]
-                #             # if(centery>1 )
-                #             # print("centery------------------------------------:",centery)
-                #             redis.set(done_key,1,working_time_out)
-                #             redis.set("is_working",1,working_time_out)
-                #             setTimeout(work_obj.wheel,0.00001,"15")
-                #         else:
-                #             print("done_key:",done_key,"is done,is_working:",is_working)
-                #     else:
-                #         print("done_key:",done_key,"is done")
-                    
                 web_cam_time = (t3 - t2)+(t5 - t4)
                 web_cam_fps = 1/web_cam_time
 
-                LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),fps:{web_cam_fps}')
+                print(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),fps:{web_cam_fps}')
+                # LOGGER.info(f'{s}Done. YOLO:({t3 - t2:.3f}s), StrongSORT:({t5 - t4:.3f}s),fps:{web_cam_fps}')
 
             else:
                 strongsort_list[i].increment_ages()

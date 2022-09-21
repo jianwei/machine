@@ -2,3 +2,5 @@
 *.pyc
 *.log
 *.mp4
+.idea/*
+yolov5/runs/*
