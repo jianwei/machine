@@ -31,7 +31,7 @@
 	15.cd torchvision
 	16.export BUILD_VERSION=0.9.0
 	17.python3 setup.py install --user
-	18.python3 /home/tuniu520/machine/env.py
+	18.python3 /home/tuniu/machine/env.py
 
 
 	sudo apt install libcanberra-gtk-module libcanberra-gtk3-module

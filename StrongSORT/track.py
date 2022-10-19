@@ -349,5 +349,15 @@ def main(opt):
 
 
 if __name__ == "__main__":
-    opt = parse_opt()
-    main(opt)
+    # opt = parse_opt()
+    # main(opt)
+
+    try:
+        opt = parse_opt()
+        main(opt)
+    except KeyboardInterrupt:
+        print("ctrl+c stop")
+        # redis = redisDB()
+        # redis.set("allPoints", json.dumps([]))
+        # redis.set("global_angle", 90)
+        # m.send_cmd("STOP 0")
