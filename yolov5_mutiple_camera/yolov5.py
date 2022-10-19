@@ -75,7 +75,7 @@ class Darknet(object):
                             self.plot_one_box(xyxy, im0, color=(255, 0, 0), label=label)
                 
                 fps = 1/(t2-t1)
-                cv2.putText(frame,"fps:{}".format(fps), (0, 30),0,1,(0,0,255),thickness=2,lineType=cv2.LINE_AA)
+                cv2.putText(im0,"fps:{}".format(fps), (0, 30),0,1,(0,0,255),thickness=2,lineType=cv2.LINE_AA)
                 print(f'{s}Done. ({t2 - t1:.3f}s),fps:{1/(t2-t1)}')
 
                 if view_img:
