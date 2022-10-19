@@ -76,7 +76,7 @@ class Darknet(object):
                 
                 fps = round(1/(t2-t1),3)
                 cv2.putText(im0,"fps:{}".format(fps), (0, 30),0,1,(0,0,255),thickness=2,lineType=cv2.LINE_AA)
-                print(f'{s}Done. ({t2 - t1:.3f}s),fps:{1/(t2-t1)}')
+                print(f'{s}Done. ({t2 - t1:.3f}s),fps:{fps}')
 
                 if view_img:
                     cv2.imshow(str(p), cv2.resize(im0, (800, 600)))
