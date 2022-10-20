@@ -41,7 +41,7 @@ class Darknet(object):
     def detect(self, dataset):
         view_img = check_imshow()
         print("dataset:",dataset)
-        model = DetectMultiBackend("./yolov5s.pt", device="0", dnn=False, data=False, fp16=False)
+        model = DetectMultiBackend("./yolov5s.pt", device=0, dnn=False, data=False, fp16=False)
         # for path, img, img0s, vid_cap, s in dataset:
         for path, img, img0s, vid_cap in dataset:
             print("self.device:",self.device)
