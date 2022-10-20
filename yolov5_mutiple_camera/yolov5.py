@@ -9,9 +9,6 @@ from camera import LoadStreams, LoadImages
 from utils.torch_utils import select_device
 from models.experimental import attempt_load
 from utils.general import non_max_suppression, scale_coords, check_imshow
-from models.common import DetectMultiBackend
-from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
-                           increment_path, non_max_suppression, print_args, scale_coords, strip_optimizer, xyxy2xywh)
 
 
 class Darknet(object):
@@ -40,36 +37,15 @@ class Darknet(object):
     
     def detect(self, dataset):
         view_img = check_imshow()
-        print("dataset:",dataset)
-        model = DetectMultiBackend("./yolov5s.pt", device=0, dnn=False, data=False, fp16=False)
-        # for path, img, img0s, vid_cap, s in dataset:
+        t0 = time.time()
         for path, img, img0s, vid_cap in dataset:
-            print("self.device:",self.device)
             img = self.preprocess(img)
 
             t1 = time.time()
-            #cpu
             pred = self.model(img, augment=self.opt["augment"])[0]  # 0.22s
             pred = pred.float()
             pred = non_max_suppression(pred, self.opt["conf_thres"], self.opt["iou_thres"])
-            #gpu
-            # visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
-            pred = model(img, augment=False, visualize=False)
-
-            print("pred",pred)
             t2 = time.time()
-
-            # Inference
-            # with dt[1]:
-            #     visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
-            #     pred = model(im, augment=augment, visualize=visualize)
-
-            # # NMS
-            # with dt[2]:
-            #     pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det) 
-
-
-
 
             pred_boxes = []
             for i, det in enumerate(pred):
@@ -77,7 +53,6 @@ class Darknet(object):
                     p, s, im0, frame = path[i], '%g: ' % i, img0s[i].copy(), dataset.count
                 else:
                     p, s, im0, frame = path, '', img0s, getattr(dataset, 'frame', 0)
-
                 s += '%gx%g ' % img.shape[2:]  # print string
                 gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
                 if det is not None and len(det):
