@@ -184,8 +184,12 @@ class LoadStreams:  # multiple IP or RTSP cameras
         # check for common shapes
         s = np.stack([letterbox(x, self.img_size)[0].shape for x in self.imgs], 0)  # shapes
         self.rect = np.unique(s, axis=0).shape[0] == 1  # rect inference if all shapes equal
+        print("self.rect:",self.rect)
         if not self.rect:
             print('WARNING: Different stream shapes detected. For optimal performance supply similarly-shaped streams.')
+    
+    # def getsource():
+    #     return 0
 
     def update(self, index, cap):
         # Read next stream frame in a daemon thread
