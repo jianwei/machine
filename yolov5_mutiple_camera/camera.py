@@ -8,6 +8,7 @@ from pathlib import Path
 from utils.datasets import letterbox
 from threading import Thread
 from utils.general import clean_str
+import torch
 
 
 img_formats = ['bmp', 'jpg', 'jpeg', 'png', 'tif', 'tiff', 'dng', 'webp']  # acceptable image suffixes
@@ -154,6 +155,7 @@ class LoadWebcam:  # for inference
 
 class LoadStreams:  # multiple IP or RTSP cameras
     def __init__(self, sources='streams.txt', img_size=640, stride=32):
+        torch.backends.cudnn.benchmark = True  # faster for fixed-size inference
         self.mode = 'stream'
         self.img_size = img_size
         self.stride = stride
