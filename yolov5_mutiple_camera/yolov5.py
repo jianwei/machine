@@ -45,6 +45,7 @@ class Darknet(object):
             pred = self.model(img, augment=self.opt["augment"])[0]  # 0.22s
             pred = pred.float()
             pred = non_max_suppression(pred, self.opt["conf_thres"], self.opt["iou_thres"])
+            print("pred",pred)
             t2 = time.time()
 
             pred_boxes = []

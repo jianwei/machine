@@ -42,7 +42,8 @@
 	pip3 uninstall opencv-python
     
 
-
+	pandas                  1.4.0 
+	
 	sudo -H pip install jetson-stats
 	sudo jtop
     

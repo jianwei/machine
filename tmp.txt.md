@@ -44,3 +44,6 @@ opencv-python           4.6.0.66
 pip3 install seaborn>=0.11.0   -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com   --default-timeout=100
 
 pip3 install -U numpy
+
+pandas                  1.4.0 
+
